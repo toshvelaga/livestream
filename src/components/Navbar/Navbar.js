@@ -13,6 +13,14 @@ function Navbar(props) {
           <FaIcons.FaBell size={20} />
         </span>
       </div>
+
+      <div class="side-navbar">
+        <button className="tablinks">Dashboard</button>
+        <button className="tablinks">Company</button>
+        <button className="tablinks">Campaign</button>
+        <button className="tablinks">Analytics</button>
+        <button className="tablinks">Settings</button>
+      </div>
     </>
   );
 }
