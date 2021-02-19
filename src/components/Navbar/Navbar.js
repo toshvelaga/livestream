@@ -5,6 +5,7 @@ import "./Navbar.css";
 function Navbar(props) {
   return (
     <>
+      {/* sticky top navbar */}
       <div class="top-navbar">
         <span>
           <FaIcons.FaUserCircle size={30} />
@@ -13,18 +14,41 @@ function Navbar(props) {
           <FaIcons.FaBell size={20} />
         </span>
       </div>
-
-      <div class="side-navbar">
-        <button className="tablinks">Dashboard</button>
-        <button className="tablinks">Company</button>
-        <button className="tablinks">Campaign</button>
+      {/* fixed side navbar with buttons */}
+      <div className="side-navbar">
         <button className="tablinks">
-          <FaIcons.FaChartBar size={20} />
-          Analytics
+          <span className="side-navbar-icon">
+            <FaIcons.FaThLarge size={20} />
+          </span>
+          <span className="side-navbar-title">Dashboard</span>
         </button>
+
         <button className="tablinks">
-          <FaIcons.FaCog size={20} />
-          Settings
+          <span className="side-navbar-icon">
+            <FaIcons.FaBusinessTime size={20} />
+          </span>
+          <span className="side-navbar-title">Company</span>
+        </button>
+
+        <button className="tablinks">
+          <span className="side-navbar-icon">
+            <FaIcons.FaCalendarWeek size={20} />
+          </span>
+          <span className="side-navbar-title">Campaign</span>
+        </button>
+
+        <button className="tablinks">
+          <span className="side-navbar-icon">
+            <FaIcons.FaChartBar size={20} />
+          </span>
+          <span className="side-navbar-title">Analytics</span>
+        </button>
+
+        <button className="tablinks">
+          <span className="side-navbar-icon">
+            <FaIcons.FaCog size={20} />
+          </span>
+          <span className="side-navbar-title">Settings</span>
         </button>
       </div>
     </>

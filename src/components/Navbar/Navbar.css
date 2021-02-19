@@ -38,6 +38,20 @@
   height: 100vh;
 }
 
+.side-navbar-title {
+  margin-left: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+  .side-navbar-title {
+    display: none;
+  }
+
+  .side-navbar {
+    width: 60px;
+  }
+}
+
 /* Style the buttons inside the tab */
 .side-navbar button {
   display: block;
