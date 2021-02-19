@@ -18,8 +18,14 @@ function Navbar(props) {
         <button className="tablinks">Dashboard</button>
         <button className="tablinks">Company</button>
         <button className="tablinks">Campaign</button>
-        <button className="tablinks">Analytics</button>
-        <button className="tablinks">Settings</button>
+        <button className="tablinks">
+          <FaIcons.FaChartBar size={20} />
+          Analytics
+        </button>
+        <button className="tablinks">
+          <FaIcons.FaCog size={20} />
+          Settings
+        </button>
       </div>
     </>
   );
