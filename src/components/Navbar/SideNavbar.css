@@ -10,6 +10,7 @@
   z-index: 100;
   height: 100vh;
   padding-top: 50px;
+  /* transition: width 0.4s linear; */
 }
 
 .side-navbar-title {
@@ -29,6 +30,7 @@
 
   .side-navbar {
     width: 60px;
+    transition: 0.3s;
   }
 
   .side-navbar-icon {
@@ -47,7 +49,7 @@
   display: block;
   background-color: inherit;
   color: black;
-  padding: 22px 16px;
+  padding: 20px 16px;
   width: 100%;
   border: none;
   outline: none;
