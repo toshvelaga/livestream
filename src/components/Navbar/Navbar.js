@@ -13,8 +13,6 @@ function Navbar() {
     setSidebar(!sidebar);
   };
 
-  // document.body.style = "background: grey;";
-
   return (
     <>
       {/* sticky top navbar */}
