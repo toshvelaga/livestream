@@ -25,6 +25,10 @@
   margin-top: 4px;
 }
 
+#hamburger-icon {
+  float: left;
+}
+
 /* side navbar */
 
 .side-navbar {
@@ -49,6 +53,16 @@
 
   .side-navbar {
     width: 60px;
+  }
+
+  .side-navbar-icon {
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 592px) {
+  .side-navbar {
+    display: none;
   }
 }
 

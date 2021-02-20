@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div style={{ marginLeft: "200px" }} class="main">
+      <div class="main">
         <h2>Scroll this page to see the effect</h2>
         <h2>
           The navigation bar will stay at the top of the page while scrolling

@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import "./Navbar.css";
 
 function Navbar(props) {
+  const [sideNavOpen, setsideNavOpen] = useState(false);
+
+  const toggleSideNav = () => {
+    setsideNavOpen((prevStatus) => !prevStatus);
+  };
+
   return (
     <>
       {/* sticky top navbar */}
@@ -12,6 +18,13 @@ function Navbar(props) {
         </span>
         <span id="notification-icon">
           <FaIcons.FaBell size={20} />
+        </span>
+        <span onClick={toggleSideNav} id="hamburger-icon">
+          {sideNavOpen ? (
+            <FaIcons.FaTimes size={20} />
+          ) : (
+            <FaIcons.FaBars size={20} />
+          )}
         </span>
       </div>
       {/* fixed side navbar with buttons */}
