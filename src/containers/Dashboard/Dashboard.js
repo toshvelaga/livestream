@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
+import "./Dashboard.css";
 
 function Dashboard() {
   return (

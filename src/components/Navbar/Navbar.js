@@ -3,21 +3,22 @@ import * as FaIcons from "react-icons/fa";
 import "./Navbar.css";
 import SideNavbar from "./SideNavbar";
 
-function Navbar(props) {
+function Navbar() {
   const [sideNavOpen, setsideNavOpen] = useState(false);
 
   const toggleSideNav = () => {
     setsideNavOpen((prevStatus) => !prevStatus);
+    // document.body.style.opacity = 0.5;
   };
 
   return (
     <>
       {/* sticky top navbar */}
       <div className="top-navbar">
-        <span>
+        <span className="user-circle-icon">
           <FaIcons.FaUserCircle size={30} />
         </span>
-        <span id="notification-icon">
+        <span className="notification-icon">
           <FaIcons.FaBell size={20} />
         </span>
         <span onClick={toggleSideNav} className="hamburger-icon">

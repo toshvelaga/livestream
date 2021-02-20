@@ -20,13 +20,14 @@
 .top-navbar span:hover {
   background: #ddd;
   color: black;
-  border-radius: 5px;
 }
 
-#notification-icon {
+.notification-icon,
+.hamburger-icon {
   margin-top: 4px;
 }
 
 .top-navbar .hamburger-icon {
   float: left;
+  margin-left: 4px;
 }

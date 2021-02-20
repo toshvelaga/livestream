@@ -2,7 +2,7 @@ import React from "react";
 import * as FaIcons from "react-icons/fa";
 import "./SideNavbar.css";
 
-function SideNavbar() {
+function SideNavbar(props) {
   return (
     <div className="side-navbar">
       <button className="tablinks">
