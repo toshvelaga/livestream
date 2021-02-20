@@ -6,7 +6,7 @@ function Dashboard() {
   return (
     <>
       <Navbar />
-      <div class="main">
+      <div style={{ marginTop: "5rem" }} class="main">
         <h2>Scroll this page to see the effect</h2>
         <h2>
           The navigation bar will stay at the top of the page while scrolling

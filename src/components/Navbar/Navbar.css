@@ -29,5 +29,58 @@
 
 .top-navbar .hamburger-icon {
   float: left;
-  margin-left: 4px;
+  margin-left: 5px;
+}
+
+/* mobile navbar for small screens */
+
+.nav-menu {
+  width: 180px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+}
+
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+}
+
+.nav-text {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  list-style: none;
+  height: 60px;
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.nav-text a:hover {
+  background-color: #ddd;
+}
+
+.nav-menu-items {
+  width: 180px;
+}
+
+.navbar-toggle {
+  margin-left: 1rem;
+  height: 60px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
