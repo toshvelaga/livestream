@@ -4,42 +4,42 @@ import "./SideNavbar.css";
 
 function SideNavbar(props) {
   return (
-    <div className="side-navbar">
-      <button className="tablinks">
+    <ul className="side-navbar">
+      <li className="tablinks">
         <div className="side-navbar-icon">
           <FaIcons.FaThLarge size={20} />
         </div>
         <div className="side-navbar-title">Dashboard</div>
-      </button>
+      </li>
 
-      <button className="tablinks">
+      <li className="tablinks">
         <div className="side-navbar-icon">
           <FaIcons.FaBusinessTime size={20} />
         </div>
         <div className="side-navbar-title">Company</div>
-      </button>
+      </li>
 
-      <button className="tablinks">
+      <li className="tablinks">
         <div className="side-navbar-icon">
           <FaIcons.FaCalendarWeek size={20} />
         </div>
         <div className="side-navbar-title">Campaign</div>
-      </button>
+      </li>
 
-      <button className="tablinks">
+      <li className="tablinks">
         <div className="side-navbar-icon">
           <FaIcons.FaChartBar size={20} />
         </div>
         <div className="side-navbar-title">Analytics</div>
-      </button>
+      </li>
 
-      <button className="tablinks">
+      <li className="tablinks">
         <div className="side-navbar-icon">
           <FaIcons.FaCog size={20} />
         </div>
         <div className="side-navbar-title">Settings</div>
-      </button>
-    </div>
+      </li>
+    </ul>
   );
 }
 

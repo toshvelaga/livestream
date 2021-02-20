@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TextInput from "../../components/TextInput/TextInput";
-// import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
+import Button from "../../components/Buttons/Button";
 import { Link } from "react-router-dom";
 import "./Register.css";
 
@@ -55,7 +55,7 @@ function Register() {
           />
         </div>
         <div className="register-button">
-          {/* <PrimaryButton style={{ width: "100%" }} title="Submit" fx={submit} /> */}
+          <Button style={{ width: "100%" }} title="Submit" />
         </div>
         <p style={{ color: "grey", marginTop: "1rem", textAlign: "center" }}>
           <Link

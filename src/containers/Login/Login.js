@@ -3,6 +3,7 @@ import TextInput from "../../components/TextInput/TextInput";
 // import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import Button from "../../components/Buttons/Button";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -33,6 +34,9 @@ function Login() {
             <ErrorMessage errorMsg={errorMsgPassword} />
           ) : null} */}
         </div>
+
+        <Button style={{ width: "100%" }} title="Sign In" />
+
         <p>
           <Link
             style={{
