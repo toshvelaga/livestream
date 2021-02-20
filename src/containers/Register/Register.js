@@ -9,7 +9,6 @@ function Register() {
   const [lastName, setlastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
 
   return (
     <>
@@ -46,14 +45,7 @@ function Register() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div>
-          <TextInput
-            label="Confirm Password"
-            placeholder="Confirm Password"
-            value={password2}
-            onChange={(e) => setPassword2(e.target.value)}
-          />
-        </div>
+
         <div className="register-button">
           <Button style={{ width: "100%" }} title="Submit" />
         </div>
