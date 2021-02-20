@@ -5,38 +5,38 @@ function SideNavbar() {
   return (
     <div className="side-navbar">
       <button className="tablinks">
-        <span className="side-navbar-icon">
+        <div className="side-navbar-icon">
           <FaIcons.FaThLarge size={20} />
-        </span>
-        <span className="side-navbar-title">Dashboard</span>
+        </div>
+        <div className="side-navbar-title">Dashboard</div>
       </button>
 
       <button className="tablinks">
-        <span className="side-navbar-icon">
+        <div className="side-navbar-icon">
           <FaIcons.FaBusinessTime size={20} />
-        </span>
-        <span className="side-navbar-title">Company</span>
+        </div>
+        <div className="side-navbar-title">Company</div>
       </button>
 
       <button className="tablinks">
-        <span className="side-navbar-icon">
+        <div className="side-navbar-icon">
           <FaIcons.FaCalendarWeek size={20} />
-        </span>
-        <span className="side-navbar-title">Campaign</span>
+        </div>
+        <div className="side-navbar-title">Campaign</div>
       </button>
 
       <button className="tablinks">
-        <span className="side-navbar-icon">
+        <div className="side-navbar-icon">
           <FaIcons.FaChartBar size={20} />
-        </span>
-        <span className="side-navbar-title">Analytics</span>
+        </div>
+        <div className="side-navbar-title">Analytics</div>
       </button>
 
       <button className="tablinks">
-        <span className="side-navbar-icon">
+        <div className="side-navbar-icon">
           <FaIcons.FaCog size={20} />
-        </span>
-        <span className="side-navbar-title">Settings</span>
+        </div>
+        <div className="side-navbar-title">Settings</div>
       </button>
     </div>
   );

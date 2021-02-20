@@ -40,10 +40,17 @@
   width: 180px;
   z-index: 100;
   height: 100vh;
+  padding-top: 50px;
 }
 
 .side-navbar-title {
   margin-left: 5px;
+}
+
+.side-navbar-icon,
+.side-navbar-title {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 @media screen and (max-width: 1200px) {

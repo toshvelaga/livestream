@@ -18,7 +18,7 @@ select {
 
 input:focus {
   outline: none !important;
-  border: 2px solid #121212;
+  border: 1px solid #121212;
 }
 
 .label {
