@@ -1,0 +1,20 @@
+.login-container {
+  width: 50%;
+  margin: 10rem auto;
+}
+
+@media only screen and (max-width: 1000px) {
+  .login-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .login-container {
+    width: 90%;
+  }
+}
+
+.login-button {
+  margin-top: 1rem;
+}

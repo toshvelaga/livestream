@@ -1,0 +1,40 @@
+.text-input-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 14px 10px;
+  margin: 0.5rem 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+input:focus {
+  outline: none !important;
+  border: 2px solid #121212;
+}
+
+.label {
+  font-size: 16px;
+  color: black;
+  display: "block";
+}
+
+.text-password {
+  width: 100%;
+  padding: 14px 10px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #ffffff;
+}
