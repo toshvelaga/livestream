@@ -1,0 +1,20 @@
+.register-container {
+  width: 50%;
+  margin: 8rem auto;
+}
+
+.register-button {
+  margin-top: 1rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .register-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .register-container {
+    width: 90%;
+  }
+}
