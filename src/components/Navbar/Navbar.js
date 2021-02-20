@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import SideNavbar from "./SideNavbar";
@@ -13,14 +12,21 @@ function Navbar() {
   const showSidebar = () => {
     setSidebar(!sidebar);
   };
+
+  // document.body.style = "background: grey;";
+
   return (
     <>
-      {!sidebar
-        ? (document.body.style.backgroundColor = "rgba(0,0,0,0)")
-        : (document.body.style.backgroundColor = "rgba(0,0,0,.5)")}
-
       {/* sticky top navbar */}
-      <div className="top-navbar">
+      {sidebar
+        ? (document.body.style = "background: grey")
+        : (document.body.style = "background: #fff")}
+      <div
+        style={
+          sidebar ? { backgroundColor: "grey" } : { backgroundColor: "#fff" }
+        }
+        id="top-navbar"
+      >
         <span className="user-circle-icon">
           <FaIcons.FaUserCircle size={30} />
         </span>

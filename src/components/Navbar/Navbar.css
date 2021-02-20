@@ -1,4 +1,4 @@
-.top-navbar {
+#top-navbar {
   overflow: hidden;
   background-color: #fff;
   position: fixed;
@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-.top-navbar span {
+#top-navbar span {
   float: right;
   display: block;
   color: black;
@@ -17,7 +17,7 @@
   font-size: 17px;
 }
 
-.top-navbar span:hover {
+#top-navbar span:hover {
   background: #ddd;
   color: black;
 }
@@ -27,7 +27,7 @@
   margin-top: 4px;
 }
 
-.top-navbar .hamburger-icon {
+#top-navbar .hamburger-icon {
   float: left;
   margin-left: 5px;
 }
