@@ -1,0 +1,68 @@
+/* side navbar */
+
+.side-navbar {
+  float: left;
+  position: fixed;
+  top: 0;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 180px;
+  z-index: 100;
+  height: 100vh;
+  padding-top: 50px;
+}
+
+.side-navbar-title {
+  margin-left: 5px;
+}
+
+.side-navbar-icon,
+.side-navbar-title {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 1200px) {
+  .side-navbar-title {
+    display: none;
+  }
+
+  .side-navbar {
+    width: 60px;
+  }
+
+  .side-navbar-icon {
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 592px) {
+  .side-navbar {
+    display: none;
+  }
+}
+
+/* Style the buttons inside the tab */
+.side-navbar button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.side-navbar button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.side-navbar button.active {
+  background-color: #ccc;
+}

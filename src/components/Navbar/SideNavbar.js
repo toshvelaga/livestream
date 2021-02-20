@@ -1,5 +1,6 @@
 import React from "react";
 import * as FaIcons from "react-icons/fa";
+import "./SideNavbar.css";
 
 function SideNavbar() {
   return (

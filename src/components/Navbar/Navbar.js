@@ -13,14 +13,14 @@ function Navbar(props) {
   return (
     <>
       {/* sticky top navbar */}
-      <div class="top-navbar">
+      <div className="top-navbar">
         <span>
           <FaIcons.FaUserCircle size={30} />
         </span>
         <span id="notification-icon">
           <FaIcons.FaBell size={20} />
         </span>
-        <span onClick={toggleSideNav} id="hamburger-icon">
+        <span onClick={toggleSideNav} className="hamburger-icon">
           {sideNavOpen ? (
             <FaIcons.FaTimes size={20} />
           ) : (
