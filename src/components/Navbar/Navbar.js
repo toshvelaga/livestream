@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import "./Navbar.css";
+import SideNavbar from "./SideNavbar";
 
 function Navbar(props) {
   const [sideNavOpen, setsideNavOpen] = useState(false);
@@ -28,42 +29,7 @@ function Navbar(props) {
         </span>
       </div>
       {/* fixed side navbar with buttons */}
-      <div className="side-navbar">
-        <button className="tablinks">
-          <span className="side-navbar-icon">
-            <FaIcons.FaThLarge size={20} />
-          </span>
-          <span className="side-navbar-title">Dashboard</span>
-        </button>
-
-        <button className="tablinks">
-          <span className="side-navbar-icon">
-            <FaIcons.FaBusinessTime size={20} />
-          </span>
-          <span className="side-navbar-title">Company</span>
-        </button>
-
-        <button className="tablinks">
-          <span className="side-navbar-icon">
-            <FaIcons.FaCalendarWeek size={20} />
-          </span>
-          <span className="side-navbar-title">Campaign</span>
-        </button>
-
-        <button className="tablinks">
-          <span className="side-navbar-icon">
-            <FaIcons.FaChartBar size={20} />
-          </span>
-          <span className="side-navbar-title">Analytics</span>
-        </button>
-
-        <button className="tablinks">
-          <span className="side-navbar-icon">
-            <FaIcons.FaCog size={20} />
-          </span>
-          <span className="side-navbar-title">Settings</span>
-        </button>
-      </div>
+      <SideNavbar />
     </>
   );
 }
