@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
@@ -8,9 +8,28 @@ import { IconContext } from "react-icons";
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
+  const [width, setWidth] = useState(0);
 
   const showSidebar = () => {
     setSidebar(!sidebar);
+  };
+
+  useEffect(() => {
+    const updateWindowDimensions = () => {
+      const newWidth = window.innerWidth;
+      setWidth(newWidth);
+      console.log("updating width");
+    };
+
+    window.addEventListener("resize", updateWindowDimensions);
+
+    return () => window.removeEventListener("resize", updateWindowDimensions);
+  }, []);
+
+  const closeSideNav = () => {
+    if (sidebar === true && width > 555) {
+      setSidebar(false);
+    }
   };
 
   return (
@@ -30,6 +49,7 @@ function Navbar() {
         </span>
         <span className="notification-icon">
           <FaIcons.FaBell size={20} />
+          {closeSideNav()}
         </span>
         <span onClick={showSidebar} className="hamburger-icon">
           <FaIcons.FaBars size={20} />
