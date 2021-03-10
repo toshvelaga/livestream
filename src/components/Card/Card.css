@@ -2,5 +2,12 @@
   padding: 5rem;
   width: 5rem;
   border-radius: 5px;
-  border: 1px solid grey;
+  border: 1px solid #eaefee;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.card-styles:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
