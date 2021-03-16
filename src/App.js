@@ -19,6 +19,7 @@ function App() {
               <Dashboard />
             </Suspense>
           </Route>
+
           <Route path="/login">
             <Login />
           </Route>
