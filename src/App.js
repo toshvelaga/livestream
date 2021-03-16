@@ -1,9 +1,11 @@
+import React, { lazy, Suspense } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Dashboard from "./containers/Dashboard/Dashboard";
 import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Register";
 import ForgotPassword from "./containers/ForgotPassword/ForgotPassword";
+
+const Dashboard = lazy(() => import("./containers/Dashboard/Dashboard"));
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/dashboard">
-            <Dashboard />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Dashboard />
+            </Suspense>
           </Route>
           <Route path="/login">
             <Login />
