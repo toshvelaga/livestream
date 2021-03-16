@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
@@ -14,7 +14,7 @@ function Navbar() {
     setSidebar(!sidebar);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updateWindowDimensions = () => {
       const newWidth = window.innerWidth;
       setWidth(newWidth);
