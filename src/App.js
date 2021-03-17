@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Router>
-        {/* A <Switch> looks through its children <Route>s and
+        {/* A <Switch> looks through its children <Routes> and
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/dashboard">

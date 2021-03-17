@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
