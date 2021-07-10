@@ -13,6 +13,8 @@ function Dashboard() {
           The navigation bar will stay at the top of the page while scrolling
         </h2>
         <Card />
+        {process.env.REACT_APP_TITLE}
+        {process.env.REACT_APP_DESCRIPTION}
         <p>Some text some text some text some text..</p>
       </div>
     </>
