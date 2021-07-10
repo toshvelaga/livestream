@@ -1,4 +1,4 @@
-# Saas Boilerplate
+# Livestreaming
 
 Get started with building a saas product much faster by using this boilerplate code. Covers login, register, forgot password, and responsive navigation.
 
