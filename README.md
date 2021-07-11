@@ -11,6 +11,10 @@ Frontend tech stack:
 - React Router
 - React Icons
 
+Backend tech stack:
+- Node JS
+- Express
+
 ## Installation
 
 To run this project, install it locally using npm:
