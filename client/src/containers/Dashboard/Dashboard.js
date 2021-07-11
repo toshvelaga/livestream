@@ -6,9 +6,9 @@ import './Dashboard.css'
 function Dashboard() {
   const videoRef = useRef(null)
 
-  useEffect(() => {
-    getVideo()
-  }, [videoRef])
+  // useEffect(() => {
+  //   getVideo()
+  // }, [videoRef])
 
   const getVideo = () => {
     navigator.mediaDevices
@@ -23,17 +23,31 @@ function Dashboard() {
       })
   }
 
+  const stopVideo = () => {
+    let video = videoRef.current
+
+    const stream = video.srcObject
+    const tracks = stream.getTracks()
+
+    for (let i = 0; i < tracks.length; i++) {
+      let track = tracks[i]
+      track.stop()
+    }
+
+    video.srcObject = null
+  }
+
   return (
     <>
       <Navbar />
-      <div style={{ marginTop: '5rem' }} class='main'>
+      <div style={{ marginTop: '5rem' }} className='main'>
         <h2>Scroll this page to see the effect</h2>
         <h2>
           The navigation bar will stay at the top of the page while scrolling
         </h2>
-        <video muted id='video' autoplay ref={videoRef} />
-        <button>start recording</button>
-        <button>stop recording</button>
+        <video muted id='video' autoPlay ref={videoRef} />
+        <button onClick={getVideo}>start recording</button>
+        <button onClick={stopVideo}>stop recording</button>
         {/* <Card />
         {process.env.REACT_APP_TITLE}
         {process.env.REACT_APP_DESCRIPTION} */}
