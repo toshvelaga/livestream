@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import Card from "../../components/Card/Card";
+// import Card from "../../components/Card/Card";
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -11,10 +11,13 @@ function Dashboard() {
         <h2>Scroll this page to see the effect</h2>
         <h2>
           The navigation bar will stay at the top of the page while scrolling
-        </h2>
-        <Card />
+        </h2>        
+        <video muted id="video" autoplay></video>
+        <button>start recording</button>
+        <button>stop recording</button>
+        {/* <Card />
         {process.env.REACT_APP_TITLE}
-        {process.env.REACT_APP_DESCRIPTION}
+        {process.env.REACT_APP_DESCRIPTION} */}
         <p>Some text some text some text some text..</p>
       </div>
     </>

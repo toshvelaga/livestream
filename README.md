@@ -2,6 +2,10 @@
 
 Get started with building a saas product much faster by using this boilerplate code. Covers login, register, forgot password, and responsive navigation.
 
+## Articles
+- https://idapgroup.com/blog/technology-stack-for-building-a-live-video-streaming-app/
+- https://quantizd.com/building-live-streaming-app-with-node-js-and-react/
+
 ## Tech/framework used
 
 Frontend tech stack:
