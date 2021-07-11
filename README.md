@@ -15,6 +15,8 @@ Get started with building a saas product much faster by using this boilerplate c
 - https://itnext.io/accessing-the-webcam-with-javascript-and-react-33cbe92f49cb
 - https://vimeo.com/blog/post/rtmp-stream/
 - WebRTC: https://www.youtube.com/watch?v=DvlyzDZDEq4&ab_channel=WebDevSimplified
+- record and download: https://www.youtube.com/watch?v=ZgMOxkVM8Js&ab_channel=CodingShiksha
+- test video player: https://www.wowza.com/testplayers
 
 ## Tech/framework used
 
