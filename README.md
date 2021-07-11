@@ -2,12 +2,19 @@
 
 Get started with building a saas product much faster by using this boilerplate code. Covers login, register, forgot password, and responsive navigation.
 
+## TODO
+
+- Multiple people can talk and record over the browser
+- Record video and send to youtube
+- Be able to add visual layers over video recording in the browser
+
 ## Articles
 
 - https://idapgroup.com/blog/technology-stack-for-building-a-live-video-streaming-app/
 - https://quantizd.com/building-live-streaming-app-with-node-js-and-react/
 - https://itnext.io/accessing-the-webcam-with-javascript-and-react-33cbe92f49cb
 - https://vimeo.com/blog/post/rtmp-stream/
+- WebRTC: https://www.youtube.com/watch?v=DvlyzDZDEq4&ab_channel=WebDevSimplified
 
 ## Tech/framework used
 
