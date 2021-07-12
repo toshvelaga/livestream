@@ -22,6 +22,9 @@ Get started with building a saas product much faster by using this boilerplate c
 ## Learning
 
 - https://www.youtube.com/watch?v=V9g4MYtCHkY&ab_channel=CodingWithChaim
+- https://www.youtube.com/watch?v=GMbdEnK8h3U&ab_channel=CodingWithChaim
+
+## Architecture Example
 
 ## Tech/framework used
 
