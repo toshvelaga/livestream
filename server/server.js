@@ -1,6 +1,5 @@
 const child_process = require('child_process') // To be used later for running FFmpeg
 const express = require('express')
-const path = require('path')
 const http = require('http')
 const WebSocketServer = require('ws').Server
 // const NodeMediaServer = require('node-media-server')
@@ -12,9 +11,6 @@ const server = http.createServer(app).listen(3000, () => {
 
 // Serve static files out of the www directory, where we will put our HTML page
 app.use(express.static('../www'))
-// app.get('/', function (req, res) {
-//   res.sendFile(path.join(__dirname, '../www/index.html'))
-// })
 
 const wss = new WebSocketServer({
   server: server,

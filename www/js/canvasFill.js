@@ -1,3 +1,20 @@
+document.addEventListener('DOMContentLoaded', () => {
+  document
+    .querySelector('[data-action="goLive"]')
+    .addEventListener('click', (e) => {
+      console.log('click')
+      FB.ui(
+        {
+          display: 'popup',
+          method: 'live_broadcast',
+          phase: 'create',
+        },
+        (createRes) => {
+          console.log(createRes)
+        }
+      )
+    })
+})
 ;(() => {
   let canvas
   let ctx

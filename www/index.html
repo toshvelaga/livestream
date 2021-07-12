@@ -6,6 +6,22 @@
     <script src="js/canvasFill.js"></script>
   </head>
   <body>
+    <script>
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: '1462702587399877',
+          autoLogAppEvents: true,
+          xfbml: true,
+          version: 'v11.0',
+        })
+      }
+    </script>
+    <script
+      async
+      defer
+      crossorigin="anonymous"
+      src="https://connect.facebook.net/en_US/sdk.js"
+    ></script>
     <canvas width="640" height="360"></canvas>
     <nav>
       <button data-action="goLive">Go Live</button>
