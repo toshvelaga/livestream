@@ -11,6 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         (createRes) => {
           console.log(createRes)
+          FB.ui(
+            {
+              display: 'popup',
+              method: 'live_broadcast',
+              phase: 'publish',
+              broadcast_data: createRes,
+            },
+            (publishRes) => {
+              console.log(publishRes)
+            }
+          )
         }
       )
     })
