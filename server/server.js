@@ -2,7 +2,7 @@ const child_process = require('child_process') // To be used later for running F
 const express = require('express')
 const http = require('http')
 const WebSocketServer = require('ws').Server
-const NodeMediaServer = require('node-media-server')
+// const NodeMediaServer = require('node-media-server')
 
 const app = express()
 const server = http.createServer(app).listen(3000, () => {
