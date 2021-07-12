@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "express": "^4.17.1",
-    "node-media-server": "^2.3.8"
+    "node-media-server": "^2.3.8",
+    "ws": "^7.5.3"
   }
 }
