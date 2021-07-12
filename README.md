@@ -10,6 +10,7 @@ Get started with building a saas product much faster by using this boilerplate c
 
 ## Articles
 
+- https://medium.com/agora-io/build-a-live-broadcasting-web-app-f6fbd27f3d50
 - https://idapgroup.com/blog/technology-stack-for-building-a-live-video-streaming-app/
 - https://quantizd.com/building-live-streaming-app-with-node-js-and-react/
 - https://itnext.io/accessing-the-webcam-with-javascript-and-react-33cbe92f49cb
@@ -17,6 +18,10 @@ Get started with building a saas product much faster by using this boilerplate c
 - WebRTC: https://www.youtube.com/watch?v=DvlyzDZDEq4&ab_channel=WebDevSimplified
 - record and download: https://www.youtube.com/watch?v=ZgMOxkVM8Js&ab_channel=CodingShiksha
 - test video player: https://www.wowza.com/testplayers
+
+## Learning
+
+- https://www.youtube.com/watch?v=V9g4MYtCHkY&ab_channel=CodingWithChaim
 
 ## Tech/framework used
 
