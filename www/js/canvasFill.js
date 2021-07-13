@@ -31,12 +31,28 @@ document.addEventListener('DOMContentLoaded', () => {
               encodeURIComponent(createRes.stream_url)
           )
 
+          let mediaStream
+          let mediaRecorder
           ws.addEventListener('open', (e) => {
             console.log('WebSocket Open', e)
+            mediaStream = document.querySelector('canvas').captureStream(30) // 30 FPS
+            mediaRecorder = new MediaRecorder(mediaStream, {
+              mimeType: 'video/webm;codecs=h264',
+              videoBitsPerSecond: 3 * 1024 * 1024,
+            })
+
+            mediaRecorder.addEventListener('dataavailable', (e) => {
+              ws.send(e.data)
+            })
+
+            mediaRecorder.addEventListener('stop', ws.close.bind(ws))
+
+            mediaRecorder.start(1000) // Start recording, and dump data every second
           })
 
           ws.addEventListener('close', (e) => {
             console.log('WebSocket Close', e)
+            mediaRecorder.stop()
           })
         }
       )
