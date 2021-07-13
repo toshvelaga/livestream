@@ -3,7 +3,7 @@ import axios from 'axios'
 
 function Popups() {
   let url = `https://id.twitch.tv/oauth2/authorize
-    ?client_id=<your client ID>
+    ?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}
     &redirect_uri=<your registered redirect URI>
     &response_type=<type>
     &scope=<space-separated list of scopes></space-separated>`
