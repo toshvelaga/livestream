@@ -22,6 +22,22 @@ document.addEventListener('DOMContentLoaded', () => {
               console.log(publishRes)
             }
           )
+
+          const ws = new WebSocket(
+            window.location.protocol.replace('http', 'ws') +
+              '//' + // http: -> ws:, https: -> wss:
+              window.location.host +
+              '/rtmp/' +
+              encodeURIComponent(createRes.stream_url)
+          )
+
+          ws.addEventListener('open', (e) => {
+            console.log('WebSocket Open', e)
+          })
+
+          ws.addEventListener('close', (e) => {
+            console.log('WebSocket Close', e)
+          })
         }
       )
     })
