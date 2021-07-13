@@ -18,6 +18,7 @@ Get started with building a saas product much faster by using this boilerplate c
 - WebRTC: https://www.youtube.com/watch?v=DvlyzDZDEq4&ab_channel=WebDevSimplified
 - record and download: https://www.youtube.com/watch?v=ZgMOxkVM8Js&ab_channel=CodingShiksha
 - test video player: https://www.wowza.com/testplayers
+- connect to FB using ws: https://github.com/fbsamples/Canvas-Streaming-Example/blob/master/README.md
 
 ## Learning
 
