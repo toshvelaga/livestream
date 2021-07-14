@@ -5,6 +5,7 @@ import Login from './containers/Login/Login'
 import Register from './containers/Register/Register'
 import ForgotPassword from './containers/ForgotPassword/ForgotPassword'
 import Popups from './components/Popups/Popups'
+import Code from './containers/Code/Code'
 
 const Dashboard = lazy(() => import('./containers/Dashboard/Dashboard'))
 
@@ -23,6 +24,9 @@ function App() {
 
           <Route path='/login'>
             <Login />
+          </Route>
+          <Route path='/register/code'>
+            <Code />
           </Route>
           <Route path='/register'>
             <Register />

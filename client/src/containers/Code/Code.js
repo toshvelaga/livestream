@@ -12,7 +12,11 @@ function Code() {
         value={code}
         onChange={(e) => setCode(e.target.value)}
       />
-      <Button />
+      <Button
+        fx={() => alert('clicked')}
+        style={{ width: '100%' }}
+        title='Log In'
+      />
     </div>
   )
 }
