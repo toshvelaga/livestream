@@ -3,18 +3,15 @@ import axios from 'axios'
 
 function Popups() {
   const CLIENT_ID = encodeURIComponent(process.env.REACT_APP_TWITCH_CLIENT_ID)
-  const REDIRECT_URI = encodeURIComponent(
-    'https://mjefmmgpdalfommpehabccnhodbppfje.chromiumapp.org/'
-  )
+  const REDIRECT_URI = encodeURIComponent('http://localhost:3000/')
   const RESPONSE_TYPE = encodeURIComponent('token id_token')
   const SCOPE = encodeURIComponent('openid')
 
-  let redirect_uri = 'http://localhost:3000/'
   let url = `https://id.twitch.tv/oauth2/authorize
-    ?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}
-    &redirect_uri=${redirect_uri}
-    &response_type=<type>
-    &scope=channel:read:stream_key`
+    ?client_id=${CLIENT_ID}
+    &redirect_uri=${REDIRECT_URI}
+    &response_type=${RESPONSE_TYPE}
+    &scope=${SCOPE}`
 
   let url2 = `https://jsonplaceholder.typicode.com/todos/1`
 
