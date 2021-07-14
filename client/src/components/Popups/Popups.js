@@ -7,31 +7,11 @@ function Popups() {
   const RESPONSE_TYPE = encodeURIComponent('token id_token')
   const SCOPE = encodeURIComponent('openid')
 
-  let url = `https://id.twitch.tv/oauth2/authorize
-    ?client_id=${CLIENT_ID}
-    &redirect_uri=${REDIRECT_URI}
-    &response_type=${RESPONSE_TYPE}
-    &scope=${SCOPE}`
-
-  const twitchAuthUser = async () => {
-    try {
-      const response = await axios.get(url)
-      console.log(response)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    twitchAuthUser()
-  }, [])
-
   useEffect(() => {
     // These are set for the GitHub Pages Example
     // Substitute as needed
-    var client_id = 'hozgh446gdilj5knsrsxxz8tahr3koz'
-    var redirect =
-      'https://barrycarlyon.github.io/twitch_misc/authentication/implicit_auth/'
+    var client_id = process.env.REACT_APP_TWITCH_CLIENT_ID
+    var redirect = 'http://localhost:3000/'
 
     document
       .getElementById('authorize_public')
@@ -73,6 +53,7 @@ function Popups() {
         })
           .then((resp) => resp.json())
           .then((resp) => {
+            console.log(resp)
             document.getElementById('user_data').innerHTML =
               '<p>Your Public Twitch Profile from Helix:</p>'
             var table = document.createElement('table')
