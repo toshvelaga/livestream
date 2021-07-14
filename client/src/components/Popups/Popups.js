@@ -132,7 +132,17 @@ function Popups() {
       </p>
       <ul>
         <li>
-          <a href='' id='authorize_public'>
+          <a
+            target='popup'
+            onClick={() =>
+              window.open(
+                'http://kanishkkunal.com',
+                'popup',
+                'width=600,height=600'
+              )
+            }
+            id='authorize_public'
+          >
             Authorize and get Public data
           </a>
         </li>
