@@ -16,7 +16,7 @@ function Popups() {
           client_id +
           '&redirect_uri=' +
           encodeURIComponent(redirect) +
-          '&response_type=token'
+          `&response_type=token&scope=${scope}`
       )
     document
       .getElementById('authorize_email')
@@ -48,7 +48,7 @@ function Popups() {
         })
           .then((resp) => resp.json())
           .then((resp) => {
-            console.log(resp.data)
+            console.log(resp)
             document.getElementById('user_data').innerHTML =
               '<p>Your Public Twitch Profile from Helix:</p>'
             var table = document.createElement('table')
