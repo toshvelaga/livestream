@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 
 function Popups() {
-  // const CLIENT_ID = encodeURIComponent(process.env.REACT_APP_TWITCH_CLIENT_ID)
-  // const REDIRECT_URI = encodeURIComponent('http://localhost:3000/')
-  // const RESPONSE_TYPE = encodeURIComponent('token id_token')
-  // const SCOPE = encodeURIComponent('openid')
-
   useEffect(() => {
     // These are set for the GitHub Pages Example
     // Substitute as needed
+
+    // var client_id = 'hozgh446gdilj5knsrsxxz8tahr3koz'
+    // var redirect =
+    //   'https://barrycarlyon.github.io/twitch_misc/authentication/implicit_auth/'
+
     var client_id = process.env.REACT_APP_TWITCH_CLIENT_ID
     var redirect = 'http://localhost:3000/'
     var scope = encodeURIComponent(
