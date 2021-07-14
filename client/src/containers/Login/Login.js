@@ -16,7 +16,7 @@ function Login() {
       <div className='login-container'>
         <div>
           <TextInput
-            label='Email Address'
+            label='Email'
             placeholder='Email Address'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -25,9 +25,6 @@ function Login() {
         </div>
         <Button style={{ width: '100%' }} title='Sign In' />
 
-        <div className='login-button'>
-          {/* <PrimaryButton style={{ width: "100%" }} title="Submit" fx={submit} /> */}
-        </div>
         <p style={{ color: 'grey', marginTop: '1rem', textAlign: 'center' }}>
           <Link
             style={{
