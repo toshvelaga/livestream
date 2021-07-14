@@ -4,7 +4,6 @@ function Popups() {
   useEffect(() => {
     // These are set for the GitHub Pages Example
     // Substitute as needed
-
     // var client_id = 'hozgh446gdilj5knsrsxxz8tahr3koz'
     // var redirect =
     //   'https://barrycarlyon.github.io/twitch_misc/authentication/implicit_auth/'
