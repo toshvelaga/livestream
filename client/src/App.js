@@ -1,6 +1,11 @@
 import React, { lazy, Suspense } from 'react'
 import './App.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 import Login from './containers/Login/Login'
 import Register from './containers/Register/Register'
 import ForgotPassword from './containers/ForgotPassword/ForgotPassword'
