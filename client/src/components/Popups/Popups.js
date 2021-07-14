@@ -2,12 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 function Popups() {
   useEffect(() => {
-    // These are set for the GitHub Pages Example
-    // Substitute as needed
-    // var client_id = 'hozgh446gdilj5knsrsxxz8tahr3koz'
-    // var redirect =
-    //   'https://barrycarlyon.github.io/twitch_misc/authentication/implicit_auth/'
-
     var client_id = process.env.REACT_APP_TWITCH_CLIENT_ID
     var redirect = 'http://localhost:3000/'
     var scope = encodeURIComponent(
@@ -54,7 +48,7 @@ function Popups() {
         })
           .then((resp) => resp.json())
           .then((resp) => {
-            console.log(resp)
+            console.log(resp.data)
             document.getElementById('user_data').innerHTML =
               '<p>Your Public Twitch Profile from Helix:</p>'
             var table = document.createElement('table')
