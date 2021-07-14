@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 
 function Popups() {
-  const CLIENT_ID = encodeURIComponent(process.env.REACT_APP_TWITCH_CLIENT_ID)
-  const REDIRECT_URI = encodeURIComponent('http://localhost:3000/')
-  const RESPONSE_TYPE = encodeURIComponent('token id_token')
-  const SCOPE = encodeURIComponent('openid')
+  // const CLIENT_ID = encodeURIComponent(process.env.REACT_APP_TWITCH_CLIENT_ID)
+  // const REDIRECT_URI = encodeURIComponent('http://localhost:3000/')
+  // const RESPONSE_TYPE = encodeURIComponent('token id_token')
+  // const SCOPE = encodeURIComponent('openid')
 
   useEffect(() => {
     // These are set for the GitHub Pages Example
     // Substitute as needed
     var client_id = process.env.REACT_APP_TWITCH_CLIENT_ID
     var redirect = 'http://localhost:3000/'
+    var scope = encodeURIComponent(
+      'user:read:email user:read:follows user:read:broadcast channel:manage:schedule channel:read:stream_key'
+    )
 
     document
       .getElementById('authorize_public')
@@ -31,7 +33,7 @@ function Popups() {
           client_id +
           '&redirect_uri=' +
           encodeURIComponent(redirect) +
-          '&response_type=token&scope=user:read:email'
+          `&response_type=token&scope=${scope}`
       )
     document.getElementById('access_token').textContent = ''
 
