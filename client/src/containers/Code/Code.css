@@ -1,0 +1,26 @@
+:root {
+  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+}
+
+.code-container {
+  width: 50%;
+  margin: 10rem auto;
+  font-family: var(--main-font);
+}
+
+@media only screen and (max-width: 1000px) {
+  .code-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .code-container {
+    width: 90%;
+  }
+}
+
+.code-container {
+  margin-top: 1rem;
+}
