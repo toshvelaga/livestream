@@ -16,8 +16,12 @@ router.post('/auth-code', async (req, res) => {
     ])
 
     if (email == '') {
-      return res.status(401).json({ email: 'Please do not leave email empty' })
+      return res.status(401).json({ error: 'Please do not leave email empty' })
     }
+
+    await pool.query('INSERT INTO users (user_email) VALUES ($1) RETURNING *', [
+      email,
+    ])
 
     // if (user.rows.length === 0) {
     //   return res
@@ -72,6 +76,10 @@ router.post('/auth-code', async (req, res) => {
 router.post('/authy', (req, res) => {
   const email = req.body.email
   const code = Math.floor(100000 + Math.random() * 900000)
+
+  if (!email) {
+    return res.status(401).json({ error: 'Please do not leave email empty' })
+  }
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
