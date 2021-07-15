@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import { Link, useHistory } from 'react-router-dom'
+import axios from 'axios'
 import './Register.css'
 
 function Register() {
@@ -9,7 +10,22 @@ function Register() {
   const [password, setPassword] = useState('')
 
   const history = useHistory()
-  const handleClick = () => history.push('/register/code')
+  const handleClick = () => {
+    sendAuthCode()
+    history.push('/register/code')
+  }
+
+  const sendAuthCode = async () => {
+    // e.preventDefault()
+    try {
+      const response = await axios.post('/auth-code', {
+        email,
+      })
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
