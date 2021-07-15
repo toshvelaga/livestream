@@ -19,7 +19,7 @@ function Register() {
     // e.preventDefault()
     try {
       const response = await axios.post('http://localhost:8080/authy', {
-        email,
+        email: email,
       })
       console.log(response)
     } catch (error) {

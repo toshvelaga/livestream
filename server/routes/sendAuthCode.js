@@ -70,7 +70,34 @@ router.post('/auth-code', async (req, res) => {
 })
 
 router.post('/authy', (req, res) => {
+  const email = req.body.email
   const code = Math.floor(100000 + Math.random() * 900000)
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: `${process.env.EMAIL_ADDRESS}`,
+      pass: `${process.env.EMAIL_PASSWORD}`,
+    },
+  })
+
+  const mailOptions = {
+    from: 'toshvelaga@gmail.com',
+    to: email,
+    subject: 'Link To Reset Password',
+    text: `Your auth code is ${code}`,
+  }
+
+  transporter.sendMail(mailOptions, (err, response) => {
+    if (err) {
+      console.error('there was an error: ', err)
+    } else {
+      res.status(200).json({
+        success: 'recovery email sent',
+      })
+    }
+  })
+
   console.log(`code: ${code}`)
 })
 
