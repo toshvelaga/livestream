@@ -6,7 +6,7 @@ const validInfo = require('../middleware/validInfo')
 const jwtGenerator = require('../utils/jwtGenerator')
 const authorize = require('../middleware/authorize')
 
-router.post('/register', validInfo, async (req, res) => {
+router.post('/user/register', validInfo, async (req, res) => {
   const { email } = req.body
 
   try {
@@ -36,7 +36,7 @@ router.post('/register', validInfo, async (req, res) => {
   }
 })
 
-router.post('/login', async (req, res) => {
+router.post('/user/login', async (req, res) => {
   const { email, password } = req.body
 
   try {
