@@ -1,7 +1,8 @@
-const child_process = require('child_process') // To be used later for running FFmpeg
+// const child_process = require('child_process')
+// To be used later for running FFmpeg
 const express = require('express')
-const http = require('http')
-const WebSocketServer = require('ws').Server
+// const http = require('http')
+// const WebSocketServer = require('ws').Server
 // const NodeMediaServer = require('node-media-server')
 const app = express()
 const cors = require('cors')
@@ -16,11 +17,11 @@ app.use(
   express.urlencoded({ limit: '200mb', extended: true, parameterLimit: 50000 })
 )
 
-var auth = require('./routes/auth')
-var sendAuthCode = require('./routes/sendAuthCode')
+// var authRouter = require('./routes/auth')
+var sendAuthCodeRouter = require('./routes/sendAuthCode')
 
-app.use('/', auth)
-app.use('/', sendAuthCode)
+// app.use('/', authRouter)
+app.use('/', sendAuthCodeRouter)
 
 if (process.env.NODE_ENV === 'production') {
   // serve static content

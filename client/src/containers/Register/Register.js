@@ -12,13 +12,13 @@ function Register() {
   const history = useHistory()
   const handleClick = () => {
     sendAuthCode()
-    history.push('/register/code')
+    // history.push('/register/code')
   }
 
   const sendAuthCode = async () => {
     // e.preventDefault()
     try {
-      const response = await axios.post('/auth-code', {
+      const response = await axios.post('http://localhost:8080/authy', {
         email,
       })
       console.log(response)

@@ -69,4 +69,9 @@ router.post('/auth-code', async (req, res) => {
   }
 })
 
+router.post('/authy', (req, res) => {
+  const code = Math.floor(100000 + Math.random() * 900000)
+  console.log(`code: ${code}`)
+})
+
 module.exports = router
