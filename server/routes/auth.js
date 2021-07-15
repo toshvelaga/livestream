@@ -47,13 +47,7 @@ router.post('/user/login', async (req, res) => {
         .json({ email: 'No email is associated with that account' })
     }
 
-    if (!validPassword) {
-      return res
-        .status(401)
-        .json({ password: 'The password entered is not correct' })
-    }
-    const jwtToken = jwtGenerator(user.rows[0].user_id)
-    return res.json({ jwtToken })
+    return res.json('login')
   } catch (err) {
     console.error(err.message)
     res.status(500).send('Server error occurred while logging in')
@@ -76,15 +70,6 @@ router.post('/authy', async (req, res) => {
   )
 
   sendAuthCode(email, code)
-})
-
-router.post('/verify', async (req, res) => {
-  try {
-    res.json(true)
-  } catch (err) {
-    console.error(err.message)
-    res.status(500).send('Server Error')
-  }
 })
 
 module.exports = router

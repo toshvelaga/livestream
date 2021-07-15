@@ -18,10 +18,10 @@ app.use(
 )
 
 // var authRouter = require('./routes/auth')
-var sendAuthCodeRouter = require('./routes/sendAuthCode')
+var authRouter = require('./routes/auth')
 
 // app.use('/', authRouter)
-app.use('/', sendAuthCodeRouter)
+app.use('/', authRouter)
 
 if (process.env.NODE_ENV === 'production') {
   // serve static content
