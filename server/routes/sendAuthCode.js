@@ -84,7 +84,7 @@ router.post('/authy', (req, res) => {
   const mailOptions = {
     from: 'toshvelaga@gmail.com',
     to: email,
-    subject: 'Link To Reset Password',
+    subject: 'Livestream 6 digit code',
     text: `Your auth code is ${code}`,
   }
 
@@ -97,8 +97,6 @@ router.post('/authy', (req, res) => {
       })
     }
   })
-
-  console.log(`code: ${code}`)
 })
 
 module.exports = router
