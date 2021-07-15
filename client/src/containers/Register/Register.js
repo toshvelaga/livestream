@@ -23,8 +23,9 @@ function Register() {
       })
       await console.log(response)
     } catch (error) {
-      console.log(error.response.data.error)
-      seterror(error.response.data.error)
+      console.log(error)
+      // console.log(error.response.data.error)
+      // seterror(error.response.data.error)
     }
   }
 
