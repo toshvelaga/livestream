@@ -3,10 +3,39 @@ const express = require('express')
 const http = require('http')
 const WebSocketServer = require('ws').Server
 // const NodeMediaServer = require('node-media-server')
-
 const app = express()
-const server = http.createServer(app).listen(3000, () => {
-  console.log('Listening...')
+const cors = require('cors')
+const path = require('path')
+const logger = require('morgan')
+
+app.use(logger('dev'))
+app.use(cors())
+
+app.use(express.json({ limit: '200mb', extended: true }))
+app.use(
+  express.urlencoded({ limit: '200mb', extended: true, parameterLimit: 50000 })
+)
+
+var auth = require('./routes/auth')
+var sendAuthCode = require('./routes/sendAuthCode')
+
+app.use('/', auth)
+app.use('/', sendAuthCode)
+
+if (process.env.NODE_ENV === 'production') {
+  // serve static content
+  // npm run build
+  app.use(express.static(path.join(__dirname, 'client/build')))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+  })
+}
+
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, () => {
+  console.log(`Server is starting on port ${PORT}`)
 })
 
 // Serve static files out of the www directory, where we will put our HTML page
