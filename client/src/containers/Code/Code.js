@@ -12,6 +12,7 @@ function Code() {
           label='Code'
           placeholder='Enter 6 digit code'
           value={code}
+          maxLength={6}
           onChange={(e) => setCode(e.target.value)}
         />
         <Button
