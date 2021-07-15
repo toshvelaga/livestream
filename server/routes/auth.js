@@ -1,10 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const bcrypt = require('bcrypt')
 const pool = require('../db')
 const validInfo = require('../middleware/validInfo')
-const jwtGenerator = require('../utils/jwtGenerator')
-const authorize = require('../middleware/authorize')
 
 router.post('/user/register', validInfo, async (req, res) => {
   const { email } = req.body
@@ -37,7 +34,7 @@ router.post('/user/register', validInfo, async (req, res) => {
 })
 
 router.post('/user/login', async (req, res) => {
-  const { email, password } = req.body
+  const { email } = req.body
 
   try {
     const user = await pool.query(`SELECT * FROM users WHERE user_email = $1`, [
@@ -49,11 +46,6 @@ router.post('/user/login', async (req, res) => {
         .status(401)
         .json({ email: 'No email is associated with that account' })
     }
-
-    const validPassword = await bcrypt.compare(
-      password,
-      user.rows[0].user_password
-    )
 
     if (!validPassword) {
       return res
@@ -68,7 +60,7 @@ router.post('/user/login', async (req, res) => {
   }
 })
 
-router.post('/verify', authorize, async (req, res) => {
+router.post('/verify', async (req, res) => {
   try {
     res.json(true)
   } catch (err) {

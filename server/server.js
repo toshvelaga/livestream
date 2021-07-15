@@ -32,104 +32,108 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => {
   console.log(`Server is starting on port ${PORT}`)
 })
 
-// Serve static files out of the www directory, where we will put our HTML page
-app.use(express.static('../www'))
+// const server = http.createServer(app).listen(5000, () => {
+//   console.log('Listening...')
+// })
 
-const wss = new WebSocketServer({
-  server: server,
-})
+// // Serve static files out of the www directory, where we will put our HTML page
+// app.use(express.static('../www'))
 
-wss.on('connection', (ws, req) => {
-  // Ensure that the URL starts with '/rtmp/', and extract the target RTMP URL.
-  let match
-  if (!(match = req.url.match(/^\/rtmp\/(.*)$/))) {
-    ws.terminate() // No match, reject the connection.
-    return
-  }
+// const wss = new WebSocketServer({
+//   server: server,
+// })
 
-  const rtmpUrl = decodeURIComponent(match[1])
-  console.log('Target RTMP URL:', rtmpUrl)
+// wss.on('connection', (ws, req) => {
+//   // Ensure that the URL starts with '/rtmp/', and extract the target RTMP URL.
+//   let match
+//   if (!(match = req.url.match(/^\/rtmp\/(.*)$/))) {
+//     ws.terminate() // No match, reject the connection.
+//     return
+//   }
 
-  // Launch FFmpeg to handle all appropriate transcoding, muxing, and RTMP.
-  // If 'ffmpeg' isn't in your path, specify the full path to the ffmpeg binary.
-  const ffmpeg = child_process.spawn('ffmpeg', [
-    // Facebook requires an audio track, so we create a silent one here.
-    // Remove this line, as well as `-shortest`, if you send audio from the browser.
-    '-f',
-    'lavfi',
-    '-i',
-    'anullsrc',
+//   const rtmpUrl = decodeURIComponent(match[1])
+//   console.log('Target RTMP URL:', rtmpUrl)
 
-    // FFmpeg will read input video from STDIN
-    '-i',
-    '-',
+//   // Launch FFmpeg to handle all appropriate transcoding, muxing, and RTMP.
+//   // If 'ffmpeg' isn't in your path, specify the full path to the ffmpeg binary.
+//   const ffmpeg = child_process.spawn('ffmpeg', [
+//     // Facebook requires an audio track, so we create a silent one here.
+//     // Remove this line, as well as `-shortest`, if you send audio from the browser.
+//     '-f',
+//     'lavfi',
+//     '-i',
+//     'anullsrc',
 
-    // Because we're using a generated audio source which never ends,
-    // specify that we'll stop at end of other input.  Remove this line if you
-    // send audio from the browser.
-    '-shortest',
+//     // FFmpeg will read input video from STDIN
+//     '-i',
+//     '-',
 
-    // If we're encoding H.264 in-browser, we can set the video codec to 'copy'
-    // so that we don't waste any CPU and quality with unnecessary transcoding.
-    // If the browser doesn't support H.264, set the video codec to 'libx264'
-    // or similar to transcode it to H.264 here on the server.
-    '-vcodec',
-    'copy',
+//     // Because we're using a generated audio source which never ends,
+//     // specify that we'll stop at end of other input.  Remove this line if you
+//     // send audio from the browser.
+//     '-shortest',
 
-    // AAC audio is required for Facebook Live.  No browser currently supports
-    // encoding AAC, so we must transcode the audio to AAC here on the server.
-    '-acodec',
-    'aac',
+//     // If we're encoding H.264 in-browser, we can set the video codec to 'copy'
+//     // so that we don't waste any CPU and quality with unnecessary transcoding.
+//     // If the browser doesn't support H.264, set the video codec to 'libx264'
+//     // or similar to transcode it to H.264 here on the server.
+//     '-vcodec',
+//     'copy',
 
-    // FLV is the container format used in conjunction with RTMP
-    '-f',
-    'flv',
+//     // AAC audio is required for Facebook Live.  No browser currently supports
+//     // encoding AAC, so we must transcode the audio to AAC here on the server.
+//     '-acodec',
+//     'aac',
 
-    // The output RTMP URL.
-    // For debugging, you could set this to a filename like 'test.flv', and play
-    // the resulting file with VLC.  Please also read the security considerations
-    // later on in this tutorial.
-    rtmpUrl,
-  ])
+//     // FLV is the container format used in conjunction with RTMP
+//     '-f',
+//     'flv',
 
-  // If FFmpeg stops for any reason, close the WebSocket connection.
-  ffmpeg.on('close', (code, signal) => {
-    console.log(
-      'FFmpeg child process closed, code ' + code + ', signal ' + signal
-    )
-    ws.terminate()
-  })
+//     // The output RTMP URL.
+//     // For debugging, you could set this to a filename like 'test.flv', and play
+//     // the resulting file with VLC.  Please also read the security considerations
+//     // later on in this tutorial.
+//     rtmpUrl,
+//   ])
 
-  // Handle STDIN pipe errors by logging to the console.
-  // These errors most commonly occur when FFmpeg closes and there is still
-  // data to write.  If left unhandled, the server will crash.
-  ffmpeg.stdin.on('error', (e) => {
-    console.log('FFmpeg STDIN Error', e)
-  })
+//   // If FFmpeg stops for any reason, close the WebSocket connection.
+//   ffmpeg.on('close', (code, signal) => {
+//     console.log(
+//       'FFmpeg child process closed, code ' + code + ', signal ' + signal
+//     )
+//     ws.terminate()
+//   })
 
-  // FFmpeg outputs all of its messages to STDERR.  Let's log them to the console.
-  ffmpeg.stderr.on('data', (data) => {
-    console.log('FFmpeg STDERR:', data.toString())
-  })
+//   // Handle STDIN pipe errors by logging to the console.
+//   // These errors most commonly occur when FFmpeg closes and there is still
+//   // data to write.  If left unhandled, the server will crash.
+//   ffmpeg.stdin.on('error', (e) => {
+//     console.log('FFmpeg STDIN Error', e)
+//   })
 
-  // When data comes in from the WebSocket, write it to FFmpeg's STDIN.
-  ws.on('message', (msg) => {
-    console.log('DATA', msg)
-    ffmpeg.stdin.write(msg)
-  })
+//   // FFmpeg outputs all of its messages to STDERR.  Let's log them to the console.
+//   ffmpeg.stderr.on('data', (data) => {
+//     console.log('FFmpeg STDERR:', data.toString())
+//   })
 
-  // If the client disconnects, stop FFmpeg.
-  ws.on('close', (e) => {
-    console.log('kill: SIGINT')
-    ffmpeg.kill('SIGINT')
-  })
-})
+//   // When data comes in from the WebSocket, write it to FFmpeg's STDIN.
+//   ws.on('message', (msg) => {
+//     console.log('DATA', msg)
+//     ffmpeg.stdin.write(msg)
+//   })
+
+//   // If the client disconnects, stop FFmpeg.
+//   ws.on('close', (e) => {
+//     console.log('kill: SIGINT')
+//     ffmpeg.kill('SIGINT')
+//   })
+// })
 
 // const config = {
 //   rtmp: {
