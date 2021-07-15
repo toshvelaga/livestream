@@ -1,15 +1,15 @@
-import React from "react";
-import "./TextInput.css";
+import React from 'react'
+import './TextInput.css'
 
 function TextInput(props) {
   return (
     <>
-      <div className="text-input-container">
-        <label className="label" for="fname">
+      <div className='text-input-container'>
+        <label className='label' for='fname'>
           {props.label}
         </label>
         <input
-          type="text"
+          type='text'
           id={props.id}
           name={props.name}
           placeholder={props.placeholder}
@@ -17,10 +17,11 @@ function TextInput(props) {
           value={props.value}
           onChange={props.onChange}
           required={props.required}
+          maxLength={props.maxLength}
         ></input>
       </div>
     </>
-  );
+  )
 }
 
-export default TextInput;
+export default TextInput
