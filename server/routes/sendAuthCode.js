@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const pool = require('../db')
+const sendAuthCode = require('../utils/sendAuthCode')
 const nodemailer = require('nodemailer')
 const crypto = require('crypto')
 require('dotenv').config()
@@ -72,40 +73,19 @@ router.post('/auth-code', async (req, res) => {
 router.post('/authy', async (req, res) => {
   const email = req.body.email
   const code = Math.floor(100000 + Math.random() * 900000)
+  const timeCreated = new Date().toUTCString()
 
   if (!email) {
+    console.log('do not leave email empty')
     return res.status(401).json({ error: 'Please do not leave email empty' })
   }
 
   await pool.query(
-    'INSERT INTO users (user_email, user_code) VALUES ($1, $2) RETURNING *',
-    [email, code]
+    'INSERT INTO users (user_email, user_code, user_date_created) VALUES ($1, $2, $3) RETURNING *',
+    [email, code, timeCreated]
   )
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: `${process.env.EMAIL_ADDRESS}`,
-      pass: `${process.env.EMAIL_PASSWORD}`,
-    },
-  })
-
-  const mailOptions = {
-    from: 'toshvelaga@gmail.com',
-    to: email,
-    subject: 'Livestream 6 digit code',
-    text: `Your auth code is ${code}`,
-  }
-
-  transporter.sendMail(mailOptions, (err, response) => {
-    if (err) {
-      console.error('there was an error: ', err)
-    } else {
-      res.status(200).json({
-        success: 'recovery email sent',
-      })
-    }
-  })
+  sendAuthCode(email, code)
 })
 
 module.exports = router
