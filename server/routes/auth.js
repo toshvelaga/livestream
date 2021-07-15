@@ -13,12 +13,14 @@ router.post('/user/register', async (req, res) => {
     return res.status(401).json({ error: 'Please do not leave email empty' })
   }
 
-  await pool.query(
+  let newUser = await pool.query(
     'INSERT INTO users (user_email, user_code, user_date_created) VALUES ($1, $2, $3) RETURNING *',
     [email, code, timeCreated]
   )
 
-  sendAuthCode(email, code)
+  await sendAuthCode(email, code)
+
+  return newUser.rows[0]
 })
 
 router.post('/user/login', async (req, res) => {
