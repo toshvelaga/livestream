@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "axios": "^0.21.1",
     "express": "^4.17.1",
     "node-media-server": "^2.3.8",
+    "pg": "^8.6.0",
     "ws": "^7.5.3"
   }
 }
