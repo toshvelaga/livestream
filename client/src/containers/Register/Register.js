@@ -7,23 +7,24 @@ import './Register.css'
 
 function Register() {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [error, seterror] = useState('')
 
   const history = useHistory()
+
   const handleClick = () => {
     sendAuthCode()
-    // history.push('/register/code')
+    history.push('/register/code')
   }
 
   const sendAuthCode = async () => {
-    // e.preventDefault()
     try {
-      const response = await axios.post('http://localhost:8080/authy', {
+      const response = await axios.post('http://localhost:8080/user/register', {
         email: email,
       })
       await console.log(response)
     } catch (error) {
       console.log(error.response.data.error)
+      seterror(error.response.data.error)
     }
   }
 
@@ -37,6 +38,7 @@ function Register() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          {error ? <p style={{ color: 'red' }}>{error}</p> : null}
         </div>
         <div className='register-button'>
           <Button style={{ width: '100%' }} title='Submit' fx={handleClick} />
