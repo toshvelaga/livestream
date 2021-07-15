@@ -19,14 +19,14 @@ router.post('/auth-code', async (req, res) => {
       return res.status(401).json({ email: 'Please do not leave email empty' })
     }
 
-    if (user.rows.length === 0) {
-      return res
-        .status(401)
-        .json({ email: 'The email you entered does not exist' })
-    }
+    // if (user.rows.length === 0) {
+    //   return res
+    //     .status(401)
+    //     .json({ email: 'The email you entered does not exist' })
+    // }
 
-    const token = await crypto.randomBytes(20).toString('hex')
-    const tokenExpiration = (await Date.now()) + 3600000
+    const code = await crypto.randomBytes(20).toString('hex')
+    const codeExpiration = (await Date.now()) + 3600000
 
     pool.query(
       `UPDATE users SET
