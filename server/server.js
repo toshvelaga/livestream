@@ -19,9 +19,11 @@ app.use(
 
 // var authRouter = require('./routes/auth')
 var authRouter = require('./routes/auth')
+var compareCodeRouter = require('./routes/compareCode')
 
 // app.use('/', authRouter)
 app.use('/', authRouter)
+app.use('/', compareCodeRouter)
 
 if (process.env.NODE_ENV === 'production') {
   // serve static content

@@ -13,3 +13,5 @@ router.post('/compare-code', async (req, res) => {
 
   console.log(userEnteredCode && code)
 })
+
+module.exports = router
