@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import getCookie from '../../utils/getCookie'
@@ -8,6 +9,8 @@ import './Code.css'
 function Code() {
   const [code, setCode] = useState('')
   const [userId, setuserId] = useState('')
+
+  const history = useHistory()
 
   useEffect(() => {
     let userIdCookie = getCookie('userId')

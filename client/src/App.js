@@ -36,9 +36,6 @@ function App() {
           <Route path='/register'>
             <Register />
           </Route>
-          <Route path='/forgot-password'>
-            <ForgotPassword />
-          </Route>
 
           <Route path='/'>
             <Popups />
