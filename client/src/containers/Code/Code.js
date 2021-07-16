@@ -21,7 +21,7 @@ function Code() {
     }
 
     try {
-      let result = await axios.post('/compare-code', data)
+      let result = await axios.post('http://localhost:8080/compare-code', data)
       console.log(result)
     } catch (error) {
       console.log(error)

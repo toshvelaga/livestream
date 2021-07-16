@@ -21,7 +21,7 @@ router.post('/user/register', async (req, res) => {
 
   await sendAuthCode(email, code)
 
-  return res.json({ data: newUser.rows[0] })
+  return res.json(newUser.rows[0])
 })
 
 router.post('/user/login', async (req, res) => {
