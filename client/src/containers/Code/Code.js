@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import getCookie from '../../utils/getCookie'
@@ -13,8 +14,18 @@ function Code() {
     setuserId(userIdCookie)
   }, [])
 
-  const submit = () => {
-    console.log('submit')
+  const submit = async () => {
+    const data = {
+      code: code,
+      userId: userId,
+    }
+
+    try {
+      let result = await axios.post('/compare-code', data)
+      console.log(result)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
