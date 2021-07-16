@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const pool = require('../db')
 const validInfo = require('../middleware/validInfo')
+const sendAuthCode = require('../utils/sendAuthCode')
 
 router.post('/user/register', async (req, res) => {
   const email = req.body.email

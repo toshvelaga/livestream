@@ -21,7 +21,8 @@ function Register() {
       const response = await axios.post('http://localhost:8080/user/register', {
         email: email,
       })
-      await console.log(response)
+      console.log(response)
+      console.log(response.data.user_id)
     } catch (error) {
       console.log(error)
       // console.log(error.response.data.error)
