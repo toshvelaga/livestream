@@ -24,7 +24,7 @@ function Register() {
       })
       console.log(response)
       console.log(response.data.user_id)
-      setCookie('user_id', `${response.data.user_id}`, 7)
+      setCookie('userId', `${response.data.user_id}`, 7)
     } catch (error) {
       console.log(error)
       // console.log(error.response.data.error)
