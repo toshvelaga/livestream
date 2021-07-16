@@ -4,6 +4,7 @@ import Button from '../../components/Buttons/Button'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
 import './Register.css'
+import setCookie from '../../utils/setCookie'
 
 function Register() {
   const [email, setEmail] = useState('')
@@ -23,6 +24,7 @@ function Register() {
       })
       console.log(response)
       console.log(response.data.user_id)
+      setCookie('user_id', `${response.data.user_id}`, 7)
     } catch (error) {
       console.log(error)
       // console.log(error.response.data.error)
