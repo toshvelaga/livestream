@@ -14,7 +14,7 @@ router.post('/compare-code', async (req, res) => {
   console.log(code)
   console.log(userEnteredCode)
 
-  if (userEnteredCode == code) {
+  if (userEnteredCode == code.rows[0].user_code) {
     res.send(200, { match: true })
   } else {
     res.send(200, { match: false })

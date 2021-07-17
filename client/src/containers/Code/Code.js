@@ -8,6 +8,7 @@ import './Code.css'
 
 function Code() {
   const [code, setCode] = useState('')
+  const [errorMessage, seterrorMessage] = useState('')
 
   const history = useHistory()
 
@@ -23,6 +24,9 @@ function Code() {
     try {
       let result = await axios.post('http://localhost:8080/compare-code', data)
       console.log(result.data.match)
+      if (!result.data.match) {
+        seterrorMessage('The code you entered does not match')
+      }
     } catch (error) {
       console.log(error)
     }
@@ -38,6 +42,7 @@ function Code() {
           maxLength={6}
           onChange={(e) => setCode(e.target.value)}
         />
+        {errorMessage ? <p>{errorMessage}</p> : null}
         <Button fx={submit} style={{ width: '100%' }} title='Log In' />
       </div>
     </>
