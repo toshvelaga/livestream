@@ -38,9 +38,9 @@ router.post('/user/login', async (req, res) => {
         .json({ email: 'No email is associated with that account' })
     }
 
-    console.log(user)
+    console.log(user.rows[0])
 
-    return res.json('login')
+    return res.json(user.rows[0])
   } catch (err) {
     console.error(err.message)
     res.status(500).send('Server error occurred while logging in')

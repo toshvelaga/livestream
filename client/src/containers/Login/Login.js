@@ -23,8 +23,8 @@ function Login() {
         email: email,
       })
       console.log(response)
-      console.log(response.data.user_id)
-      setCookie('userId', `${response.data.user_id}`, 7)
+      // console.log(response.data.user_id)
+      // setCookie('userId', `${response.data.user_id}`, 7)
     } catch (error) {
       console.log(error)
     }
@@ -42,7 +42,7 @@ function Login() {
           />
           {error ? <p style={{ color: 'red' }}>{error}</p> : null}
         </div>
-        <Button style={{ width: '100%' }} title='Sign In' />
+        <Button style={{ width: '100%' }} title='Sign In' fx={handleClick} />
 
         <p style={{ color: 'grey', marginTop: '1rem', textAlign: 'center' }}>
           <Link
