@@ -5,6 +5,7 @@ import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import getCookie from '../../utils/getCookie'
 import './Code.css'
+import setCookie from '../../utils/setCookie'
 
 function Code() {
   const [code, setCode] = useState('')
@@ -14,7 +15,6 @@ function Code() {
 
   const submit = async () => {
     let userId = getCookie('userId')
-    console.log(userId)
 
     const data = {
       code: code,
@@ -26,6 +26,9 @@ function Code() {
       console.log(result.data.match)
       if (!result.data.match) {
         seterrorMessage('The code you entered does not match')
+      } else {
+        setCookie('isLoggedIn', true, 7)
+        history.push('/')
       }
     } catch (error) {
       console.log(error)
@@ -42,7 +45,7 @@ function Code() {
           maxLength={6}
           onChange={(e) => setCode(e.target.value)}
         />
-        {errorMessage ? <p>{errorMessage}</p> : null}
+        {errorMessage ? <p style={{ color: 'red' }}>{errorMessage}</p> : null}
         <Button fx={submit} style={{ width: '100%' }} title='Log In' />
       </div>
     </>
