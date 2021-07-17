@@ -27,28 +27,23 @@ function App() {
             renders the first one that matches the current URL. */}
 
         <Switch>
-          {!isLoggedIn ? (
-            <>
-              <Route path='/dashboard'>
-                <Suspense fallback={<div>Loading...</div>}>
-                  <Dashboard />
-                </Suspense>
-              </Route>
-              <Route path='/login'>
-                <Login />
-              </Route>
-              <Route path='/register/code'>
-                <Code />
-              </Route>
-              <Route path='/register'>
-                <Register />
-              </Route>
-            </>
-          ) : (
-            <Route path='/'>
-              <Popups />
-            </Route>
-          )}
+          <Route path='/dashboard'>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Dashboard />
+            </Suspense>
+          </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>
+          <Route path='/register/code'>
+            <Code />
+          </Route>
+          <Route path='/register'>
+            <Register />
+          </Route>
+          <Route path='/'>
+            <Popups />
+          </Route>
         </Switch>
       </Router>
     </>
