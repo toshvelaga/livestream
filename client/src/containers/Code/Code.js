@@ -8,18 +8,13 @@ import './Code.css'
 
 function Code() {
   const [code, setCode] = useState('')
-  const [userId, setuserId] = useState('')
 
   const history = useHistory()
 
-  useEffect(() => {
-    let userIdCookie = getCookie('userId')
-    setuserId(userIdCookie)
-  }, [])
-
-  console.log('user id:' + userId)
-
   const submit = async () => {
+    let userId = getCookie('userId')
+    console.log(userId)
+
     const data = {
       code: code,
       userId: userId,
