@@ -32,20 +32,24 @@ function App() {
               <Dashboard />
             </Suspense>
           </Route>
+
+          <Route path='/login/code'>
+            <Code />
+          </Route>
           <Route path='/login'>
             <Login />
           </Route>
+
           <Route path='/register/code'>
             <Code />
           </Route>
           <Route path='/register'>
             <Register />
           </Route>
-          {isLoggedIn ? (
-            <Route path='/'>
-              <Popups />
-            </Route>
-          ) : null}
+
+          <Route path='/'>
+            <Popups />
+          </Route>
         </Switch>
       </Router>
     </>

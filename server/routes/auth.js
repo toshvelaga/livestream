@@ -38,6 +38,8 @@ router.post('/user/login', async (req, res) => {
         .json({ email: 'No email is associated with that account' })
     }
 
+    console.log(user)
+
     return res.json('login')
   } catch (err) {
     console.error(err.message)

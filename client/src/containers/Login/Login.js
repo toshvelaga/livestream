@@ -1,15 +1,34 @@
 import React, { useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import axios from 'axios'
 import TextInput from '../../components/TextInput/TextInput'
-// import PrimaryButton from "../../components/PrimaryButton/PrimaryButton";
-import { Link } from 'react-router-dom'
-import './Login.css'
 import Button from '../../components/Buttons/Button'
+import setCookie from '../../utils/setCookie'
+import './Login.css'
 
 function Login() {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  //   const [errorMsgEmail, seterrorMsgEmail] = useState("");
-  //   const [errorMsgPassword, seterrorMsgPassword] = useState("");
+  const [error, seterror] = useState('')
+
+  const history = useHistory()
+
+  const handleClick = () => {
+    sendAuthCode()
+    history.push('/login/code')
+  }
+
+  const sendAuthCode = async () => {
+    try {
+      const response = await axios.post('http://localhost:8080/user/login', {
+        email: email,
+      })
+      console.log(response)
+      console.log(response.data.user_id)
+      setCookie('userId', `${response.data.user_id}`, 7)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -21,7 +40,7 @@ function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          {/* {errorMsgEmail ? <ErrorMessage errorMsg={errorMsgEmail} /> : null} */}
+          {error ? <p style={{ color: 'red' }}>{error}</p> : null}
         </div>
         <Button style={{ width: '100%' }} title='Sign In' />
 
