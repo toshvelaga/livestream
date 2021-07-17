@@ -1,11 +1,11 @@
-const express = require('express')
-const router = express.Router()
-const pool = require('../db')
-const validInfo = require('../middleware/validInfo')
-const sendAuthCode = require('../utils/sendAuthCode')
+const express = require('express'),
+  router = express.Router(),
+  pool = require('../db'),
+  validInfo = require('../middleware/validInfo'),
+  sendAuthCode = require('../utils/sendAuthCode')
 
 router.post('/user/register', async (req, res) => {
-  const email = req.body.email
+  const { email } = req.body
   const code = Math.floor(100000 + Math.random() * 900000)
   const timeCreated = new Date().toUTCString()
 
@@ -19,13 +19,14 @@ router.post('/user/register', async (req, res) => {
     [email, code, timeCreated]
   )
 
-  await sendAuthCode(email, code)
+  sendAuthCode(email, code)
 
   return res.json(newUser.rows[0])
 })
 
 router.post('/user/login', async (req, res) => {
   const { email } = req.body
+  const code = Math.floor(100000 + Math.random() * 900000)
 
   try {
     const user = await pool.query(`SELECT * FROM users WHERE user_email = $1`, [
@@ -33,14 +34,18 @@ router.post('/user/login', async (req, res) => {
     ])
 
     if (user.rows.length === 0) {
-      return res
-        .status(401)
-        .json({ email: 'No email is associated with that account' })
+      return res.status(401).json('No email is associated with that account')
+    } else {
+      pool.query(
+        `UPDATE users SET user_code = $1 WHERE user_email = $2`,
+        [code, email],
+        (q_err, q_res) => {
+          res.json(q_res.rows)
+        }
+      )
+      console.log(user.rows[0])
+      sendAuthCode(email, code)
     }
-
-    console.log(user.rows[0])
-
-    return res.json(user.rows[0])
   } catch (err) {
     console.error(err.message)
     res.status(500).send('Server error occurred while logging in')
