@@ -41,9 +41,11 @@ function App() {
           <Route path='/register'>
             <Register />
           </Route>
-          <Route path='/'>
-            <Popups />
-          </Route>
+          {isLoggedIn ? (
+            <Route path='/'>
+              <Popups />
+            </Route>
+          ) : null}
         </Switch>
       </Router>
     </>
