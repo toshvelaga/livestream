@@ -17,6 +17,8 @@ function Code() {
     setuserId(userIdCookie)
   }, [])
 
+  console.log('user id:' + userId)
+
   const submit = async () => {
     const data = {
       code: code,
@@ -25,7 +27,7 @@ function Code() {
 
     try {
       let result = await axios.post('http://localhost:8080/compare-code', data)
-      console.log(result)
+      console.log(result.data.match)
     } catch (error) {
       console.log(error)
     }
