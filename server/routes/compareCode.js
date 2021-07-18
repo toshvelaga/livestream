@@ -12,13 +12,10 @@ router.post('/compare-code', async (req, res) => {
     [userId]
   )
 
-  pool.query(
-    `UPDATE users SET user_set_login = $1 WHERE user_id = $2`,
-    [date, userId],
-    (q_err, q_res) => {
-      res.json(q_res.rows)
-    }
-  )
+  pool.query(`UPDATE users SET user_last_login = $1 WHERE user_id = $2`, [
+    date,
+    userId,
+  ])
 
   console.log(code)
   console.log(userEnteredCode)
