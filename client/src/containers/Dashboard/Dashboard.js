@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import GooglePopup from '../../components/GooglePopup/GooglePopup'
 import Navbar from '../../components/Navbar/Navbar'
 // import Card from "../../components/Card/Card";
 import './Dashboard.css'
@@ -51,6 +52,7 @@ function Dashboard() {
         {/* <Card />
         {process.env.REACT_APP_TITLE}
         {process.env.REACT_APP_DESCRIPTION} */}
+        <GooglePopup />
         <p>Some text some text some text some text..</p>
       </div>
     </>

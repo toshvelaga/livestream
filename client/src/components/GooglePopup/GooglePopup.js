@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react'
 
 function GooglePopup() {
@@ -11,9 +12,13 @@ function GooglePopup() {
     scope=${scope}&
     response_type=token`
 
+  console.log(client_id)
   return (
     <div>
-      <a href={url}>
+      <a
+        target='popup'
+        onClick={() => window.open(`${url}`, 'popup', 'width=600,height=600')}
+      >
         <button>Click me</button>
       </a>
     </div>
