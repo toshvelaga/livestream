@@ -46,7 +46,7 @@ const server = http.createServer(app).listen(3000, () => {
 })
 
 // Serve static files out of the www directory, where we will put our HTML page
-app.use(express.static('../www'))
+// app.use(express.static('../www'))
 
 const wss = new WebSocketServer({
   server: server,

@@ -11,6 +11,7 @@ import Register from './containers/Register/Register'
 import Popups from './components/Popups/Popups'
 import Code from './containers/Code/Code'
 import getCookie from './utils/getCookie'
+import FacebookPopup from './components/FacebookPopup/FacebookPopup'
 
 const Dashboard = lazy(() => import('./containers/Dashboard/Dashboard'))
 
@@ -48,7 +49,8 @@ function App() {
           </Route>
 
           <Route path='/'>
-            <Popups />
+            {/* <Popups /> */}
+            <FacebookPopup />
           </Route>
         </Switch>
       </Router>
