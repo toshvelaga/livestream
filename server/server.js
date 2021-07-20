@@ -62,8 +62,10 @@ wss.on('connection', (ws, req) => {
   //   return
   // }
 
-  const rtmpUrl = process.env.YOUTUBE_STREAM_ADDRESS
-  console.log('Target RTMP URL:', rtmpUrl)
+  // const rtmpUrl = process.env.YOUTUBE_STREAM_ADDRESS
+  const rtmpUrl2 = process.env.TWITCH_STREAM_ADDRESS
+  // console.log('Target RTMP URL:', rtmpUrl)
+  console.log('Target RTMP URL2:', rtmpUrl2)
 
   // Launch FFmpeg to handle all appropriate transcoding, muxing, and RTMP.
   // If 'ffmpeg' isn't in your path, specify the full path to the ffmpeg binary.
@@ -104,7 +106,8 @@ wss.on('connection', (ws, req) => {
     // For debugging, you could set this to a filename like 'test.flv', and play
     // the resulting file with VLC.  Please also read the security considerations
     // later on in this tutorial.
-    rtmpUrl,
+    // rtmpUrl,
+    rtmpUrl2,
   ])
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
