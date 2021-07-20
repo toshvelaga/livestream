@@ -62,11 +62,6 @@ wss.on('connection', (ws, req) => {
   //   return
   // }
 
-  // const rtmpUrl = process.env.YOUTUBE_STREAM_ADDRESS
-  const rtmpUrl = process.env.TWITCH_STREAM_ADDRESS
-  // console.log('Target RTMP URL:', rtmpUrl)
-  console.log('Target RTMP URL2:', rtmpUrl)
-
   // Launch FFmpeg to handle all appropriate transcoding, muxing, and RTMP.
   // If 'ffmpeg' isn't in your path, specify the full path to the ffmpeg binary.
   const ffmpeg = child_process.spawn('ffmpeg', [
@@ -80,36 +75,6 @@ wss.on('connection', (ws, req) => {
     // FFmpeg will read input video from STDIN
     '-i',
     '-',
-
-    // Because we're using a generated audio source which never ends,
-    // specify that we'll stop at end of other input.  Remove this line if you
-    // send audio from the browser.
-    // '-shortest',
-
-    // If we're encoding H.264 in-browser, we can set the video codec to 'copy'
-    // so that we don't waste any CPU and quality with unnecessary transcoding.
-    // If the browser doesn't support H.264, set the video codec to 'libx264'
-    // or similar to transcode it to H.264 here on the server.
-    // '-vcodec',
-    // 'copy',
-
-    // AAC audio is required for Facebook Live.  No browser currently supports
-    // encoding AAC, so we must transcode the audio to AAC here on the server.
-    // '-acodec',
-    // 'aac',
-
-    // FLV is the container format used in conjunction with RTMP
-    // '-f',
-    // 'flv',
-
-    // The output RTMP URL.
-    // For debugging, you could set this to a filename like 'test.flv', and play
-    // the resulting file with VLC.  Please also read the security considerations
-    // later on in this tutorial.
-    // '-f',
-    // 'tee',
-    // process.env.YOUTUBE_STREAM_ADDRESS | process.env.TWITCH_STREAM_ADDRESS,
-    // rtmpUrl,
 
     '-c',
     'copy',
