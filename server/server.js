@@ -115,7 +115,7 @@ wss.on('connection', (ws, req) => {
     'copy',
     '-f',
     'flv',
-    `${process.env.YOUTUBE_STREAM_ADDRESS}`,
+    `${process.env.FACEBOOK_STREAM_ADDRESS}`,
     '-c:v',
     'libx264',
     '-preset',
