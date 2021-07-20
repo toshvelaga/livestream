@@ -72,10 +72,10 @@ wss.on('connection', (ws, req) => {
   const ffmpeg = child_process.spawn('ffmpeg', [
     // Facebook requires an audio track, so we create a silent one here.
     // Remove this line, as well as `-shortest`, if you send audio from the browser.
-    '-f',
-    'lavfi',
-    '-i',
-    'anullsrc',
+    // '-f',
+    // 'lavfi',
+    // '-i',
+    // 'anullsrc',
 
     // FFmpeg will read input video from STDIN
     '-i',
@@ -84,32 +84,63 @@ wss.on('connection', (ws, req) => {
     // Because we're using a generated audio source which never ends,
     // specify that we'll stop at end of other input.  Remove this line if you
     // send audio from the browser.
-    '-shortest',
+    // '-shortest',
 
     // If we're encoding H.264 in-browser, we can set the video codec to 'copy'
     // so that we don't waste any CPU and quality with unnecessary transcoding.
     // If the browser doesn't support H.264, set the video codec to 'libx264'
     // or similar to transcode it to H.264 here on the server.
-    '-vcodec',
-    'copy',
+    // '-vcodec',
+    // 'copy',
 
     // AAC audio is required for Facebook Live.  No browser currently supports
     // encoding AAC, so we must transcode the audio to AAC here on the server.
-    '-acodec',
-    'aac',
+    // '-acodec',
+    // 'aac',
 
     // FLV is the container format used in conjunction with RTMP
-    '-f',
-    'flv',
+    // '-f',
+    // 'flv',
 
     // The output RTMP URL.
     // For debugging, you could set this to a filename like 'test.flv', and play
     // the resulting file with VLC.  Please also read the security considerations
     // later on in this tutorial.
-    '-f',
-    'tee',
-    process.env.YOUTUBE_STREAM_ADDRESS | process.env.TWITCH_STREAM_ADDRESS,
+    // '-f',
+    // 'tee',
+    // process.env.YOUTUBE_STREAM_ADDRESS | process.env.TWITCH_STREAM_ADDRESS,
     // rtmpUrl,
+
+    '-c',
+    'copy',
+    '-f',
+    'flv',
+    `${process.env.YOUTUBE_STREAM_ADDRESS}`,
+    '-c:v',
+    'libx264',
+    '-preset',
+    'medium',
+    '-maxrate',
+    '3500k',
+    '-bufsize',
+    '6000k',
+    '-r',
+    '30',
+    '-pix_fmt',
+    'yuv420p',
+    '-g',
+    '60',
+    '-c:a',
+    'aac',
+    '-b:a',
+    '160k',
+    '-ac',
+    '2',
+    '-ar',
+    '44100',
+    '-f',
+    'flv',
+    `${process.env.TWITCH_STREAM_ADDRESS}`,
   ])
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
