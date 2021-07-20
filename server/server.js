@@ -8,6 +8,7 @@ const app = express()
 const cors = require('cors')
 const path = require('path')
 const logger = require('morgan')
+require('dotenv').config()
 
 app.use(logger('dev'))
 app.use(cors())
@@ -54,14 +55,14 @@ const wss = new WebSocketServer({
 
 wss.on('connection', (ws, req) => {
   // Ensure that the URL starts with '/rtmp/', and extract the target RTMP URL.
-  let match
-  console.log(match)
-  if (!(match = req.url.match(/^\/rtmp\/(.*)$/))) {
-    ws.terminate() // No match, reject the connection.
-    return
-  }
+  // let match
+  // console.log(match)
+  // if (!(match = req.url.match(/^\/rtmp\/(.*)$/))) {
+  //   ws.terminate() // No match, reject the connection.
+  //   return
+  // }
 
-  const rtmpUrl = decodeURIComponent(match[1])
+  const rtmpUrl = process.env.YOUTUBE_STREAM_ADDRESS
   console.log('Target RTMP URL:', rtmpUrl)
 
   // Launch FFmpeg to handle all appropriate transcoding, muxing, and RTMP.
