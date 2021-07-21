@@ -2,9 +2,9 @@
 
 Web based software where users can record themselves in the browser and stream simultaneously to Youtube, Facebook, and Twitch.
 
-## TODO
+## Todo
 
-- [trello](https://trello.com/b/W8LZ83oV/livestream)
+- [Trello](https://trello.com/b/W8LZ83oV/livestream)
 
 ## Tech/framework used
 
