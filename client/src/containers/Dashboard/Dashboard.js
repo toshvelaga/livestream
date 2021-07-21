@@ -42,10 +42,6 @@ function Dashboard() {
     <>
       <Navbar />
       <div style={{ marginTop: '5rem' }} className='main'>
-        <h2>Scroll this page to see the effect</h2>
-        <h2>
-          The navigation bar will stay at the top of the page while scrolling
-        </h2>
         <video muted id='video' autoPlay ref={videoRef} />
         <button onClick={getVideo}>start recording</button>
         <button onClick={stopVideo}>stop recording</button>
@@ -53,7 +49,6 @@ function Dashboard() {
         {process.env.REACT_APP_TITLE}
         {process.env.REACT_APP_DESCRIPTION} */}
         <GooglePopup />
-        <p>Some text some text some text some text..</p>
       </div>
     </>
   )
