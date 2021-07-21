@@ -114,6 +114,7 @@ function FacebookPopup() {
 
       mediaRecorder.addEventListener('dataavailable', (e) => {
         ws.send(e.data)
+        console.log(e.data)
       })
 
       // mediaRecorder.addEventListener('stop', ws.close.bind(ws))
