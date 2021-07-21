@@ -1,29 +1,10 @@
 # Livestreaming
 
-Get started with building a saas product much faster by using this boilerplate code. Covers login, register, forgot password, and responsive navigation.
+Web based software where users can record themselves in the browser and stream simultaneously to Youtube, Facebook, and Twitch.
 
 ## TODO
 
-- Multiple people can talk and record over the browser
-- Record video and send to youtube
-- Be able to add visual layers over video recording in the browser
-
-## Articles
-
-- https://medium.com/agora-io/build-a-live-broadcasting-web-app-f6fbd27f3d50
-- https://quantizd.com/building-live-streaming-app-with-node-js-and-react/
-- https://itnext.io/accessing-the-webcam-with-javascript-and-react-33cbe92f49cb
-- WebRTC: https://www.youtube.com/watch?v=DvlyzDZDEq4&ab_channel=WebDevSimplified
-- record and download: https://www.youtube.com/watch?v=ZgMOxkVM8Js&ab_channel=CodingShiksha
-- connect to FB using ws: https://github.com/fbsamples/Canvas-Streaming-Example/blob/master/README.md
-- TWITCH AUTH: https://github.com/BarryCarlyon/twitch_misc/tree/main/authentication/implicit_auth
-
-## Learning
-
-- https://www.youtube.com/watch?v=V9g4MYtCHkY&ab_channel=CodingWithChaim
-- https://www.youtube.com/watch?v=GMbdEnK8h3U&ab_channel=CodingWithChaim
-
-## Architecture Example
+- [trello](https://trello.com/b/W8LZ83oV/livestream)
 
 ## Tech/framework used
 
@@ -38,6 +19,9 @@ Backend tech stack:
 
 - Node JS
 - Express
+- node-media-server
+- ffmpeg
+- ws (WebSocket)
 
 ## Installation
 
