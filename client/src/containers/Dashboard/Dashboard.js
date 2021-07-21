@@ -7,9 +7,9 @@ import './Dashboard.css'
 function Dashboard() {
   const videoRef = useRef(null)
 
-  // useEffect(() => {
-  //   getVideo()
-  // }, [videoRef])
+  useEffect(() => {
+    getVideo()
+  }, [videoRef])
 
   const getVideo = () => {
     navigator.mediaDevices
@@ -43,11 +43,10 @@ function Dashboard() {
       <Navbar />
       <div style={{ marginTop: '5rem' }} className='main'>
         <video muted id='video' autoPlay ref={videoRef} />
+        <canvas />
         <button onClick={getVideo}>start recording</button>
         <button onClick={stopVideo}>stop recording</button>
-        {/* <Card />
-        {process.env.REACT_APP_TITLE}
-        {process.env.REACT_APP_DESCRIPTION} */}
+
         <GooglePopup />
       </div>
     </>
