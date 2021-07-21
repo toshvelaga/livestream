@@ -100,10 +100,6 @@ function FacebookPopup() {
       window.location.protocol.replace('http', 'ws') +
         '//' + // http: -> ws:, https: -> wss:
         'localhost:3000'
-      // window.location.host +
-      // '/rtmp/' +
-      // encodeURIComponent('rtmp://a.rtmp.youtube.com/live2')
-      // createRes.stream_url
     )
     console.log(ws)
     let mediaStream
