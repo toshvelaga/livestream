@@ -1,5 +1,4 @@
-const child_process = require('child_process')
-// To be used later for running FFmpeg
+const child_process = require('child_process') // To be used later for running FFmpeg
 const express = require('express')
 const http = require('http')
 const WebSocketServer = require('ws').Server
