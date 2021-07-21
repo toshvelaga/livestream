@@ -28,8 +28,15 @@ Backend tech stack:
 To run this project, install it locally using npm:
 
 ```
+$ cd client
 $ npm install
 $ npm start
+```
+
+```
+$ cd server
+$ npm install
+$ node server.js
 ```
 
 ## Contribute
