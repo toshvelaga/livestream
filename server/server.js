@@ -72,12 +72,9 @@ wss.on('connection', (ws, req) => {
     '-i',
     'anullsrc',
 
-    // FFmpeg will read input video from STDIN
-    // '-i',
-    // '-',
-
     '-i',
     '-',
+
     '-f',
     'flv',
     '-c',
@@ -88,6 +85,11 @@ wss.on('connection', (ws, req) => {
     '-c',
     'copy',
     `${process.env.YOUTUBE_STREAM_ADDRESS}`,
+    '-f',
+    'flv',
+    '-c',
+    'copy',
+    `${process.env.FACEBOOK_STREAM_ADDRESS}`,
   ])
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
