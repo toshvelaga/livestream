@@ -5,49 +5,74 @@ import Navbar from '../../components/Navbar/Navbar'
 import './Dashboard.css'
 
 function Dashboard() {
-  const videoRef = useRef(null)
-
   useEffect(() => {
-    getVideo()
-  }, [videoRef])
+    var video = document.getElementById('video')
 
-  const getVideo = () => {
-    navigator.mediaDevices
-      .getUserMedia({ video: { width: 300 } })
-      .then((stream) => {
-        let video = videoRef.current
+    if (navigator.mediaDevices.getUserMedia) {
+      var successCallback = function (stream) {
         video.srcObject = stream
-        video.play()
-      })
-      .catch((err) => {
-        console.error('error:', err)
-      })
-  }
-
-  const stopVideo = () => {
-    let video = videoRef.current
-
-    const stream = video.srcObject
-    const tracks = stream.getTracks()
-
-    for (let i = 0; i < tracks.length; i++) {
-      let track = tracks[i]
-      track.stop()
+      }
+      var errorCallback = function (error) {
+        console.log(error)
+      }
+      navigator.mediaDevices
+        .getUserMedia({
+          audio: false,
+          video: { facingMode: { ideal: 'environment' } }, // prefer rear-facing camera
+        })
+        .then(successCallback, errorCallback)
     }
 
-    video.srcObject = null
+    const canvas = document.getElementById('canvas')
+    const context = canvas.getContext('2d')
+
+    function renderFrame() {
+      // re-register callback
+      requestAnimationFrame(renderFrame)
+      // set internal canvas size to match HTML element size
+      canvas.width = canvas.scrollWidth
+      canvas.height = canvas.scrollHeight
+      if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        // scale and horizontally center the camera image
+        var videoSize = { width: video.videoWidth, height: video.videoHeight }
+        var canvasSize = { width: canvas.width, height: canvas.height }
+        var renderSize = calculateSize(videoSize, canvasSize)
+        var xOffset = (canvasSize.width - renderSize.width) / 2
+        context.drawImage(
+          video,
+          xOffset,
+          0,
+          renderSize.width,
+          renderSize.height
+        )
+      }
+    }
+  }, [])
+
+  function calculateSize(srcSize, dstSize) {
+    var srcRatio = srcSize.width / srcSize.height
+    var dstRatio = dstSize.width / dstSize.height
+    if (dstRatio > srcRatio) {
+      return {
+        width: dstSize.height * srcRatio,
+        height: dstSize.height,
+      }
+    } else {
+      return {
+        width: dstSize.width,
+        height: dstSize.width / srcRatio,
+      }
+    }
   }
 
   return (
     <>
       <Navbar />
       <div style={{ marginTop: '5rem' }} className='main'>
-        <video muted id='video' autoPlay ref={videoRef} />
-        <canvas />
-        <button onClick={getVideo}>start recording</button>
-        <button onClick={stopVideo}>stop recording</button>
-
-        <GooglePopup />
+        <div id='container'>
+          <video id='video' autoplay='true'></video>
+          <canvas id='canvas'></canvas>
+        </div>
       </div>
     </>
   )
