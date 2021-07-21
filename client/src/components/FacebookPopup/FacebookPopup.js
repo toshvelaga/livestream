@@ -120,14 +120,14 @@ function FacebookPopup() {
         ws.send(e.data)
       })
 
-      mediaRecorder.addEventListener('stop', ws.close.bind(ws))
+      // mediaRecorder.addEventListener('stop', ws.close.bind(ws))
 
       mediaRecorder.start(1000) // Start recording, and dump data every second
     })
 
     ws.addEventListener('close', (e) => {
       console.log('WebSocket Close', e)
-      mediaRecorder.stop()
+      // mediaRecorder.stop()
     })
   }, [])
 
