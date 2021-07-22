@@ -24,6 +24,11 @@ function Dashboard() {
     const canvas = document.getElementById('canvas')
     const context = canvas.getContext('2d')
 
+    var ctx = canvas.getContext('2d')
+    ctx.moveTo(0, 0)
+    ctx.lineTo(200, 100)
+    ctx.stroke()
+
     function renderFrame() {
       // re-register callback
       requestAnimationFrame(renderFrame)
@@ -102,7 +107,7 @@ function Dashboard() {
       <div style={{ marginTop: '5rem' }} className='main'>
         <div id='container'>
           <video id='video' autoplay='true'></video>
-          <canvas id='canvas'></canvas>
+          <canvas id='canvas' style={{ border: '1px solid red' }}></canvas>
         </div>
         <div className='button-container'>
           <button>Go Live</button>
