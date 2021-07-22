@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import GooglePopup from '../../components/GooglePopup/GooglePopup'
 import Navbar from '../../components/Navbar/Navbar'
-// import Card from "../../components/Card/Card";
 import './Dashboard.css'
 
 function Dashboard() {
@@ -60,7 +58,7 @@ function Dashboard() {
     let mediaRecorder
     ws.addEventListener('open', (e) => {
       console.log('WebSocket Open', e)
-      mediaStream = document.querySelector('canvas').captureStream(30) // 30 FPS
+      mediaStream = document.querySelector('video').captureStream(30) // 30 FPS
       mediaRecorder = new MediaRecorder(mediaStream, {
         mimeType: 'video/webm;codecs=h264',
         videoBitsPerSecond: 3 * 1024 * 1024,
@@ -68,7 +66,7 @@ function Dashboard() {
 
       mediaRecorder.addEventListener('dataavailable', (e) => {
         ws.send(e.data)
-        console.log(e.data)
+        console.log('send data')
       })
 
       // mediaRecorder.addEventListener('stop', ws.close.bind(ws))
