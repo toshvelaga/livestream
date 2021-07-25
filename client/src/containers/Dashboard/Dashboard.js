@@ -5,12 +5,15 @@ import './Dashboard.css'
 const CAPTURE_OPTIONS = {
   audio: false,
   video: { facingMode: 'environment' },
-  // video: { mediaSource: 'screen' },
 }
 
 function Dashboard() {
   const videoRef = useRef()
+  const ws = useRef()
   const mediaStream = useUserMedia(CAPTURE_OPTIONS)
+
+  let liveStream
+  let liveStreamRecorder
 
   if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
     videoRef.current.srcObject = mediaStream
@@ -20,39 +23,40 @@ function Dashboard() {
     videoRef.current.play()
   }
 
-  // useEffect(() => {
-  //   const ws = new WebSocket(
-  //     window.location.protocol.replace('http', 'ws') +
-  //       '//' + // http: -> ws:, https: -> wss:
-  //       'localhost:3000'
-  //   )
-  //   console.log(ws)
-  //   let mediaStream
-  //   let mediaRecorder
-  //   ws.addEventListener('open', (e) => {
-  //     console.log('WebSocket Open', e)
-  //     mediaStream = document.querySelector('video').captureStream(30) // 30 FPS
-  //     mediaRecorder = new MediaRecorder(mediaStream, {
-  //       mimeType: 'video/webm;codecs=h264',
-  //       videoBitsPerSecond: 3 * 1024 * 1024,
-  //     })
+  useEffect(() => {
+    ws.current = new WebSocket(
+      window.location.protocol.replace('http', 'ws') +
+        '//' + // http: -> ws:, https: -> wss:
+        'localhost:3000'
+    )
 
-  //     mediaRecorder.addEventListener('dataavailable', (e) => {
-  //       ws.send(e.data)
-  //       console.log('send data')
-  //     })
+    ws.current.onopen = () => {
+      console.log('WebSocket Open')
+    }
 
-  //     // mediaRecorder.addEventListener('stop', ws.close.bind(ws))
+    return () => {
+      ws.current.close()
+    }
+  }, [])
 
-  //     mediaRecorder.start(1000)
-  //     // Start recording, and dump data every second
-  //   })
+  const startStream = () => {
+    liveStream = videoRef.current.captureStream(30) // 30 FPS
+    liveStreamRecorder = new MediaRecorder(liveStream, {
+      mimeType: 'video/webm;codecs=h264',
+      videoBitsPerSecond: 3 * 1024 * 1024,
+    })
+    liveStreamRecorder.addEventListener('dataavailable', (e) => {
+      ws.current.send(e.data)
+      console.log('send data', e.data)
+    })
+    liveStreamRecorder.start(1000)
+    // Start recording, and dump data every second
+  }
 
-  //   ws.addEventListener('close', (e) => {
-  //     console.log('WebSocket Close', e)
-  //     // mediaRecorder.stop()
-  //   })
-  // }, [])
+  const stopStream = () => {
+    liveStreamRecorder.stop()
+    // // mediaRecorder.addEventListener('stop', ws.close.bind(ws))
+  }
 
   return (
     <>
@@ -69,8 +73,8 @@ function Dashboard() {
           {/* <Canvas videoRef={videoRef} /> */}
         </div>
         <div className='button-container'>
-          <button>Go Live</button>
-          <button>Stop Recording</button>
+          <button onClick={startStream}>Go Live</button>
+          <button onClick={stopStream}>Stop Recording</button>
           <button>Share Screen</button>
           <button>Mute</button>
         </div>
