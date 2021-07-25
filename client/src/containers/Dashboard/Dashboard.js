@@ -5,6 +5,7 @@ import './Dashboard.css'
 const CAPTURE_OPTIONS = {
   audio: false,
   video: { facingMode: 'environment' },
+  // video: { mediaSource: 'screen' },
 }
 
 function Dashboard() {
@@ -70,6 +71,7 @@ function Dashboard() {
         <div className='button-container'>
           <button>Go Live</button>
           <button>Stop Recording</button>
+          <button>Share Screen</button>
           <button>Mute</button>
         </div>
       </div>
@@ -102,6 +104,10 @@ const useUserMedia = (requestedMedia) => {
   }, [mediaStream, requestedMedia])
 
   return mediaStream
+}
+
+const useDisplayMedia = () => {
+  console.log('display')
 }
 
 const Canvas = ({ videoRef, width, height }) => {
