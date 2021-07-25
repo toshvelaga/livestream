@@ -58,7 +58,13 @@ function Dashboard() {
       <Navbar />
       <div style={{ marginTop: '5rem' }} className='main'>
         <div id='container'>
-          <video id='video' autoplay='true'></video>
+          <video
+            ref={videoRef}
+            onCanPlay={handleCanPlay}
+            autoPlay
+            playsInline
+            muted
+          />
           <canvas id='canvas' style={{ border: '1px solid red' }}></canvas>
         </div>
         <div className='button-container'>
