@@ -66,15 +66,15 @@ wss.on('connection', (ws, req) => {
   const ffmpeg = child_process.spawn('ffmpeg', [
     // Facebook requires an audio track, so we create a silent one here.
     // Remove this line, as well as `-shortest`, if you send audio from the browser.
-    // '-f',
-    // 'lavfi',
-    // '-i',
-    // 'anullsrc',
+    '-f',
+    'lavfi',
+    '-i',
+    'anullsrc',
 
     // AAC audio is required for Facebook Live.  No browser currently supports
     // encoding AAC, so we must transcode the audio to AAC here on the server.
-    '-acodec',
-    'aac',
+    // '-acodec',
+    // 'aac',
 
     '-i',
     '-',
@@ -89,11 +89,11 @@ wss.on('connection', (ws, req) => {
     '-c',
     'copy',
     `${process.env.YOUTUBE_STREAM_ADDRESS}`,
-    '-f',
-    'flv',
-    '-c',
-    'copy',
-    `${process.env.FACEBOOK_STREAM_ADDRESS}`,
+    // '-f',
+    // 'flv',
+    // '-c',
+    // 'copy',
+    // `${process.env.FACEBOOK_STREAM_ADDRESS}`,
   ])
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
