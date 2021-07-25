@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, createRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import './Dashboard.css'
 
 const CAPTURE_OPTIONS = {
-  audio: false,
+  audio: true,
   video: { facingMode: 'environment' },
 }
 
@@ -70,7 +70,6 @@ function Dashboard() {
             playsInline
             muted
           />
-          {/* <Canvas videoRef={videoRef} /> */}
         </div>
         <div className='button-container'>
           <button onClick={startStream}>Go Live</button>
@@ -92,7 +91,7 @@ const useUserMedia = (requestedMedia) => {
         const stream = await navigator.mediaDevices.getUserMedia(requestedMedia)
         setMediaStream(stream)
       } catch (err) {
-        // Removed for brevity
+        console.log(err)
       }
     }
 
@@ -108,26 +107,6 @@ const useUserMedia = (requestedMedia) => {
   }, [mediaStream, requestedMedia])
 
   return mediaStream
-}
-
-const useDisplayMedia = () => {
-  console.log('display')
-}
-
-const Canvas = ({ videoRef, width, height }) => {
-  const canvasRef = createRef(null)
-
-  useEffect(() => {
-    if (canvasRef.current && videoRef.current) {
-      const interval = setInterval(() => {
-        const ctx = canvasRef.current.getContext('2d')
-        ctx.drawImage(videoRef.current, 0, 0, 250, 188)
-      }, 60)
-      return () => clearInterval(interval)
-    }
-  })
-
-  return <canvas ref={canvasRef} width={width} height={height} />
 }
 
 export default Dashboard
