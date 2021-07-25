@@ -45,17 +45,17 @@ function Dashboard() {
       mimeType: 'video/webm;codecs=h264',
       videoBitsPerSecond: 3 * 1024 * 1024,
     })
-    liveStreamRecorder.addEventListener('dataavailable', (e) => {
+    liveStreamRecorder.ondataavailable = (e) => {
       ws.current.send(e.data)
       console.log('send data', e.data)
-    })
-    liveStreamRecorder.start(1000)
+    }
     // Start recording, and dump data every second
+    liveStreamRecorder.start(1000)
   }
 
   const stopStream = () => {
     liveStreamRecorder.stop()
-    // // mediaRecorder.addEventListener('stop', ws.close.bind(ws))
+    ws.current.close()
   }
 
   return (
