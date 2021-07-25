@@ -3,6 +3,11 @@ import Navbar from '../../components/Navbar/Navbar'
 import './Dashboard.css'
 
 function Dashboard() {
+  const CAPTURE_OPTIONS = {
+    audio: false,
+    video: { facingMode: 'environment' },
+  }
+
   useEffect(() => {
     var video = document.getElementById('video')
 
@@ -14,10 +19,7 @@ function Dashboard() {
         console.log(error)
       }
       navigator.mediaDevices
-        .getUserMedia({
-          audio: false,
-          video: { facingMode: { ideal: 'environment' } }, // prefer rear-facing camera
-        })
+        .getUserMedia(CAPTURE_OPTIONS)
         .then(successCallback, errorCallback)
     }
 
