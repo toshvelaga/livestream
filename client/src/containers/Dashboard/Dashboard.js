@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, createRef } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import './Dashboard.css'
 
@@ -65,7 +65,7 @@ function Dashboard() {
             playsInline
             muted
           />
-          <canvas id='canvas' style={{ border: '1px solid red' }}></canvas>
+          {/* <Canvas videoRef={videoRef} /> */}
         </div>
         <div className='button-container'>
           <button>Go Live</button>
@@ -102,6 +102,22 @@ const useUserMedia = (requestedMedia) => {
   }, [mediaStream, requestedMedia])
 
   return mediaStream
+}
+
+const Canvas = ({ videoRef, width, height }) => {
+  const canvasRef = createRef(null)
+
+  useEffect(() => {
+    if (canvasRef.current && videoRef.current) {
+      const interval = setInterval(() => {
+        const ctx = canvasRef.current.getContext('2d')
+        ctx.drawImage(videoRef.current, 0, 0, 250, 188)
+      }, 60)
+      return () => clearInterval(interval)
+    }
+  })
+
+  return <canvas ref={canvasRef} width={width} height={height} />
 }
 
 export default Dashboard
