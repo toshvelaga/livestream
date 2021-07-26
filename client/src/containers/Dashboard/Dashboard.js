@@ -8,6 +8,7 @@ const CAPTURE_OPTIONS = {
 }
 
 function Dashboard() {
+  const [mute, setMute] = useState(false)
   const videoRef = useRef()
   const ws = useRef()
   const mediaStream = useUserMedia(CAPTURE_OPTIONS)
@@ -58,6 +59,10 @@ function Dashboard() {
     ws.current.close()
   }
 
+  const toggleMute = () => {
+    setMute(!mute)
+  }
+
   return (
     <>
       <Navbar />
@@ -68,13 +73,14 @@ function Dashboard() {
             onCanPlay={handleCanPlay}
             autoPlay
             playsInline
+            muted={mute}
           />
         </div>
         <div className='button-container'>
           <button onClick={startStream}>Go Live</button>
           <button onClick={stopStream}>Stop Recording</button>
           <button>Share Screen</button>
-          <button>Mute</button>
+          <button onClick={toggleMute}>Mute</button>
         </div>
       </div>
     </>
