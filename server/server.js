@@ -52,11 +52,6 @@ const wss = new WebSocketServer({
 
 wss.on('connection', (ws, req) => {
   const ffmpeg = child_process.spawn('ffmpeg', [
-    // works fine when I use this but when I need audio problems arise
-    // '-f',
-    // 'lavfi',
-    // '-i',
-    // 'anullsrc',
     '-i',
     '-',
 
