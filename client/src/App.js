@@ -49,8 +49,8 @@ function App() {
           </Route>
 
           <Route path='/'>
-            {/* <Popups /> */}
-            <FacebookPopup />
+            {/* <FacebookPopup /> */}
+            <h1>go to dashboard to record</h1>
           </Route>
         </Switch>
       </Router>
