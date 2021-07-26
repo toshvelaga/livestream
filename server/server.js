@@ -17,8 +17,8 @@ app.use(
   express.urlencoded({ limit: '200mb', extended: true, parameterLimit: 50000 })
 )
 
-var authRouter = require('./routes/auth')
-var compareCodeRouter = require('./routes/compareCode')
+const authRouter = require('./routes/auth')
+const compareCodeRouter = require('./routes/compareCode')
 
 app.use('/', authRouter)
 app.use('/', compareCodeRouter)
@@ -42,9 +42,6 @@ app.listen(PORT, () => {
 const server = http.createServer(app).listen(3000, () => {
   console.log('Listening on PORT 3000...')
 })
-
-// Serve static files out of the www directory, where we will put our HTML page
-// app.use(express.static('../www'))
 
 const wss = new WebSocketServer({
   server: server,
