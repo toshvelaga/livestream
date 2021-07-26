@@ -4,7 +4,7 @@ import './Dashboard.css'
 
 const CAPTURE_OPTIONS = {
   audio: true,
-  video: { facingMode: 'environment' },
+  video: true,
 }
 
 function Dashboard() {
@@ -68,7 +68,6 @@ function Dashboard() {
             onCanPlay={handleCanPlay}
             autoPlay
             playsInline
-            muted
           />
         </div>
         <div className='button-container'>
@@ -99,7 +98,7 @@ const useUserMedia = (requestedMedia) => {
       enableStream()
     } else {
       return function cleanup() {
-        mediaStream.getTracks().forEach((track) => {
+        mediaStream.getVideoTracks().forEach((track) => {
           track.stop()
         })
       }
