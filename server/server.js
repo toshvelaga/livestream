@@ -17,11 +17,9 @@ app.use(
   express.urlencoded({ limit: '200mb', extended: true, parameterLimit: 50000 })
 )
 
-// var authRouter = require('./routes/auth')
 var authRouter = require('./routes/auth')
 var compareCodeRouter = require('./routes/compareCode')
 
-// app.use('/', authRouter)
 app.use('/', authRouter)
 app.use('/', compareCodeRouter)
 
@@ -53,28 +51,12 @@ const wss = new WebSocketServer({
 })
 
 wss.on('connection', (ws, req) => {
-  // Ensure that the URL starts with '/rtmp/', and extract the target RTMP URL.
-  // let match
-  // console.log(match)
-  // if (!(match = req.url.match(/^\/rtmp\/(.*)$/))) {
-  //   ws.terminate() // No match, reject the connection.
-  //   return
-  // }
-
-  // Launch FFmpeg to handle all appropriate transcoding, muxing, and RTMP.
-  // If 'ffmpeg' isn't in your path, specify the full path to the ffmpeg binary.
   const ffmpeg = child_process.spawn('ffmpeg', [
-    // Facebook requires an audio track, so we create a silent one here.
-    // Remove this line, as well as `-shortest`, if you send audio from the browser.
+    // works fine when I use this but when I need audio problems arise
     // '-f',
     // 'lavfi',
     // '-i',
     // 'anullsrc',
-
-    // AAC audio is required for Facebook Live.  No browser currently supports
-    // encoding AAC, so we must transcode the audio to AAC here on the server.
-    // '-acodec',
-    // 'aac',
 
     '-i',
     '-',
