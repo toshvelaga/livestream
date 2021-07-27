@@ -118,11 +118,36 @@ wss.on('connection', (ws, req) => {
     'flv',
     `${process.env.YOUTUBE_STREAM_ADDRESS}`,
 
-    // '-f',
-    // 'flv',
-    // '-c',
-    // 'copy',
-    // `${process.env.FACEBOOK_STREAM_ADDRESS}`,
+    // video codec config: low latency, adaptive bitrate
+    '-c:v',
+    'libx264',
+    '-preset',
+    'veryfast',
+    '-tune',
+    'zerolatency',
+
+    // audio codec config: sampling frequency (11025, 22050, 44100), bitrate 64 kbits
+    '-c:a',
+    'aac',
+    '-strict',
+    '-2',
+    '-ar',
+    '44100',
+    '-b:a',
+    '64k',
+
+    //force to overwrite
+    '-y',
+
+    // used for audio sync
+    '-use_wallclock_as_timestamps',
+    '1',
+    '-async',
+    '1',
+
+    '-f',
+    'flv',
+    `${process.env.FACEBOOK_STREAM_ADDRESS}`,
   ])
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
