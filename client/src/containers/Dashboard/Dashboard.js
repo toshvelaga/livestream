@@ -79,8 +79,9 @@ function Dashboard() {
 
   const stopStream = () => {
     setIsActive(false)
-    liveStreamRecorder.stop()
     ws.current.close()
+    liveStreamRecorder = null
+    // liveStreamRecorder.stop()
   }
 
   const toggleMute = () => {
