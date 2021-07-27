@@ -10,6 +10,8 @@ const CAPTURE_OPTIONS = {
 
 function Dashboard() {
   const [mute, setMute] = useState(false)
+  const [seconds, setSeconds] = useState(0)
+
   const videoRef = useRef()
   const ws = useRef()
   const mediaStream = useUserMedia(CAPTURE_OPTIONS)
@@ -64,6 +66,10 @@ function Dashboard() {
     setMute(!mute)
   }
 
+  const startTimer = () => {
+    setInterval(() => setSeconds((seconds) => seconds + 1), 1000)
+  }
+
   const alertMessage = () => {
     alert('Ability to share screen coming soon')
   }
@@ -73,7 +79,7 @@ function Dashboard() {
       <Navbar />
       <div style={{ marginTop: '5rem' }} className='main'>
         <div id='container'>
-          <Timer>LIVE: 555</Timer>
+          <Timer>LIVE: {seconds}</Timer>
           <video
             ref={videoRef}
             onCanPlay={handleCanPlay}
@@ -85,7 +91,7 @@ function Dashboard() {
         <div className='button-container'>
           <button onClick={startStream}>Go Live</button>
           <button onClick={stopStream}>Stop Recording</button>
-          <button onClick={alertMessage}>Share Screen</button>
+          <button onClick={startTimer}>Share Screen</button>
           <button onClick={toggleMute}>Mute</button>
         </div>
       </div>
