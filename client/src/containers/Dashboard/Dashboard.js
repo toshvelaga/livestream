@@ -12,6 +12,7 @@ const CAPTURE_OPTIONS = {
 function Dashboard() {
   const [mute, setMute] = useState(false)
   const [seconds, setSeconds] = useState(0)
+  const [isActive, setIsActive] = useState(false)
 
   const videoRef = useRef()
   const ws = useRef()
@@ -44,6 +45,27 @@ function Dashboard() {
     }
   }, [])
 
+  useEffect(() => {
+    let interval = null
+    if (isActive) {
+      interval = setInterval(() => {
+        setSeconds((seconds) => seconds + 1)
+      }, 1000)
+    } else if (!isActive && seconds !== 0) {
+      clearInterval(interval)
+    }
+    return () => clearInterval(interval)
+  }, [isActive, seconds])
+
+  function toggle() {
+    setIsActive(!isActive)
+  }
+
+  function reset() {
+    setSeconds(0)
+    setIsActive(false)
+  }
+
   const startStream = () => {
     liveStream = videoRef.current.captureStream(30) // 30 FPS
     liveStreamRecorder = new MediaRecorder(liveStream, {
@@ -67,10 +89,6 @@ function Dashboard() {
     setMute(!mute)
   }
 
-  const startTimer = () => {
-    setInterval(() => setSeconds((seconds) => seconds + 1), 1000)
-  }
-
   const alertMessage = () => {
     alert('Ability to share screen coming soon')
   }
@@ -92,7 +110,7 @@ function Dashboard() {
         <div className='button-container'>
           <button onClick={startStream}>Go Live</button>
           <button onClick={stopStream}>Stop Recording</button>
-          <button onClick={startTimer}>Share Screen</button>
+          <button onClick={toggle}>Share Screen</button>
           <button onClick={toggleMute}>Mute</button>
         </div>
       </div>
