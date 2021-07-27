@@ -19,7 +19,7 @@ function SideNavbar(props) {
         <div className='side-navbar-title'>Destinations</div>
       </li>
 
-      <li className='tablinks'>
+      {/* <li className='tablinks'>
         <div className='side-navbar-icon'>
           <FaIcons.FaChartBar size={20} />
         </div>
@@ -31,7 +31,7 @@ function SideNavbar(props) {
           <FaIcons.FaCog size={20} />
         </div>
         <div className='side-navbar-title'>Settings</div>
-      </li>
+      </li> */}
     </ul>
   )
 }
