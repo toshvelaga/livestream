@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import Timer from '../../components/Timer/Timer'
+import formatTime from '../../utils/formatTime'
 import './Dashboard.css'
 
 const CAPTURE_OPTIONS = {
@@ -79,7 +80,7 @@ function Dashboard() {
       <Navbar />
       <div style={{ marginTop: '5rem' }} className='main'>
         <div id='container'>
-          <Timer>LIVE: {seconds}</Timer>
+          <Timer>LIVE: {formatTime(seconds)}</Timer>
           <video
             ref={videoRef}
             onCanPlay={handleCanPlay}
