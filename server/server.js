@@ -39,7 +39,7 @@ app.listen(PORT, () => {
   console.log(`Server is starting on port ${PORT}`)
 })
 
-const server = http.createServer(app).listen(3000, () => {
+const server = http.createServer(app).listen(3001, () => {
   console.log('Listening on PORT 3000...')
 })
 
