@@ -25,10 +25,6 @@ function Dashboard() {
     videoRef.current.srcObject = mediaStream
   }
 
-  const handleCanPlay = () => {
-    videoRef.current.play()
-  }
-
   useEffect(() => {
     ws.current = new WebSocket(
       window.location.protocol.replace('http', 'ws') +
@@ -57,16 +53,17 @@ function Dashboard() {
     return () => clearInterval(interval)
   }, [isActive, seconds])
 
-  function toggle() {
+  const toggle = () => {
     setIsActive(!isActive)
   }
 
-  function reset() {
+  const reset = () => {
     setSeconds(0)
     setIsActive(false)
   }
 
   const startStream = () => {
+    toggle()
     liveStream = videoRef.current.captureStream(30) // 30 FPS
     liveStreamRecorder = new MediaRecorder(liveStream, {
       mimeType: 'video/webm;codecs=h264',
@@ -81,6 +78,7 @@ function Dashboard() {
   }
 
   const stopStream = () => {
+    setIsActive(false)
     liveStreamRecorder.stop()
     ws.current.close()
   }
@@ -91,6 +89,10 @@ function Dashboard() {
 
   const alertMessage = () => {
     alert('Ability to share screen coming soon')
+  }
+
+  const handleCanPlay = () => {
+    videoRef.current.play()
   }
 
   return (
@@ -110,7 +112,7 @@ function Dashboard() {
         <div className='button-container'>
           <button onClick={startStream}>Go Live</button>
           <button onClick={stopStream}>Stop Recording</button>
-          <button onClick={toggle}>Share Screen</button>
+          <button onClick={alertMessage}>Share Screen</button>
           <button onClick={toggleMute}>Mute</button>
         </div>
       </div>
