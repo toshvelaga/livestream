@@ -29,7 +29,7 @@ function Dashboard() {
     ws.current = new WebSocket(
       window.location.protocol.replace('http', 'ws') +
         '//' + // http: -> ws:, https: -> wss:
-        'localhost:3000'
+        'localhost:3001'
     )
 
     ws.current.onopen = () => {
@@ -55,11 +55,6 @@ function Dashboard() {
 
   const toggle = () => {
     setIsActive(!isActive)
-  }
-
-  const reset = () => {
-    setSeconds(0)
-    setIsActive(false)
   }
 
   const startStream = () => {
