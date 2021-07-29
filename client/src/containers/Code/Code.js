@@ -9,7 +9,7 @@ import setCookie from '../../utils/setCookie'
 
 function Code() {
   const [code, setCode] = useState('')
-  const [errorMessage, seterrorMessage] = useState('')
+  const [error, seterror] = useState('')
 
   const history = useHistory()
 
@@ -25,7 +25,7 @@ function Code() {
       let result = await axios.post('http://localhost:8080/compare-code', data)
       console.log(result.data.match)
       if (!result.data.match) {
-        seterrorMessage('The code you entered does not match')
+        seterror('The code you entered does not match')
       } else {
         setCookie('isLoggedIn', true, 7)
         history.push('/dashboard')
@@ -47,8 +47,8 @@ function Code() {
             value={code}
             maxLength={6}
             onChange={(e) => setCode(e.target.value)}
+            errorMsg={error ? error : null}
           />
-          {errorMessage ? <p style={{ color: 'red' }}>{errorMessage}</p> : null}
           <Button fx={submit} style={{ width: '100%' }} title='Submit' />
         </div>
       </div>
