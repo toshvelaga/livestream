@@ -14,7 +14,7 @@ function Login() {
 
   const handleClick = () => {
     sendAuthCode()
-    history.push('/login/code')
+    // history.push('/login/code')
   }
 
   const sendAuthCode = async () => {
@@ -22,11 +22,12 @@ function Login() {
       const response = await axios.post('http://localhost:8080/user/login', {
         email: email,
       })
-      console.log(response)
+      console.log(response.data.error)
+      seterror(response.data.error)
       // console.log(response.data.user_id)
       // setCookie('userId', `${response.data.user_id}`, 7)
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      console.log(err.response) // some reason error message
     }
   }
 

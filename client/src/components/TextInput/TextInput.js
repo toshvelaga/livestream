@@ -19,6 +19,7 @@ function TextInput(props) {
           required={props.required}
           maxLength={props.maxLength}
         ></input>
+        <span class='error-message'>{props.errorMsg}</span>
       </div>
     </>
   )

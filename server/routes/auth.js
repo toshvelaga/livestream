@@ -32,9 +32,11 @@ router.post('/user/login', async (req, res) => {
     const user = await pool.query(`SELECT * FROM users WHERE user_email = $1`, [
       email,
     ])
-
+    if (!email) {
+      res.send({ error: 'Please do not leave email empty' })
+    }
     if (user.rows.length === 0) {
-      return res.status(401).json('No email is associated with that account')
+      return res.send({ error: 'No email is associated with that account' })
     } else {
       pool.query(
         `UPDATE users SET user_code = $1 WHERE user_email = $2`,
