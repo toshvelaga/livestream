@@ -42,8 +42,8 @@ function Login() {
             placeholder='Email Address'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            errorMsg={error ? error : null}
           />
-          {error ? <p style={{ color: 'red' }}>{error}</p> : null}
         </div>
         <Button style={{ width: '100%' }} title='Sign In' fx={handleClick} />
 
