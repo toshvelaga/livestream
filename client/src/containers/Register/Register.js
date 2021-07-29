@@ -14,7 +14,6 @@ function Register() {
 
   const handleClick = () => {
     sendAuthCode()
-    history.push('/register/code')
   }
 
   const sendAuthCode = async () => {
@@ -22,13 +21,15 @@ function Register() {
       const response = await axios.post('http://localhost:8080/user/register', {
         email: email,
       })
+      console.log(response.data.error)
+      seterror(response.data.error)
       console.log(response)
-      // console.log(response.data.user_id)
-      setCookie('userId', `${response.data.user_id}`, 7)
-    } catch (error) {
-      console.log(error)
-      // console.log(error.response.data.error)
-      // seterror(error.response.data.error)
+      if (response.data.user_id) {
+        setCookie('userId', `${response.data.user_id}`, 7)
+        history.push('/login/code')
+      }
+    } catch (err) {
+      console.log(err.response) // some reason error message
     }
   }
 
@@ -46,8 +47,8 @@ function Register() {
             placeholder='Email Address'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            errorMsg={error ? error : null}
           />
-          {error ? <p style={{ color: 'red' }}>{error}</p> : null}
         </div>
         <div className='register-button'>
           <Button style={{ width: '100%' }} title='Sign Up' fx={handleClick} />

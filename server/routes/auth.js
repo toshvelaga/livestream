@@ -10,18 +10,19 @@ router.post('/user/register', async (req, res) => {
   const timeCreated = new Date().toUTCString()
 
   if (!email) {
-    console.log('do not leave email empty')
-    return res.status(401).json({ error: 'Please do not leave email empty' })
+    res.send({ error: 'Please do not leave email empty' })
   }
+  if (validateEmail(email) == false) {
+    res.send({ error: 'Please add a valid email address' })
+  } else {
+    let newUser = await pool.query(
+      'INSERT INTO users (user_email, user_code, user_date_created) VALUES ($1, $2, $3) RETURNING *',
+      [email, code, timeCreated]
+    )
+    sendAuthCode(email, code)
 
-  let newUser = await pool.query(
-    'INSERT INTO users (user_email, user_code, user_date_created) VALUES ($1, $2, $3) RETURNING *',
-    [email, code, timeCreated]
-  )
-
-  sendAuthCode(email, code)
-
-  return res.json(newUser.rows[0])
+    return res.json(newUser.rows[0])
+  }
 })
 
 router.post('/user/login', async (req, res) => {
