@@ -34,6 +34,8 @@ function Login() {
     <>
       <div className='login-container'>
         <div>
+          <h2>Log in to your account</h2>
+          <p>Enter your email and we'll send you a login code.</p>
           <TextInput
             label='Email'
             placeholder='Email Address'

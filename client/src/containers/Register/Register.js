@@ -36,6 +36,11 @@ function Register() {
     <>
       <div className='register-container'>
         <div>
+          <h2>Create an account</h2>
+          <p>
+            We use passwordless sign up. Just enter your email and you'll get a
+            code to use.
+          </p>
           <TextInput
             label='Email'
             placeholder='Email Address'
@@ -45,7 +50,7 @@ function Register() {
           {error ? <p style={{ color: 'red' }}>{error}</p> : null}
         </div>
         <div className='register-button'>
-          <Button style={{ width: '100%' }} title='Submit' fx={handleClick} />
+          <Button style={{ width: '100%' }} title='Sign Up' fx={handleClick} />
         </div>
         <p style={{ color: 'grey', marginTop: '1rem', textAlign: 'center' }}>
           <Link
