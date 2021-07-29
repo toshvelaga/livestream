@@ -38,15 +38,19 @@ function Code() {
   return (
     <>
       <div className='code-container'>
-        <TextInput
-          label='Code'
-          placeholder='Enter 6 digit code'
-          value={code}
-          maxLength={6}
-          onChange={(e) => setCode(e.target.value)}
-        />
-        {errorMessage ? <p style={{ color: 'red' }}>{errorMessage}</p> : null}
-        <Button fx={submit} style={{ width: '100%' }} title='Log In' />
+        <div>
+          <h2>Email Sent!</h2>
+          <p>Please check your email for your login code.</p>
+          <TextInput
+            label='Login Code'
+            placeholder='Enter 6 digit code'
+            value={code}
+            maxLength={6}
+            onChange={(e) => setCode(e.target.value)}
+          />
+          {errorMessage ? <p style={{ color: 'red' }}>{errorMessage}</p> : null}
+          <Button fx={submit} style={{ width: '100%' }} title='Submit' />
+        </div>
       </div>
     </>
   )
