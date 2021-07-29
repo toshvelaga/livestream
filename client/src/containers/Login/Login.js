@@ -24,7 +24,7 @@ function Login() {
       })
       console.log(response.data.error)
       seterror(response.data.error)
-      // console.log(response.data.user_id)
+      console.log(response)
       // setCookie('userId', `${response.data.user_id}`, 7)
     } catch (err) {
       console.log(err.response) // some reason error message

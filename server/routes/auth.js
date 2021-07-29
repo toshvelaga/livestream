@@ -1,7 +1,6 @@
 const express = require('express'),
   router = express.Router(),
   pool = require('../db'),
-  validInfo = require('../middleware/validInfo'),
   sendAuthCode = require('../utils/sendAuthCode'),
   validateEmail = require('../utils/validateEmail')
 
@@ -42,15 +41,13 @@ router.post('/user/login', async (req, res) => {
     if (user.rows.length === 0) {
       return res.send({ error: 'No email is associated with that account' })
     } else {
-      pool.query(
+      await pool.query(
         `UPDATE users SET user_code = $1 WHERE user_email = $2`,
-        [code, email],
-        (q_err, q_res) => {
-          res.json(q_res.rows)
-        }
+        [code, email]
       )
       console.log(user.rows[0])
       sendAuthCode(email, code)
+      return res.json(user.rows[0])
     }
   } catch (err) {
     console.error(err.message)

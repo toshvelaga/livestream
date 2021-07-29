@@ -21,9 +21,7 @@ const sendAuthCode = (email, code) => {
     if (err) {
       console.error('there was an error: ', err)
     } else {
-      res.status(200).json({
-        success: 'recovery email sent',
-      })
+      console.log('success')
     }
   })
 }

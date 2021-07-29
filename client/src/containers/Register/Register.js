@@ -23,7 +23,7 @@ function Register() {
         email: email,
       })
       console.log(response)
-      console.log(response.data.user_id)
+      // console.log(response.data.user_id)
       setCookie('userId', `${response.data.user_id}`, 7)
     } catch (error) {
       console.log(error)
