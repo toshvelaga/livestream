@@ -2,7 +2,8 @@ const express = require('express'),
   router = express.Router(),
   pool = require('../db'),
   validInfo = require('../middleware/validInfo'),
-  sendAuthCode = require('../utils/sendAuthCode')
+  sendAuthCode = require('../utils/sendAuthCode'),
+  validateEmail = require('../utils/validateEmail')
 
 router.post('/user/register', async (req, res) => {
   const { email } = req.body
@@ -34,6 +35,9 @@ router.post('/user/login', async (req, res) => {
     ])
     if (!email) {
       res.send({ error: 'Please do not leave email empty' })
+    }
+    if (validateEmail(email) == false) {
+      res.send({ error: 'Please add a valid email address' })
     }
     if (user.rows.length === 0) {
       return res.send({ error: 'No email is associated with that account' })
