@@ -14,7 +14,6 @@ function Login() {
 
   const handleClick = () => {
     sendAuthCode()
-    // history.push('/login/code')
   }
 
   const sendAuthCode = async () => {
@@ -25,7 +24,10 @@ function Login() {
       console.log(response.data.error)
       seterror(response.data.error)
       console.log(response)
-      // setCookie('userId', `${response.data.user_id}`, 7)
+      if (response.data.user_id) {
+        setCookie('userId', `${response.data.user_id}`, 7)
+        history.push('/login/code')
+      }
     } catch (err) {
       console.log(err.response) // some reason error message
     }
