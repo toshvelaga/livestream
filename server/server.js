@@ -18,9 +18,11 @@ app.use(
 )
 
 const authRouter = require('./routes/auth')
+const destinationsRouter = require('./routes/destinations')
 const compareCodeRouter = require('./routes/compareCode')
 
 app.use('/', authRouter)
+app.use('/', destinationsRouter)
 app.use('/', compareCodeRouter)
 
 if (process.env.NODE_ENV === 'production') {
