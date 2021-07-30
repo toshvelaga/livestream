@@ -17,8 +17,13 @@ function Destinations() {
 
     axios
       .post('http://localhost:8080/api/destinations', { userId })
-      .then((response) => console.log(response))
-      .then(() => console.log('success'))
+      .then((response) => {
+        if (response) {
+          setTwitchStreamKey(response.data.twitch_stream_key)
+          setYoutubeStreamKey(response.data.youtube_stream_key)
+          setFacebookStreamKey(response.data.facebook_stream_key)
+        }
+      })
       .catch((err) => console.log(err))
   }, [])
 

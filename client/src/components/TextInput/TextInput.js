@@ -5,7 +5,7 @@ function TextInput(props) {
   return (
     <>
       <div className='text-input-container'>
-        <label className='label' for='fname'>
+        <label className='label' htmlFor='fname'>
           {props.label}
         </label>
         <input
@@ -19,7 +19,7 @@ function TextInput(props) {
           required={props.required}
           maxLength={props.maxLength}
         ></input>
-        <span class='error-message'>{props.errorMsg}</span>
+        <span className='error-message'>{props.errorMsg}</span>
       </div>
     </>
   )
