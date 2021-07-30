@@ -1,4 +1,26 @@
+:root {
+  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+}
+
 .destinations-container {
   width: 50%;
   margin: 10rem auto;
+  font-family: var(--main-font);
+}
+
+@media only screen and (max-width: 1000px) {
+  .destinations-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .destinations-container {
+    width: 90%;
+  }
+}
+
+.destinations-save-button {
+  margin-top: 1rem;
 }
