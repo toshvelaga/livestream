@@ -1,13 +1,17 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react'
 import './App.css'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 import Login from './containers/Login/Login'
 import Register from './containers/Register/Register'
 import Code from './containers/Code/Code'
 import getCookie from './utils/getCookie'
 import PageNotFound from './containers/PageNotFound/PageNotFound'
-
-const Dashboard = lazy(() => import('./containers/Dashboard/Dashboard'))
+import Dashboard from './containers/Dashboard/Dashboard'
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState('')
@@ -17,15 +21,21 @@ function App() {
   }, [isLoggedIn])
 
   console.log(isLoggedIn)
+
+  const PrivateRoute = ({ component: Component }) => (
+    <Route render={() => (!isLoggedIn ? <Component /> : <Login />)} />
+  )
+
   return (
     <>
       <Router>
         <Switch>
-          <Route path='/dashboard'>
+          {/* <Route path='/dashboard'>
             <Suspense fallback={<div>Loading...</div>}>
               <Dashboard />
             </Suspense>
-          </Route>
+          </Route> */}
+
           <Route path='/login/code'>
             <Code />
           </Route>
@@ -38,6 +48,9 @@ function App() {
           <Route path='/register'>
             <Register />
           </Route>
+
+          <PrivateRoute component={Dashboard} />
+
           <Route path='*'>
             <PageNotFound />
           </Route>

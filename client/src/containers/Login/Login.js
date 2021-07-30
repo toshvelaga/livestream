@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
@@ -11,6 +11,13 @@ function Login() {
   const [error, seterror] = useState('')
 
   const history = useHistory()
+  let location = useLocation()
+
+  useEffect(() => {
+    if (location.pathname !== '/login') {
+      history.push('/login')
+    }
+  }, [])
 
   const handleClick = () => {
     sendAuthCode()
