@@ -1,11 +1,15 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import './SideNavbar.css'
 
 function SideNavbar(props) {
+  const history = useHistory()
+
   return (
     <ul className='side-navbar'>
       <li
+        onClick={() => history.push('/dashboard')}
         style={
           window.location.pathname === '/broadcast'
             ? { backgroundColor: '#ddd' }
@@ -20,6 +24,7 @@ function SideNavbar(props) {
       </li>
 
       <li
+        onClick={() => history.push('/destinations')}
         style={
           window.location.pathname === '/destinations'
             ? { backgroundColor: '#ddd' }
@@ -41,6 +46,7 @@ function SideNavbar(props) {
       </li> */}
 
       <li
+        onClick={() => history.push('/settings')}
         style={
           window.location.pathname === '/settings'
             ? { backgroundColor: '#ddd' }
