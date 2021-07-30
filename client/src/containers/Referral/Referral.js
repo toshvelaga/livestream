@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import TextInput from '../../components/TextInput/TextInput'
-import Button from '../../components/Button/Button'
+import Button from '../../components/Buttons/Button'
 import './Referral.css'
 
 function Referral() {

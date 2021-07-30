@@ -16,6 +16,7 @@ import ProtectedRoute from './ProtectedRoute'
 import AuthRoute from './AuthRoute'
 import Destinations from './containers/Destinations/Destinations'
 import Settings from './containers/Settings/Settings'
+import Referral from './containers/Referral/Referral'
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState('')
@@ -30,7 +31,7 @@ function App() {
         <Switch>
           <ProtectedRoute path='/dashboard' component={Dashboard} />
           <ProtectedRoute path='/destinations' component={Destinations} />
-          <ProtectedRoute path='/settings' component={Settings} />
+          <ProtectedRoute path='/referrals' component={Referral} />
           <AuthRoute exact path='/login/code' component={Code} />
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register/code' component={Code} />
