@@ -2,15 +2,32 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
+import axios from 'axios'
+import getCookie from '../../utils/getCookie'
 import './Destinations.css'
 
 function Destinations() {
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
   const [youtubeStreamKey, setYoutubeStreamKey] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
+  let userId = getCookie('userId')
+
+  useEffect(() => {
+    console.log('placeholder')
+  })
 
   const handleClick = () => {
-    console.log('click')
+    const data = {
+      twitchStreamKey,
+      youtubeStreamKey,
+      facebookStreamKey,
+      userId,
+    }
+    axios
+      .put('http://localhost:8080/api/destinations', data)
+      .then((response) => console.log(response))
+      .then(() => console.log('success'))
+      .catch((err) => console.log(err))
   }
 
   return (
