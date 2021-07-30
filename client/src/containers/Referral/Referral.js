@@ -16,12 +16,12 @@ function Referral() {
         <h2>Referrals</h2>
         <TextInput
           label='Refer a friend'
-          placeholder=''
+          placeholder='yourfriend@gmail.com'
           value={referralEmail}
           onChange={(e) => setReferralEmail(e.target.value)}
           errorMsg={null}
         />
-        <Button style={{ width: '100%' }} title='Submit' fx={handleClick} />
+        <Button style={{ width: '100%' }} title='Send Email' fx={handleClick} />
       </div>
     </>
   )
