@@ -10,6 +10,7 @@ function Destinations() {
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
   const [youtubeStreamKey, setYoutubeStreamKey] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
+  const [buttonText, setbuttonText] = useState('Save')
   let userId = getCookie('userId')
 
   useEffect(() => {
@@ -37,7 +38,12 @@ function Destinations() {
     axios
       .put('http://localhost:8080/api/destinations', data)
       .then((response) => console.log(response))
-      .then(() => console.log('success'))
+      .then(() => {
+        setbuttonText('Changes Saved!')
+        setTimeout(() => {
+          setbuttonText('Save')
+        }, 1500)
+      })
       .catch((err) => console.log(err))
   }
 
@@ -67,7 +73,7 @@ function Destinations() {
           onChange={(e) => setFacebookStreamKey(e.target.value)}
           errorMsg={null}
         />
-        <Button style={{ width: '100%' }} title='Save' fx={handleClick} />
+        <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} />
       </div>
     </>
   )
