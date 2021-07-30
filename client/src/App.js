@@ -13,8 +13,7 @@ import getCookie from './utils/getCookie'
 import PageNotFound from './containers/PageNotFound/PageNotFound'
 import Dashboard from './containers/Dashboard/Dashboard'
 import ProtectedRoute from './ProtectedRoute'
-
-// const Dashboard = lazy(() => import('./containers/Dashboard/Dashboard'))
+import AuthRoute from './AuthRoute'
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState('')
@@ -28,10 +27,10 @@ function App() {
       <Router>
         <Switch>
           <ProtectedRoute path='/dashboard' component={Dashboard} />
-          <Route exact path='/login/code' component={Code} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/register/code' component={Code} />
-          <Route exact path='/register' component={Register} />
+          <AuthRoute exact path='/login/code' component={Code} />
+          <AuthRoute exact path='/login' component={Login} />
+          <AuthRoute exact path='/register/code' component={Code} />
+          <AuthRoute exact path='/register' component={Register} />
           <Route path='*' component={PageNotFound} />
         </Switch>
       </Router>
