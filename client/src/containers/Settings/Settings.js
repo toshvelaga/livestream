@@ -1,11 +1,13 @@
 import React from 'react'
+import Navbar from '../../components/Navbar/Navbar'
 import './Settings.css'
 
 function Settings() {
   return (
-    <div>
+    <>
+      <Navbar />
       <h2>Settings</h2>
-    </div>
+    </>
   )
 }
 

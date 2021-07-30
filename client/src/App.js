@@ -14,6 +14,8 @@ import PageNotFound from './containers/PageNotFound/PageNotFound'
 import Dashboard from './containers/Dashboard/Dashboard'
 import ProtectedRoute from './ProtectedRoute'
 import AuthRoute from './AuthRoute'
+import Destinations from './containers/Destinations/Destinations'
+import Settings from './containers/Settings/Settings'
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState('')
@@ -27,6 +29,8 @@ function App() {
       <Router>
         <Switch>
           <ProtectedRoute path='/dashboard' component={Dashboard} />
+          <ProtectedRoute path='/destinations' component={Destinations} />
+          <ProtectedRoute path='/settings' component={Settings} />
           <AuthRoute exact path='/login/code' component={Code} />
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register/code' component={Code} />

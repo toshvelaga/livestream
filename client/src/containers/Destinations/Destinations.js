@@ -1,11 +1,13 @@
 import React from 'react'
+import Navbar from '../../components/Navbar/Navbar'
 import './Destinations.css'
 
 function Destinations() {
   return (
-    <div>
+    <>
+      <Navbar />
       <h2>Destinations page</h2>
-    </div>
+    </>
   )
 }
 
