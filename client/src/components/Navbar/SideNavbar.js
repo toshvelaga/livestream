@@ -5,16 +5,23 @@ import './SideNavbar.css'
 function SideNavbar(props) {
   return (
     <ul className='side-navbar'>
-      <li className='tablinks'>
+      <li
+        style={
+          window.location.pathname === '/broadcast'
+            ? { backgroundColor: '#ddd' }
+            : null
+        }
+        className='tablinks'
+      >
         <div className='side-navbar-icon'>
-          <FaIcons.FaThLarge size={20} />
+          <FaIcons.FaVideo size={20} />
         </div>
-        <div className='side-navbar-title'>Broadcasts</div>
+        <div className='side-navbar-title'>Broadcast</div>
       </li>
 
       <li className='tablinks'>
         <div className='side-navbar-icon'>
-          <FaIcons.FaCalendarWeek size={20} />
+          <FaIcons.FaKey size={20} />
         </div>
         <div className='side-navbar-title'>Destinations</div>
       </li>
@@ -24,14 +31,14 @@ function SideNavbar(props) {
           <FaIcons.FaChartBar size={20} />
         </div>
         <div className='side-navbar-title'>Analytics</div>
-      </li>
+      </li> */}
 
       <li className='tablinks'>
         <div className='side-navbar-icon'>
           <FaIcons.FaCog size={20} />
         </div>
         <div className='side-navbar-title'>Settings</div>
-      </li> */}
+      </li>
     </ul>
   )
 }

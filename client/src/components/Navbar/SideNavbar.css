@@ -29,7 +29,8 @@ ul {
 .side-navbar-icon,
 .side-navbar-title {
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
+  text-align: center;
 }
 
 @media screen and (max-width: 1200px) {
