@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import TextInput from '../../components/TextInput/TextInput'
+import Button from '../../components/Buttons/Button'
 import './Destinations.css'
 
 function Destinations() {
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
   const [youtubeStreamKey, setYoutubeStreamKey] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
+
+  const handleClick = () => {
+    console.log('click')
+  }
 
   return (
     <>
@@ -34,6 +39,7 @@ function Destinations() {
           onChange={(e) => setFacebookStreamKey(e.target.value)}
           errorMsg={null}
         />
+        <Button style={{ width: '100%' }} title='Save' fx={handleClick} />
       </div>
     </>
   )
