@@ -13,8 +13,14 @@ function Destinations() {
   let userId = getCookie('userId')
 
   useEffect(() => {
-    console.log('placeholder')
-  })
+    let userId = getCookie('userId')
+
+    axios
+      .post('http://localhost:8080/api/destinations', { userId })
+      .then((response) => console.log(response))
+      .then(() => console.log('success'))
+      .catch((err) => console.log(err))
+  }, [])
 
   const handleClick = () => {
     const data = {

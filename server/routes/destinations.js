@@ -24,4 +24,16 @@ router.put('/api/destinations', (req, res, next) => {
   )
 })
 
+router.post('/api/destinations', async (req, res) => {
+  const userId = req.body.userId
+
+  let results = await pool.query(
+    `SELECT * FROM destinations WHERE user_id = $1`,
+    [userId]
+  )
+  if (results.rows) {
+    res.send(results.rows[0])
+  }
+})
+
 module.exports = router
