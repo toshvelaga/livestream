@@ -5,6 +5,7 @@ import Login from './containers/Login/Login'
 import Register from './containers/Register/Register'
 import Code from './containers/Code/Code'
 import getCookie from './utils/getCookie'
+import PageNotFound from './containers/PageNotFound/PageNotFound'
 
 const Dashboard = lazy(() => import('./containers/Dashboard/Dashboard'))
 
@@ -19,27 +20,26 @@ function App() {
   return (
     <>
       <Router>
-        {/* A <Switch> looks through its children <Routes> and
-            renders the first one that matches the current URL. */}
         <Switch>
           <Route path='/dashboard'>
             <Suspense fallback={<div>Loading...</div>}>
               <Dashboard />
             </Suspense>
           </Route>
-
           <Route path='/login/code'>
             <Code />
           </Route>
           <Route path='/login'>
             <Login />
           </Route>
-
           <Route path='/register/code'>
             <Code />
           </Route>
           <Route path='/register'>
             <Register />
+          </Route>
+          <Route path='*'>
+            <PageNotFound />
           </Route>
         </Switch>
       </Router>
