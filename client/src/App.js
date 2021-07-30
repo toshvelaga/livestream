@@ -12,6 +12,9 @@ import Code from './containers/Code/Code'
 import getCookie from './utils/getCookie'
 import PageNotFound from './containers/PageNotFound/PageNotFound'
 import Dashboard from './containers/Dashboard/Dashboard'
+import ProtectedRoute from './ProtectedRoute'
+
+// const Dashboard = lazy(() => import('./containers/Dashboard/Dashboard'))
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState('')
@@ -20,40 +23,16 @@ function App() {
     setisLoggedIn(login)
   }, [isLoggedIn])
 
-  console.log(isLoggedIn)
-
-  const PrivateRoute = ({ component: Component }) => (
-    <Route render={() => (!isLoggedIn ? <Component /> : <Login />)} />
-  )
-
   return (
     <>
       <Router>
         <Switch>
-          {/* <Route path='/dashboard'>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Dashboard />
-            </Suspense>
-          </Route> */}
-
-          <Route path='/login/code'>
-            <Code />
-          </Route>
-          <Route path='/login'>
-            <Login />
-          </Route>
-          <Route path='/register/code'>
-            <Code />
-          </Route>
-          <Route path='/register'>
-            <Register />
-          </Route>
-
-          <PrivateRoute component={Dashboard} />
-
-          <Route path='*'>
-            <PageNotFound />
-          </Route>
+          <ProtectedRoute path='/dashboard' component={Dashboard} />
+          <Route exact path='/login/code' component={Code} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register/code' component={Code} />
+          <Route exact path='/register' component={Register} />
+          <Route path='*' component={PageNotFound} />
         </Switch>
       </Router>
     </>
