@@ -55,9 +55,9 @@ function SideNavbar(props) {
         className='tablinks'
       >
         <div className='side-navbar-icon'>
-          <FaIcons.FaCog size={20} />
+          <FaIcons.FaShare size={20} />
         </div>
-        <div className='side-navbar-title'>Settings</div>
+        <div className='side-navbar-title'>Referrals</div>
       </li>
     </ul>
   )
