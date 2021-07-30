@@ -11,13 +11,6 @@ function Login() {
   const [error, seterror] = useState('')
 
   const history = useHistory()
-  let location = useLocation()
-
-  useEffect(() => {
-    if (location.pathname !== '/login') {
-      history.push('/login')
-    }
-  }, [])
 
   const handleClick = () => {
     sendAuthCode()
