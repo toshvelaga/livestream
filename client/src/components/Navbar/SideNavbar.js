@@ -19,7 +19,14 @@ function SideNavbar(props) {
         <div className='side-navbar-title'>Broadcast</div>
       </li>
 
-      <li className='tablinks'>
+      <li
+        style={
+          window.location.pathname === '/destinations'
+            ? { backgroundColor: '#ddd' }
+            : null
+        }
+        className='tablinks'
+      >
         <div className='side-navbar-icon'>
           <FaIcons.FaKey size={20} />
         </div>
@@ -33,7 +40,14 @@ function SideNavbar(props) {
         <div className='side-navbar-title'>Analytics</div>
       </li> */}
 
-      <li className='tablinks'>
+      <li
+        style={
+          window.location.pathname === '/settings'
+            ? { backgroundColor: '#ddd' }
+            : null
+        }
+        className='tablinks'
+      >
         <div className='side-navbar-icon'>
           <FaIcons.FaCog size={20} />
         </div>
