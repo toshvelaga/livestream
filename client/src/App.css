@@ -1,13 +1,1 @@
-.main {
-  margin-left: 200px;
-}
 
-body {
-  margin: 0px;
-}
-
-@media screen and (max-width: 1200px) {
-  .main {
-    margin-left: 80px;
-  }
-}

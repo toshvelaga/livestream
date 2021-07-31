@@ -95,7 +95,7 @@ function Dashboard() {
   return (
     <>
       <Navbar />
-      <div style={{ marginTop: '5rem' }} className='main'>
+      <div className='dashboard-container'>
         <div id='container'>
           <Timer>LIVE: {formatTime(seconds)}</Timer>
           <video
