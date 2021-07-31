@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
+import TopNavbar from '../../components/Navbar/TopNavbar'
 import Timer from '../../components/Timer/Timer'
 import formatTime from '../../utils/formatTime'
 import './Dashboard.css'

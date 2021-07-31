@@ -1,4 +1,4 @@
-ul {
+/* ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -7,7 +7,7 @@ ul {
   position: fixed;
   height: 100%;
   overflow: auto;
-}
+} */
 
 .side-navbar {
   float: left;
@@ -23,7 +23,7 @@ ul {
 }
 
 .side-navbar-title {
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .side-navbar-icon,
@@ -60,7 +60,7 @@ ul {
   background-color: inherit;
   color: black;
   padding: 20px 16px;
-  width: 100%;
+  /* width: 100%; */
   border: none;
   outline: none;
   text-align: left;

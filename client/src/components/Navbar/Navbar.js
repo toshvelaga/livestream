@@ -36,7 +36,8 @@ function Navbar() {
   return (
     <>
       {/* sticky top navbar */}
-      {sidebar
+
+      {/* {sidebar
         ? (document.body.style = 'background: grey')
         : (document.body.style = 'background: #fff')}
       <div
@@ -48,9 +49,13 @@ function Navbar() {
         <span onClick={showSidebar} className='hamburger-icon'>
           <FaIcons.FaBars size={20} />
         </span>
-      </div>
+      </div> */}
+
       {/* fixed side navbar with buttons */}
+
       <SideNavbar />
+      <TopNavbar />
+
       {/* Mobile navbar overlay for small screen size */}
       <IconContext.Provider value={{ color: 'black' }}>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
