@@ -22,6 +22,19 @@
   color: black;
 }
 
+.top-nav-user-button {
+  background-color: transparent;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 5px;
+  border: 1px solid #dddddd;
+}
+
+.top-nav-user-button:hover {
+  /* background-color: #dddddd; */
+  cursor: pointer;
+}
+
 .notification-icon,
 .hamburger-icon {
   margin-top: 4px;

@@ -15,7 +15,6 @@ import Dashboard from './containers/Dashboard/Dashboard'
 import ProtectedRoute from './ProtectedRoute'
 import AuthRoute from './AuthRoute'
 import Destinations from './containers/Destinations/Destinations'
-import Settings from './containers/Settings/Settings'
 import Referral from './containers/Referral/Referral'
 
 function App() {

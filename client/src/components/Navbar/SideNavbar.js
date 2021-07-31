@@ -48,7 +48,7 @@ function SideNavbar(props) {
       <li
         onClick={() => history.push('/referrals')}
         style={
-          window.location.pathname === '/settings'
+          window.location.pathname === '/referrals'
             ? { backgroundColor: '#ddd' }
             : null
         }

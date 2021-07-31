@@ -44,13 +44,12 @@ function Navbar() {
         }
         id='top-navbar'
       >
-        {/* <span className="user-circle-icon">
-          <FaIcons.FaUserCircle size={30} />
-        </span>
-        <span className="notification-icon">
-          <FaIcons.FaBell size={20} />
-          {closeSideNav()}
-        </span> */}
+        <div
+          style={{ float: 'right', marginRight: '2rem', marginTop: '.5rem' }}
+        >
+          {/* <button>Upgrade</button> */}
+          <button className='top-nav-user-button'>Account</button>
+        </div>
 
         <span onClick={showSidebar} className='hamburger-icon'>
           <FaIcons.FaBars size={20} />
