@@ -50,8 +50,7 @@ function DropdownMenu() {
         className={navbarStyles.menuItem}
         onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}
       >
-        <span className='icon-button'>{props.leftIcon}</span>
-        {props.children}
+        <span style={{ marginLeft: '20px' }}>{props.children}</span>
       </a>
     )
   }

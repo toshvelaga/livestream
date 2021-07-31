@@ -73,12 +73,12 @@ a {
 .dropdown {
   position: absolute;
   top: 58px;
-  width: 220px;
-  transform: translateX(-45%);
+  width: 200px;
+  transform: translateX(-40%);
   background-color: var(--bg);
   border: var(--border);
   border-radius: var(--border-radius);
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 0;
   overflow: hidden;
   transition: height var(--speed) ease;
 }
@@ -91,9 +91,11 @@ a {
   height: 40px;
   display: flex;
   align-items: center;
-  border-radius: var(--border-radius);
+  /* border-radius: var(--border-radius); */
+  border-radius: 0;
   transition: background var(--speed);
   padding: 0.5rem;
+  width: 100%;
 }
 
 .menuItem:hover {
