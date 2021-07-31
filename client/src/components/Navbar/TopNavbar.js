@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
 import * as FaIcons from 'react-icons/fa'
 import navbarStyles from './TopNavbar.module.css'
+import deleteAllCookies from '../../utils/deleteAllCookies'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 
 function TopNavbar() {
   return (
@@ -43,6 +45,8 @@ function DropdownMenu() {
   const [activeMenu, setActiveMenu] = useState('main')
   const dropdownRef = useRef(null)
 
+  const history = useHistory()
+
   function DropdownItem(props) {
     return (
       <a href='#' className={navbarStyles.menuItem} onClick={props.onClick}>
@@ -51,10 +55,15 @@ function DropdownMenu() {
     )
   }
 
+  const onLogout = () => {
+    deleteAllCookies()
+    history.push('/login')
+  }
+
   return (
     <div className={navbarStyles.dropdown} ref={dropdownRef}>
       <div className={navbarStyles.menu}>
-        <DropdownItem onClick={() => alert('clicked')}>Logout</DropdownItem>
+        <DropdownItem onClick={onLogout}>Logout</DropdownItem>
         <DropdownItem>Settings</DropdownItem>
       </div>
     </div>
