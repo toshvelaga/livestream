@@ -3,7 +3,8 @@ require('dotenv').config()
 const express = require('express'),
   router = express.Router(),
   pool = require('../db'),
-  nodemailer = require('nodemailer')
+  nodemailer = require('nodemailer'),
+  validateEmail = require('../utils/validateEmail')
 
 router.post('/api/referral/email', async (req, res) => {
   const referralEmail = req.body.referralEmail
