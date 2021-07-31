@@ -144,4 +144,33 @@ const useUserMedia = (requestedMedia) => {
   return mediaStream
 }
 
+const useDisplayMedia = (requestedMedia) => {
+  const [mediaStream, setMediaStream] = useState(null)
+
+  useEffect(() => {
+    async function enableStream() {
+      try {
+        const stream = await navigator.mediaDevices.getDisplayMedia(
+          requestedMedia
+        )
+        setMediaStream(stream)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    if (!mediaStream) {
+      enableStream()
+    } else {
+      return function cleanup() {
+        mediaStream.getVideoTracks().forEach((track) => {
+          track.stop()
+        })
+      }
+    }
+  }, [mediaStream, requestedMedia])
+
+  return mediaStream
+}
+
 export default Dashboard
