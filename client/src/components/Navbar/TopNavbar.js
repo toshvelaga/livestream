@@ -45,11 +45,7 @@ function DropdownMenu() {
 
   function DropdownItem(props) {
     return (
-      <a
-        href='#'
-        className={navbarStyles.menuItem}
-        onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}
-      >
+      <a href='#' className={navbarStyles.menuItem} onClick={props.onClick}>
         <span style={{ marginLeft: '20px' }}>{props.children}</span>
       </a>
     )
@@ -58,7 +54,7 @@ function DropdownMenu() {
   return (
     <div className={navbarStyles.dropdown} ref={dropdownRef}>
       <div className={navbarStyles.menu}>
-        <DropdownItem>Logout</DropdownItem>
+        <DropdownItem onClick={() => alert('clicked')}>Logout</DropdownItem>
         <DropdownItem>Settings</DropdownItem>
       </div>
     </div>
