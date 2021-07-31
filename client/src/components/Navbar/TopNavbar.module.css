@@ -10,6 +10,8 @@ body {
   --border: 1px solid #ccc;
   --border-radius: 8px;
   --speed: 500ms;
+  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Ubuntu, Arial, sans-serif;
 }
 
 ul {
@@ -21,6 +23,7 @@ ul {
 a {
   color: var(--text-color);
   text-decoration: none;
+  font-family: var(--main-font);
 }
 
 /* Top Navigation Bar */

@@ -9,6 +9,11 @@
   overflow: auto;
 } */
 
+:root {
+  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+}
+
 .side-navbar {
   float: left;
   position: fixed;
@@ -24,6 +29,7 @@
 
 .side-navbar-title {
   margin-left: 10px;
+  font-family: var(--main-font);
 }
 
 .side-navbar-icon,
