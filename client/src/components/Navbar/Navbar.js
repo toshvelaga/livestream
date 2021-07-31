@@ -3,6 +3,7 @@ import * as FaIcons from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import SideNavbar from './SideNavbar'
+import TopNavbar from './TopNavbar'
 import { SidebarData } from './SidebarData'
 import { IconContext } from 'react-icons'
 
@@ -44,13 +45,6 @@ function Navbar() {
         }
         id='top-navbar'
       >
-        <div
-          style={{ float: 'right', marginRight: '2rem', marginTop: '.5rem' }}
-        >
-          {/* <button>Upgrade</button> */}
-          <button className='top-nav-user-button'>Account</button>
-        </div>
-
         <span onClick={showSidebar} className='hamburger-icon'>
           <FaIcons.FaBars size={20} />
         </span>
@@ -58,7 +52,6 @@ function Navbar() {
       {/* fixed side navbar with buttons */}
       <SideNavbar />
       {/* Mobile navbar overlay for small screen size */}
-
       <IconContext.Provider value={{ color: 'black' }}>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showSidebar}>
