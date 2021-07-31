@@ -3,11 +3,11 @@ body {
 }
 
 :root {
-  --bg: #242526;
-  --bg-accent: #484a4d;
-  --text-color: #dadce1;
+  --bg: #fff;
+  --bg-accent: #f1f1f1;
+  --text-color: black;
   --nav-size: 60px;
-  --border: 1px solid #474a4d;
+  --border: 1px solid #ccc;
   --border-radius: 8px;
   --speed: 500ms;
 }
@@ -54,7 +54,7 @@ a {
   --button-size: calc(var(--nav-size) * 0.5);
   width: var(--button-size);
   height: var(--button-size);
-  background-color: #484a4d;
+  background-color: #dddddd;
   border-radius: 50%;
   padding: 5px;
   margin: 2px;
@@ -97,5 +97,5 @@ a {
 }
 
 .menuItem:hover {
-  background-color: #525357;
+  background-color: #dddddd;
 }
