@@ -39,29 +39,28 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 8080
 
+const WS_PORT = process.env.PORT || 3001
+
 app.listen(PORT, () => {
   console.log(`Server is starting on port ${PORT}`)
 })
 
-const server = http.createServer(app).listen(3001, () => {
-  console.log('Listening on PORT 3000...')
+const server = http.createServer(app).listen(WS_PORT, () => {
+  console.log(`Listening on PORT ${WS_PORT}...`)
 })
 
 const wss = new WebSocketServer({
   server: server,
 })
 
-let streamKey = {
-  googleStreamKey: '',
-}
-
 wss.on('connection', (ws, req) => {
-  console.log(`this is the connection url: ${req.url}`)
-  const myURL = new URL('http://localhost:3001' + req.url)
-  console.log('twitch stream key ' + myURL.searchParams.get('twitchStreamKey'))
+  const myURL = new URL(`http://localhost:${WS_PORT}` + req.url)
 
   const twitchStreamKey = myURL.searchParams.get('twitchStreamKey')
   const twitch = 'rtmp://qro02.contribute.live-video.net/app/' + twitchStreamKey
+
+  const youtubeStreamKey = myURL.searchParams.get('youtubeStreamKey')
+  const youtube = 'rtmp://a.rtmp.youtube.com/live2/' + youtubeStreamKey
 
   const ffmpeg = child_process.spawn('ffmpeg', [
     '-i',
@@ -131,7 +130,7 @@ wss.on('connection', (ws, req) => {
 
     '-f',
     'flv',
-    `${process.env.YOUTUBE_STREAM_ADDRESS}`,
+    youtube,
 
     // // video codec config: low latency, adaptive bitrate
     // '-c:v',
