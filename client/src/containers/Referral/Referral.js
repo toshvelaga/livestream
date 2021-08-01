@@ -3,6 +3,8 @@ import Navbar from '../../components/Navbar/Navbar'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import axios from 'axios'
+import shareOnTwitter from '../../utils/shareOnTwitter'
+import shareOnFacebook from '../../utils/shareOnFacebook'
 import './Referral.css'
 
 function Referral() {
@@ -24,6 +26,10 @@ function Referral() {
     }
   }
 
+  const copyReferralLink = () => {
+    console.log('copy link')
+  }
+
   return (
     <>
       <Navbar />
@@ -41,6 +47,15 @@ function Referral() {
           title='Send Email'
           fx={sendReferralEmail}
         />
+        <div>
+          <button onClick={() => shareOnTwitter('twitter.com')}>
+            Share on Twitter
+          </button>
+          <button onClick={() => shareOnFacebook('facebook')}>
+            Share on Facebook
+          </button>
+          <button onClick={copyReferralLink}>Copy Referral Link</button>
+        </div>
       </div>
     </>
   )
