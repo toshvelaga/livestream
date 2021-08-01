@@ -56,7 +56,6 @@ function Dashboard() {
 
     ws.current.onopen = () => {
       console.log('WebSocket Open')
-      console.log(ws.current.url)
     }
 
     return () => {
