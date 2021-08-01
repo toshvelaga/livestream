@@ -1,0 +1,35 @@
+:root {
+  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+}
+
+.referral-button {
+  background-color: transparent;
+  /* background-color: #3cc764; */
+  border: 1px solid grey;
+  color: grey;
+  letter-spacing: 2px;
+  padding: 10px;
+  outline: none;
+  padding: 15px 80px;
+  font-size: 16px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-family: var(--main-font);
+  width: 100%;
+  margin-top: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .referral-button {
+    font-size: 16px;
+    padding: 15px 50px;
+  }
+}
+
+.referral-button:hover {
+  /* background-color: grey; */
+  border: 1px solid black;
+  color: black;
+  cursor: pointer;
+}

@@ -6,6 +6,7 @@ import axios from 'axios'
 import shareOnTwitter from '../../utils/shareOnTwitter'
 import shareOnFacebook from '../../utils/shareOnFacebook'
 import './Referral.css'
+import ReferralButton from '../../components/Buttons/ReferralButton'
 
 function Referral() {
   const [referralEmail, setReferralEmail] = useState('')
@@ -48,13 +49,18 @@ function Referral() {
           fx={sendReferralEmail}
         />
         <div>
-          <button onClick={() => shareOnTwitter('twitter.com')}>
-            Share on Twitter
-          </button>
-          <button onClick={() => shareOnFacebook('facebook')}>
-            Share on Facebook
-          </button>
-          <button onClick={copyReferralLink}>Copy Referral Link</button>
+          <ReferralButton
+            onClick={() => shareOnTwitter('twitter.com')}
+            title={'Share on Twitter'}
+          />
+          <ReferralButton
+            onClick={() => shareOnFacebook('facebook')}
+            title='Share on Facebook'
+          />
+          <ReferralButton
+            onClick={copyReferralLink}
+            title='Copy Referral Link'
+          />
         </div>
       </div>
     </>
