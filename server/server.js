@@ -58,7 +58,7 @@ let streamKey = {
 let TwitchStreamKey
 
 wss.on('connection', (ws, req) => {
-  console.log(streamKey.googleStreamKey)
+  console.log(`this is the connection url: ${req.url}`)
   const ffmpeg = child_process.spawn('ffmpeg', [
     '-i',
     '-',

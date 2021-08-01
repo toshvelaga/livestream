@@ -50,18 +50,19 @@ function Dashboard() {
     ws.current = new WebSocket(
       window.location.protocol.replace('http', 'ws') +
         '//' + // http: -> ws:, https: -> wss:
-        'localhost:3001'
+        'localhost:3001' +
+        `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
     )
 
     ws.current.onopen = () => {
       console.log('WebSocket Open')
-      console.log('HOW MANY TIMES WILL THIS RUN')
+      console.log(ws.current.url)
     }
 
     return () => {
       ws.current.close()
     }
-  }, [])
+  }, [twitchStreamKey, youtubeStreamKey])
 
   useEffect(() => {
     let interval = null
@@ -105,12 +106,9 @@ function Dashboard() {
     setMute(!mute)
   }
 
-  const alertMessage = () => {
-    alert('Ability to share screen coming soon')
-  }
-
   const recordScreen = () => {
     console.log(true)
+    alert('Ability to share screen coming soon')
   }
 
   const handleCanPlay = () => {
