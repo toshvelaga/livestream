@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
-import TopNavbar from '../../components/Navbar/TopNavbar'
 import Timer from '../../components/Timer/Timer'
 import formatTime from '../../utils/formatTime'
+import getCookie from '../../utils/getCookie'
+import axios from 'axios'
 import './Dashboard.css'
 
 const CAPTURE_OPTIONS = {
@@ -14,6 +15,10 @@ function Dashboard() {
   const [mute, setMute] = useState(false)
   const [seconds, setSeconds] = useState(0)
   const [isActive, setIsActive] = useState(false)
+
+  const [twitchStreamKey, setTwitchStreamKey] = useState('')
+  const [youtubeStreamKey, setYoutubeStreamKey] = useState('')
+  const [facebookStreamKey, setFacebookStreamKey] = useState('')
 
   const videoRef = useRef()
   const ws = useRef()
@@ -27,6 +32,21 @@ function Dashboard() {
   }
 
   useEffect(() => {
+    let userId = getCookie('userId')
+
+    axios
+      .post('http://localhost:8080/api/destinations', { userId })
+      .then((response) => {
+        if (response) {
+          setTwitchStreamKey(response.data.twitch_stream_key)
+          setYoutubeStreamKey(response.data.youtube_stream_key)
+          setFacebookStreamKey(response.data.facebook_stream_key)
+        }
+      })
+      .catch((err) => console.log(err))
+  }, [])
+
+  useEffect(() => {
     ws.current = new WebSocket(
       window.location.protocol.replace('http', 'ws') +
         '//' + // http: -> ws:, https: -> wss:
@@ -35,6 +55,7 @@ function Dashboard() {
 
     ws.current.onopen = () => {
       console.log('WebSocket Open')
+      console.log('HOW MANY TIMES WILL THIS RUN')
     }
 
     return () => {

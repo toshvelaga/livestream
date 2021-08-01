@@ -51,7 +51,14 @@ const wss = new WebSocketServer({
   server: server,
 })
 
+let streamKey = {
+  googleStreamKey: '',
+}
+
+let TwitchStreamKey
+
 wss.on('connection', (ws, req) => {
+  console.log(streamKey.googleStreamKey)
   const ffmpeg = child_process.spawn('ffmpeg', [
     '-i',
     '-',
