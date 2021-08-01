@@ -7,6 +7,7 @@ import shareOnTwitter from '../../utils/shareOnTwitter'
 import shareOnFacebook from '../../utils/shareOnFacebook'
 import './Referral.css'
 import ReferralButton from '../../components/Buttons/ReferralButton'
+import * as FaIcons from 'react-icons/fa'
 
 function Referral() {
   const [referralEmail, setReferralEmail] = useState('')
@@ -51,14 +52,17 @@ function Referral() {
         <div>
           <ReferralButton
             onClick={() => shareOnTwitter('twitter.com')}
-            title={'Share on Twitter'}
+            image={<FaIcons.FaTwitter size={20} color={'#1DA1F2'} />}
+            title='Share on Twitter'
           />
           <ReferralButton
             onClick={() => shareOnFacebook('facebook')}
+            image={<FaIcons.FaFacebook size={20} color={'#1878f1'} />}
             title='Share on Facebook'
           />
           <ReferralButton
             onClick={copyReferralLink}
+            image={<FaIcons.FaCopy size={20} color={'grey'} />}
             title='Copy Referral Link'
           />
         </div>

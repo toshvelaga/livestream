@@ -9,15 +9,25 @@
   border: 1px solid grey;
   color: grey;
   letter-spacing: 2px;
-  padding: 10px;
+  padding: 12px;
   outline: none;
-  padding: 15px 80px;
+  /* padding: 15px 80px; */
   font-size: 16px;
   border-radius: 5px;
   text-transform: uppercase;
   font-family: var(--main-font);
   width: 100%;
   margin-top: 1rem;
+}
+
+/* Add this to align vertically */
+button > img,
+button > span {
+  vertical-align: middle;
+}
+
+.referral-button-title-span {
+  margin-left: 10px;
 }
 
 @media only screen and (max-width: 600px) {

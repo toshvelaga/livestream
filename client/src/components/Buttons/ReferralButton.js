@@ -9,7 +9,8 @@ function ReferralButton(props) {
         className='referral-button'
         onClick={props.onClick}
       >
-        {props.title}
+        <span>{props.image}</span>
+        <span className='referral-button-title-span'>{props.title}</span>
       </button>
     </>
   )
