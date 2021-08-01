@@ -9,6 +9,10 @@
   font-family: var(--main-font);
 }
 
+.video-container {
+  width: 100%;
+}
+
 @media only screen and (max-width: 1000px) {
   .dashboard-container {
     width: 80%;

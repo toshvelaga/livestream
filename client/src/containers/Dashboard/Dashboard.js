@@ -17,7 +17,7 @@ function Dashboard() {
 
   const videoRef = useRef()
   const ws = useRef()
-  const mediaStream = useUserMedia(CAPTURE_OPTIONS)
+  let mediaStream = useUserMedia(CAPTURE_OPTIONS)
 
   let liveStream
   let liveStreamRecorder
@@ -88,6 +88,10 @@ function Dashboard() {
     alert('Ability to share screen coming soon')
   }
 
+  const recordScreen = () => {
+    console.log(true)
+  }
+
   const handleCanPlay = () => {
     videoRef.current.play()
   }
@@ -99,6 +103,7 @@ function Dashboard() {
         <div id='container'>
           <Timer>LIVE: {formatTime(seconds)}</Timer>
           <video
+            className='video-container'
             ref={videoRef}
             onCanPlay={handleCanPlay}
             autoPlay
@@ -109,7 +114,7 @@ function Dashboard() {
         <div className='button-container'>
           <button onClick={startStream}>Go Live</button>
           <button onClick={stopStream}>Stop Recording</button>
-          <button onClick={alertMessage}>Share Screen</button>
+          <button onClick={recordScreen}>Share Screen</button>
           <button onClick={toggleMute}>Mute</button>
         </div>
       </div>
@@ -123,7 +128,7 @@ const useUserMedia = (requestedMedia) => {
   useEffect(() => {
     async function enableStream() {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia(requestedMedia)
+        let stream = await navigator.mediaDevices.getUserMedia(requestedMedia)
         setMediaStream(stream)
       } catch (err) {
         console.log(err)
