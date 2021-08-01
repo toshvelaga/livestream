@@ -52,6 +52,24 @@ a {
   justify-content: center;
 }
 
+.upgradeButton {
+  height: 40px;
+  width: 5rem;
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: 1px solid #0298db;
+  color: #0298db;
+  cursor: pointer;
+  font-family: var(--main-font);
+}
+
+.upgradeButton:hover {
+  background-color: #03a9f4;
+  color: #fff;
+}
+
 /* Icon Button */
 .iconButton {
   --button-size: calc(var(--nav-size) * 0.5);

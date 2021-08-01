@@ -8,6 +8,7 @@ function TopNavbar() {
   return (
     <Navbar>
       {/* <NavItem icon={<BellIcon />} /> */}
+      <button className={navbarStyles.upgradeButton}>Upgrade</button>
       <NavItem icon={<FaIcons.FaUser size={20} />}>
         <DropdownMenu></DropdownMenu>
       </NavItem>
