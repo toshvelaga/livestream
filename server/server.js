@@ -55,10 +55,14 @@ let streamKey = {
   googleStreamKey: '',
 }
 
-let TwitchStreamKey
-
 wss.on('connection', (ws, req) => {
   console.log(`this is the connection url: ${req.url}`)
+  const myURL = new URL('http://localhost:3001' + req.url)
+  console.log('twitch stream key ' + myURL.searchParams.get('twitchStreamKey'))
+
+  const twitchStreamKey = myURL.searchParams.get('twitchStreamKey')
+  const twitch = 'rtmp://qro02.contribute.live-video.net/app/' + twitchStreamKey
+
   const ffmpeg = child_process.spawn('ffmpeg', [
     '-i',
     '-',
@@ -96,7 +100,7 @@ wss.on('connection', (ws, req) => {
     '1000',
     '-f',
     'flv',
-    `${process.env.TWITCH_STREAM_ADDRESS}`,
+    twitch,
 
     // video codec config: low latency, adaptive bitrate
     '-c:v',
