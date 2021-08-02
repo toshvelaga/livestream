@@ -18,9 +18,12 @@ function Register() {
 
   const sendAuthCode = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/user/register', {
-        email: email,
-      })
+      const response = await axios.post(
+        'http://localhost:8080/api/user/register',
+        {
+          email: email,
+        }
+      )
       console.log(response.data.error)
       seterror(response.data.error)
       console.log(response)

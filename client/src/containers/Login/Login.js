@@ -18,9 +18,12 @@ function Login() {
 
   const sendAuthCode = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/user/login', {
-        email: email,
-      })
+      const response = await axios.post(
+        'http://localhost:8080/api/user/login',
+        {
+          email: email,
+        }
+      )
       console.log(response.data.error)
       seterror(response.data.error)
       console.log(response)
