@@ -4,7 +4,7 @@ const express = require('express'),
   sendAuthCode = require('../utils/sendAuthCode'),
   validateEmail = require('../utils/validateEmail')
 
-router.post('/user/register', async (req, res) => {
+router.post('api/user/register', async (req, res) => {
   const { email } = req.body
   const code = Math.floor(100000 + Math.random() * 900000)
   const timeCreated = new Date().toUTCString()
@@ -25,7 +25,7 @@ router.post('/user/register', async (req, res) => {
   }
 })
 
-router.post('/user/login', async (req, res) => {
+router.post('api/user/login', async (req, res) => {
   const { email } = req.body
   const code = Math.floor(100000 + Math.random() * 900000)
 
