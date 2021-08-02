@@ -59,15 +59,15 @@ a {
   margin-right: 10px;
   background-color: transparent;
   border-radius: 5px;
-  border: 1px solid #0298db;
-  color: #0298db;
+  color: #03a9f4;
+  border: 1px solid #03a9f4;
   cursor: pointer;
   font-family: var(--main-font);
 }
 
 .upgradeButton:hover {
-  background-color: #03a9f4;
-  color: #fff;
+  color: #0298db;
+  border: 1px solid #0298db;
 }
 
 /* Icon Button */
