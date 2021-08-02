@@ -2,7 +2,7 @@ const express = require('express'),
   router = express.Router(),
   pool = require('../db')
 
-router.post('api/compare-code', async (req, res) => {
+router.post('/api/compare-code', async (req, res) => {
   let userEnteredCode = req.body.code
   let userId = req.body.userId
   const date = new Date().toUTCString()

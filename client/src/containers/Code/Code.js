@@ -22,7 +22,10 @@ function Code() {
     }
 
     try {
-      let result = await axios.post('http://localhost:8080/compare-code', data)
+      let result = await axios.post(
+        'http://localhost:8080/api/compare-code',
+        data
+      )
       console.log(result.data.match)
       if (!result.data.match) {
         seterror('The code you entered does not match')
