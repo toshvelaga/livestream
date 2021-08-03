@@ -35,7 +35,7 @@ function App() {
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register/code' component={Code} />
           <AuthRoute exact path='/register' component={Register} />
-          {/* <AuthRoute exact path='/' component={Website} /> */}
+          <AuthRoute exact path='/' component={Website} />
           <Route path='*' component={PageNotFound} />
         </Switch>
       </Router>
