@@ -22,7 +22,8 @@
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on"
   },
   "prettier.semi": false,
   "prettier.singleQuote": true
