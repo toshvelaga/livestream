@@ -118,7 +118,7 @@ function Website(props) {
           </div>
         </div>
 
-        <h1 style={{ textAlign: 'center', marginTop: '2rem' }}>
+        {/* <h1 style={{ textAlign: 'center', marginTop: '2rem' }}>
           Pricing Plans
         </h1>
 
@@ -127,7 +127,7 @@ function Website(props) {
           style={{ paddingTop: '2rem', paddingBottom: '1rem' }}
         >
           <PricingPlan />
-        </div>
+        </div> */}
 
         <h1
           style={{
