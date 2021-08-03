@@ -8,3 +8,10 @@ CREATE TABLE users (
     user_last_login timestamp without time zone,
     user_active boolean DEFAULT false
 );
+
+CREATE TABLE destinations (
+    twitch_stream_key character varying(255),
+    youtube_stream_key character varying(255),
+    facebook_stream_key character varying(255),
+    user_id uuid UNIQUE REFERENCES users(user_id)
+);
