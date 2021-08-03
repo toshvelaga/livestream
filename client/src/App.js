@@ -10,7 +10,7 @@ import Register from './containers/Register/Register'
 import Code from './containers/Code/Code'
 import getCookie from './utils/getCookie'
 import PageNotFound from './containers/PageNotFound/PageNotFound'
-import Dashboard from './containers/Dashboard/Dashboard'
+import Broadcast from './containers/Broadcast/Broadcast'
 import ProtectedRoute from './ProtectedRoute'
 import AuthRoute from './AuthRoute'
 import Destinations from './containers/Destinations/Destinations'
@@ -28,7 +28,7 @@ function App() {
     <>
       <Router>
         <Switch>
-          <ProtectedRoute path='/dashboard' component={Dashboard} />
+          <ProtectedRoute path='/dashboard' component={Broadcast} />
           <ProtectedRoute path='/destinations' component={Destinations} />
           <ProtectedRoute path='/referrals' component={Referral} />
           <AuthRoute exact path='/login/code' component={Code} />

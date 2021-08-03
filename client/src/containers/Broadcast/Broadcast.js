@@ -4,14 +4,14 @@ import Timer from '../../components/Timer/Timer'
 import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
 import axios from 'axios'
-import './Dashboard.css'
+import './Broadcast.css'
 
 const CAPTURE_OPTIONS = {
   audio: true,
   video: true,
 }
 
-function Dashboard() {
+function Broadcast() {
   const [mute, setMute] = useState(false)
   const [seconds, setSeconds] = useState(0)
   const [isActive, setIsActive] = useState(false)
@@ -196,4 +196,4 @@ const useDisplayMedia = (requestedMedia) => {
   return mediaStream
 }
 
-export default Dashboard
+export default Broadcast
