@@ -1,12 +1,10 @@
 .bottom-footer {
-	width: 100%;
-	height: 60px;
-	color: #fff;
-	/* background-color: black; */
-	text-align: center;
-	padding-top: 15px;
+  width: 100%;
+  height: 60px;
+  text-align: center;
+  padding-top: 15px;
 }
 
 .footer-link:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
