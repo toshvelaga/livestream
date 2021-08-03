@@ -14,7 +14,6 @@ body {
 
 .website-navbar {
   overflow: hidden;
-  /* background-color: black; */
   background-color: #f1f1f1;
   position: fixed;
   top: 0;
@@ -26,7 +25,6 @@ body {
   float: right;
   display: block;
   color: black;
-  /* color: #94a2b1; */
   text-align: center;
   padding: 24px 24px;
   text-decoration: none;
@@ -34,9 +32,7 @@ body {
 }
 
 .website-navbar a:hover {
-  /* background: #08c803; */
   color: #03a9f4;
-  /* color: black; */
 }
 
 .pricing-container {
@@ -54,8 +50,6 @@ body {
 }
 
 .column.sm-3 p {
-  /* font-family: "Montserrat", sans-serif; */
-  /* font-weight: 600; */
   width: 250px;
   text-align: center;
   color: black;
@@ -100,7 +94,6 @@ body {
   text-align: center;
   color: black;
   font-size: 20px;
-  /* margin-top: 1rem; */
   margin: 1rem 2rem 0rem 2rem;
 }
 
