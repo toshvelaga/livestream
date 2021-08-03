@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+  font-family: Poppins-Regular;
+}
+
+.website-image {
+  width: 65%;
+}
+
+.website-navbar {
+  overflow: hidden;
+  /* background-color: black; */
+  background-color: #f1f1f1;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+}
+
+.website-navbar a {
+  float: right;
+  display: block;
+  color: black;
+  /* color: #94a2b1; */
+  text-align: center;
+  padding: 24px 24px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.website-navbar a:hover {
+  /* background: #08c803; */
+  color: #fff;
+  /* color: black; */
+}
+
+.pricing-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Container Two Contents */
+
+.container-two {
+  padding-top: 50px;
+  padding-bottom: 70px;
+  margin: 0 auto;
+  display: block;
+}
+
+.column.sm-3 p {
+  /* font-family: "Montserrat", sans-serif; */
+  /* font-weight: 600; */
+  width: 250px;
+  text-align: center;
+  color: black;
+  margin: 0 auto;
+  display: block;
+}
+
+.column.sm-3 img {
+  display: block;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.landing-website-icon {
+  width: 100px;
+  height: 100px;
+  padding-bottom: 20px;
+}
+
+.icon-website-container {
+  margin: 0 auto;
+}
+
+.website-text-description {
+  font-size: 20px;
+}
+
+.website-main-description {
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  /* margin-top: 1rem; */
+  margin: 1rem 2rem 0rem 2rem;
+}
+
+@media all and (max-width: 400px) {
+  #wavvy-website-title {
+    display: none;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .column.sm-3.odd {
+    margin-bottom: 100px;
+  }
+
+  .website-image {
+    display: none;
+  }
+}
+
+@media all and (max-width: 1200px) {
+  .website-image {
+    width: 100%;
+  }
+}

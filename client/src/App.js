@@ -15,6 +15,7 @@ import ProtectedRoute from './ProtectedRoute'
 import AuthRoute from './AuthRoute'
 import Destinations from './containers/Destinations/Destinations'
 import Referral from './containers/Referral/Referral'
+import Website from './website/Website/Website'
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState('')
@@ -34,6 +35,7 @@ function App() {
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register/code' component={Code} />
           <AuthRoute exact path='/register' component={Register} />
+          <AuthRoute exact path='/' component={Website} />
           <Route path='*' component={PageNotFound} />
         </Switch>
       </Router>

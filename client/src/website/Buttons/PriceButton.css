@@ -1,0 +1,21 @@
+.price-button {
+	/* background-color: #08c803; */
+	background-color: black;
+	border: 1px #08c803 solid;
+	color: #08c803;
+	letter-spacing: 2px;
+	padding: 10px;
+	outline: none;
+	/* border: none; */
+	padding: 15px 80px;
+	font-size: 16px;
+	border-radius: 25px;
+	text-transform: uppercase;
+}
+
+.price-button:hover {
+	background-color: #08c803; /* Green */
+	color: black;
+	cursor: pointer;
+	/* padding: 16px 82px; */
+}
