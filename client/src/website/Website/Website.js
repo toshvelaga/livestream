@@ -4,20 +4,10 @@ import Button from '../../components/Buttons/Button'
 import { Link } from 'react-router-dom'
 import Accordion from '../Collapsible/Accordion'
 import Footer from '../Footer/Footer'
-// import * as FaIcons from "react-icons/fa";
 import * as FiIcons from 'react-icons/fi'
 import PricingPlan from '../PricingPlan/PricingPlan'
 
 function Website(props) {
-  useEffect(() => {
-    const script = document.createElement('script')
-
-    script.src = '//js.hs-scripts.com/9229836.js'
-    script.async = true
-
-    document.body.appendChild(script)
-  }, [])
-
   return (
     <>
       <div class='website-navbar'>
@@ -64,7 +54,7 @@ function Website(props) {
           <div class='row'>
             <div class='column sm-3 odd'>
               <div className='icon-website-container'>
-                <FiIcons.FiRss color='#08c803' size={40} />
+                <FiIcons.FiRss color='#03a9f4' size={40} />
               </div>
               <p className='website-text-description'>
                 Get an RSS feed that you can use for all major podcasting
@@ -74,7 +64,7 @@ function Website(props) {
 
             <div class='column sm-3 even'>
               <div className='icon-website-container'>
-                <FiIcons.FiTrendingUp color='#08c803' size={40} />
+                <FiIcons.FiTrendingUp color='#03a9f4' size={40} />
               </div>
               <p className='website-text-description'>
                 Access insights into your audience through analytics
@@ -87,7 +77,7 @@ function Website(props) {
           <div class='row'>
             <div class='column sm-3 odd'>
               <div className='icon-website-container'>
-                <FiIcons.FiPlayCircle color='#08c803' size={40} />
+                <FiIcons.FiPlayCircle color='#03a9f4' size={40} />
               </div>
               <p className='website-text-description'>
                 Embeddable audio player to add to your own website
@@ -96,7 +86,7 @@ function Website(props) {
 
             <div class='column sm-3 even'>
               <div className='icon-website-container'>
-                <FiIcons.FiSettings color='#08c803' size={40} />
+                <FiIcons.FiSettings color='#03a9f4' size={40} />
               </div>
               <p className='website-text-description'>
                 Personalized website with all your podcasting, social media, and
@@ -110,7 +100,7 @@ function Website(props) {
           <div class='row'>
             <div class='column sm-3 odd'>
               <div className='icon-website-container'>
-                <FiIcons.FiDollarSign color='#08c803' size={40} />
+                <FiIcons.FiDollarSign color='#03a9f4' size={40} />
               </div>
               <p className='website-text-description'>
                 Monetize by accepting donations
@@ -119,7 +109,7 @@ function Website(props) {
 
             <div class='column sm-3 even'>
               <div className='icon-website-container'>
-                <FiIcons.FiTwitter color='#08c803' size={40} />
+                <FiIcons.FiTwitter color='#03a9f4' size={40} />
               </div>
               <p className='website-text-description'>
                 Share through social media
@@ -156,8 +146,6 @@ function Website(props) {
         >
           <Accordion />
         </div>
-        {/* <!-- Calendly inline widget begin --> */}
-
         <Footer />
       </div>
     </>

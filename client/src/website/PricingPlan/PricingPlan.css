@@ -57,7 +57,7 @@
 }
 .plan .infoContainer .desc {
   padding-bottom: 1em;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #f3f3f3;
   margin: 0 auto;
   width: 90%;
 }
@@ -74,6 +74,7 @@
   padding: 1em;
 }
 .plan .infoContainer .selectPlan {
+  border: 1px solid #1abc9c;
   padding: 0.75em 1em;
   border-radius: 2.5em;
   cursor: pointer;
