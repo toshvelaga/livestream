@@ -128,7 +128,7 @@ function Website(props) {
           </div>
         </div>
 
-        <h1 style={{ textAlign: 'center', marginTop: '2rem', color: '#fff' }}>
+        <h1 style={{ textAlign: 'center', marginTop: '2rem' }}>
           Pricing Plans
         </h1>
 
@@ -136,17 +136,13 @@ function Website(props) {
           className='pricing-container'
           style={{ paddingTop: '2rem', paddingBottom: '1rem' }}
         >
-          {/* <Pricing /> */}
           <PricingPlan />
         </div>
-        <br></br>
-        <br></br>
+
         <h1
           style={{
             textAlign: 'center',
             marginBottom: '2rem',
-            color: '#fff',
-            // fontSize: 40,
           }}
         >
           Frequently Asked Questions
