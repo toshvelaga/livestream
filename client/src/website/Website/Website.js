@@ -4,7 +4,7 @@ import Button from '../../components/Buttons/Button'
 import { Link } from 'react-router-dom'
 import Accordion from '../Collapsible/Accordion'
 import Footer from '../Footer/Footer'
-import * as FiIcons from 'react-icons/fi'
+import * as FaIcons from 'react-icons/fa'
 import PricingPlan from '../PricingPlan/PricingPlan'
 
 function Website(props) {
@@ -54,20 +54,19 @@ function Website(props) {
           <div class='row'>
             <div class='column sm-3 odd'>
               <div className='icon-website-container'>
-                <FiIcons.FiRss color='#03a9f4' size={40} />
+                <FaIcons.FaTwitch color='#9047fe' size={40} />
               </div>
               <p className='website-text-description'>
-                Get an RSS feed that you can use for all major podcasting
-                platforms
+                Stream to Twitch using your stream key
               </p>
             </div>
 
             <div class='column sm-3 even'>
               <div className='icon-website-container'>
-                <FiIcons.FiTrendingUp color='#03a9f4' size={40} />
+                <FaIcons.FaYoutube color='#ff0000' size={40} />
               </div>
               <p className='website-text-description'>
-                Access insights into your audience through analytics
+                Stream to Youtube using your stream key
               </p>
             </div>
           </div>
@@ -77,42 +76,19 @@ function Website(props) {
           <div class='row'>
             <div class='column sm-3 odd'>
               <div className='icon-website-container'>
-                <FiIcons.FiPlayCircle color='#03a9f4' size={40} />
+                <FaIcons.FaFacebookF color='#1878f1' size={40} />
               </div>
               <p className='website-text-description'>
-                Embeddable audio player to add to your own website
+                Stream to Facebook coming soon
               </p>
             </div>
 
             <div class='column sm-3 even'>
               <div className='icon-website-container'>
-                <FiIcons.FiSettings color='#03a9f4' size={40} />
+                <FaIcons.FaLinkedin color='#0966c2' size={40} />
               </div>
               <p className='website-text-description'>
-                Personalized website with all your podcasting, social media, and
-                support links
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class='container-two'>
-          <div class='row'>
-            <div class='column sm-3 odd'>
-              <div className='icon-website-container'>
-                <FiIcons.FiDollarSign color='#03a9f4' size={40} />
-              </div>
-              <p className='website-text-description'>
-                Monetize by accepting donations
-              </p>
-            </div>
-
-            <div class='column sm-3 even'>
-              <div className='icon-website-container'>
-                <FiIcons.FiTwitter color='#03a9f4' size={40} />
-              </div>
-              <p className='website-text-description'>
-                Share through social media
+                Stream to Linkedin Coming soon
               </p>
             </div>
           </div>
