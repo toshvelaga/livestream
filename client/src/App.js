@@ -28,7 +28,7 @@ function App() {
     <>
       <Router>
         <Switch>
-          <ProtectedRoute path='/dashboard' component={Broadcast} />
+          <ProtectedRoute path='/broadcast' component={Broadcast} />
           <ProtectedRoute path='/destinations' component={Destinations} />
           <ProtectedRoute path='/referrals' component={Referral} />
           <AuthRoute exact path='/login/code' component={Code} />

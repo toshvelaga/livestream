@@ -9,7 +9,7 @@ function SideNavbar(props) {
   return (
     <ul className='side-navbar'>
       <li
-        onClick={() => history.push('/dashboard')}
+        onClick={() => history.push('/broadcast')}
         style={
           window.location.pathname === '/broadcast'
             ? { backgroundColor: '#ddd' }
