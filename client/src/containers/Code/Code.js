@@ -28,7 +28,7 @@ function Code() {
         seterror('The code you entered does not match')
       } else {
         setCookie('isLoggedIn', true, 7)
-        history.push('/dashboard')
+        history.push('/broadcast')
       }
     } catch (error) {
       console.log(error)
