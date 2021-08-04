@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
+import BroadcastButton from '../../components/Buttons/BroadcastButton'
 import Timer from '../../components/Timer/Timer'
 import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
@@ -129,10 +130,10 @@ function Broadcast() {
           />
         </div>
         <div className='button-container'>
-          <button onClick={startStream}>Go Live</button>
-          <button onClick={stopStream}>Stop Recording</button>
-          <button onClick={recordScreen}>Share Screen</button>
-          <button onClick={toggleMute}>Mute</button>
+          <BroadcastButton title='Go Live' fx={startStream} />
+          <BroadcastButton title='Stop Recording' fx={stopStream} />
+          <BroadcastButton title='Share Screen' fx={recordScreen} />
+          <BroadcastButton title='Mute' fx={toggleMute} />
         </div>
       </div>
     </>
