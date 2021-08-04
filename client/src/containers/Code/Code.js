@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import API from '../../api/api'
 import { useHistory } from 'react-router-dom'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
@@ -22,10 +22,7 @@ function Code() {
     }
 
     try {
-      let result = await axios.post(
-        'http://localhost:8080/api/compare-code',
-        data
-      )
+      let result = await API.post('/compare-code', data)
       console.log(result.data.match)
       if (!result.data.match) {
         seterror('The code you entered does not match')

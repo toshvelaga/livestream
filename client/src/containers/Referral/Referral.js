@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
-import axios from 'axios'
+import API from '../../api/api'
 import shareOnTwitter from '../../utils/shareOnTwitter'
 import shareOnFacebook from '../../utils/shareOnFacebook'
 import './Referral.css'
@@ -15,13 +15,10 @@ function Referral() {
 
   const sendReferralEmail = async () => {
     try {
-      const response = await axios.post(
-        'http://localhost:8080/api/referral/email',
-        {
-          referralEmail,
-          userEmail: 'toshvelaga@gmail.com',
-        }
-      )
+      const response = await API.post('/referral/email', {
+        referralEmail,
+        userEmail: 'toshvelaga@gmail.com',
+      })
       setreferralEmailError(response.data.error)
     } catch (err) {
       console.log(err.response) // some reason error message

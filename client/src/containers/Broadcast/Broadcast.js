@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import Timer from '../../components/Timer/Timer'
 import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
-import axios from 'axios'
+import API from '../../api/api'
 import './Broadcast.css'
 
 const CAPTURE_OPTIONS = {
@@ -34,8 +34,7 @@ function Broadcast() {
   useEffect(() => {
     let userId = getCookie('userId')
 
-    axios
-      .post('http://localhost:8080/api/destinations', { userId })
+    API.post('/destinations', { userId })
       .then((response) => {
         if (response) {
           setTwitchStreamKey(response.data.twitch_stream_key)

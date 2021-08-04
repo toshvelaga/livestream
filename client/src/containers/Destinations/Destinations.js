@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
-import axios from 'axios'
+import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
 import './Destinations.css'
 
@@ -16,8 +16,7 @@ function Destinations() {
   useEffect(() => {
     let userId = getCookie('userId')
 
-    axios
-      .post('http://localhost:8080/api/destinations', { userId })
+    API.post('/destinations', { userId })
       .then((response) => {
         if (response) {
           setTwitchStreamKey(response.data.twitch_stream_key)
@@ -35,8 +34,7 @@ function Destinations() {
       facebookStreamKey,
       userId,
     }
-    axios
-      .put('http://localhost:8080/api/destinations', data)
+    API.put('/destinations', data)
       .then((response) => console.log(response))
       .then(() => {
         setbuttonText('Changes Saved!')
