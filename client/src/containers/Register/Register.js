@@ -19,7 +19,7 @@ function Register() {
   const sendAuthCode = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:8080/api/user/register',
+        'http://localhost:5001/api/user/register',
         {
           email: email,
         }
