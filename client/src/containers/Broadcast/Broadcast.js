@@ -130,8 +130,10 @@ function Broadcast() {
           />
         </div>
         <div className='button-container'>
-          <BroadcastButton title='Go Live' fx={startStream} />
-          <BroadcastButton title='Stop Recording' fx={stopStream} />
+          <BroadcastButton
+            title={!isActive ? 'Go Live' : 'Stop Recording'}
+            fx={!isActive ? startStream : stopStream}
+          />
           <BroadcastButton title='Share Screen' fx={recordScreen} />
           <BroadcastButton title='Mute' fx={toggleMute} />
         </div>
