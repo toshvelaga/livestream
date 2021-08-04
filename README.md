@@ -39,8 +39,11 @@ $ npm install
 $ npm start
 ```
 
+For the server create a .env file with the variables from env.example
+
 ```
 $ cd server
+$ touch .env
 $ npm install
 $ node server.js
 ```
