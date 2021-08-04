@@ -12,6 +12,8 @@ import * as FaIcons from 'react-icons/fa'
 function Referral() {
   const [referralEmail, setReferralEmail] = useState('')
   const [referralEmailError, setreferralEmailError] = useState('')
+  const [referralLinkButtonText, setreferralLinkButtonText] =
+    useState('Copy Referral Link')
 
   const sendReferralEmail = async () => {
     try {
@@ -26,7 +28,10 @@ function Referral() {
   }
 
   const copyReferralLink = () => {
-    console.log('copy link')
+    setreferralLinkButtonText('Referral Link Copied!')
+    setTimeout(() => {
+      setreferralLinkButtonText('Copy Referral Link')
+    }, 1500)
   }
 
   return (
@@ -60,7 +65,7 @@ function Referral() {
           <ReferralButton
             onClick={copyReferralLink}
             image={<FaIcons.FaCopy size={20} color={'grey'} />}
-            title='Copy Referral Link'
+            title={referralLinkButtonText}
           />
         </div>
       </div>

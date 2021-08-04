@@ -38,7 +38,3 @@ input:focus {
   font-size: 16px;
   background-color: #ffffff;
 }
-
-.error-message {
-  color: 'red';
-}

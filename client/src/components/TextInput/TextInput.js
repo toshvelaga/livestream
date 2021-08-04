@@ -19,10 +19,14 @@ function TextInput(props) {
           required={props.required}
           maxLength={props.maxLength}
         ></input>
-        <span className='error-message'>{props.errorMsg}</span>
+        <span style={errorStyles}>{props.errorMsg}</span>
       </div>
     </>
   )
+}
+
+const errorStyles = {
+  color: 'red',
 }
 
 export default TextInput
