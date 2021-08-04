@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import { Link, useHistory } from 'react-router-dom'
-import axios from 'axios'
+import API from '../../api/api'
 import './Register.css'
 import setCookie from '../../utils/setCookie'
 
@@ -18,12 +18,9 @@ function Register() {
 
   const sendAuthCode = async () => {
     try {
-      const response = await axios.post(
-        'http://localhost:5001/api/user/register',
-        {
-          email: email,
-        }
-      )
+      const response = await API.post('/user/register', {
+        email: email,
+      })
       console.log(response.data.error)
       seterror(response.data.error)
       console.log(response)
