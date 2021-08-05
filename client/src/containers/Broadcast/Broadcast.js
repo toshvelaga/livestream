@@ -145,7 +145,7 @@ function Broadcast() {
             fx={!isActive ? startStream : stopStream}
           />
           <BroadcastButton title='Share Screen' fx={recordScreen} />
-          <BroadcastButton title={mute ? 'Mute' : 'Muted'} fx={toggleMute} />
+          <BroadcastButton title={!mute ? 'Mute' : 'Muted'} fx={toggleMute} />
         </div>
       </div>
     </>

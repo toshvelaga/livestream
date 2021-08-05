@@ -65,10 +65,11 @@ function Destinations() {
           errorMsg={null}
         />
         <TextInput
-          label='Facebook Stream Key'
+          label='Facebook Stream Key (Coming Soon)'
           placeholder=''
           value={facebookStreamKey}
           onChange={(e) => setFacebookStreamKey(e.target.value)}
+          disabled={true}
           errorMsg={null}
         />
         <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} />

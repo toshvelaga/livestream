@@ -18,6 +18,7 @@ function TextInput(props) {
           onChange={props.onChange}
           required={props.required}
           maxLength={props.maxLength}
+          disabled={props.disabled}
         ></input>
         <span style={errorStyles}>{props.errorMsg}</span>
       </div>
