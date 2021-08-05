@@ -6,7 +6,7 @@ cd client
 npm install 
 npm run build
 
-cd
+cd ..
 cd server
 npm install
 pm2 restart server.js
