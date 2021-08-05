@@ -21,9 +21,10 @@ function Broadcast() {
   const [youtubeStreamKey, setYoutubeStreamKey] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
 
+  const [mediaStream, setMediaStream] = useState(null)
+
   const videoRef = useRef()
   const ws = useRef()
-  let mediaStream = useUserMedia(CAPTURE_OPTIONS)
 
   let liveStream
   let liveStreamRecorder
@@ -31,6 +32,27 @@ function Broadcast() {
   if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
     videoRef.current.srcObject = mediaStream
   }
+
+  useEffect(() => {
+    async function enableStream() {
+      try {
+        let stream = await navigator.mediaDevices.getUserMedia(CAPTURE_OPTIONS)
+        setMediaStream(stream)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    if (!mediaStream) {
+      enableStream()
+    } else {
+      return function cleanup() {
+        mediaStream.getVideoTracks().forEach((track) => {
+          track.stop()
+        })
+      }
+    }
+  }, [mediaStream])
 
   useEffect(() => {
     let userId = getCookie('userId')
@@ -105,9 +127,12 @@ function Broadcast() {
     setMute(!mute)
   }
 
-  const recordScreen = () => {
-    console.log(true)
-    alert('Ability to share screen coming soon')
+  const recordScreen = async () => {
+    console.log('recording screen now')
+
+    const stream = await navigator.mediaDevices.getDisplayMedia(CAPTURE_OPTIONS)
+    setMediaStream(stream)
+    videoRef.current.srcObject = stream
   }
 
   const handleCanPlay = () => {
@@ -150,62 +175,6 @@ function Broadcast() {
       </div>
     </>
   )
-}
-
-const useUserMedia = (requestedMedia) => {
-  const [mediaStream, setMediaStream] = useState(null)
-
-  useEffect(() => {
-    async function enableStream() {
-      try {
-        let stream = await navigator.mediaDevices.getUserMedia(requestedMedia)
-        setMediaStream(stream)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-
-    if (!mediaStream) {
-      enableStream()
-    } else {
-      return function cleanup() {
-        mediaStream.getVideoTracks().forEach((track) => {
-          track.stop()
-        })
-      }
-    }
-  }, [mediaStream, requestedMedia])
-
-  return mediaStream
-}
-
-const useDisplayMedia = (requestedMedia) => {
-  const [mediaStream, setMediaStream] = useState(null)
-
-  useEffect(() => {
-    async function enableStream() {
-      try {
-        const stream = await navigator.mediaDevices.getDisplayMedia(
-          requestedMedia
-        )
-        setMediaStream(stream)
-      } catch (err) {
-        console.log(err)
-      }
-    }
-
-    if (!mediaStream) {
-      enableStream()
-    } else {
-      return function cleanup() {
-        mediaStream.getVideoTracks().forEach((track) => {
-          track.stop()
-        })
-      }
-    }
-  }, [mediaStream, requestedMedia])
-
-  return mediaStream
 }
 
 export default Broadcast
