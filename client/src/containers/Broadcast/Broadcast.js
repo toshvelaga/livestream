@@ -23,7 +23,7 @@ function Broadcast() {
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
 
   const [mediaStream, setMediaStream] = useState(null)
-  const [cameraOff, setcameraOff] = useState(false)
+  const [userFacing, setuserFacing] = useState(false)
 
   const videoRef = useRef()
   const ws = useRef()
@@ -138,11 +138,13 @@ function Broadcast() {
   }
 
   const recordScreen = async () => {
-    console.log('recording screen now')
-
-    const stream = await navigator.mediaDevices.getDisplayMedia(CAPTURE_OPTIONS)
+    let stream
+    !userFacing
+      ? (stream = await navigator.mediaDevices.getDisplayMedia(CAPTURE_OPTIONS))
+      : (stream = await navigator.mediaDevices.getUserMedia(CAPTURE_OPTIONS))
     setMediaStream(stream)
     videoRef.current.srcObject = stream
+    setuserFacing(!userFacing)
   }
 
   const handleCanPlay = () => {
@@ -179,8 +181,11 @@ function Broadcast() {
             title={!isActive ? 'Go Live' : 'Stop Recording'}
             fx={!isActive ? startStream : stopStream}
           />
-          <BroadcastButton title='Disable Camera' fx={toggleCamera} />
-          <BroadcastButton title='Share Screen' fx={recordScreen} />
+          {/* <BroadcastButton title='Disable Camera' fx={toggleCamera} /> */}
+          <BroadcastButton
+            title={!userFacing ? 'Share Screen' : 'Stop Sharing'}
+            fx={recordScreen}
+          />
           <BroadcastButton title={!mute ? 'Mute' : 'Muted'} fx={toggleMute} />
         </div>
       </div>
