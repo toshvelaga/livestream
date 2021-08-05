@@ -1,5 +1,6 @@
 import React from 'react'
 import './BroadcastButton.css'
+import * as FaIcons from 'react-icons/fa'
 
 function BroadcastButton(props) {
   return (

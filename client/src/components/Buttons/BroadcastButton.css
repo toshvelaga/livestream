@@ -4,9 +4,9 @@
 }
 
 .broadcast-button {
-  background-color: #03a9f4;
-  /* background-color: #3cc764; */
-  color: white;
+  /* background-color: #03a9f4; */
+  background-color: #dddddd;
+  color: black;
   letter-spacing: 2px;
   outline: none;
   border: none;

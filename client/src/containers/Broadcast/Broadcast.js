@@ -119,7 +119,17 @@ function Broadcast() {
       <Navbar />
       <div className='dashboard-container'>
         <div id='container'>
-          <Timer>LIVE: {formatTime(seconds)}</Timer>
+          <div
+            style={
+              seconds === 0
+                ? { visibility: 'hidden' }
+                : { visibility: 'visible' }
+            }
+          >
+            <Timer>
+              {isActive ? 'LIVE' : 'END'}: {formatTime(seconds)}
+            </Timer>
+          </div>
           <video
             className='video-container'
             ref={videoRef}
@@ -135,7 +145,7 @@ function Broadcast() {
             fx={!isActive ? startStream : stopStream}
           />
           <BroadcastButton title='Share Screen' fx={recordScreen} />
-          <BroadcastButton title='Mute' fx={toggleMute} />
+          <BroadcastButton title={mute ? 'Mute' : 'Muted'} fx={toggleMute} />
         </div>
       </div>
     </>
