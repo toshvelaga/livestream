@@ -1,6 +1,6 @@
 # Livestreaming (ohmystream.co)
 
-Check out a live demo login via email [HERE](https://www.ohmystream.co/)
+Check out a live demo [HERE](https://www.ohmystream.co/)
 
 Web based software where users can record themselves in the browser and stream simultaneously to Youtube, Facebook, and Twitch.
 
@@ -28,6 +28,7 @@ Backend tech stack:
 - [node-media-server](https://github.com/illuspas/Node-Media-Server)
 - [ffmpeg](http://ffmpeg.org/)
 - [ws](https://github.com/websockets/ws)
+- [nodemailer](https://nodemailer.com/about/)
 
 ## Installation
 
