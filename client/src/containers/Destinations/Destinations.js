@@ -51,14 +51,14 @@ function Destinations() {
       <div className='destinations-container'>
         <h2>Destinations page</h2>
         <TextInput
-          label='Twitch Stream Key'
+          label='Twitch Stream Key (Required)'
           placeholder=''
           value={twitchStreamKey}
           onChange={(e) => setTwitchStreamKey(e.target.value)}
           errorMsg={null}
         />
         <TextInput
-          label='Youtube Stream Key'
+          label='Youtube Stream Key (Required)'
           placeholder=''
           value={youtubeStreamKey}
           onChange={(e) => setYoutubeStreamKey(e.target.value)}

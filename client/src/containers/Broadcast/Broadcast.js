@@ -107,18 +107,24 @@ function Broadcast() {
   }
 
   const startStream = () => {
-    toggle()
-    liveStream = videoRef.current.captureStream(30) // 30 FPS
-    liveStreamRecorder = new MediaRecorder(liveStream, {
-      mimeType: 'video/webm;codecs=h264',
-      videoBitsPerSecond: 3 * 1024 * 1024,
-    })
-    liveStreamRecorder.ondataavailable = (e) => {
-      ws.current.send(e.data)
-      console.log('send data', e.data)
+    if (!twitchStreamKey || !youtubeStreamKey) {
+      alert(
+        'Please add your twitch and youtube stream keys first under destinations'
+      )
+    } else {
+      toggle()
+      liveStream = videoRef.current.captureStream(30) // 30 FPS
+      liveStreamRecorder = new MediaRecorder(liveStream, {
+        mimeType: 'video/webm;codecs=h264',
+        videoBitsPerSecond: 3 * 1024 * 1024,
+      })
+      liveStreamRecorder.ondataavailable = (e) => {
+        ws.current.send(e.data)
+        console.log('send data', e.data)
+      }
+      // Start recording, and dump data every second
+      liveStreamRecorder.start(1000)
     }
-    // Start recording, and dump data every second
-    liveStreamRecorder.start(1000)
   }
 
   const stopStream = () => {
