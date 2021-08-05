@@ -5,6 +5,7 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom'
+import ReactGA from 'react-ga'
 import Login from './containers/Login/Login'
 import Register from './containers/Register/Register'
 import Code from './containers/Code/Code'
@@ -19,10 +20,16 @@ import Website from './website/Website/Website'
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState('')
+
   useEffect(() => {
     let login = getCookie('isLoggedIn')
     setisLoggedIn(login)
   }, [isLoggedIn])
+
+  useEffect(() => {
+    ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }, [])
 
   return (
     <>
