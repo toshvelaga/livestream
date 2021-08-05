@@ -2,11 +2,11 @@
 
 # Script for quick configuration of the livestreaming on ec2
 
-cd livestreaming/client
+cd client
 npm install 
 npm run build
 
 cd
-cd livestreaming/server
+cd server
 npm install
 pm2 restart server.js
