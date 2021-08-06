@@ -77,7 +77,7 @@ function Broadcast() {
     ws.current =
       process.env.NODE_ENV === 'production'
         ? new WebSocket(
-            'ws://ohmystream.co' +
+            'wss://ohmystream.co' +
               `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
         : new WebSocket(
