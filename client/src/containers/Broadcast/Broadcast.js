@@ -75,11 +75,11 @@ function Broadcast() {
 
   useEffect(() => {
     ws.current = new WebSocket(
-      window.location.protocol.replace('http', 'ws') +
-        '//' + // http: -> ws:, https: -> wss:
-        'localhost:3001' +
+      'ws://localhost:3001' +
         `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
     )
+
+    console.log(ws.current)
 
     ws.current.onopen = () => {
       console.log('WebSocket Open')

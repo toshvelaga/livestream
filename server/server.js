@@ -2,7 +2,6 @@ const child_process = require('child_process') // To be used later for running F
 const express = require('express')
 const http = require('http')
 const WebSocketServer = require('ws').Server
-const NodeMediaServer = require('node-media-server')
 const app = express()
 const cors = require('cors')
 const path = require('path')
@@ -196,20 +195,3 @@ wss.on('connection', (ws, req) => {
     ffmpeg.kill('SIGINT')
   })
 })
-
-const config = {
-  rtmp: {
-    port: 1935,
-    chunk_size: 60000,
-    gop_cache: true,
-    ping: 30,
-    ping_timeout: 60,
-  },
-  http: {
-    port: 8000,
-    allow_origin: '*',
-  },
-}
-
-var nms = new NodeMediaServer(config)
-nms.run()
