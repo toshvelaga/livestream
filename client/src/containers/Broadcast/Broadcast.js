@@ -74,10 +74,16 @@ function Broadcast() {
   }, [])
 
   useEffect(() => {
-    ws.current = new WebSocket(
-      'ws://localhost:3001' +
-        `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
-    )
+    ws.current =
+      process.env.NODE_ENV === 'production'
+        ? new WebSocket(
+            'ws://ohmystream.co' +
+              `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
+          )
+        : new WebSocket(
+            'ws://localhost:3001' +
+              `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
+          )
 
     console.log(ws.current)
 
