@@ -10,7 +10,7 @@ On the client the code that sends the livestream to the server is in the client/
 
 ## Todo
 
-- [Trello](https://trello.com/b/W8LZ83oV/livestream)
+- [Trello](https://trello.com/b/W8LZ83oV/ohmystream)
 
 ## Tech/framework used
 

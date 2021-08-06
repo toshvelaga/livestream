@@ -65,7 +65,9 @@ function DropdownMenu() {
     <div className={navbarStyles.dropdown} ref={dropdownRef}>
       <div className={navbarStyles.menu}>
         <DropdownItem onClick={onLogout}>Logout</DropdownItem>
-        <DropdownItem>Settings</DropdownItem>
+        <DropdownItem onClick={() => alert('coming soon')}>
+          Settings
+        </DropdownItem>
       </div>
     </div>
   )

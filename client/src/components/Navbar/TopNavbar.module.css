@@ -102,6 +102,7 @@ a {
   padding: 1rem 1rem 1rem 0;
   overflow: hidden;
   transition: height var(--speed) ease;
+  z-index: 2;
 }
 
 .menu {
