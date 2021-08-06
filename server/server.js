@@ -41,11 +41,11 @@ const PORT = process.env.PORT || 5001
 const WS_PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {
-  console.log(`Server is starting on port ${PORT}`)
+  console.log(`Listening on PORT ${PORT} for REST API requests`)
 })
 
 const server = http.createServer(app).listen(WS_PORT, () => {
-  console.log(`Listening on PORT ${WS_PORT}...`)
+  console.log(`Listening on PORT ${WS_PORT} for websockets`)
 })
 
 const wss = new WebSocketServer({
