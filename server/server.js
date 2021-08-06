@@ -1,7 +1,6 @@
 const child_process = require('child_process') // To be used later for running FFmpeg
 const express = require('express')
-const http = require('http')
-const WebSocketServer = require('ws').Server
+const WebSocket = require('ws')
 const app = express()
 const cors = require('cors')
 const path = require('path')
@@ -44,12 +43,8 @@ app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT} for REST API requests`)
 })
 
-const server = http.createServer(app).listen(WS_PORT, () => {
+const wss = new WebSocket.Server({ port: WS_PORT }, () => {
   console.log(`Listening on PORT ${WS_PORT} for websockets`)
-})
-
-const wss = new WebSocketServer({
-  server: server,
 })
 
 wss.on('connection', (ws, req) => {
