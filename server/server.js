@@ -4,10 +4,8 @@ const WebSocket = require('ws')
 const app = express()
 const cors = require('cors')
 const path = require('path')
-const logger = require('morgan')
 require('dotenv').config()
 
-app.use(logger('dev'))
 app.use(cors())
 
 app.use(express.json({ limit: '200mb', extended: true }))
