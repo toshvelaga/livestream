@@ -77,18 +77,16 @@ function Broadcast() {
     ws.current =
       process.env.NODE_ENV === 'production'
         ? new WebSocket(
-            'wss://www.ohmystream.co'
+            'wss://127.0.0.1:8080/wsapp'
             // +
             //   `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
         : new WebSocket(
-            'ws://localhost:3001'
-            // +
-            //   `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
+            'ws://localhost:8080' +
+              `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
 
     console.log(ws.current)
-    console.log(window.location.host)
 
     ws.current.onopen = () => {
       console.log('WebSocket Open')
