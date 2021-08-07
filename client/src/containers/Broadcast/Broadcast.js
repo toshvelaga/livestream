@@ -77,7 +77,8 @@ function Broadcast() {
     ws.current =
       process.env.NODE_ENV === 'production'
         ? new WebSocket(
-            'wss://localhost:3001' +
+            'wss://' +
+              window.location.host +
               `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
         : new WebSocket(
@@ -86,6 +87,7 @@ function Broadcast() {
           )
 
     console.log(ws.current)
+    console.log(window.location.host)
 
     ws.current.onopen = () => {
       console.log('WebSocket Open')
