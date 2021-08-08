@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import API from '../../api/api'
+import axios from 'axios'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import setCookie from '../../utils/setCookie'
@@ -18,7 +19,7 @@ function Login() {
 
   const sendAuthCode = async () => {
     try {
-      const response = await API.post('/user/login', {
+      const response = await axios.put('https://ohmystream.co/api/user/login', {
         email: email,
       })
       console.log(response.data.error)
