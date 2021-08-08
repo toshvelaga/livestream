@@ -25,7 +25,7 @@ router.post('/api/user/register', async (req, res) => {
   }
 })
 
-router.put('/api/user/login', async (req, res) => {
+router.post('/api/user/login', async (req, res) => {
   const { email } = req.body
   const code = Math.floor(100000 + Math.random() * 900000)
 
