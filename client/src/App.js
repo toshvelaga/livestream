@@ -1,10 +1,5 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import Login from './containers/Login/Login'
 import Register from './containers/Register/Register'

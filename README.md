@@ -1,12 +1,12 @@
 # Livestreaming (ohmystream.co)
 
-Check out a live demo [HERE](https://www.ohmystream.co/)
+Check out a live demo [HERE](https://ohmystream.co/)
 
-Web based software where users can record themselves in the browser and stream simultaneously to Youtube, Facebook, and Twitch.
+Web based software where users can record themselves in the browser and stream simultaneously to Youtube, Facebook, and Twitch. Software is similar in functionality to OBS and streamlabs.
 
 Frontend is built using React JS. Backend is build using Node + Express. Database is postgres. The livestreaming is enabled using websockets and ffmpeg.
 
-On the client the code that sends the livestream to the server is in the client/containers/Broadcast/Broadcast.js file. On the server the ws are enabled in server/server.js file.
+On the client the code that sends the livestream to the server is in the client/containers/Broadcast/Broadcast.js file. On the server the websockets are enabled in server/server.js file.
 
 ## Todo
 
