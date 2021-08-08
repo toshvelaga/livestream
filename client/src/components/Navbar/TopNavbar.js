@@ -29,11 +29,7 @@ function NavItem(props) {
 
   return (
     <li className={navbarStyles.navItem}>
-      <a
-        href='#'
-        className={navbarStyles.iconButton}
-        onClick={() => setOpen(!open)}
-      >
+      <a className={navbarStyles.iconButton} onClick={() => setOpen(!open)}>
         {props.icon}
       </a>
 
@@ -50,7 +46,7 @@ function DropdownMenu() {
 
   function DropdownItem(props) {
     return (
-      <a href='#' className={navbarStyles.menuItem} onClick={props.onClick}>
+      <a className={navbarStyles.menuItem} onClick={props.onClick}>
         <span style={{ marginLeft: '20px' }}>{props.children}</span>
       </a>
     )

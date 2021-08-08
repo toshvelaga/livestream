@@ -122,4 +122,5 @@ a {
 
 .menuItem:hover {
   background-color: #dddddd;
+  cursor: pointer;
 }
