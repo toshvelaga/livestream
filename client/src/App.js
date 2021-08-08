@@ -33,7 +33,7 @@ function App() {
 
   return (
     <>
-      <Router>
+      <Router basename='/app'>
         <Switch>
           <ProtectedRoute path='/broadcast' component={Broadcast} />
           <ProtectedRoute path='/destinations' component={Destinations} />

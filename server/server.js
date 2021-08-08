@@ -45,6 +45,8 @@ const wss = new WebSocket.Server({ port: WS_PORT }, () => {
   console.log(`Listening on PORT ${WS_PORT} for websockets`)
 })
 
+console.log(wss)
+
 wss.on('connection', (ws, req) => {
   const myURL = new URL(`http://localhost:${WS_PORT}` + req.url)
 

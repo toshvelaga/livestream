@@ -77,12 +77,12 @@ function Broadcast() {
     ws.current =
       process.env.NODE_ENV === 'production'
         ? new WebSocket(
-            'wss://www.ohmystream.co:8080/websocket'
+            'wss://www.ohmystream.co/websocket'
             // +
             //   `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
         : new WebSocket(
-            'ws://localhost:8080' +
+            'wss://www.ohmystream.co/websocket' +
               `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
 
