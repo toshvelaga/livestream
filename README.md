@@ -1,5 +1,9 @@
 # Livestreaming (ohmystream.co)
 
+<span style="display:block" class="note">
+  <img src="https://readmeassets.s3.us-east-2.amazonaws.com/Screen+Shot+2021-08-22+at+2.25.26+PM.png">
+</span>
+
 Check out a live demo [HERE](https://ohmystream.co/)
 
 Web based software where users can record themselves in the browser and stream simultaneously to Youtube, Facebook, and Twitch. Software is similar in functionality to OBS and streamlabs.
