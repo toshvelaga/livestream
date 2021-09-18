@@ -6,7 +6,7 @@
 
 Check out a live demo [HERE](https://ohmystream.co/)
 
-Web based software where users can record themselves in the browser and stream simultaneously to Youtube, Facebook, and Twitch. Software is similar in functionality to OBS and streamlabs.
+Web based software to record a livestream in the browser and stream simultaneously to Youtube, Facebook, and Twitch. Software is similar in functionality to OBS and streamlabs.
 
 Frontend is built using React JS. Backend is build using Node + Express. Database is postgres. The livestreaming is enabled using websockets and ffmpeg.
 
