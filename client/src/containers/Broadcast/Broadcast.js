@@ -80,7 +80,7 @@ function Broadcast() {
             // 'wss://www.ohmystream.co/websocket'
             // +
             //   `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
-            'wss://www.ohmystream.co/websocket' +
+            'wss://www.ohmystream.xyz/websocket' +
               `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
         : new WebSocket(
