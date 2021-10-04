@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 5001
 
-const WS_PORT = process.env.PORT || 8080
+const WS_PORT = process.env.PORT || 8000
 
 app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT} for REST API requests`)
@@ -159,12 +159,13 @@ wss.on('connection', (ws, req) => {
   ])
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
-  ffmpeg.on('close', (code, signal) => {
-    console.log(
-      'FFmpeg child process closed, code ' + code + ', signal ' + signal
-    )
-    ws.terminate()
-  })
+
+  // ffmpeg.on('close', (code, signal) => {
+  //   console.log(
+  //     'FFmpeg child process closed, code ' + code + ', signal ' + signal
+  //   )
+  //   ws.terminate()
+  // })
 
   // Handle STDIN pipe errors by logging to the console.
   // These errors most commonly occur when FFmpeg closes and there is still

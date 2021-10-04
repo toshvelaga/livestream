@@ -81,9 +81,14 @@ function Broadcast() {
               `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
         : new WebSocket(
-            `ws://localhost:8080` +
+            `ws://localhost:8000` +
               `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
+
+    // new WebSocket(
+    //   'wss://www.ohmystream.xyz/websocket' +
+    //     `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
+    // )
 
     console.log(ws.current)
 
