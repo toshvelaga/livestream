@@ -81,7 +81,7 @@ function Broadcast() {
               `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
         : new WebSocket(
-            `ws://localhost:8000` +
+            `ws://localhost:8080` +
               `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
 

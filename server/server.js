@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 5001
 
-const WS_PORT = process.env.PORT || 8000
+const WS_PORT = process.env.PORT || 8080
 
 app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT} for REST API requests`)
