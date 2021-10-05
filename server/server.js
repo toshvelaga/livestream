@@ -23,9 +23,19 @@ app.use('/', compareCodeRouter)
 app.use('/', destinationsRouter)
 app.use('/', referralRouter)
 
+if (process.env.NODE_ENV === 'production') {
+  // serve static content
+  // npm run build
+  app.use(express.static(path.join(__dirname, 'client/build')))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+  })
+}
+
 const PORT = process.env.PORT || 5001
 
-const WS_PORT = process.env.PORT || 8080
+const WS_PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT} for REST API requests`)
