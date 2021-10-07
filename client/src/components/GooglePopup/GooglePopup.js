@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 function GooglePopup() {
   var client_id = process.env.REACT_APP_GOOGLE_CLIENT_ID
-  var redirect = 'http://localhost:3000/destinations'
+  var redirect = 'http://localhost:3000/dashboard'
   // var scope = 'https://www.googleapis.com/auth/youtube'
 
   let url = `https://accounts.google.com/o/oauth2/auth?
