@@ -33,6 +33,13 @@ function Register() {
     }
   }
 
+  const handleInputChange = (e) => {
+    setEmail(e.target.value)
+    if (error) {
+      seterror('')
+    }
+  }
+
   return (
     <>
       <div className='register-container'>
@@ -43,10 +50,11 @@ function Register() {
             code to use.
           </p>
           <TextInput
+            style={error ? { border: '1px solid red' } : null}
             label='Email'
             placeholder='Email Address'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleInputChange}
             errorMsg={error ? error : null}
           />
         </div>
