@@ -28,6 +28,9 @@ function Broadcast() {
   const videoRef = useRef()
   const ws = useRef()
 
+  const productionWsUrl = 'wss://www.ohmystream.xyz/websocket'
+  const developmentWsUrl = 'ws://localhost:3001'
+
   let liveStream
   let liveStreamRecorder
 
@@ -77,17 +80,12 @@ function Broadcast() {
     ws.current =
       process.env.NODE_ENV === 'production'
         ? new WebSocket(
-            'wss://www.ohmystream.xyz/websocket' +
+            productionWsUrl +
               `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
-        : // : new WebSocket(
-          //     `ws://localhost:3001` +
-          //       `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
-          //   )
-
-          new WebSocket(
-            'wss://www.ohmystream.xyz/websocket' +
-              `?twitchStreamKey=live_706658710_c0mKL63lRy2nOCLug0syUhxWVWswlT&youtubeStreamKey=7hq1-4z85-e5dc-rc1j-3msu&facebookStreamKey=${facebookStreamKey}`
+        : new WebSocket(
+            developmentWsUrl +
+              `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
           )
 
     console.log(ws.current)
@@ -96,9 +94,9 @@ function Broadcast() {
       console.log('WebSocket Open')
     }
 
-    return () => {
-      ws.current.close()
-    }
+    // return () => {
+    //   ws.current.close()
+    // }
   }, [twitchStreamKey, youtubeStreamKey])
 
   useEffect(() => {
