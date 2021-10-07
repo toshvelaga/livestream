@@ -4,6 +4,7 @@ import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
+import GooglePopup from '../../components/GooglePopup/GooglePopup'
 import './Destinations.css'
 
 function Destinations() {
@@ -72,6 +73,7 @@ function Destinations() {
           disabled={true}
           errorMsg={null}
         />
+        {/* <GooglePopup /> */}
         <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} />
       </div>
     </>
