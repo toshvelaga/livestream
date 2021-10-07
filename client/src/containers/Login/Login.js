@@ -33,6 +33,13 @@ function Login() {
     }
   }
 
+  const handleInputChange = (e) => {
+    setEmail(e.target.value)
+    if (error) {
+      seterror('')
+    }
+  }
+
   return (
     <>
       <div className='login-container'>
@@ -40,10 +47,11 @@ function Login() {
           <h2>Log in to your account</h2>
           <p>Enter your email and we'll send you a login code.</p>
           <TextInput
+            style={error ? { border: '1px solid red' } : null}
             label='Email'
             placeholder='Email Address'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleInputChange}
             errorMsg={error ? error : null}
           />
         </div>
