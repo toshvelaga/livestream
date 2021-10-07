@@ -10,10 +10,10 @@ router.post('/api/user/register', async (req, res) => {
   const timeCreated = new Date().toUTCString()
 
   if (!email) {
-    res.send({ error: 'Please do not leave email empty' })
+    return res.send({ error: 'Please do not leave email empty' })
   }
   if (validateEmail(email) == false) {
-    res.send({ error: 'Please add a valid email address' })
+    return res.send({ error: 'Please add a valid email address' })
   } else {
     let newUser = await pool.query(
       'INSERT INTO users (user_email, user_code, user_date_created) VALUES ($1, $2, $3) RETURNING *',
@@ -34,10 +34,10 @@ router.post('/api/user/login', async (req, res) => {
       email,
     ])
     if (!email) {
-      res.send({ error: 'Please do not leave email empty' })
+      return res.send({ error: 'Please do not leave email empty' })
     }
     if (validateEmail(email) == false) {
-      res.send({ error: 'Please add a valid email address' })
+      return res.send({ error: 'Please add a valid email address' })
     }
     if (user.rows.length === 0) {
       return res.send({ error: 'No email is associated with that account' })
