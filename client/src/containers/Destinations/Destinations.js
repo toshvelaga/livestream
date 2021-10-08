@@ -7,6 +7,8 @@ import getCookie from '../../utils/getCookie'
 import GooglePopup from '../../components/GooglePopup/GooglePopup'
 import './Destinations.css'
 
+/* global gapi */
+
 function Destinations() {
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
   const [youtubeStreamKey, setYoutubeStreamKey] = useState('')
@@ -46,6 +48,71 @@ function Destinations() {
       .catch((err) => console.log(err))
   }
 
+  function authenticate() {
+    return gapi.auth2
+      .getAuthInstance()
+      .signIn({ scope: 'https://www.googleapis.com/auth/youtube.force-ssl' })
+      .then(
+        function () {
+          console.log('Sign-in successful')
+        },
+        function (err) {
+          console.error('Error signing in', err)
+        }
+      )
+  }
+
+  function loadClient() {
+    gapi.client.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY)
+    return gapi.client
+      .load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
+      .then(
+        function () {
+          console.log('GAPI client loaded for API')
+        },
+        function (err) {
+          console.error('Error loading GAPI client for API', err)
+        }
+      )
+  }
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  function execute() {
+    return gapi.client.youtube.liveStreams
+      .insert({
+        part: ['snippet,cdn,contentDetails,status'],
+        resource: {
+          snippet: {
+            title: "Your new video stream's name",
+            description:
+              'A description of your video stream. This field is optional.',
+          },
+          cdn: {
+            frameRate: 'variable',
+            ingestionType: 'rtmp',
+            resolution: 'variable',
+            format: '',
+          },
+          contentDetails: {
+            isReusable: true,
+          },
+        },
+      })
+      .then(
+        function (response) {
+          // Handle the results here (response.result has the parsed body).
+          console.log('Response', response)
+        },
+        function (err) {
+          console.error('Execute error', err)
+        }
+      )
+  }
+  gapi.load('client:auth2', function () {
+    gapi.auth2.init({
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+    })
+  })
+
   return (
     <>
       <Navbar />
@@ -73,7 +140,11 @@ function Destinations() {
           disabled={true}
           errorMsg={null}
         />
-        {/* <GooglePopup /> */}
+        <button onClick={() => authenticate().then(loadClient)}>
+          Click Me
+        </button>
+        <button onClick={() => execute()}>execute</button>
+
         <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} />
       </div>
     </>
