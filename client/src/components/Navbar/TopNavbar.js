@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import * as FaIcons from 'react-icons/fa'
 import navbarStyles from './TopNavbar.module.css'
 import deleteAllCookies from '../../utils/deleteAllCookies'
@@ -26,9 +26,31 @@ function Navbar(props) {
 
 function NavItem(props) {
   const [open, setOpen] = useState(false)
+  const naviconRef = useRef(null)
+  useOutsideAlerter(naviconRef)
+
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      /**
+       * close the topnavbar dropdown if it is open
+       */
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target) && open) {
+          setOpen(false)
+        }
+      }
+
+      // Bind the event listener
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [ref, open])
+  }
 
   return (
-    <li className={navbarStyles.navItem}>
+    <li ref={naviconRef} className={navbarStyles.navItem}>
       <a className={navbarStyles.iconButton} onClick={() => setOpen(!open)}>
         {props.icon}
       </a>
