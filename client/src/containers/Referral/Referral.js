@@ -34,16 +34,24 @@ function Referral() {
     }, 1500)
   }
 
+  const handleInputChange = (e) => {
+    setReferralEmail(e.target.value)
+    if (referralEmailError) {
+      setreferralEmailError('')
+    }
+  }
+
   return (
     <>
       <Navbar />
       <div className='referrals-container'>
         <h2>Referrals</h2>
         <TextInput
+          style={referralEmailError ? { border: '1px solid red' } : null}
           label='Refer a friend'
           placeholder='yourfriend@gmail.com'
           value={referralEmail}
-          onChange={(e) => setReferralEmail(e.target.value)}
+          onChange={handleInputChange}
           errorMsg={referralEmailError ? referralEmailError : null}
         />
         <Button

@@ -26,10 +26,10 @@ router.post('/api/referral/email', async (req, res) => {
   }
 
   if (!referralEmail) {
-    res.send({ error: 'Please add an email to refer' })
+    return res.send({ error: 'Please add an email to refer' })
   }
   if (validateEmail(referralEmail) == false) {
-    res.send({ error: 'Please add a valid email address to refer' })
+    return res.send({ error: 'Please add a valid email address to refer' })
   } else {
     return transporter.sendMail(mailOptions, (err, response) => {
       if (err) {
