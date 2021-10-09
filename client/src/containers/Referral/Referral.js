@@ -47,7 +47,6 @@ function Referral() {
       <div className='referrals-container'>
         <h2>Referrals</h2>
         <TextInput
-          style={referralEmailError ? { border: '1px solid red' } : null}
           label='Refer a friend'
           placeholder='yourfriend@gmail.com'
           value={referralEmail}

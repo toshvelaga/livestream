@@ -50,7 +50,6 @@ function Register() {
             code to use.
           </p>
           <TextInput
-            style={error ? { border: '1px solid red' } : null}
             label='Email'
             placeholder='Email Address'
             value={email}

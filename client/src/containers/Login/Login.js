@@ -47,7 +47,6 @@ function Login() {
           <h2>Log in to your account</h2>
           <p>Enter your email and we'll send you a login code.</p>
           <TextInput
-            style={error ? { border: '1px solid red' } : null}
             label='Email'
             placeholder='Email Address'
             value={email}

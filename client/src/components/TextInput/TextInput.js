@@ -13,7 +13,9 @@ function TextInput(props) {
           id={props.id}
           name={props.name}
           placeholder={props.placeholder}
-          style={props.style}
+          style={
+            (props.style, props.errorMsg ? { border: '1px solid red' } : null)
+          }
           value={props.value}
           onChange={props.onChange}
           required={props.required}
