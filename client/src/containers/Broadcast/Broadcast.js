@@ -12,6 +12,8 @@ const CAPTURE_OPTIONS = {
   video: true,
 }
 
+/* global gapi */
+
 function Broadcast() {
   const [isVideoOn, setisVideoOn] = useState(true)
   const [mute, setMute] = useState(false)
@@ -69,7 +71,7 @@ function Broadcast() {
       .then((response) => {
         if (response) {
           setTwitchStreamKey(response.data.twitch_stream_key)
-          setYoutubeStreamKey(response.data.youtube_stream_key)
+          // setYoutubeStreamKey(response.data.youtube_stream_key)
           setFacebookStreamKey(response.data.facebook_stream_key)
         }
       })
@@ -166,6 +168,65 @@ function Broadcast() {
     videoRef.current.play()
   }
 
+  const authenticate = () => {
+    return gapi.auth2
+      .getAuthInstance()
+      .signIn({ scope: 'https://www.googleapis.com/auth/youtube.force-ssl' })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const loadClient = () => {
+    gapi.client.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY)
+    return gapi.client
+      .load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
+      .then((res) => {
+        console.log('GAPI client loaded for API')
+        console.log(res)
+      })
+      .catch((err) => console.log('Error loading GAPI client for API', err))
+  }
+  // Make sure the client is loaded and sign-in is complete before calling this method.
+  const execute = () => {
+    return gapi.client.youtube.liveStreams
+      .insert({
+        part: ['snippet,cdn,contentDetails,status'],
+        resource: {
+          snippet: {
+            title: "Your new video stream's name",
+            description:
+              'A description of your video stream. This field is optional.',
+          },
+          cdn: {
+            frameRate: 'variable',
+            ingestionType: 'rtmp',
+            resolution: 'variable',
+            format: '',
+          },
+          contentDetails: {
+            isReusable: true,
+          },
+        },
+      })
+      .then((res) => {
+        // Handle the results here (response.result has the parsed body).
+        console.log('Response', res)
+        console.log(res.result.cdn.ingestionInfo.streamName)
+        setYoutubeStreamKey(res.result.cdn.ingestionInfo.streamName)
+      })
+      .catch((err) => {
+        console.log('Execute error', err)
+      })
+  }
+
+  gapi.load('client:auth2', function () {
+    gapi.auth2.init({
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+    })
+  })
+
   return (
     <>
       <Navbar />
@@ -202,6 +263,13 @@ function Broadcast() {
             fx={recordScreen}
           />
           <BroadcastButton title={!mute ? 'Mute' : 'Muted'} fx={toggleMute} />
+        </div>
+
+        <div style={{ marginTop: '1rem' }}>
+          <button onClick={() => authenticate().then(loadClient)}>
+            Click Me
+          </button>
+          <button onClick={() => execute()}>execute</button>
         </div>
       </div>
     </>
