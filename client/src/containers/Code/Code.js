@@ -35,6 +35,13 @@ function Code() {
     }
   }
 
+  const handleCodeChange = (e) => {
+    setCode(e.target.value)
+    if (error) {
+      seterror('')
+    }
+  }
+
   return (
     <>
       <div className='code-container'>
@@ -42,11 +49,12 @@ function Code() {
           <h2>Email Sent!</h2>
           <p>Please check your email for your login code.</p>
           <TextInput
+            style={error ? { border: '1px solid red' } : null}
             label='Login Code'
             placeholder='Enter 6 digit code'
             value={code}
             maxLength={6}
-            onChange={(e) => setCode(e.target.value)}
+            onChange={handleCodeChange}
             errorMsg={error ? error : null}
           />
           <Button fx={submit} style={{ width: '100%' }} title='Submit' />

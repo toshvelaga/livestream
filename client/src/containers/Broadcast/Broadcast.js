@@ -221,6 +221,31 @@ function Broadcast() {
       })
   }
 
+  const execute2 = () => {
+    return gapi.client.youtube.liveBroadcasts
+      .insert({
+        part: ['id,snippet,contentDetails,status'],
+        resource: {
+          snippet: {
+            title: "Your new video stream's name",
+            scheduledStartTime: `${new Date().toISOString()}`,
+            description:
+              'A description of your video stream. This field is optional.',
+          },
+          status: {
+            privacyStatus: 'public',
+          },
+        },
+      })
+      .then((response) => {
+        // Handle the results here (response.result has the parsed body).
+        console.log('Response', response)
+      })
+      .catch((err) => {
+        console.error('Execute error', err)
+      })
+  }
+
   gapi.load('client:auth2', function () {
     gapi.auth2.init({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
@@ -267,9 +292,10 @@ function Broadcast() {
 
         <div style={{ marginTop: '1rem' }}>
           <button onClick={() => authenticate().then(loadClient)}>
-            Click Me
+            authenticate
           </button>
-          <button onClick={() => execute()}>execute</button>
+          <button onClick={() => execute()}>create stream</button>
+          <button onClick={() => execute2()}>create broadcast</button>
         </div>
       </div>
     </>
