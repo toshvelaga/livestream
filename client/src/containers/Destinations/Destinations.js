@@ -48,7 +48,7 @@ function Destinations() {
       .catch((err) => console.log(err))
   }
 
-  function authenticate() {
+  const authenticate = () => {
     return gapi.auth2
       .getAuthInstance()
       .signIn({ scope: 'https://www.googleapis.com/auth/youtube.force-ssl' })
@@ -62,7 +62,7 @@ function Destinations() {
       )
   }
 
-  function loadClient() {
+  const loadClient = () => {
     gapi.client.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY)
     return gapi.client
       .load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
@@ -76,7 +76,7 @@ function Destinations() {
       )
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
-  function execute() {
+  const execute = () => {
     return gapi.client.youtube.liveStreams
       .insert({
         part: ['snippet,cdn,contentDetails,status'],
@@ -107,6 +107,7 @@ function Destinations() {
         }
       )
   }
+
   gapi.load('client:auth2', function () {
     gapi.auth2.init({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
