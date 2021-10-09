@@ -11,10 +11,10 @@ const sendAuthCode = (email, code) => {
   })
 
   const mailOptions = {
-    from: 'toshvelaga@gmail.com',
+    from: 'Ohmystream <toshvelaga@gmail.com>',
     to: email,
-    subject: 'Livestream 6 digit code',
-    text: `Your auth code is ${code}`,
+    subject: 'Ohmystream 6 digit code',
+    text: `Your code is ${code}.`,
   }
 
   return transporter.sendMail(mailOptions, (err, response) => {
