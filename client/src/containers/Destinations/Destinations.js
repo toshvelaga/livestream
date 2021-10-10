@@ -48,63 +48,6 @@ function Destinations() {
       .catch((err) => console.log(err))
   }
 
-  const authenticate = () => {
-    return gapi.auth2
-      .getAuthInstance()
-      .signIn({ scope: 'https://www.googleapis.com/auth/youtube.force-ssl' })
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => console.log(err))
-  }
-
-  const loadClient = () => {
-    gapi.client.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY)
-    return gapi.client
-      .load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
-      .then((res) => {
-        console.log('GAPI client loaded for API')
-        console.log(res)
-      })
-      .catch((err) => console.log('Error loading GAPI client for API', err))
-  }
-  // Make sure the client is loaded and sign-in is complete before calling this method.
-  const execute = () => {
-    return gapi.client.youtube.liveStreams
-      .insert({
-        part: ['snippet,cdn,contentDetails,status'],
-        resource: {
-          snippet: {
-            title: "Your new video stream's name",
-            description:
-              'A description of your video stream. This field is optional.',
-          },
-          cdn: {
-            frameRate: 'variable',
-            ingestionType: 'rtmp',
-            resolution: 'variable',
-            format: '',
-          },
-          contentDetails: {
-            isReusable: true,
-          },
-        },
-      })
-      .then((res) => {
-        // Handle the results here (response.result has the parsed body).
-        console.log('Response', res)
-      })
-      .catch((err) => {
-        console.log('Execute error', err)
-      })
-  }
-
-  gapi.load('client:auth2', function () {
-    gapi.auth2.init({
-      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-    })
-  })
-
   return (
     <>
       <Navbar />
@@ -132,10 +75,6 @@ function Destinations() {
           disabled={true}
           errorMsg={null}
         />
-        <button onClick={() => authenticate().then(loadClient)}>
-          Click Me
-        </button>
-        <button onClick={() => execute()}>execute</button>
 
         <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} />
       </div>
