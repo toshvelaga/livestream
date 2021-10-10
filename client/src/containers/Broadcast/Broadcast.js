@@ -241,9 +241,11 @@ function Broadcast() {
           },
         },
       })
-      .then((response) => {
+      .then((res) => {
         // Handle the results here (response.result has the parsed body).
-        console.log('Response', response)
+        console.log('Response', res)
+        console.log(res.result.id)
+        setbroadcastId(res.result.id)
       })
       .catch((err) => {
         console.error('Execute error', err)
