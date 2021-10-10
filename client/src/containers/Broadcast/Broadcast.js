@@ -160,6 +160,7 @@ function Broadcast() {
       ? (stream = await navigator.mediaDevices.getDisplayMedia(CAPTURE_OPTIONS))
       : (stream = await navigator.mediaDevices.getUserMedia(CAPTURE_OPTIONS))
     setMediaStream(stream)
+
     videoRef.current.srcObject = stream
     setuserFacing(!userFacing)
   }

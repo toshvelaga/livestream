@@ -49,9 +49,13 @@ function NavItem(props) {
     }, [ref, open])
   }
 
+  const closeNavbar = () => {
+    setOpen(!open)
+  }
+
   return (
     <li ref={naviconRef} className={navbarStyles.navItem}>
-      <a className={navbarStyles.iconButton} onClick={() => setOpen(!open)}>
+      <a className={navbarStyles.iconButton} onClick={closeNavbar}>
         {props.icon}
       </a>
 
