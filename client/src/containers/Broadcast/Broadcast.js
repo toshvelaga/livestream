@@ -27,6 +27,8 @@ function Broadcast() {
   const [mediaStream, setMediaStream] = useState(null)
   const [userFacing, setuserFacing] = useState(false)
 
+  const [broadcastId, setbroadcastId] = useState('')
+
   const videoRef = useRef()
   const ws = useRef()
 
@@ -214,6 +216,7 @@ function Broadcast() {
       .then((res) => {
         // Handle the results here (response.result has the parsed body).
         console.log('Response', res)
+        setbroadcastId(res.result.id)
         console.log(res.result.cdn.ingestionInfo.streamName)
         setYoutubeStreamKey(res.result.cdn.ingestionInfo.streamName)
       })
@@ -249,7 +252,10 @@ function Broadcast() {
 
   const executeBind = () => {
     return gapi.client.youtube.liveBroadcasts
-      .bind({})
+      .bind({
+        part: ['id,snippet,contentDetails,status'],
+        id: '',
+      })
       .then((res) => {
         // Handle the results here (response.result has the parsed body).
         console.log('Response', res)
@@ -264,6 +270,8 @@ function Broadcast() {
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
     })
   })
+
+  console.log('broadcastId: ' + broadcastId)
 
   return (
     <>
@@ -309,6 +317,7 @@ function Broadcast() {
           </button>
           <button onClick={() => execute()}>create stream</button>
           <button onClick={() => execute2()}>create broadcast</button>
+          <button onClick={() => executeBind()}>bind broadcast</button>
         </div>
       </div>
     </>
