@@ -192,7 +192,7 @@ function Broadcast() {
       .catch((err) => console.log('Error loading GAPI client for API', err))
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
-  const execute = () => {
+  const createStream = () => {
     return gapi.client.youtube.liveStreams
       .insert({
         part: ['snippet,cdn,contentDetails,status'],
@@ -216,7 +216,7 @@ function Broadcast() {
       .then((res) => {
         // Handle the results here (response.result has the parsed body).
         console.log('Response', res)
-        setbroadcastId(res.result.id)
+        // setbroadcastId(res.result.id)
         console.log(res.result.cdn.ingestionInfo.streamName)
         setYoutubeStreamKey(res.result.cdn.ingestionInfo.streamName)
       })
@@ -225,7 +225,7 @@ function Broadcast() {
       })
   }
 
-  const execute2 = () => {
+  const createBroadcast = () => {
     return gapi.client.youtube.liveBroadcasts
       .insert({
         part: ['id,snippet,contentDetails,status'],
@@ -250,11 +250,11 @@ function Broadcast() {
       })
   }
 
-  const executeBind = () => {
+  const bindBroadcastToStream = () => {
     return gapi.client.youtube.liveBroadcasts
       .bind({
         part: ['id,snippet,contentDetails,status'],
-        id: '',
+        id: broadcastId,
       })
       .then((res) => {
         // Handle the results here (response.result has the parsed body).
@@ -315,9 +315,9 @@ function Broadcast() {
           <button onClick={() => authenticate().then(loadClient)}>
             authenticate
           </button>
-          <button onClick={() => execute()}>create stream</button>
-          <button onClick={() => execute2()}>create broadcast</button>
-          <button onClick={() => executeBind()}>bind broadcast</button>
+          <button onClick={createStream}>create stream</button>
+          <button onClick={createBroadcast}>create broadcast</button>
+          <button onClick={bindBroadcastToStream}>bind broadcast</button>
         </div>
       </div>
     </>
