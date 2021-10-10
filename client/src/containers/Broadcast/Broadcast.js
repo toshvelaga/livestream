@@ -247,6 +247,18 @@ function Broadcast() {
       })
   }
 
+  const executeBind = () => {
+    return gapi.client.youtube.liveBroadcasts
+      .bind({})
+      .then((res) => {
+        // Handle the results here (response.result has the parsed body).
+        console.log('Response', res)
+      })
+      .catch((err) => {
+        console.error('Execute error', err)
+      })
+  }
+
   gapi.load('client:auth2', function () {
     gapi.auth2.init({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
