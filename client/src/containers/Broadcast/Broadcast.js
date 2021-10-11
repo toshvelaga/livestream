@@ -237,16 +237,13 @@ function Broadcast() {
               'A description of your video stream. This field is optional.',
           },
           contentDetails: {
-            enableClosedCaptions: true,
-            enableContentEncryption: true,
-            enableDvr: true,
-            enableEmbed: true,
             recordFromStart: true,
-            startWithSlate: true,
+            // startWithSlate: true,
             enableAutoStart: false,
           },
           status: {
             privacyStatus: 'public',
+            selfDeclaredMadeForKids: true,
           },
         },
       })

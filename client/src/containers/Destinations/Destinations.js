@@ -4,7 +4,6 @@ import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
-import GooglePopup from '../../components/GooglePopup/GooglePopup'
 import './Destinations.css'
 
 /* global gapi */
