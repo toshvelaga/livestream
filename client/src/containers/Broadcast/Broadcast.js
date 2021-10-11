@@ -20,9 +20,10 @@ function Broadcast() {
   const [seconds, setSeconds] = useState(0)
   const [isActive, setIsActive] = useState(false)
 
-  const [twitchStreamKey, setTwitchStreamKey] = useState('')
-  const [youtubeStreamKey, setYoutubeStreamKey] = useState('')
+  const [youtubeIngestionUrl, setyoutubeIngestionUrl] = useState('')
+  const [youtubeStreamName, setYoutubeStreamName] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
+  const [twitchStreamKey, setTwitchStreamKey] = useState('')
 
   const [mediaStream, setMediaStream] = useState(null)
   const [userFacing, setuserFacing] = useState(false)
@@ -34,7 +35,11 @@ function Broadcast() {
 
   const productionWsUrl = 'wss://www.ohmystream.xyz/websocket'
   const developmentWsUrl = 'ws://localhost:3001'
-  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
+
+  const youtubeUrl = `${youtubeIngestionUrl / youtubeStreamName}`
+  console.log(youtubeUrl)
+
+  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookStreamKey=${facebookStreamKey}`
 
   let liveStream
   let liveStreamRecorder
@@ -93,10 +98,10 @@ function Broadcast() {
       console.log('WebSocket Open')
     }
 
-    // return () => {
-    //   ws.current.close()
-    // }
-  }, [twitchStreamKey, youtubeStreamKey])
+    return () => {
+      ws.current.close()
+    }
+  }, [twitchStreamKey, youtubeStreamName])
 
   useEffect(() => {
     let interval = null
@@ -115,7 +120,7 @@ function Broadcast() {
   }
 
   const startStream = () => {
-    if (!twitchStreamKey || !youtubeStreamKey) {
+    if (!twitchStreamKey || !youtubeUrl) {
       alert(
         'Please add your twitch and youtube stream keys first under destinations'
       )
@@ -247,7 +252,7 @@ function Broadcast() {
         console.log('Response', res)
         // setbroadcastId(res.result.id)
         console.log(res.result.cdn.ingestionInfo.streamName)
-        setYoutubeStreamKey(res.result.cdn.ingestionInfo.streamName)
+        setYoutubeStreamName(res.result.cdn.ingestionInfo.streamName)
       })
       .catch((err) => {
         console.log('Execute error', err)

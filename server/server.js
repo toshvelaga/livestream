@@ -53,8 +53,8 @@ wss.on('connection', (ws, req) => {
   const twitchStreamKey = myURL.searchParams.get('twitchStreamKey')
   const twitch = 'rtmp://qro02.contribute.live-video.net/app/' + twitchStreamKey
 
-  const youtubeStreamKey = myURL.searchParams.get('youtubeStreamKey')
-  const youtube = 'rtmp://a.rtmp.youtube.com/live2/' + youtubeStreamKey
+  const youtubeUrl = myURL.searchParams.get('youtubeUrl')
+  console.log(youtubeUrl)
 
   const ffmpeg = child_process.spawn('ffmpeg', [
     '-i',
@@ -124,7 +124,7 @@ wss.on('connection', (ws, req) => {
 
     '-f',
     'flv',
-    youtube,
+    youtubeUrl,
 
     // // video codec config: low latency, adaptive bitrate
     // '-c:v',
