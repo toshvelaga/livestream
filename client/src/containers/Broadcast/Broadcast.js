@@ -20,7 +20,7 @@ function Broadcast() {
   const [seconds, setSeconds] = useState(0)
   const [isActive, setIsActive] = useState(false)
 
-  const [youtubeIngestionUrl, setyoutubeIngestionUrl] = useState('')
+  const [youtubeIngestionUrl, setYoutubeIngestionUrl] = useState('')
   const [youtubeStreamName, setYoutubeStreamName] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
@@ -250,9 +250,12 @@ function Broadcast() {
       .then((res) => {
         // Handle the results here (response.result has the parsed body).
         console.log('Response', res)
-        // setbroadcastId(res.result.id)
-        console.log(res.result.cdn.ingestionInfo.streamName)
+
+        setYoutubeIngestionUrl(res.result.cdn.ingestionInfo.ingestionAddress)
+        console.log(res.result.cdn.ingestionInfo.ingestionAddress)
+
         setYoutubeStreamName(res.result.cdn.ingestionInfo.streamName)
+        console.log(res.result.cdn.ingestionInfo.streamName)
       })
       .catch((err) => {
         console.log('Execute error', err)
