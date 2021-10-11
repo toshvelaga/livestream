@@ -34,6 +34,7 @@ function Broadcast() {
 
   const productionWsUrl = 'wss://www.ohmystream.xyz/websocket'
   const developmentWsUrl = 'ws://localhost:3001'
+  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
 
   let liveStream
   let liveStreamRecorder
@@ -83,14 +84,8 @@ function Broadcast() {
   useEffect(() => {
     ws.current =
       process.env.NODE_ENV === 'production'
-        ? new WebSocket(
-            productionWsUrl +
-              `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
-          )
-        : new WebSocket(
-            developmentWsUrl +
-              `?twitchStreamKey=${twitchStreamKey}&youtubeStreamKey=${youtubeStreamKey}&facebookStreamKey=${facebookStreamKey}`
-          )
+        ? new WebSocket(productionWsUrl + streamUrlParams)
+        : new WebSocket(developmentWsUrl + streamUrlParams)
 
     console.log(ws.current)
 
@@ -192,38 +187,6 @@ function Broadcast() {
       .catch((err) => console.log('Error loading GAPI client for API', err))
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
-  const createStream = () => {
-    return gapi.client.youtube.liveStreams
-      .insert({
-        part: ['snippet,cdn,contentDetails,status'],
-        resource: {
-          snippet: {
-            title: "Your new video stream's name",
-            description:
-              'A description of your video stream. This field is optional.',
-          },
-          cdn: {
-            frameRate: 'variable',
-            ingestionType: 'rtmp',
-            resolution: 'variable',
-            format: '',
-          },
-          contentDetails: {
-            isReusable: true,
-          },
-        },
-      })
-      .then((res) => {
-        // Handle the results here (response.result has the parsed body).
-        console.log('Response', res)
-        // setbroadcastId(res.result.id)
-        console.log(res.result.cdn.ingestionInfo.streamName)
-        setYoutubeStreamKey(res.result.cdn.ingestionInfo.streamName)
-      })
-      .catch((err) => {
-        console.log('Execute error', err)
-      })
-  }
 
   const createBroadcast = () => {
     return gapi.client.youtube.liveBroadcasts
@@ -255,6 +218,39 @@ function Broadcast() {
       })
       .catch((err) => {
         console.error('Execute error', err)
+      })
+  }
+
+  const createStream = () => {
+    return gapi.client.youtube.liveStreams
+      .insert({
+        part: ['snippet,cdn,contentDetails,status'],
+        resource: {
+          snippet: {
+            title: "Your new video stream's name",
+            description:
+              'A description of your video stream. This field is optional.',
+          },
+          cdn: {
+            frameRate: 'variable',
+            ingestionType: 'rtmp',
+            resolution: 'variable',
+            format: '',
+          },
+          contentDetails: {
+            isReusable: true,
+          },
+        },
+      })
+      .then((res) => {
+        // Handle the results here (response.result has the parsed body).
+        console.log('Response', res)
+        // setbroadcastId(res.result.id)
+        console.log(res.result.cdn.ingestionInfo.streamName)
+        setYoutubeStreamKey(res.result.cdn.ingestionInfo.streamName)
+      })
+      .catch((err) => {
+        console.log('Execute error', err)
       })
   }
 
