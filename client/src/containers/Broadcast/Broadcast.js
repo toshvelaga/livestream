@@ -333,7 +333,7 @@ function Broadcast() {
         </div>
         <div className='button-container'>
           <BroadcastButton
-            title={!isActive ? 'Go Live' : 'Stop Recording'}
+            title={!isActive ? '5) Go Live' : 'Stop Recording'}
             fx={!isActive ? startStream : stopStream}
           />
           {/* <BroadcastButton title='Disable Camera' fx={toggleCamera} /> */}
@@ -351,7 +351,7 @@ function Broadcast() {
           <button onClick={createBroadcast}>2. create broadcast</button>
           <button onClick={createStream}>3. create stream</button>
           <button onClick={bindBroadcastToStream}>4. bind broadcast</button>
-          <button onClick={transitionToLive}>5. transition to live</button>
+          <button onClick={transitionToLive}>6. transition to live</button>
         </div>
       </div>
     </>
