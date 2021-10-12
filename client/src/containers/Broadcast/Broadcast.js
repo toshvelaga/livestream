@@ -28,6 +28,7 @@ function Broadcast() {
   const [mediaStream, setMediaStream] = useState(null)
   const [userFacing, setuserFacing] = useState(false)
 
+  const [streamId, setstreamId] = useState('')
   const [broadcastId, setbroadcastId] = useState('')
 
   const videoRef = useRef()
@@ -36,7 +37,7 @@ function Broadcast() {
   const productionWsUrl = 'wss://www.ohmystream.xyz/websocket'
   const developmentWsUrl = 'ws://localhost:3001'
 
-  // THIS IS THE URL I AM STREAMING TO
+  //!!! THIS IS THE URL I AM STREAMING TO
   const youtubeUrl = youtubeIngestionUrl + '/' + youtubeStreamName
 
   const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookStreamKey=${facebookStreamKey}`
@@ -170,7 +171,7 @@ function Broadcast() {
     videoRef.current.play()
   }
 
-  // authenticate AND loadClient ARE CALLED FIRST
+  //!!! authenticate AND loadClient ARE CALLED FIRST
   const authenticate = () => {
     return gapi.auth2
       .getAuthInstance()
@@ -192,7 +193,7 @@ function Broadcast() {
       .catch((err) => console.log('Error loading GAPI client for API', err))
   }
 
-  // createBroadcast IS CALLED SECOND. BROADCAST APPEARS ON YOUTUBE
+  //!!! createBroadcast IS CALLED SECOND. BROADCAST APPEARS ON YOUTUBE
   const createBroadcast = () => {
     return gapi.client.youtube.liveBroadcasts
       .insert({
@@ -219,7 +220,6 @@ function Broadcast() {
         },
       })
       .then((res) => {
-        // Handle the results here (response.result has the parsed body).
         console.log('Response', res)
         console.log(res.result.id)
         setbroadcastId(res.result.id)
@@ -229,7 +229,7 @@ function Broadcast() {
       })
   }
 
-  // CALL createStream AFTER createBroadcast. IN THE RESPONSE SET youtubeIngestionUrl AND youtubeStreamName
+  //!!! CALL createStream AFTER createBroadcast. IN THE RESPONSE SET youtubeIngestionUrl AND youtubeStreamName
   const createStream = () => {
     return gapi.client.youtube.liveStreams
       .insert({
@@ -254,6 +254,9 @@ function Broadcast() {
       .then((res) => {
         console.log('Response', res)
 
+        setstreamId(res.result.id)
+        console.log('streamID' + res.result.id)
+
         setYoutubeIngestionUrl(res.result.cdn.ingestionInfo.ingestionAddress)
         console.log(res.result.cdn.ingestionInfo.ingestionAddress)
 
@@ -265,11 +268,27 @@ function Broadcast() {
       })
   }
 
-  // LAST FUNCTION TO BE CALLED BEFORE GOING LIVE.
+  //!!! LAST FUNCTION TO BE CALLED BEFORE GOING LIVE.
   const bindBroadcastToStream = () => {
     return gapi.client.youtube.liveBroadcasts
       .bind({
         part: ['id,snippet,contentDetails,status'],
+        id: broadcastId,
+        streamId: streamId,
+      })
+      .then((res) => {
+        console.log('Response', res)
+      })
+      .catch((err) => {
+        console.error('Execute error', err)
+      })
+  }
+
+  const transitionToLive = () => {
+    return gapi.client.youtube.liveBroadcasts
+      .transition({
+        part: ['id,snippet,contentDetails,status'],
+        broadcastStatus: 'live',
         id: broadcastId,
       })
       .then((res) => {
@@ -277,7 +296,7 @@ function Broadcast() {
         console.log('Response', res)
       })
       .catch((err) => {
-        console.error('Execute error', err)
+        console.log('Execute error', err)
       })
   }
 
@@ -332,6 +351,7 @@ function Broadcast() {
           <button onClick={createBroadcast}>2. create broadcast</button>
           <button onClick={createStream}>3. create stream</button>
           <button onClick={bindBroadcastToStream}>4. bind broadcast</button>
+          <button onClick={transitionToLive}>5. transition to live</button>
         </div>
       </div>
     </>
