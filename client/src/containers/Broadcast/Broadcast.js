@@ -300,6 +300,22 @@ function Broadcast() {
       })
   }
 
+  const transitionToCompleted = () => {
+    return gapi.client.youtube.liveBroadcasts
+      .transition({
+        part: ['id,snippet,contentDetails,status'],
+        broadcastStatus: 'complete',
+        id: broadcastId,
+      })
+      .then((res) => {
+        // Handle the results here (response.result has the parsed body).
+        console.log('Response', res)
+      })
+      .catch((err) => {
+        console.log('Execute error', err)
+      })
+  }
+
   gapi.load('client:auth2', function () {
     gapi.auth2.init({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
@@ -352,6 +368,9 @@ function Broadcast() {
           <button onClick={createStream}>3. create stream</button>
           <button onClick={bindBroadcastToStream}>4. bind broadcast</button>
           <button onClick={transitionToLive}>6. transition to live</button>
+          <button onClick={transitionToCompleted}>
+            7. transition to complete
+          </button>
         </div>
       </div>
     </>
