@@ -5,10 +5,17 @@ import deleteAllCookies from '../../utils/deleteAllCookies'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 
 function TopNavbar() {
+  const handleClick = () => {
+    alert(
+      'You are currently on the free tier. If you want more features please email toshvelaga@gmail.com'
+    )
+  }
   return (
     <Navbar>
       {/* <NavItem icon={<BellIcon />} /> */}
-      <button className={navbarStyles.upgradeButton}>Upgrade</button>
+      <button onClick={handleClick} className={navbarStyles.upgradeButton}>
+        Upgrade
+      </button>
       <NavItem icon={<FaIcons.FaUser size={20} />}>
         <DropdownMenu></DropdownMenu>
       </NavItem>

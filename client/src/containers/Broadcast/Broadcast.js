@@ -31,6 +31,8 @@ function Broadcast() {
   const [streamId, setstreamId] = useState('')
   const [broadcastId, setbroadcastId] = useState('')
 
+  const [auth, setAuth] = useState(null)
+
   const videoRef = useRef()
   const ws = useRef()
 
@@ -349,7 +351,7 @@ function Broadcast() {
         </div>
         <div className='button-container'>
           <BroadcastButton
-            title={!isActive ? '5) Go Live' : 'Stop Recording'}
+            title={!isActive ? 'Go Live' : 'Stop Recording'}
             fx={!isActive ? startStream : stopStream}
           />
           {/* <BroadcastButton title='Disable Camera' fx={toggleCamera} /> */}
@@ -360,7 +362,7 @@ function Broadcast() {
           <BroadcastButton title={!mute ? 'Mute' : 'Muted'} fx={toggleMute} />
         </div>
 
-        <div style={{ marginTop: '1rem' }}>
+        {/* <div style={{ marginTop: '1rem' }}>
           <button onClick={() => authenticate().then(loadClient)}>
             1. authenticate
           </button>
@@ -371,7 +373,7 @@ function Broadcast() {
           <button onClick={transitionToCompleted}>
             7. transition to complete
           </button>
-        </div>
+        </div> */}
       </div>
     </>
   )
