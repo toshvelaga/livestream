@@ -9,6 +9,7 @@ import setCookie from '../../utils/setCookie'
 function Register() {
   const [email, setEmail] = useState('')
   const [error, seterror] = useState('')
+  const [loading, setloading] = useState(false)
 
   const history = useHistory()
 
@@ -18,6 +19,7 @@ function Register() {
 
   const sendAuthCode = async () => {
     try {
+      setloading(true)
       const response = await API.post('/user/register', {
         email: email,
       })
@@ -30,6 +32,8 @@ function Register() {
       }
     } catch (err) {
       console.log(err.response) // some reason error message
+    } finally {
+      setloading(false)
     }
   }
 
@@ -58,7 +62,12 @@ function Register() {
           />
         </div>
         <div className='register-button'>
-          <Button style={{ width: '100%' }} title='Sign Up' fx={handleClick} />
+          <Button
+            loading={loading}
+            style={{ width: '100%' }}
+            title='Sign Up'
+            fx={handleClick}
+          />
         </div>
         <p style={{ color: 'grey', marginTop: '1rem', textAlign: 'center' }}>
           <Link

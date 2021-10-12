@@ -9,6 +9,7 @@ import './Login.css'
 function Login() {
   const [email, setEmail] = useState('')
   const [error, seterror] = useState('')
+  const [loading, setloading] = useState(false)
 
   const history = useHistory()
 
@@ -18,6 +19,7 @@ function Login() {
 
   const sendAuthCode = async () => {
     try {
+      setloading(true)
       const response = await API.post('/user/login', {
         email: email,
       })
@@ -30,6 +32,8 @@ function Login() {
       }
     } catch (err) {
       console.log(err.response) // some reason error message
+    } finally {
+      setloading(false)
     }
   }
 
@@ -54,7 +58,12 @@ function Login() {
             errorMsg={error ? error : null}
           />
         </div>
-        <Button style={{ width: '100%' }} title='Sign In' fx={handleClick} />
+        <Button
+          loading={loading}
+          style={{ width: '100%' }}
+          title='Sign In'
+          fx={handleClick}
+        />
 
         <p style={{ color: 'grey', marginTop: '1rem', textAlign: 'center' }}>
           <Link
