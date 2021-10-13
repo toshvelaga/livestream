@@ -10,6 +10,7 @@ import setCookie from '../../utils/setCookie'
 function Code() {
   const [code, setCode] = useState('')
   const [error, seterror] = useState('')
+  const [loading, setloading] = useState(false)
 
   const history = useHistory()
 
@@ -22,6 +23,7 @@ function Code() {
     }
 
     try {
+      setloading(true)
       let result = await API.post('/compare-code', data)
       console.log(result.data.match)
       if (!result.data.match) {
@@ -32,6 +34,8 @@ function Code() {
       }
     } catch (error) {
       console.log(error)
+    } finally {
+      setloading(false)
     }
   }
 
