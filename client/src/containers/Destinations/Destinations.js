@@ -11,7 +11,6 @@ import { SCOPE } from '../../constants/constants'
 
 function Destinations() {
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
-  const [youtubeStreamKey, setYoutubeStreamKey] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
   const [buttonText, setbuttonText] = useState('Add Destination')
   let userId = getCookie('userId')
@@ -23,7 +22,6 @@ function Destinations() {
       .then((response) => {
         if (response) {
           setTwitchStreamKey(response.data.twitch_stream_key)
-          setYoutubeStreamKey(response.data.youtube_stream_key)
           setFacebookStreamKey(response.data.facebook_stream_key)
         }
       })
@@ -33,7 +31,6 @@ function Destinations() {
   const handleClick = () => {
     const data = {
       twitchStreamKey,
-      youtubeStreamKey,
       facebookStreamKey,
       userId,
     }
