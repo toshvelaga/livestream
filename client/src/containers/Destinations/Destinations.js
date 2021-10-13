@@ -5,6 +5,7 @@ import Button from '../../components/Buttons/Button'
 import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
 import './Destinations.css'
+import { SCOPE } from '../../constants/constants'
 
 /* global gapi */
 
@@ -12,7 +13,7 @@ function Destinations() {
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
   const [youtubeStreamKey, setYoutubeStreamKey] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
-  const [buttonText, setbuttonText] = useState('Save')
+  const [buttonText, setbuttonText] = useState('Add Destination')
   let userId = getCookie('userId')
 
   useEffect(() => {
@@ -47,6 +48,16 @@ function Destinations() {
       .catch((err) => console.log(err))
   }
 
+  const authenticate = () => {
+    return gapi.auth2
+      .getAuthInstance()
+      .signIn({ scope: SCOPE })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <>
       <Navbar />
@@ -59,13 +70,7 @@ function Destinations() {
           onChange={(e) => setTwitchStreamKey(e.target.value)}
           errorMsg={null}
         />
-        <TextInput
-          label='Youtube Stream Key (Required)'
-          placeholder=''
-          value={youtubeStreamKey}
-          onChange={(e) => setYoutubeStreamKey(e.target.value)}
-          errorMsg={null}
-        />
+
         <TextInput
           label='Facebook Stream Key (Coming Soon)'
           placeholder=''
@@ -74,6 +79,13 @@ function Destinations() {
           disabled={true}
           errorMsg={null}
         />
+
+        <button
+          onClick={authenticate}
+          style={{ padding: '1rem', marginBottom: '1rem' }}
+        >
+          Youtube
+        </button>
 
         <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} />
       </div>

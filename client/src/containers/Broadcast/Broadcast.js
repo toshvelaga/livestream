@@ -6,14 +6,12 @@ import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
 import API from '../../api/api'
 import './Broadcast.css'
+import { SCOPE, DISCOVERY } from '../../constants/constants'
 
 const CAPTURE_OPTIONS = {
   audio: true,
   video: true,
 }
-
-const SCOPE = 'https://www.googleapis.com/auth/youtube.force-ssl'
-const DISCOVERY = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'
 
 /* global gapi */
 
@@ -49,6 +47,7 @@ function Broadcast() {
 
   let liveStream
   let liveStreamRecorder
+  let GoogleAuth
 
   if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
     videoRef.current.srcObject = mediaStream
@@ -120,6 +119,10 @@ function Broadcast() {
     return () => clearInterval(interval)
   }, [isActive, seconds])
 
+  useEffect(() => {
+    handleClientLoad()
+  }, [])
+
   const toggle = () => {
     setIsActive(!isActive)
   }
@@ -176,26 +179,48 @@ function Broadcast() {
     videoRef.current.play()
   }
 
-  //!!! authenticate AND loadClient ARE CALLED FIRST
-  const authenticate = () => {
-    return gapi.auth2
-      .getAuthInstance()
-      .signIn({ scope: SCOPE })
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => console.log(err))
+  function handleClientLoad() {
+    // Load the API's client and auth2 modules.
+    // Call the initClient function after the modules load.
+    gapi.load('client:auth2', initClient)
   }
 
-  const loadClient = () => {
-    gapi.client.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY)
-    return gapi.client
-      .load(DISCOVERY)
-      .then((res) => {
-        console.log('GAPI client loaded for API')
-        console.log(res)
+  function initClient() {
+    // Initialize the gapi.client object, which app uses to make API requests.
+    // Get API key and client ID from API Console.
+    // 'scope' field specifies space-delimited list of access scopes.
+    gapi.client
+      .init({
+        apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        discoveryDocs: [DISCOVERY],
+        scope: SCOPE,
       })
-      .catch((err) => console.log('Error loading GAPI client for API', err))
+      .then(function () {
+        GoogleAuth = gapi.auth2.getAuthInstance()
+
+        // Listen for sign-in state changes.
+        GoogleAuth.isSignedIn.listen(updateSigninStatus)
+
+        // Handle initial sign-in state. (Determine if user is already signed in.)
+        var user = GoogleAuth.currentUser.get()
+        setSigninStatus()
+      })
+  }
+
+  function setSigninStatus() {
+    var user = GoogleAuth.currentUser.get()
+    console.log(user)
+    var isAuthorized = user.hasGrantedScopes(SCOPE)
+    if (isAuthorized) {
+      console.log('signed in and authorized')
+    } else {
+      console.log('not authorized')
+    }
+  }
+
+  function updateSigninStatus() {
+    setSigninStatus()
   }
 
   //!!! createBroadcast IS CALLED SECOND. BROADCAST APPEARS ON YOUTUBE
@@ -320,16 +345,6 @@ function Broadcast() {
       })
   }
 
-  gapi.load('client:auth2', function () {
-    gapi.auth2.init({
-      apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-      scope: 'https://www.googleapis.com/auth/youtube.force-ssl',
-      discoveryDocs:
-        'https://youtube.googleapis.com/$discovery/rest?version=v3',
-    })
-  })
-
   return (
     <>
       <Navbar />
@@ -369,9 +384,6 @@ function Broadcast() {
         </div>
 
         <div style={{ marginTop: '1rem' }}>
-          <button onClick={() => authenticate().then(loadClient)}>
-            1. authenticate
-          </button>
           <button onClick={createBroadcast}>2. create broadcast</button>
           <button onClick={createStream}>3. create stream</button>
           <button onClick={bindBroadcastToStream}>4. bind broadcast</button>
