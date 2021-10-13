@@ -12,6 +12,9 @@ const CAPTURE_OPTIONS = {
   video: true,
 }
 
+const SCOPE = 'https://www.googleapis.com/auth/youtube.force-ssl'
+const DISCOVERY = 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'
+
 /* global gapi */
 
 function Broadcast() {
@@ -177,7 +180,7 @@ function Broadcast() {
   const authenticate = () => {
     return gapi.auth2
       .getAuthInstance()
-      .signIn({ scope: 'https://www.googleapis.com/auth/youtube.force-ssl' })
+      .signIn({ scope: SCOPE })
       .then((res) => {
         console.log(res)
       })
@@ -187,7 +190,7 @@ function Broadcast() {
   const loadClient = () => {
     gapi.client.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY)
     return gapi.client
-      .load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
+      .load(DISCOVERY)
       .then((res) => {
         console.log('GAPI client loaded for API')
         console.log(res)
@@ -209,7 +212,6 @@ function Broadcast() {
           },
           contentDetails: {
             recordFromStart: true,
-            // startWithSlate: true,
             enableAutoStart: false,
             monitorStream: {
               enableMonitorStream: false,
@@ -320,7 +322,11 @@ function Broadcast() {
 
   gapi.load('client:auth2', function () {
     gapi.auth2.init({
+      apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+      scope: 'https://www.googleapis.com/auth/youtube.force-ssl',
+      discoveryDocs:
+        'https://youtube.googleapis.com/$discovery/rest?version=v3',
     })
   })
 
@@ -362,7 +368,7 @@ function Broadcast() {
           <BroadcastButton title={!mute ? 'Mute' : 'Muted'} fx={toggleMute} />
         </div>
 
-        {/* <div style={{ marginTop: '1rem' }}>
+        <div style={{ marginTop: '1rem' }}>
           <button onClick={() => authenticate().then(loadClient)}>
             1. authenticate
           </button>
@@ -373,7 +379,7 @@ function Broadcast() {
           <button onClick={transitionToCompleted}>
             7. transition to complete
           </button>
-        </div> */}
+        </div>
       </div>
     </>
   )
