@@ -77,18 +77,18 @@ function Broadcast() {
     }
   }, [mediaStream])
 
-  useEffect(() => {
-    let userId = getCookie('userId')
+  // useEffect(() => {
+  //   let userId = getCookie('userId')
 
-    API.post('/destinations', { userId })
-      .then((response) => {
-        if (response) {
-          setTwitchStreamKey(response.data.twitch_stream_key)
-          setFacebookStreamKey(response.data.facebook_stream_key)
-        }
-      })
-      .catch((err) => console.log(err))
-  }, [])
+  //   API.post('/destinations', { userId })
+  //     .then((response) => {
+  //       if (response) {
+  //         setTwitchStreamKey(response.data.twitch_stream_key)
+  //         setFacebookStreamKey(response.data.facebook_stream_key)
+  //       }
+  //     })
+  //     .catch((err) => console.log(err))
+  // }, [])
 
   useEffect(() => {
     ws.current =
@@ -128,24 +128,18 @@ function Broadcast() {
   }
 
   const startStream = () => {
-    if (!twitchStreamKey || !youtubeStreamName) {
-      alert(
-        'Please add your twitch and youtube stream keys first under destinations'
-      )
-    } else {
-      toggle()
-      liveStream = videoRef.current.captureStream(30) // 30 FPS
-      liveStreamRecorder = new MediaRecorder(liveStream, {
-        mimeType: 'video/webm;codecs=h264',
-        videoBitsPerSecond: 3 * 1024 * 1024,
-      })
-      liveStreamRecorder.ondataavailable = (e) => {
-        ws.current.send(e.data)
-        console.log('send data', e.data)
-      }
-      // Start recording, and dump data every second
-      liveStreamRecorder.start(1000)
+    toggle()
+    liveStream = videoRef.current.captureStream(30) // 30 FPS
+    liveStreamRecorder = new MediaRecorder(liveStream, {
+      mimeType: 'video/webm;codecs=h264',
+      videoBitsPerSecond: 3 * 1024 * 1024,
+    })
+    liveStreamRecorder.ondataavailable = (e) => {
+      ws.current.send(e.data)
+      console.log('send data', e.data)
     }
+    // Start recording, and dump data every second
+    liveStreamRecorder.start(1000)
   }
 
   const stopStream = () => {
