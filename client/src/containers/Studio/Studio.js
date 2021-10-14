@@ -32,8 +32,6 @@ function Studio() {
   const [streamId, setstreamId] = useState('')
   const [broadcastId, setbroadcastId] = useState('')
 
-  const [auth, setAuth] = useState(null)
-
   const videoRef = useRef()
   const ws = useRef()
 
@@ -218,96 +216,6 @@ function Studio() {
     setSigninStatus()
   }
 
-  //!!! createBroadcast IS CALLED SECOND. BROADCAST APPEARS ON YOUTUBE
-  const createBroadcast = () => {
-    return gapi.client.youtube.liveBroadcasts
-      .insert({
-        part: ['id,snippet,contentDetails,status'],
-        resource: {
-          snippet: {
-            title: `New Video: ${new Date().toISOString()}`,
-            scheduledStartTime: `${new Date().toISOString()}`,
-            description:
-              'A description of your video stream. This field is optional.',
-          },
-          contentDetails: {
-            recordFromStart: true,
-            enableAutoStart: false,
-            monitorStream: {
-              enableMonitorStream: false,
-            },
-          },
-          status: {
-            privacyStatus: 'public',
-            selfDeclaredMadeForKids: true,
-          },
-        },
-      })
-      .then((res) => {
-        console.log('Response', res)
-        console.log(res.result.id)
-        setbroadcastId(res.result.id)
-      })
-      .catch((err) => {
-        console.error('Execute error', err)
-      })
-  }
-
-  //!!! CALL createStream AFTER createBroadcast. IN THE RESPONSE SET youtubeIngestionUrl AND youtubeStreamName
-  const createStream = () => {
-    return gapi.client.youtube.liveStreams
-      .insert({
-        part: ['snippet,cdn,contentDetails,status'],
-        resource: {
-          snippet: {
-            title: "Your new video stream's name",
-            description:
-              'A description of your video stream. This field is optional.',
-          },
-          cdn: {
-            frameRate: 'variable',
-            ingestionType: 'rtmp',
-            resolution: 'variable',
-            format: '',
-          },
-          contentDetails: {
-            isReusable: true,
-          },
-        },
-      })
-      .then((res) => {
-        console.log('Response', res)
-
-        setstreamId(res.result.id)
-        console.log('streamID' + res.result.id)
-
-        setYoutubeIngestionUrl(res.result.cdn.ingestionInfo.ingestionAddress)
-        console.log(res.result.cdn.ingestionInfo.ingestionAddress)
-
-        setYoutubeStreamName(res.result.cdn.ingestionInfo.streamName)
-        console.log(res.result.cdn.ingestionInfo.streamName)
-      })
-      .catch((err) => {
-        console.log('Execute error', err)
-      })
-  }
-
-  //!!! LAST FUNCTION TO BE CALLED BEFORE GOING LIVE.
-  const bindBroadcastToStream = () => {
-    return gapi.client.youtube.liveBroadcasts
-      .bind({
-        part: ['id,snippet,contentDetails,status'],
-        id: broadcastId,
-        streamId: streamId,
-      })
-      .then((res) => {
-        console.log('Response', res)
-      })
-      .catch((err) => {
-        console.error('Execute error', err)
-      })
-  }
-
   const transitionToLive = () => {
     return gapi.client.youtube.liveBroadcasts
       .transition({
@@ -379,9 +287,9 @@ function Studio() {
         </div>
 
         <div style={{ marginTop: '1rem' }}>
-          <button onClick={createBroadcast}>2. create broadcast</button>
+          {/* <button onClick={createBroadcast}>2. create broadcast</button>
           <button onClick={createStream}>3. create stream</button>
-          <button onClick={bindBroadcastToStream}>4. bind broadcast</button>
+          <button onClick={bindBroadcastToStream}>4. bind broadcast</button> */}
           <button onClick={transitionToLive}>6. transition to live</button>
           <button onClick={transitionToCompleted}>
             7. transition to complete
