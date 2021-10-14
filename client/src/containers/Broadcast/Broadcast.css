@@ -9,12 +9,14 @@
   font-family: var(--main-font);
 }
 
-.video-container {
-  width: 100%;
-}
-
-.button-container {
-  margin-top: 0.5rem;
+.broadcast-modal {
+  width: 500px;
+  background-color: #ddd;
+  display: block;
+  margin: 0 auto;
+  margin-top: 5rem;
+  height: 100px;
+  border-radius: 5px;
 }
 
 @media only screen and (max-width: 1000px) {
