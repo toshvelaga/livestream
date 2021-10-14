@@ -32,6 +32,10 @@ function Broadcast() {
 
   console.log(youtubePrivacy)
 
+  const submitHandler = () => {
+    alert('This was clicked.')
+  }
+
   return (
     <>
       <Navbar />
@@ -65,7 +69,11 @@ function Broadcast() {
           options={YOUTUBE_PRIVACY_POLICY}
           onChange={(e) => setyoutubePrivacy(e)}
         />
-        <Button style={{ width: '100%' }} title='Create Broadcast' />
+        <Button
+          style={{ width: '100%' }}
+          title='Create Broadcast'
+          fx={submitHandler}
+        />
       </Modal>
     </>
   )
