@@ -11,8 +11,8 @@ function Selected(props) {
         <label
           style={{
             display: 'block',
-            fontWeight: 600,
-            // marginBottom: '8px',
+            // fontWeight: 600,
+            marginBottom: '.5rem',
             color: props.color,
           }}
           className='selected-label'
@@ -20,6 +20,7 @@ function Selected(props) {
           {props.label}
         </label>
         <Select
+          className='selected'
           value={props.value}
           onChange={props.onChange}
           options={props.options}
@@ -28,6 +29,7 @@ function Selected(props) {
           theme={(theme) => ({
             ...theme,
             // borderRadius: 0,
+
             colors: {
               ...theme.colors,
               // primary25: "hotpink",

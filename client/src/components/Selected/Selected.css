@@ -5,9 +5,12 @@
 
 .selected-label {
   font-family: var(--main-font);
-  font-size: 18px;
 }
 
 .selected-container {
+  margin-bottom: 1rem;
+}
+
+.selected {
   margin-bottom: 1rem;
 }

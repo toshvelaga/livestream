@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { YOUTUBE_PRIVACY_POLICY } from '../../constants/constants'
 import Button from '../../components/Buttons/Button'
+import Selected from '../../components/Selected/Selected'
 import TextInput from '../../components/TextInput/TextInput'
 import TextArea from '../../components/TextArea/TextArea'
 import Navbar from '../../components/Navbar/Navbar'
@@ -51,6 +53,7 @@ function Broadcast() {
           label='Description'
           style={{ width: '100%', marginBottom: '1rem' }}
         />
+        <Selected label='Privacy' options={YOUTUBE_PRIVACY_POLICY} />
         <Button style={{ width: '100%' }} title='Create Broadcast' />
       </Modal>
     </>
