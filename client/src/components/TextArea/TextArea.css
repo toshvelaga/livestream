@@ -1,6 +1,19 @@
+:root {
+  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+}
+
 .textarea {
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 5px;
   resize: none;
+  margin: 0.5rem 0;
+  padding: 14px 10px;
+  font-family: var(--main-font);
+}
+
+.textarea:focus {
+  outline: none !important;
+  border: 1px solid #121212;
 }

@@ -47,7 +47,10 @@ function Broadcast() {
           onChange={(e) => setyoutubeTitle(e.target.value)}
           errorMsg={null}
         />
-        <TextArea style={{ width: '100%', marginBottom: '1rem' }} />
+        <TextArea
+          label='Description'
+          style={{ width: '100%', marginBottom: '1rem' }}
+        />
         <Button style={{ width: '100%' }} title='Create Broadcast' />
       </Modal>
     </>
