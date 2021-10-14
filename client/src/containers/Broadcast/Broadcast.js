@@ -6,8 +6,10 @@ function Broadcast() {
   return (
     <>
       <Navbar />
-      <div className='dashboard-container'></div>
-      <Button title='Create a new Broadcast' />
+      <div className='dashboard-container'>
+        <h2 style={{ marginTop: '2rem' }}>Broadcasts</h2>
+        <Button title='Create new Broadcast' />
+      </div>
     </>
   )
 }
