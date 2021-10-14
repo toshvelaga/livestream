@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Button from '../../components/Buttons/Button'
 import TextInput from '../../components/TextInput/TextInput'
+import TextArea from '../../components/TextArea/TextArea'
 import Navbar from '../../components/Navbar/Navbar'
 import Modal from 'react-modal'
 import './Broadcast.css'
@@ -46,6 +47,7 @@ function Broadcast() {
           onChange={(e) => setyoutubeTitle(e.target.value)}
           errorMsg={null}
         />
+        <TextArea style={{ width: '100%', marginBottom: '1rem' }} />
         <Button style={{ width: '100%' }} title='Create Broadcast' />
       </Modal>
     </>
