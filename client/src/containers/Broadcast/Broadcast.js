@@ -9,6 +9,7 @@ import Modal from 'react-modal'
 import './Broadcast.css'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
+Modal.defaultStyles.overlay.zIndex = 101
 
 function Broadcast() {
   const [isModalOpen, setisModalOpen] = useState(false)
@@ -28,6 +29,8 @@ function Broadcast() {
   const openModal = () => {
     setisModalOpen(true)
   }
+
+  console.log(youtubePrivacy)
 
   return (
     <>
