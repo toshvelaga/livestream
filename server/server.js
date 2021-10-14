@@ -14,11 +14,13 @@ app.use(
 )
 
 const authRouter = require('./routes/auth')
+const broadcastsRouter = require('./routes/broadcasts')
 const compareCodeRouter = require('./routes/compareCode')
 const destinationsRouter = require('./routes/destinations')
 const referralRouter = require('./routes/referral')
 
 app.use('/', authRouter)
+app.use('/', broadcastsRouter)
 app.use('/', compareCodeRouter)
 app.use('/', destinationsRouter)
 app.use('/', referralRouter)
