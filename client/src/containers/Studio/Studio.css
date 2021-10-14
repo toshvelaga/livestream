@@ -1,0 +1,30 @@
+:root {
+  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+}
+
+.dashboard-container {
+  width: 50%;
+  margin: 1rem auto;
+  font-family: var(--main-font);
+}
+
+.video-container {
+  width: 100%;
+}
+
+.button-container {
+  margin-top: 0.5rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .dashboard-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .dashboard-container {
+    width: 90%;
+  }
+}

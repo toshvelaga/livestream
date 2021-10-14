@@ -11,6 +11,7 @@ import ProtectedRoute from './ProtectedRoute'
 import AuthRoute from './AuthRoute'
 import Destinations from './containers/Destinations/Destinations'
 import Referral from './containers/Referral/Referral'
+import Studio from './containers/Studio/Studio'
 import Website from './website/Website/Website'
 
 function App() {
@@ -33,6 +34,8 @@ function App() {
           <ProtectedRoute path='/broadcast' component={Broadcast} />
           <ProtectedRoute path='/destinations' component={Destinations} />
           <ProtectedRoute path='/referrals' component={Referral} />
+          <ProtectedRoute path='/studio' component={Studio} />
+
           <AuthRoute exact path='/login/code' component={Code} />
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register/code' component={Code} />
