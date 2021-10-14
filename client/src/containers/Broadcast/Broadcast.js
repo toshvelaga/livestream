@@ -13,6 +13,8 @@ Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 function Broadcast() {
   const [isModalOpen, setisModalOpen] = useState(false)
   const [youtubeTitle, setyoutubeTitle] = useState('')
+  const [youtubeDescription, setyoutubeDescription] = useState('')
+  const [youtubePrivacy, setyoutubePrivacy] = useState('')
 
   const closeModal = () => {
     setisModalOpen(false)
@@ -52,8 +54,14 @@ function Broadcast() {
         <TextArea
           label='Description'
           style={{ width: '100%', marginBottom: '1rem' }}
+          value={youtubeDescription}
+          onChange={(e) => setyoutubeDescription(e.target.value)}
         />
-        <Selected label='Privacy' options={YOUTUBE_PRIVACY_POLICY} />
+        <Selected
+          label='Privacy'
+          options={YOUTUBE_PRIVACY_POLICY}
+          onChange={(e) => setyoutubePrivacy(e)}
+        />
         <Button style={{ width: '100%' }} title='Create Broadcast' />
       </Modal>
     </>
