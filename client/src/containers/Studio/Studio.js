@@ -77,18 +77,19 @@ function Studio() {
     }
   }, [mediaStream])
 
-  // useEffect(() => {
-  //   let userId = getCookie('userId')
+  useEffect(() => {
+    // need this useEffect to transition to live
+    let userId = getCookie('userId')
 
-  //   API.post('/destinations', { userId })
-  //     .then((response) => {
-  //       if (response) {
-  //         setTwitchStreamKey(response.data.twitch_stream_key)
-  //         setFacebookStreamKey(response.data.facebook_stream_key)
-  //       }
-  //     })
-  //     .catch((err) => console.log(err))
-  // }, [])
+    API.post('/destinations', { userId })
+      .then((response) => {
+        if (response) {
+          setTwitchStreamKey(response.data.twitch_stream_key)
+          setFacebookStreamKey(response.data.facebook_stream_key)
+        }
+      })
+      .catch((err) => console.log(err))
+  }, [])
 
   useEffect(() => {
     ws.current =
@@ -342,7 +343,7 @@ function Studio() {
   return (
     <>
       <Navbar />
-      <div className='dashboard-container'>
+      <div className='studio-container'>
         <div id='container'>
           <div
             style={

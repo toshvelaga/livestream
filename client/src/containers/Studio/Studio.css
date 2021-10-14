@@ -3,7 +3,7 @@
     'Helvetica Neue', Ubuntu, Arial, sans-serif;
 }
 
-.dashboard-container {
+.studio-container {
   width: 50%;
   margin: 1rem auto;
   font-family: var(--main-font);
@@ -13,18 +13,18 @@
   width: 100%;
 }
 
-.button-container {
+.studio-container {
   margin-top: 0.5rem;
 }
 
 @media only screen and (max-width: 1000px) {
-  .dashboard-container {
+  .studio-container {
     width: 80%;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .dashboard-container {
+  .studio-container {
     width: 90%;
   }
 }
