@@ -15,3 +15,13 @@ CREATE TABLE destinations (
     facebook_stream_key character varying(255),
     user_id uuid UNIQUE REFERENCES users(user_id)
 );
+
+CREATE TABLE broadcasts (
+    youtube_title character varying(255),
+    youtube_description text,
+    youtube_privacy_policy character varying(255),
+    broadcast_time_created timestamp without time zone,
+    user_id uuid UNIQUE REFERENCES users(user_id),
+    broadcast_id character varying(255),
+    stream_id character varying(255)
+);
