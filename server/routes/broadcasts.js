@@ -2,22 +2,22 @@ const express = require('express'),
   router = express.Router(),
   pool = require('../db')
 
-router.put('/api/broadcasts', (req, res, next) => {
+router.post('/api/broadcasts', (req, res, next) => {
+  let timeCreated = new Date().toUTCString()
   const values = [
     req.body.youtubeTitle,
     req.body.youtubeDescription,
     req.body.youtubePrivacyPolicy,
+    timeCreated,
+    req.body.youtubeDestinationUrl,
     req.body.userId,
     req.body.broadcastId,
     req.body.streamId,
   ]
 
   pool.query(
-    `INSERT INTO destinations (twitch_stream_key, youtube_stream_key, facebook_stream_key, user_id)
-			VALUES($1, $2, $3, $4)
-			ON CONFLICT (user_id) DO UPDATE SET twitch_stream_key = EXCLUDED.twitch_stream_key, 
-			youtube_stream_key = EXCLUDED.youtube_stream_key, facebook_stream_key = EXCLUDED.facebook_stream_key, 
-			user_id = EXCLUDED.user_id`,
+    `INSERT INTO broadcasts (youtube_title, youtube_description, youtube_privacy_policy, broadcast_time_created, youtube_destination_url, user_id, broadcast_id, stream_id)
+		VALUES($1, $2, $3, $4, $5, $6 ,$7, $8)`,
     values,
     (q_err, q_res) => {
       if (q_err) return next(q_err)
@@ -26,11 +26,11 @@ router.put('/api/broadcasts', (req, res, next) => {
   )
 })
 
-router.post('/api/broadcasts', async (req, res) => {
+router.get('/api/broadcasts', async (req, res) => {
   const userId = req.body.userId
 
   let results = await pool.query(
-    `SELECT * FROM destinations WHERE user_id = $1`,
+    `SELECT * FROM broadcasts WHERE user_id = $1`,
     [userId]
   )
   if (results.rows) {

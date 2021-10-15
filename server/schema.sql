@@ -23,5 +23,6 @@ CREATE TABLE broadcasts (
     broadcast_time_created timestamp without time zone,
     user_id uuid UNIQUE REFERENCES users(user_id),
     broadcast_id character varying(255),
-    stream_id character varying(255)
+    stream_id character varying(255),
+    youtube_destination_url character varying(255)
 );
