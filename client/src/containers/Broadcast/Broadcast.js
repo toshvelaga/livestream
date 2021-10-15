@@ -4,6 +4,7 @@ import {
   SCOPE,
   DISCOVERY,
 } from '../../constants/constants'
+import axios from 'axios'
 import Button from '../../components/Buttons/Button'
 import Selected from '../../components/Selected/Selected'
 import TextInput from '../../components/TextInput/TextInput'
@@ -105,10 +106,9 @@ function Broadcast() {
         part: ['id,snippet,contentDetails,status'],
         resource: {
           snippet: {
-            title: `New Video: ${new Date().toISOString()}`,
+            title: youtubeTitle,
             scheduledStartTime: `${new Date().toISOString()}`,
-            description:
-              'A description of your video stream. This field is optional.',
+            description: youtubeDescription,
           },
           contentDetails: {
             recordFromStart: true,
@@ -118,7 +118,7 @@ function Broadcast() {
             },
           },
           status: {
-            privacyStatus: 'public',
+            privacyStatus: youtubePrivacy,
             selfDeclaredMadeForKids: true,
           },
         },
@@ -140,9 +140,8 @@ function Broadcast() {
         part: ['snippet,cdn,contentDetails,status'],
         resource: {
           snippet: {
-            title: "Your new video stream's name",
-            description:
-              'A description of your video stream. This field is optional.',
+            title: youtubeTitle,
+            description: youtubeDescription,
           },
           cdn: {
             frameRate: 'variable',
@@ -187,6 +186,8 @@ function Broadcast() {
         console.error('Execute error', err)
       })
   }
+
+  const saveYoutubeDataToDB = () => {}
 
   return (
     <>
