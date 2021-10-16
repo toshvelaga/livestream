@@ -48,8 +48,6 @@ function Broadcast() {
     setisModalOpen(true)
   }
 
-  console.log(youtubePrivacyPolicy)
-
   const submitHandler = () => {
     alert('This was clicked.')
   }
@@ -126,7 +124,7 @@ function Broadcast() {
             },
           },
           status: {
-            privacyStatus: youtubePrivacyPolicy,
+            privacyStatus: youtubePrivacyPolicy.value.toLowerCase(),
             selfDeclaredMadeForKids: true,
           },
         },
@@ -236,7 +234,9 @@ function Broadcast() {
         <Selected
           label='Privacy'
           options={YOUTUBE_PRIVACY_POLICY}
-          onChange={(e) => setyoutubePrivacyPolicy(e)}
+          onChange={(e) => {
+            setyoutubePrivacyPolicy(e)
+          }}
         />
         <Button
           style={{ width: '100%' }}
