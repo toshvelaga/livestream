@@ -4,13 +4,14 @@ import {
   SCOPE,
   DISCOVERY,
 } from '../../constants/constants'
-import axios from 'axios'
+import API from '../../api/api'
 import Button from '../../components/Buttons/Button'
 import Selected from '../../components/Selected/Selected'
 import TextInput from '../../components/TextInput/TextInput'
 import TextArea from '../../components/TextArea/TextArea'
 import Navbar from '../../components/Navbar/Navbar'
 import Modal from 'react-modal'
+import getCookie from '../../utils/getCookie'
 import './Broadcast.css'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
@@ -22,14 +23,16 @@ function Broadcast() {
   const [isModalOpen, setisModalOpen] = useState(false)
   const [youtubeTitle, setyoutubeTitle] = useState('')
   const [youtubeDescription, setyoutubeDescription] = useState('')
-  const [youtubePrivacy, setyoutubePrivacy] = useState('')
+  const [youtubePrivacyPolicy, setyoutubePrivacyPolicy] = useState('')
 
   const [youtubeIngestionUrl, setYoutubeIngestionUrl] = useState('')
   const [youtubeStreamName, setYoutubeStreamName] = useState('')
 
+  const [userId, setuserId] = useState('')
   const [streamId, setstreamId] = useState('')
   const [broadcastId, setbroadcastId] = useState('')
 
+  let youtubeDestinationUrl = youtubeIngestionUrl + '/' + youtubeStreamName
   let GoogleAuth
 
   const closeModal = () => {
@@ -45,11 +48,16 @@ function Broadcast() {
     setisModalOpen(true)
   }
 
-  console.log(youtubePrivacy)
+  console.log(youtubePrivacyPolicy)
 
   const submitHandler = () => {
     alert('This was clicked.')
   }
+
+  useEffect(() => {
+    let userId = getCookie('userId')
+    setuserId(userId)
+  }, [])
 
   useEffect(() => {
     handleClientLoad()
@@ -118,7 +126,7 @@ function Broadcast() {
             },
           },
           status: {
-            privacyStatus: youtubePrivacy,
+            privacyStatus: youtubePrivacyPolicy,
             selfDeclaredMadeForKids: true,
           },
         },
@@ -187,7 +195,21 @@ function Broadcast() {
       })
   }
 
-  const saveYoutubeDataToDB = () => {}
+  const saveYoutubeDataToDB = () => {
+    const data = {
+      youtubeTitle,
+      youtubeDescription,
+      youtubePrivacyPolicy,
+      // timeCreated,
+      youtubeDestinationUrl,
+      userId,
+      broadcastId,
+      streamId,
+    }
+    API.put('/broadcasts', data)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+  }
 
   return (
     <>
@@ -220,7 +242,7 @@ function Broadcast() {
         <Selected
           label='Privacy'
           options={YOUTUBE_PRIVACY_POLICY}
-          onChange={(e) => setyoutubePrivacy(e)}
+          onChange={(e) => setyoutubePrivacyPolicy(e)}
         />
         <Button
           style={{ width: '100%' }}
