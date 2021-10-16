@@ -130,10 +130,7 @@ function Broadcast() {
         },
       })
       .then((res) => {
-        // console.log('Response', res)
-        // console.log(res.result.id)
         return res.result.id
-        // setbroadcastId(res.result.id)
       })
   }
 
@@ -159,24 +156,18 @@ function Broadcast() {
         },
       })
       .then((res) => {
-        console.log('Response', res)
-
-        setstreamId(res.result.id)
-        console.log('streamID' + res.result.id)
-
-        setYoutubeIngestionUrl(res.result.cdn.ingestionInfo.ingestionAddress)
-        console.log(res.result.cdn.ingestionInfo.ingestionAddress)
-
-        setYoutubeStreamName(res.result.cdn.ingestionInfo.streamName)
-        console.log(res.result.cdn.ingestionInfo.streamName)
-      })
-      .catch((err) => {
-        console.log('Execute error', err)
+        return {
+          streamId: res.result.id,
+          youtubeDestinationUrl:
+            res.result.cdn.ingestionInfo.ingestionAddress +
+            '/' +
+            res.result.cdn.ingestionInfo.streamName,
+        }
       })
   }
 
   //!!! LAST FUNCTION TO BE CALLED BEFORE GOING LIVE.
-  const bindBroadcastToStream = () => {
+  const bindBroadcastToStream = (broadcastId, streamId) => {
     return gapi.client.youtube.liveBroadcasts.bind({
       part: ['id,snippet,contentDetails,status'],
       id: broadcastId,
@@ -184,14 +175,18 @@ function Broadcast() {
     })
   }
 
-  const saveYoutubeDataToDB = () => {
+  const saveYoutubeDataToDB = (
+    youtubeDestinationUrl,
+    broadcastId,
+    streamId
+  ) => {
     const data = {
       youtubeTitle,
       youtubeDescription,
       youtubePrivacyPolicy,
+      userId,
       // timeCreated,
       youtubeDestinationUrl,
-      userId,
       broadcastId,
       streamId,
     }
@@ -199,8 +194,20 @@ function Broadcast() {
   }
 
   const youtubePromiseChain = async () => {
-    const createdBroadcastId = await createBroadcast()
-    console.log('created broadcast id: ' + createdBroadcastId)
+    try {
+      const createdBroadcastId = await createBroadcast()
+      console.log('created broadcast id: ' + createdBroadcastId)
+
+      const createdStream = await createStream()
+      console.log(createdStream)
+      const createdStreamId = createdStream.streamId
+
+      await bindBroadcastToStream(createdBroadcastId, createdStreamId)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      console.log('completed')
+    }
   }
 
   return (
