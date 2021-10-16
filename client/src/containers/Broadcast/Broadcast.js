@@ -132,12 +132,10 @@ function Broadcast() {
         },
       })
       .then((res) => {
-        console.log('Response', res)
-        console.log(res.result.id)
-        setbroadcastId(res.result.id)
-      })
-      .catch((err) => {
-        console.error('Execute error', err)
+        // console.log('Response', res)
+        // console.log(res.result.id)
+        return res.result.id
+        // setbroadcastId(res.result.id)
       })
   }
 
@@ -181,18 +179,11 @@ function Broadcast() {
 
   //!!! LAST FUNCTION TO BE CALLED BEFORE GOING LIVE.
   const bindBroadcastToStream = () => {
-    return gapi.client.youtube.liveBroadcasts
-      .bind({
-        part: ['id,snippet,contentDetails,status'],
-        id: broadcastId,
-        streamId: streamId,
-      })
-      .then((res) => {
-        console.log('Response', res)
-      })
-      .catch((err) => {
-        console.error('Execute error', err)
-      })
+    return gapi.client.youtube.liveBroadcasts.bind({
+      part: ['id,snippet,contentDetails,status'],
+      id: broadcastId,
+      streamId: streamId,
+    })
   }
 
   const saveYoutubeDataToDB = () => {
@@ -206,9 +197,12 @@ function Broadcast() {
       broadcastId,
       streamId,
     }
-    API.put('/broadcasts', data)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
+    return API.put('/broadcasts', data)
+  }
+
+  const youtubePromiseChain = async () => {
+    const createdBroadcastId = await createBroadcast()
+    console.log('created broadcast id: ' + createdBroadcastId)
   }
 
   return (
@@ -247,7 +241,7 @@ function Broadcast() {
         <Button
           style={{ width: '100%' }}
           title='Create Broadcast'
-          fx={submitHandler}
+          fx={youtubePromiseChain}
         />
       </Modal>
     </>
