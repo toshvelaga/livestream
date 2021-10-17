@@ -25,14 +25,8 @@ function Broadcast() {
   const [youtubeDescription, setyoutubeDescription] = useState('')
   const [youtubePrivacyPolicy, setyoutubePrivacyPolicy] = useState('')
 
-  const [youtubeIngestionUrl, setYoutubeIngestionUrl] = useState('')
-  const [youtubeStreamName, setYoutubeStreamName] = useState('')
-
   const [userId, setuserId] = useState('')
-  const [streamId, setstreamId] = useState('')
-  const [broadcastId, setbroadcastId] = useState('')
 
-  let youtubeDestinationUrl = youtubeIngestionUrl + '/' + youtubeStreamName
   let GoogleAuth
 
   const closeModal = () => {
@@ -195,20 +189,14 @@ function Broadcast() {
   const youtubePromiseChain = async () => {
     try {
       const createdBroadcastId = await createBroadcast()
-      console.log('created broadcast id: ' + createdBroadcastId)
-
       const createdStream = await createStream()
-      console.log(createdStream)
 
       const youtubeDestinationUrl = createdStream.youtubeDestinationUrl
       const createdStreamId = createdStream.streamId
 
-      const binding = await bindBroadcastToStream(
-        createdBroadcastId,
-        createdStreamId
-      )
+      await bindBroadcastToStream(createdBroadcastId, createdStreamId)
 
-      const sendDataToYoutbe = await saveYoutubeDataToDB(
+      saveYoutubeDataToDB(
         youtubeDestinationUrl,
         createdBroadcastId,
         createdStreamId
