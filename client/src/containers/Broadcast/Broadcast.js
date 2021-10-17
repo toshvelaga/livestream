@@ -12,6 +12,7 @@ import TextArea from '../../components/TextArea/TextArea'
 import Navbar from '../../components/Navbar/Navbar'
 import Modal from 'react-modal'
 import getCookie from '../../utils/getCookie'
+import * as MdIcons from 'react-icons/md'
 import './Broadcast.css'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
@@ -220,6 +221,9 @@ function Broadcast() {
         onRequestClose={closeModal}
         contentLabel='Example Modal'
       >
+        <div className='modal-close-icon' style={{ float: 'right' }}>
+          <MdIcons.MdClose color='grey' size={24} />
+        </div>
         <p>Broadcast to:</p>
         <TextInput
           label='Title'

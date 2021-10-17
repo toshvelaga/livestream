@@ -19,6 +19,16 @@
   padding: 1rem;
 }
 
+.modal-close-icon {
+  padding: 0.1rem 0.15rem;
+}
+
+.modal-close-icon:hover {
+  border-radius: 5px;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 1000px) {
   .dashboard-container {
     width: 80%;

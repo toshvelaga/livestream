@@ -5,6 +5,13 @@ import './Selected.css'
 // react-select: https://www.npmjs.com/package/react-select
 
 function Selected(props) {
+  const customStyles = {
+    control: (base) => ({
+      ...base,
+      height: '3rem',
+      // border: '1px solid black',
+    }),
+  }
   return (
     <>
       <div className='selected-container'>
@@ -20,6 +27,7 @@ function Selected(props) {
           {props.label}
         </label>
         <Select
+          styles={customStyles}
           className='selected'
           value={props.value}
           onChange={props.onChange}
