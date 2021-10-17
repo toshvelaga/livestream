@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   YOUTUBE_PRIVACY_POLICY,
   SCOPE,
@@ -41,10 +41,6 @@ function Broadcast() {
 
   const openModal = () => {
     setisModalOpen(true)
-  }
-
-  const submitHandler = () => {
-    alert('This was clicked.')
   }
 
   useEffect(() => {
@@ -221,7 +217,11 @@ function Broadcast() {
         onRequestClose={closeModal}
         contentLabel='Example Modal'
       >
-        <div className='modal-close-icon' style={{ float: 'right' }}>
+        <div
+          onClick={closeModal}
+          className='modal-close-icon'
+          style={{ float: 'right' }}
+        >
           <MdIcons.MdClose color='grey' size={24} />
         </div>
         <p>Broadcast to:</p>

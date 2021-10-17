@@ -9,7 +9,7 @@ const TextArea = (props) => {
       </label>
       <textarea
         className='textarea'
-        maxlength={props.maxlength}
+        maxLength={props.maxLength}
         style={props.style}
         placeholder={props.placeholder}
         id={props.id}
