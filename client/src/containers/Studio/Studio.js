@@ -248,6 +248,10 @@ function Studio() {
       })
   }
 
+  const twitchAuth = () => {
+    console.log('Twitch Authentication')
+  }
+
   return (
     <>
       <Navbar />
@@ -287,6 +291,7 @@ function Studio() {
         </div>
 
         <div style={{ marginTop: '1rem' }}>
+          <button onClick={twitchAuth}>Auth with Twitch</button>
           {/* <button onClick={createBroadcast}>2. create broadcast</button>
           <button onClick={createStream}>3. create stream</button>
           <button onClick={bindBroadcastToStream}>4. bind broadcast</button> */}
