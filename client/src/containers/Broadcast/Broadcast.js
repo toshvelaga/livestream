@@ -185,12 +185,11 @@ function Broadcast() {
       youtubeDescription,
       youtubePrivacyPolicy,
       userId,
-      // timeCreated,
       youtubeDestinationUrl,
       broadcastId,
       streamId,
     }
-    return API.put('/broadcasts', data)
+    API.post('/broadcasts', data)
   }
 
   const youtubePromiseChain = async () => {
@@ -200,13 +199,22 @@ function Broadcast() {
 
       const createdStream = await createStream()
       console.log(createdStream)
+
+      const youtubeDestinationUrl = createdStream.youtubeDestinationUrl
       const createdStreamId = createdStream.streamId
 
-      await bindBroadcastToStream(createdBroadcastId, createdStreamId)
+      const binding = await bindBroadcastToStream(
+        createdBroadcastId,
+        createdStreamId
+      )
+
+      const sendDataToYoutbe = await saveYoutubeDataToDB(
+        youtubeDestinationUrl,
+        createdBroadcastId,
+        createdStreamId
+      )
     } catch (error) {
       console.log(error)
-    } finally {
-      console.log('completed')
     }
   }
 
