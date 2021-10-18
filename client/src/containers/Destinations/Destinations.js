@@ -4,6 +4,7 @@ import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
+import getUrlParams from '../../utils/getUrlParams'
 import './Destinations.css'
 import {
   SCOPE,
@@ -16,22 +17,19 @@ import {
 
 function Destinations() {
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
+  const [twitchAuthorizationCode, settwitchAuthorizationCode] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
   const [buttonText, setbuttonText] = useState('Add Destination')
   let userId = getCookie('userId')
 
-  // useEffect(() => {
-  //   let userId = getCookie('userId')
-
-  //   API.post('/destinations', { userId })
-  //     .then((response) => {
-  //       if (response) {
-  //         setTwitchStreamKey(response.data.twitch_stream_key)
-  //         setFacebookStreamKey(response.data.facebook_stream_key)
-  //       }
-  //     })
-  //     .catch((err) => console.log(err))
-  // }, [])
+  useEffect(() => {
+    // const queryString = window.location.search
+    // const urlParams = new URLSearchParams(queryString)
+    // const code = urlParams.get('code')
+    let code = getUrlParams('code')
+    console.log('code: ' + code)
+    settwitchAuthorizationCode(code)
+  }, [])
 
   // const handleClick = () => {
   //   const data = {
@@ -76,15 +74,10 @@ function Destinations() {
 
   console.log(twitchURL)
 
-  var url_string = window.location.href
-  var url = new URL(url_string)
-  var code = url.searchParams.get('code')
-  console.log(code)
-
   const sendCodeToTwitch = () => {
     console.log('send code to twitch')
     const data = {
-      authorizationCode: code,
+      authorizationCode: twitchAuthorizationCode,
     }
     API.post('/authorize/twitch', data)
       .then((res) => console.log(res))

@@ -11,7 +11,7 @@ router.post('/api/authorize/twitch', async (req, res) => {
       `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_SECRET}&code=${authorizationCode}&grant_type=authorization_code&redirect_uri=${process.env.TWITCH_REDIRECT_URL}`
     )
     .then((res) => {
-      return res
+      return res.data
     })
     .catch((err) => {
       console.log(err)
