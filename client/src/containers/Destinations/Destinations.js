@@ -87,6 +87,8 @@ function Destinations() {
       authorizationCode: code,
     }
     API.post('/authorize/twitch', data)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
   }
 
   return (
