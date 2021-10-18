@@ -4,6 +4,7 @@ const express = require('express'),
 
 router.post('/api/user/register', async (req, res) => {
   return res.send({ msg: 'Authorize via Twitch' })
+  // console.log('hey mohsin')
 })
 
 module.exports = router
