@@ -5,7 +5,7 @@
 
 .referral-button {
   background-color: transparent;
-  /* background-color: #3cc764; */
+  /* background-color: #f1f1f1; */
   border: 1px solid grey;
   color: grey;
   letter-spacing: 2px;
@@ -38,7 +38,6 @@ button > span {
 }
 
 .referral-button:hover {
-  /* background-color: grey; */
   border: 1px solid black;
   color: black;
   cursor: pointer;

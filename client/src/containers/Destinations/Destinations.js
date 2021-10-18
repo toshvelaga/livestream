@@ -20,18 +20,18 @@ function Destinations() {
   const [buttonText, setbuttonText] = useState('Add Destination')
   let userId = getCookie('userId')
 
-  useEffect(() => {
-    let userId = getCookie('userId')
+  // useEffect(() => {
+  //   let userId = getCookie('userId')
 
-    API.post('/destinations', { userId })
-      .then((response) => {
-        if (response) {
-          setTwitchStreamKey(response.data.twitch_stream_key)
-          setFacebookStreamKey(response.data.facebook_stream_key)
-        }
-      })
-      .catch((err) => console.log(err))
-  }, [])
+  //   API.post('/destinations', { userId })
+  //     .then((response) => {
+  //       if (response) {
+  //         setTwitchStreamKey(response.data.twitch_stream_key)
+  //         setFacebookStreamKey(response.data.facebook_stream_key)
+  //       }
+  //     })
+  //     .catch((err) => console.log(err))
+  // }, [])
 
   const handleClick = () => {
     const data = {
