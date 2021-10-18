@@ -13,13 +13,15 @@ app.use(
   express.urlencoded({ limit: '200mb', extended: true, parameterLimit: 50000 })
 )
 
-const authRouter = require('./routes/auth')
+const authenticationRouter = require('./routes/authentication')
+const authorizationRouter = require('./routes/authorization')
 const broadcastsRouter = require('./routes/broadcasts')
 const compareCodeRouter = require('./routes/compareCode')
 const destinationsRouter = require('./routes/destinations')
 const referralRouter = require('./routes/referral')
 
-app.use('/', authRouter)
+app.use('/', authenticationRouter)
+app.use('/', authorizationRouter)
 app.use('/', broadcastsRouter)
 app.use('/', compareCodeRouter)
 app.use('/', destinationsRouter)
