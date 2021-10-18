@@ -4,6 +4,7 @@ import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
+import setCookie from '../../utils/setCookie'
 import getUrlParams from '../../utils/getUrlParams'
 import './Destinations.css'
 import {
@@ -71,7 +72,11 @@ function Destinations() {
       authorizationCode: twitchAuthorizationCode,
     }
     API.post('/authorize/twitch', data)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res)
+        setCookie('twitchAccessToken', res.data.access_token, 1)
+        setCookie('twitchRefreshToken', res.data.refresh_token, 1)
+      })
       .catch((err) => console.log(err))
   }
 
