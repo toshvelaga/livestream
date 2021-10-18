@@ -33,22 +33,22 @@ function Destinations() {
   //     .catch((err) => console.log(err))
   // }, [])
 
-  const handleClick = () => {
-    const data = {
-      twitchStreamKey,
-      facebookStreamKey,
-      userId,
-    }
-    API.put('/destinations', data)
-      .then((response) => console.log(response))
-      .then(() => {
-        setbuttonText('Changes Saved!')
-        setTimeout(() => {
-          setbuttonText('Save')
-        }, 1500)
-      })
-      .catch((err) => console.log(err))
-  }
+  // const handleClick = () => {
+  //   const data = {
+  //     twitchStreamKey,
+  //     facebookStreamKey,
+  //     userId,
+  //   }
+  //   API.put('/destinations', data)
+  //     .then((response) => console.log(response))
+  //     .then(() => {
+  //       setbuttonText('Changes Saved!')
+  //       setTimeout(() => {
+  //         setbuttonText('Save')
+  //       }, 1500)
+  //     })
+  //     .catch((err) => console.log(err))
+  // }
 
   const youtubeAuth = () => {
     return gapi.auth2
@@ -75,6 +75,19 @@ function Destinations() {
   const twitchURL2 = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`
 
   console.log(twitchURL)
+
+  var url_string = window.location.href
+  var url = new URL(url_string)
+  var code = url.searchParams.get('code')
+  console.log(code)
+
+  const sendCodeToTwitch = () => {
+    console.log('send code to twitch')
+    const data = {
+      authorizationCode: code,
+    }
+    API.post('/authorize/twitch', data)
+  }
 
   return (
     <>
@@ -112,8 +125,9 @@ function Destinations() {
         >
           <a href={twitchURL2}>Twitch</a>
         </button>
+        <button onClick={sendCodeToTwitch}>Send Code to server</button>
 
-        <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} />
+        {/* <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} /> */}
       </div>
     </>
   )
