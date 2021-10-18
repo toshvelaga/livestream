@@ -5,7 +5,12 @@ import Button from '../../components/Buttons/Button'
 import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
 import './Destinations.css'
-import { SCOPE } from '../../constants/constants'
+import {
+  SCOPE,
+  TWITCH_SCOPE,
+  TWITCH_REDIRECT_URL,
+  TWITCH_RESPONSE_TYPE,
+} from '../../constants/constants'
 
 /* global gapi */
 
@@ -65,7 +70,11 @@ function Destinations() {
     })
   })
 
-  const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_TWITCH_REDIRECT_URL}&response_type=<type>&scope=<space-separated list of scopes></space-separated>`
+  const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=${TWITCH_RESPONSE_TYPE}&scope=${TWITCH_SCOPE}`
+
+  const twitchURL2 = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`
+
+  console.log(twitchURL)
 
   return (
     <>
@@ -98,10 +107,10 @@ function Destinations() {
         </button>
 
         <button
-          onClick={twitchAuth}
+          // onClick={twitchAuth}
           style={{ padding: '1rem', marginBottom: '1rem', marginLeft: '1rem' }}
         >
-          <a href=''>Twitch</a>
+          <a href={twitchURL2}>Twitch</a>
         </button>
 
         <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} />
