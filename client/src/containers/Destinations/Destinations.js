@@ -23,9 +23,6 @@ function Destinations() {
   let userId = getCookie('userId')
 
   useEffect(() => {
-    // const queryString = window.location.search
-    // const urlParams = new URLSearchParams(queryString)
-    // const code = urlParams.get('code')
     let code = getUrlParams('code')
     console.log('code: ' + code)
     settwitchAuthorizationCode(code)
@@ -58,19 +55,13 @@ function Destinations() {
       .catch((err) => console.log(err))
   }
 
-  const twitchAuth = () => {
-    alert('auth for twitch')
-  }
-
   gapi.load('client:auth2', function () {
     gapi.auth2.init({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
     })
   })
 
-  const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=${TWITCH_RESPONSE_TYPE}&scope=${TWITCH_SCOPE}`
-
-  const twitchURL2 = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`
+  const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`
 
   console.log(twitchURL)
 
@@ -118,7 +109,7 @@ function Destinations() {
           // onClick={twitchAuth}
           style={{ padding: '1rem', marginBottom: '1rem', marginLeft: '1rem' }}
         >
-          <a href={twitchURL2}>Twitch</a>
+          <a href={twitchURL}>Twitch</a>
         </button>
         <button onClick={sendCodeToTwitch}>Send Code to server</button>
 
