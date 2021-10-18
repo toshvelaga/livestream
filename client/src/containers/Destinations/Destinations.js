@@ -45,7 +45,7 @@ function Destinations() {
       .catch((err) => console.log(err))
   }
 
-  const authenticate = () => {
+  const youtubeAuth = () => {
     return gapi.auth2
       .getAuthInstance()
       .signIn({ scope: SCOPE })
@@ -53,6 +53,10 @@ function Destinations() {
         console.log(res)
       })
       .catch((err) => console.log(err))
+  }
+
+  const twitchAuth = () => {
+    alert('auth for twitch')
   }
 
   gapi.load('client:auth2', function () {
@@ -66,13 +70,13 @@ function Destinations() {
       <Navbar />
       <div className='destinations-container'>
         <h2>Destinations page</h2>
-        <TextInput
+        {/* <TextInput
           label='Twitch Stream Key (Required)'
           placeholder=''
           value={twitchStreamKey}
           onChange={(e) => setTwitchStreamKey(e.target.value)}
           errorMsg={null}
-        />
+        /> */}
 
         <TextInput
           label='Facebook Stream Key (Coming Soon)'
@@ -84,10 +88,17 @@ function Destinations() {
         />
 
         <button
-          onClick={authenticate}
+          onClick={youtubeAuth}
           style={{ padding: '1rem', marginBottom: '1rem' }}
         >
           Youtube
+        </button>
+
+        <button
+          onClick={twitchAuth}
+          style={{ padding: '1rem', marginBottom: '1rem', marginLeft: '1rem' }}
+        >
+          Twitch
         </button>
 
         <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} />
