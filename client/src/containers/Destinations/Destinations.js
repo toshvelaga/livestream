@@ -65,11 +65,14 @@ function Destinations() {
     })
   })
 
+  const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_TWITCH_REDIRECT_URL}&response_type=<type>&scope=<space-separated list of scopes></space-separated>`
+
   return (
     <>
       <Navbar />
       <div className='destinations-container'>
         <h2>Destinations page</h2>
+
         {/* <TextInput
           label='Twitch Stream Key (Required)'
           placeholder=''
@@ -98,7 +101,7 @@ function Destinations() {
           onClick={twitchAuth}
           style={{ padding: '1rem', marginBottom: '1rem', marginLeft: '1rem' }}
         >
-          Twitch
+          <a href=''>Twitch</a>
         </button>
 
         <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} />
