@@ -67,17 +67,33 @@ function Destinations() {
   console.log(twitchURL)
 
   const sendCodeToTwitch = () => {
-    console.log('send code to twitch')
     const data = {
       authorizationCode: twitchAuthorizationCode,
     }
-    API.post('/authorize/twitch', data)
-      .then((res) => {
+    return API.post('/authorize/twitch', data).then((res) => {
+      return res.data
+    })
+  }
+
+  const validateTwitchRequest = (token) => {
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+    return API.get('https://id.twitch.tv/oauth2/validate', config).then(
+      (res) => {
         console.log(res)
-        setCookie('twitchAccessToken', res.data.access_token, 1)
-        setCookie('twitchRefreshToken', res.data.refresh_token, 1)
-      })
-      .catch((err) => console.log(err))
+      }
+    )
+  }
+
+  const sendCodeToTwitchAndValidate = async () => {
+    let auth = await sendCodeToTwitch()
+    console.log(auth)
+    let twitchAccessToken = auth.access_token
+    let twitchRefreshToken = auth.refresh_token
+    setCookie('twitchAccessToken', twitchAccessToken, 1)
+    setCookie('twitchRefreshToken', twitchRefreshToken, 1)
+    validateTwitchRequest(twitchAccessToken)
   }
 
   return (
@@ -85,14 +101,6 @@ function Destinations() {
       <Navbar />
       <div className='destinations-container'>
         <h2>Destinations page</h2>
-
-        {/* <TextInput
-          label='Twitch Stream Key (Required)'
-          placeholder=''
-          value={twitchStreamKey}
-          onChange={(e) => setTwitchStreamKey(e.target.value)}
-          errorMsg={null}
-        /> */}
 
         <TextInput
           label='Facebook Stream Key (Coming Soon)'
@@ -116,7 +124,9 @@ function Destinations() {
         >
           <a href={twitchURL}>Twitch</a>
         </button>
-        <button onClick={sendCodeToTwitch}>Send Code to server</button>
+        <button onClick={sendCodeToTwitchAndValidate}>
+          Send Code to server
+        </button>
 
         {/* <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} /> */}
       </div>
