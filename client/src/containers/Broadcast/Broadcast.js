@@ -22,6 +22,7 @@ Modal.defaultStyles.overlay.zIndex = 101
 
 function Broadcast() {
   const [isModalOpen, setisModalOpen] = useState(false)
+  const [modalContent, setmodalContent] = useState('')
   const [youtubeTitle, setyoutubeTitle] = useState('')
   const [youtubeDescription, setyoutubeDescription] = useState('')
   const [youtubePrivacyPolicy, setyoutubePrivacyPolicy] = useState('')
@@ -225,7 +226,19 @@ function Broadcast() {
           <MdIcons.MdClose color='grey' size={24} />
         </div>
         <p>Broadcast to:</p>
-        <TextInput
+
+        <button onClick={() => setmodalContent('Youtube')}>Youtube</button>
+        <button
+          style={{ backgroundColor: 'red' }}
+          onClick={() => setmodalContent('Twitch')}
+        >
+          Twitch
+        </button>
+        <button>Facebook</button>
+
+        {/* THIS IS THE YOUTUBE STUFF */}
+
+        {/* <TextInput
           label='Title'
           placeholder=''
           value={youtubeTitle}
@@ -249,7 +262,7 @@ function Broadcast() {
           style={{ width: '100%' }}
           title='Create Broadcast'
           fx={youtubePromiseChain}
-        />
+        /> */}
       </Modal>
     </>
   )
