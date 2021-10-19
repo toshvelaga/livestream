@@ -101,6 +101,8 @@ function Destinations() {
     console.log(validation)
     let twitchUserID = validation.user_id
     setCookie('twitchUserID', twitchUserID, 90)
+
+    await getTwitchStreamKey()
   }
 
   const getTwitchStreamKey = () => {
@@ -116,11 +118,11 @@ function Destinations() {
     return API.get(
       `https://api.twitch.tv/helix/streams/key?broadcaster_id=${broadcaster_id}`,
       config
-    )
-      .then((res) => {
-        console.log(res.data.data[0].stream_key)
-      })
-      .catch((err) => console.log(err))
+    ).then((res) => {
+      console.log(res.data.data[0].stream_key)
+      let twitchStreamKey = res.data.data[0].stream_key
+      setCookie('twitchStreamKey', twitchStreamKey, 90)
+    })
   }
 
   const facebookAuth = () => {
@@ -147,12 +149,11 @@ function Destinations() {
           <a href={twitchURL}>Twitch</a>
         </button>
 
-        <button onClick={getTwitchStreamKey}>get twitch stream key</button>
         {/* <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} /> */}
 
         <button
           onClick={facebookAuth}
-          style={{ padding: '1rem', marginBottom: '1rem' }}
+          style={{ padding: '1rem', marginBottom: '1rem', marginLeft: '1rem' }}
         >
           Facebook
         </button>
