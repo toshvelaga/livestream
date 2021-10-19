@@ -24,9 +24,14 @@ function Destinations() {
   let userId = getCookie('userId')
 
   useEffect(() => {
-    let code = getUrlParams('code')
-    console.log('code: ' + code)
-    settwitchAuthorizationCode(code)
+    let url = window.location.href
+    if (url.includes('?code')) {
+      let code = getUrlParams('code')
+      console.log('code: ' + code)
+      sendCodeToTwitchAndValidate(code)
+    } else {
+      console.log('No code param in URL')
+    }
   }, [])
 
   // const handleClick = () => {
@@ -64,11 +69,9 @@ function Destinations() {
 
   const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`
 
-  console.log(twitchURL)
-
-  const sendCodeToTwitch = () => {
+  const sendCodeToTwitch = (code) => {
     const data = {
-      authorizationCode: twitchAuthorizationCode,
+      authorizationCode: code,
     }
     return API.post('/authorize/twitch', data).then((res) => {
       return res.data
@@ -86,8 +89,8 @@ function Destinations() {
     )
   }
 
-  const sendCodeToTwitchAndValidate = async () => {
-    let auth = await sendCodeToTwitch()
+  const sendCodeToTwitchAndValidate = async (code) => {
+    let auth = await sendCodeToTwitch(code)
     console.log(auth)
 
     let twitchAccessToken = auth.access_token
@@ -144,9 +147,7 @@ function Destinations() {
         >
           <a href={twitchURL}>Twitch</a>
         </button>
-        <button onClick={sendCodeToTwitchAndValidate}>
-          Send twitch code to server
-        </button>
+
         <button onClick={getTwitchStreamKey}>get twitch stream key</button>
         {/* <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} /> */}
 
