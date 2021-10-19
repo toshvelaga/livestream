@@ -27,7 +27,7 @@ function Destinations() {
     if (url.includes('?code')) {
       let code = getUrlParams('code')
       console.log('code: ' + code)
-      sendCodeToTwitchAndValidate(code)
+      twitchAuth(code)
     } else {
       console.log('No code param in URL')
     }
@@ -88,7 +88,7 @@ function Destinations() {
     )
   }
 
-  const sendCodeToTwitchAndValidate = async (code) => {
+  const twitchAuth = async (code) => {
     let auth = await sendCodeToTwitch(code)
     console.log(auth)
 
