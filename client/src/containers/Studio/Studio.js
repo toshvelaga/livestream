@@ -24,7 +24,6 @@ function Studio() {
   const [youtubeIngestionUrl, setYoutubeIngestionUrl] = useState('')
   const [youtubeStreamName, setYoutubeStreamName] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
-  const [twitchStreamKey, setTwitchStreamKey] = useState('')
 
   const [mediaStream, setMediaStream] = useState(null)
   const [userFacing, setuserFacing] = useState(false)
@@ -40,7 +39,7 @@ function Studio() {
 
   //!!! THIS IS THE URL I AM STREAMING TO
   const youtubeUrl = youtubeIngestionUrl + '/' + youtubeStreamName
-
+  const twitchStreamKey = getCookie('twitchStreamKey')
   const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookStreamKey=${facebookStreamKey}`
 
   let liveStream
@@ -82,7 +81,6 @@ function Studio() {
     API.post('/destinations', { userId })
       .then((response) => {
         if (response) {
-          setTwitchStreamKey(response.data.twitch_stream_key)
           setFacebookStreamKey(response.data.facebook_stream_key)
         }
       })
@@ -104,7 +102,7 @@ function Studio() {
     return () => {
       ws.current.close()
     }
-  }, [twitchStreamKey, youtubeStreamName])
+  }, [])
 
   useEffect(() => {
     let interval = null

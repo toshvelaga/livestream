@@ -55,7 +55,7 @@ wss.on('connection', (ws, req) => {
   console.log(req.url)
 
   const twitchStreamKey = myURL.searchParams.get('twitchStreamKey')
-  const twitch = 'rtmp://qro02.contribute.live-video.net/app/' + twitchStreamKey
+  const twitch = 'rtmp://dfw.contribute.live-video.net/app/' + twitchStreamKey
 
   const youtubeUrl = myURL.searchParams.get('youtubeUrl')
   console.log(youtubeUrl)

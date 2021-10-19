@@ -24,6 +24,7 @@ function Broadcast() {
   const [isModalOpen, setisModalOpen] = useState(false)
   const [modalContent, setmodalContent] = useState('')
   const [youtubeTitle, setyoutubeTitle] = useState('')
+  const [twitchTitle, settwitchTitle] = useState('')
   const [youtubeDescription, setyoutubeDescription] = useState('')
   const [youtubePrivacyPolicy, setyoutubePrivacyPolicy] = useState('')
 
@@ -263,6 +264,16 @@ function Broadcast() {
           title='Create Broadcast'
           fx={youtubePromiseChain}
         /> */}
+
+        {/* THIS IS THE TWITCH STUFF */}
+
+        <TextInput
+          label='Title'
+          placeholder=''
+          value={twitchTitle}
+          onChange={(e) => settwitchTitle(e.target.value)}
+          errorMsg={null}
+        />
       </Modal>
     </>
   )
