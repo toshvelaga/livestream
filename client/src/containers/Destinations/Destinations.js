@@ -102,7 +102,23 @@ function Destinations() {
   }
 
   const getTwitchStreamKey = () => {
-    console.log('getting stream key')
+    let token = getCookie('twitchAccessToken')
+    let broadcaster_id = getCookie('twitchUserID')
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID,
+      },
+    }
+    return API.get(
+      `https://api.twitch.tv/helix/streams/key?broadcaster_id=${broadcaster_id}`,
+      config
+    )
+      .then((res) => {
+        console.log(res.data.data[0].stream_key)
+      })
+      .catch((err) => console.log(err))
   }
 
   return (
