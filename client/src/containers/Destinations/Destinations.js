@@ -18,7 +18,6 @@ import {
 
 function Destinations() {
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
-  const [twitchAuthorizationCode, settwitchAuthorizationCode] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
   const [buttonText, setbuttonText] = useState('Add Destination')
   let userId = getCookie('userId')
