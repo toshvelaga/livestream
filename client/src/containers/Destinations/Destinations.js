@@ -101,6 +101,10 @@ function Destinations() {
     setCookie('twitchUserID', twitchUserID, 90)
   }
 
+  const getTwitchStreamKey = () => {
+    console.log('getting stream key')
+  }
+
   return (
     <>
       <Navbar />
@@ -130,9 +134,9 @@ function Destinations() {
           <a href={twitchURL}>Twitch</a>
         </button>
         <button onClick={sendCodeToTwitchAndValidate}>
-          Send Code to server
+          Send twitch code to server
         </button>
-
+        <button onClick={getTwitchStreamKey}>get twitch stream key</button>
         {/* <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} /> */}
       </div>
     </>
