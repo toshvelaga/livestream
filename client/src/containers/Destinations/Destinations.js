@@ -121,20 +121,15 @@ function Destinations() {
       .catch((err) => console.log(err))
   }
 
+  const facebookAuth = () => {
+    console.log('facebook authentication')
+  }
+
   return (
     <>
       <Navbar />
       <div className='destinations-container'>
         <h2>Destinations page</h2>
-
-        <TextInput
-          label='Facebook Stream Key (Coming Soon)'
-          placeholder=''
-          value={facebookStreamKey}
-          onChange={(e) => setFacebookStreamKey(e.target.value)}
-          disabled={true}
-          errorMsg={null}
-        />
 
         <button
           onClick={youtubeAuth}
@@ -154,6 +149,13 @@ function Destinations() {
         </button>
         <button onClick={getTwitchStreamKey}>get twitch stream key</button>
         {/* <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} /> */}
+
+        <button
+          onClick={facebookAuth}
+          style={{ padding: '1rem', marginBottom: '1rem' }}
+        >
+          Facebook
+        </button>
       </div>
     </>
   )
