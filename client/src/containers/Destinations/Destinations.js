@@ -81,7 +81,7 @@ function Destinations() {
     }
     return API.get('https://id.twitch.tv/oauth2/validate', config).then(
       (res) => {
-        console.log(res)
+        return res.data
       }
     )
   }
@@ -89,11 +89,16 @@ function Destinations() {
   const sendCodeToTwitchAndValidate = async () => {
     let auth = await sendCodeToTwitch()
     console.log(auth)
+
     let twitchAccessToken = auth.access_token
     let twitchRefreshToken = auth.refresh_token
     setCookie('twitchAccessToken', twitchAccessToken, 1)
     setCookie('twitchRefreshToken', twitchRefreshToken, 1)
-    validateTwitchRequest(twitchAccessToken)
+
+    let validation = await validateTwitchRequest(twitchAccessToken)
+    console.log(validation)
+    let twitchUserID = validation.user_id
+    setCookie('twitchUserID', twitchUserID, 90)
   }
 
   return (
