@@ -88,23 +88,6 @@ function Destinations() {
     )
   }
 
-  const twitchAuth = async (code) => {
-    let auth = await sendCodeToTwitch(code)
-    console.log(auth)
-
-    let twitchAccessToken = auth.access_token
-    let twitchRefreshToken = auth.refresh_token
-    setCookie('twitchAccessToken', twitchAccessToken, 1)
-    setCookie('twitchRefreshToken', twitchRefreshToken, 1)
-
-    let validation = await validateTwitchRequest(twitchAccessToken)
-    console.log(validation)
-    let twitchUserID = validation.user_id
-    setCookie('twitchUserID', twitchUserID, 90)
-
-    await getTwitchStreamKey()
-  }
-
   const getTwitchStreamKey = () => {
     let token = getCookie('twitchAccessToken')
     let broadcaster_id = getCookie('twitchUserID')
@@ -123,6 +106,23 @@ function Destinations() {
       let twitchStreamKey = res.data.data[0].stream_key
       setCookie('twitchStreamKey', twitchStreamKey, 90)
     })
+  }
+
+  const twitchAuth = async (code) => {
+    let auth = await sendCodeToTwitch(code)
+    console.log(auth)
+
+    let twitchAccessToken = auth.access_token
+    let twitchRefreshToken = auth.refresh_token
+    setCookie('twitchAccessToken', twitchAccessToken, 1)
+    setCookie('twitchRefreshToken', twitchRefreshToken, 1)
+
+    let validation = await validateTwitchRequest(twitchAccessToken)
+    console.log(validation)
+    let twitchUserID = validation.user_id
+    setCookie('twitchUserID', twitchUserID, 90)
+
+    await getTwitchStreamKey()
   }
 
   const facebookAuth = () => {
