@@ -15,6 +15,7 @@ import {
 } from '../../constants/constants'
 
 /* global gapi */
+/* global FB */
 
 function Destinations() {
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
@@ -31,6 +32,13 @@ function Destinations() {
     } else {
       console.log('No code param in URL')
     }
+  }, [])
+
+  useEffect(() => {
+    FB.login()
+    FB.getLoginStatus(function (response) {
+      console.log(response)
+    })
   }, [])
 
   // const handleClick = () => {
