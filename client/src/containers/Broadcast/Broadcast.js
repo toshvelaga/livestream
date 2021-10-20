@@ -26,8 +26,10 @@ function Broadcast() {
   const [modalContent, setmodalContent] = useState('')
   const [youtubeTitle, setyoutubeTitle] = useState('')
   const [twitchTitle, settwitchTitle] = useState('')
+  const [facebookTitle, setfacebookTitle] = useState('')
   // const [twitchToken, settwitchToken] = useState('')
   const [youtubeDescription, setyoutubeDescription] = useState('')
+  const [facebookDescription, setfacebookDescription] = useState('')
   const [youtubePrivacyPolicy, setyoutubePrivacyPolicy] = useState('')
 
   const [userId, setuserId] = useState('')
@@ -232,6 +234,10 @@ function Broadcast() {
       .catch((err) => console.log(err))
   }
 
+  const facebookPromiseChain = () => {
+    console.log('facebook authentication')
+  }
+
   return (
     <>
       <Navbar />
@@ -255,15 +261,12 @@ function Broadcast() {
         </div>
         <p>Broadcast to:</p>
         <button onClick={() => setmodalContent('Youtube')}>Youtube</button>
-        <button
-          style={{ backgroundColor: 'red' }}
-          onClick={() => setmodalContent('Twitch')}
-        >
-          Twitch
-        </button>
-        <button>Facebook</button>
-        {/* THIS IS THE YOUTUBE STUFF */}
-        {/* <TextInput
+        <button onClick={() => setmodalContent('Twitch')}>Twitch</button>
+        <button style={{ backgroundColor: 'red' }}>Facebook</button>
+
+        {/* THIS IS THE YOUTUBE STUFF
+
+        <TextInput
           label='Title'
           placeholder=''
           value={youtubeTitle}
@@ -291,7 +294,7 @@ function Broadcast() {
 
         {/* THIS IS THE TWITCH STUFF */}
 
-        <TextInput
+        {/* <TextInput
           label='Title'
           placeholder=''
           value={twitchTitle}
@@ -302,6 +305,27 @@ function Broadcast() {
           style={{ width: '100%' }}
           title='Create Broadcast'
           fx={twitchPromiseChain}
+        /> */}
+
+        {/* This is the Facebook stuff */}
+
+        <TextInput
+          label='Title'
+          placeholder=''
+          value={facebookTitle}
+          onChange={(e) => setfacebookTitle(e.target.value)}
+          errorMsg={null}
+        />
+        <TextArea
+          label='Description'
+          style={{ width: '100%', marginBottom: '1rem' }}
+          value={facebookDescription}
+          onChange={(e) => setfacebookDescription(e.target.value)}
+        />
+        <Button
+          style={{ width: '100%' }}
+          title='Create Broadcast'
+          fx={facebookPromiseChain}
         />
       </Modal>
     </>
