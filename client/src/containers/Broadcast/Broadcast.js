@@ -5,6 +5,7 @@ import {
   DISCOVERY,
 } from '../../constants/constants'
 import API from '../../api/api'
+import axios from 'axios'
 import Button from '../../components/Buttons/Button'
 import Selected from '../../components/Selected/Selected'
 import TextInput from '../../components/TextInput/TextInput'
@@ -25,6 +26,7 @@ function Broadcast() {
   const [modalContent, setmodalContent] = useState('')
   const [youtubeTitle, setyoutubeTitle] = useState('')
   const [twitchTitle, settwitchTitle] = useState('')
+  // const [twitchToken, settwitchToken] = useState('')
   const [youtubeDescription, setyoutubeDescription] = useState('')
   const [youtubePrivacyPolicy, setyoutubePrivacyPolicy] = useState('')
 
@@ -205,6 +207,31 @@ function Broadcast() {
     }
   }
 
+  const twitchPromiseChain = () => {
+    console.log('twitch modify channel information')
+    let twitchUserID = getCookie('twitchUserID')
+    let twitchToken = getCookie('twitchAccessToken')
+
+    const body = { title: twitchTitle }
+
+    axios
+      .patch(
+        `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserID}`,
+        body,
+        {
+          headers: {
+            Authorization: `Bearer ${twitchToken}`,
+            'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <>
       <Navbar />
@@ -227,7 +254,6 @@ function Broadcast() {
           <MdIcons.MdClose color='grey' size={24} />
         </div>
         <p>Broadcast to:</p>
-
         <button onClick={() => setmodalContent('Youtube')}>Youtube</button>
         <button
           style={{ backgroundColor: 'red' }}
@@ -236,9 +262,7 @@ function Broadcast() {
           Twitch
         </button>
         <button>Facebook</button>
-
         {/* THIS IS THE YOUTUBE STUFF */}
-
         {/* <TextInput
           label='Title'
           placeholder=''
@@ -273,6 +297,11 @@ function Broadcast() {
           value={twitchTitle}
           onChange={(e) => settwitchTitle(e.target.value)}
           errorMsg={null}
+        />
+        <Button
+          style={{ width: '100%' }}
+          title='Create Broadcast'
+          fx={twitchPromiseChain}
         />
       </Modal>
     </>
