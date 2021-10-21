@@ -21,6 +21,13 @@
   margin-top: 1.5rem;
 }
 
+.card-title {
+  margin-top: 0;
+  padding-top: 0;
+  font-size: 20px;
+  color: darkgrey;
+}
+
 .card-styles:hover {
   /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); */
   box-shadow: none;
