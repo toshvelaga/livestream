@@ -41,7 +41,7 @@ function Studio() {
   //!!! THIS IS THE URL I AM STREAMING TO
   const youtubeUrl = youtubeIngestionUrl + '/' + youtubeStreamName
   const twitchStreamKey = getCookie('twitchStreamKey')
-  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookStreamKey=${facebookUrl}`
+  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${facebookUrl}`
 
   let liveStream
   let liveStreamRecorder
@@ -84,8 +84,9 @@ function Studio() {
         studioId: studioId,
       },
     })
-      .then((response) => {
-        console.log(response)
+      .then((res) => {
+        console.log(res)
+        setFacebookUrl(res.data.facebook_destination_url)
       })
       .catch((err) => console.log(err))
   }, [])
@@ -105,7 +106,7 @@ function Studio() {
     return () => {
       ws.current.close()
     }
-  }, [])
+  }, [facebookUrl])
 
   useEffect(() => {
     let interval = null
