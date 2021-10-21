@@ -6,7 +6,14 @@ function Card(props) {
     <div onClick={props.onClick} className='card-styles'>
       <div className='inner-card-content'>
         {props.children}
-        <p style={{ marginTop: 0, paddingTop: 0, fontSize: '20px' }}>
+        <p
+          style={{
+            marginTop: 0,
+            paddingTop: 0,
+            fontSize: '20px',
+            color: 'darkgrey',
+          }}
+        >
           {props.title}
         </p>
       </div>
