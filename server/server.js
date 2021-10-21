@@ -62,6 +62,8 @@ wss.on('connection', (ws, req) => {
   const youtubeUrl = myURL.searchParams.get('youtubeUrl')
   console.log(youtubeUrl)
 
+  const facebookUrl = myURL.searchParams.get('facebookUrl')
+
   const ffmpeg = child_process.spawn('ffmpeg', [
     '-i',
     '-',
@@ -161,7 +163,7 @@ wss.on('connection', (ws, req) => {
 
     '-f',
     'flv',
-    `${process.env.FACEBOOK_STREAM_ADDRESS}`,
+    facebookUrl,
   ])
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
