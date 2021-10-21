@@ -234,8 +234,20 @@ function Broadcast() {
       .catch((err) => console.log(err))
   }
 
-  const facebookPromiseChain = () => {
+  const facebookPromiseChain = async () => {
+    let facebookAccessToken = getCookie('facebookAccessToken')
     console.log('facebook authentication')
+    let authData = await axios
+      .post(
+        `https://graph.facebook.com/v3.3/me/live_videos?title=${facebookTitle}&description=${facebookDescription}status=LIVE_NOW&access_token=${facebookAccessToken}`
+      )
+      .then((res) => {
+        console.log(res)
+        return res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   return (

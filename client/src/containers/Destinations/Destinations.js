@@ -129,10 +129,14 @@ function Destinations() {
   const facebookAuth = () => {
     FB.getLoginStatus(function (response) {
       console.log(response)
+      console.log('FB access token:' + response.authResponse.accessToken)
     })
     FB.login(
       function (response) {
         console.log(response)
+        console.log('FB access token:' + response.authResponse.accessToken)
+        let facebookAccessToken = response.authResponse.accessToken
+        setCookie('facebookAccessToken', facebookAccessToken, 1)
       },
       { scope: 'email,publish_video', auth_type: 'rerequest' }
     )
