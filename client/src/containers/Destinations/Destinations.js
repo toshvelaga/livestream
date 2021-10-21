@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
+import Card from '../../components/Card/Card'
 import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
 import setCookie from '../../utils/setCookie'
@@ -13,6 +14,7 @@ import {
   TWITCH_REDIRECT_URL,
   TWITCH_RESPONSE_TYPE,
 } from '../../constants/constants'
+import * as FaIcons from 'react-icons/fa'
 
 /* global gapi */
 /* global FB */
@@ -145,31 +147,23 @@ function Destinations() {
   return (
     <>
       <Navbar />
-      <div className='destinations-container'>
+      <div style={{ margin: '10rem auto', width: '50%' }}>
         <h2>Destinations page</h2>
+        <div className='destinations-container'>
+          <Card onClick={youtubeAuth} title={'YouTube'}>
+            <FaIcons.FaYoutube color={'#ff0000'} size={50} />
+          </Card>
 
-        <button
-          onClick={youtubeAuth}
-          style={{ padding: '1rem', marginBottom: '1rem' }}
-        >
-          Youtube
-        </button>
+          <a href={twitchURL}>
+            <Card title={'Twitch'}>
+              <FaIcons.FaTwitch color={'#9047fe'} size={50} />
+            </Card>
+          </a>
 
-        <button
-          // onClick={twitchAuth}
-          style={{ padding: '1rem', marginBottom: '1rem', marginLeft: '1rem' }}
-        >
-          <a href={twitchURL}>Twitch</a>
-        </button>
-
-        {/* <Button style={{ width: '100%' }} title={buttonText} fx={handleClick} /> */}
-
-        <button
-          onClick={facebookAuth}
-          style={{ padding: '1rem', marginBottom: '1rem', marginLeft: '1rem' }}
-        >
-          Facebook
-        </button>
+          <Card onClick={facebookAuth} title={'Facebook'}>
+            <FaIcons.FaFacebook color={'#1676f2'} size={50} />
+          </Card>
+        </div>
       </div>
     </>
   )

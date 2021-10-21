@@ -1,13 +1,29 @@
+:root {
+  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+}
+
 .card-styles {
-  padding: 5rem;
-  width: 5rem;
+  /* padding: 4rem; */
+  height: 150px;
+  width: 160px;
   border-radius: 5px;
   border: 1px solid #eaefee;
   background-color: #ffffff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
   transition: 0.3s;
+  font-family: var(--main-font);
+  margin-right: 2rem;
+}
+
+.inner-card-content {
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .card-styles:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); */
+  box-shadow: none;
+  border: 1px solid #03a9f4;
+  cursor: pointer;
 }
