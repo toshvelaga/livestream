@@ -22,11 +22,12 @@ CREATE TABLE broadcasts (
     youtube_privacy_policy character varying(255),
     broadcast_time_created timestamp without time zone,
     user_id character varying(255),
-    broadcast_id character varying(255),
+    youtube_broadcast_id character varying(255),
     stream_id character varying(255),
     youtube_destination_url character varying(255),
     facebook_title character varying(255),
     facebook_description text,
     facebook_live_video_id character varying(255),
-    facebook_destination_url character varying(255)
+    facebook_destination_url character varying(255),
+    studio_id character varying(255)
 );
