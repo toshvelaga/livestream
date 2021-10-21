@@ -11,12 +11,12 @@ router.post('/api/broadcasts', (req, res, next) => {
     timeCreated,
     req.body.youtubeDestinationUrl,
     req.body.userId,
-    req.body.broadcastId,
+    req.body.youtubeBroadcastId,
     req.body.streamId,
   ]
 
   pool.query(
-    `INSERT INTO broadcasts (youtube_title, youtube_description, youtube_privacy_policy, broadcast_time_created, youtube_destination_url, user_id, broadcast_id, stream_id)
+    `INSERT INTO broadcasts (youtube_title, youtube_description, youtube_privacy_policy, broadcast_time_created, youtube_destination_url, user_id, youtube_broadcast_id, stream_id)
 		VALUES($1, $2, $3, $4, $5, $6 ,$7, $8)`,
     values,
     (q_err, q_res) => {

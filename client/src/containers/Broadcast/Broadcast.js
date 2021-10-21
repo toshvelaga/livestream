@@ -174,7 +174,7 @@ function Broadcast() {
 
   const saveYoutubeDataToDB = (
     youtubeDestinationUrl,
-    broadcastId,
+    youtubeBroadcastId,
     streamId
   ) => {
     const data = {
@@ -183,7 +183,7 @@ function Broadcast() {
       youtubePrivacyPolicy,
       userId,
       youtubeDestinationUrl,
-      broadcastId,
+      youtubeBroadcastId,
       streamId,
     }
     API.post('/broadcasts', data)
