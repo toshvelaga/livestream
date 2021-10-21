@@ -34,13 +34,6 @@ function Destinations() {
     }
   }, [])
 
-  useEffect(() => {
-    FB.login()
-    FB.getLoginStatus(function (response) {
-      console.log(response)
-    })
-  }, [])
-
   // const handleClick = () => {
   //   const data = {
   //     twitchStreamKey,
@@ -134,7 +127,15 @@ function Destinations() {
   }
 
   const facebookAuth = () => {
-    console.log('facebook authentication')
+    FB.getLoginStatus(function (response) {
+      console.log(response)
+    })
+    FB.login(
+      function (response) {
+        console.log(response)
+      },
+      { scope: 'email,publish_video', auth_type: 'rerequest' }
+    )
   }
 
   return (
