@@ -23,7 +23,8 @@ function Studio() {
 
   const [youtubeIngestionUrl, setYoutubeIngestionUrl] = useState('')
   const [youtubeStreamName, setYoutubeStreamName] = useState('')
-  const [facebookStreamKey, setFacebookStreamKey] = useState('')
+
+  const [facebookUrl, setFacebookUrl] = useState('')
 
   const [mediaStream, setMediaStream] = useState(null)
   const [userFacing, setuserFacing] = useState(false)
@@ -40,7 +41,7 @@ function Studio() {
   //!!! THIS IS THE URL I AM STREAMING TO
   const youtubeUrl = youtubeIngestionUrl + '/' + youtubeStreamName
   const twitchStreamKey = getCookie('twitchStreamKey')
-  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookStreamKey=${facebookStreamKey}`
+  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookStreamKey=${facebookUrl}`
 
   let liveStream
   let liveStreamRecorder
@@ -77,8 +78,6 @@ function Studio() {
   useEffect(() => {
     let userId = getCookie('userId')
     const studioId = 'vxPFx-dhPZGlZ451MILNZ'
-
-    // const params = { studioId: studioId }
 
     API.get('/broadcasts', {
       params: {
