@@ -48,15 +48,16 @@ router.post('/api/broadcasts', (req, res, next) => {
 })
 
 router.get('/api/broadcasts', async (req, res) => {
-  const userId = req.body.userId
-  const studioId = req.body.studioId
+  // const userId = req.query.userId
+  const studioId = req.query.studioId
 
   let results = await pool.query(
-    `SELECT * FROM broadcasts (WHERE user_id = $1 AND studio_id = $2)`,
-    [userId, studioId]
+    `SELECT * FROM broadcasts WHERE studio_id = $1`,
+    [studioId]
   )
+  console.log(results)
   if (results.rows) {
-    res.send(results.rows[0])
+    return res.send(results.rows[0])
   }
 })
 

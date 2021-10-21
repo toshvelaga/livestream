@@ -75,15 +75,18 @@ function Studio() {
   }, [mediaStream])
 
   useEffect(() => {
-    // need this useEffect to transition to live
     let userId = getCookie('userId')
-    let studioId = 'vxPFx-dhPZGlZ451MILNZ'
+    const studioId = 'vxPFx-dhPZGlZ451MILNZ'
 
-    API.get('/broadcasts', { userId, studioId })
+    // const params = { studioId: studioId }
+
+    API.get('/broadcasts', {
+      params: {
+        studioId: studioId,
+      },
+    })
       .then((response) => {
-        if (response) {
-          console.log(response)
-        }
+        console.log(response)
       })
       .catch((err) => console.log(err))
   }, [])
