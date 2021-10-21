@@ -77,11 +77,12 @@ function Studio() {
   useEffect(() => {
     // need this useEffect to transition to live
     let userId = getCookie('userId')
+    let studioId = 'vxPFx-dhPZGlZ451MILNZ'
 
-    API.post('/destinations', { userId })
+    API.get('/broadcasts', { userId, studioId })
       .then((response) => {
         if (response) {
-          setFacebookStreamKey(response.data.facebook_stream_key)
+          console.log(response)
         }
       })
       .catch((err) => console.log(err))
