@@ -63,6 +63,7 @@ wss.on('connection', (ws, req) => {
   console.log(youtubeUrl)
 
   const facebookUrl = myURL.searchParams.get('facebookUrl')
+  console.log(facebookUrl)
 
   const ffmpeg = child_process.spawn('ffmpeg', [
     '-i',

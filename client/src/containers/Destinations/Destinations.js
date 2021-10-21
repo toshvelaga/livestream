@@ -131,7 +131,7 @@ function Destinations() {
   const facebookAuth = () => {
     FB.getLoginStatus(function (response) {
       console.log(response)
-      console.log('FB access token:' + response.authResponse.accessToken)
+      // console.log('FB access token:' + response.authResponse.accessToken)
     })
     FB.login(
       function (response) {
