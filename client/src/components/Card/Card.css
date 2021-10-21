@@ -5,12 +5,12 @@
 
 .card-styles {
   /* padding: 4rem; */
-  height: 150px;
-  width: 160px;
+  min-height: 150px;
+  min-width: 160px;
   border-radius: 5px;
-  border: 1px solid #eaefee;
+  border: 1px solid #ccc;
   background-color: #ffffff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); */
   transition: 0.3s;
   font-family: var(--main-font);
   margin-right: 2rem;
@@ -33,4 +33,9 @@
   box-shadow: none;
   border: 1px solid #03a9f4;
   cursor: pointer;
+  /* background-color: #eaefee; */
+}
+
+.card-styles:hover p {
+  color: black;
 }
