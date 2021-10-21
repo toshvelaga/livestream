@@ -5,10 +5,13 @@ const express = require('express'),
 require('dotenv').config()
 
 router.post('/api/facebook/broadcast', async (req, res) => {
-  let authorizationCode = req.body.authorizationCode
+  let facebookTitle = req.body.facebookTitle
+  let facebookDescription = req.body.facebookDescription
+  let facebookAccessToken = req.body.facebookAccessToken
+
   let authData = await axios
     .post(
-      `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_SECRET}&code=${authorizationCode}&grant_type=authorization_code&redirect_uri=${process.env.TWITCH_REDIRECT_URL}`
+      `https://graph.facebook.com/v3.3/me/live_videos?title=${facebookTitle}&description=${facebookDescription}status=LIVE_NOW&access_token=${facebookAccessToken}`
     )
     .then((res) => {
       return res.data
