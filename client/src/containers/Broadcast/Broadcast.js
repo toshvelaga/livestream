@@ -268,6 +268,8 @@ function Broadcast() {
     })
   }
 
+  const modalContentDisplay = () => {}
+
   return (
     <>
       <Navbar />
@@ -291,21 +293,18 @@ function Broadcast() {
         </div>
         <p>Broadcast to:</p>
         <div style={{ display: 'flex' }}>
-          <BroadcastAvatar>
+          <BroadcastAvatar onClick={() => setmodalContent('Youtube')}>
             <FaIcons.FaYoutube color={'#ff0000'} size={35} />
           </BroadcastAvatar>
 
-          <BroadcastAvatar>
+          <BroadcastAvatar onClick={() => setmodalContent('Twitch')}>
             <FaIcons.FaTwitch color={'#9047fe'} size={35} />
           </BroadcastAvatar>
 
-          <BroadcastAvatar>
+          <BroadcastAvatar onClick={() => setmodalContent('Facebook')}>
             <FaIcons.FaFacebookF color={'#1676f2'} size={35} />
           </BroadcastAvatar>
         </div>
-        {/* <button onClick={() => setmodalContent('Youtube')}>Youtube</button>
-        <button onClick={() => setmodalContent('Twitch')}>Twitch</button>
-        <button style={{ backgroundColor: 'red' }}>Facebook</button> */}
 
         {/* THIS IS THE YOUTUBE STUFF
 
