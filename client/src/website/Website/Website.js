@@ -40,7 +40,13 @@ function Website(props) {
           ohmystream allows creators to livestream to Twitch, Youtube, and
           Facebook at the same time.
         </p>
-        <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+        <div
+          style={{
+            marginTop: '2rem',
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
           <Button
             fx={() => props.history.push('/register')}
             title='Sign Up For Free'

@@ -347,7 +347,7 @@ function Broadcast() {
           <MdIcons.MdClose color='grey' size={24} />
         </div>
         <p>Broadcast to:</p>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', marginBottom: '1rem' }}>
           <BroadcastAvatar
             style={
               modalContent === 'Youtube'
