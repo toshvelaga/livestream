@@ -268,7 +268,62 @@ function Broadcast() {
     })
   }
 
-  const modalContentDisplay = () => {}
+  const modalContentDisplay = () => {
+    if (modalContent === 'Youtube') {
+      return (
+        <>
+          <TextInput
+            label='Title'
+            placeholder=''
+            value={youtubeTitle}
+            onChange={(e) => setyoutubeTitle(e.target.value)}
+            errorMsg={null}
+          />
+          <TextArea
+            label='Description'
+            style={{ width: '100%', marginBottom: '1rem' }}
+            value={youtubeDescription}
+            onChange={(e) => setyoutubeDescription(e.target.value)}
+          />
+          <Selected
+            label='Privacy'
+            options={YOUTUBE_PRIVACY_POLICY}
+            onChange={(e) => {
+              setyoutubePrivacyPolicy(e)
+            }}
+          />
+        </>
+      )
+    } else if (modalContent === 'Twitch') {
+      return (
+        <TextInput
+          label='Title'
+          placeholder=''
+          value={twitchTitle}
+          onChange={(e) => settwitchTitle(e.target.value)}
+          errorMsg={null}
+        />
+      )
+    } else if (modalContent === 'Facebook') {
+      return (
+        <>
+          <TextInput
+            label='Title'
+            placeholder=''
+            value={facebookTitle}
+            onChange={(e) => setfacebookTitle(e.target.value)}
+            errorMsg={null}
+          />
+          <TextArea
+            label='Description'
+            style={{ width: '100%', marginBottom: '1rem' }}
+            value={facebookDescription}
+            onChange={(e) => setfacebookDescription(e.target.value)}
+          />
+        </>
+      )
+    }
+  }
 
   return (
     <>
@@ -305,65 +360,17 @@ function Broadcast() {
             <FaIcons.FaFacebookF color={'#1676f2'} size={35} />
           </BroadcastAvatar>
         </div>
-
-        {/* THIS IS THE YOUTUBE STUFF
-
-        <TextInput
-          label='Title'
-          placeholder=''
-          value={youtubeTitle}
-          onChange={(e) => setyoutubeTitle(e.target.value)}
-          errorMsg={null}
-        />
-        <TextArea
-          label='Description'
-          style={{ width: '100%', marginBottom: '1rem' }}
-          value={youtubeDescription}
-          onChange={(e) => setyoutubeDescription(e.target.value)}
-        />
-        <Selected
-          label='Privacy'
-          options={YOUTUBE_PRIVACY_POLICY}
-          onChange={(e) => {
-            setyoutubePrivacyPolicy(e)
-          }}
-        />
-        <Button
+        {/* <Button
           style={{ width: '100%' }}
           title='Create Broadcast'
           fx={youtubePromiseChain}
-        /> */}
-
-        {/* THIS IS THE TWITCH STUFF */}
-
-        {/* <TextInput
-          label='Title'
-          placeholder=''
-          value={twitchTitle}
-          onChange={(e) => settwitchTitle(e.target.value)}
-          errorMsg={null}
         />
         <Button
           style={{ width: '100%' }}
           title='Create Broadcast'
           fx={twitchPromiseChain}
         /> */}
-
-        {/* This is the Facebook stuff */}
-
-        <TextInput
-          label='Title'
-          placeholder=''
-          value={facebookTitle}
-          onChange={(e) => setfacebookTitle(e.target.value)}
-          errorMsg={null}
-        />
-        <TextArea
-          label='Description'
-          style={{ width: '100%', marginBottom: '1rem' }}
-          value={facebookDescription}
-          onChange={(e) => setfacebookDescription(e.target.value)}
-        />
+        {modalContentDisplay()}
         <Button
           style={{ width: '100%' }}
           title='Create Broadcast'
