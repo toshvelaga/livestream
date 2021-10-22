@@ -239,7 +239,7 @@ function Broadcast() {
     console.log('facebook authentication')
     let facebookData = await axios
       .post(
-        `https://graph.facebook.com/v3.3/me/live_videos?title=${facebookTitle}&description=${facebookDescription}status=LIVE_NOW&access_token=${facebookAccessToken}`
+        `https://graph.facebook.com/v3.3/me/live_videos?title=${facebookTitle}&description=${facebookDescription}?status=LIVE_NOW&access_token=${facebookAccessToken}`
       )
       .then((res) => {
         console.log(res)

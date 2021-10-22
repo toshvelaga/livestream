@@ -66,8 +66,8 @@ wss.on('connection', (ws, req) => {
   console.log(facebookUrl)
 
   const ffmpeg = child_process.spawn('ffmpeg', [
-    // '-i',
-    // '-',
+    '-i',
+    '-',
 
     // // video codec config: low latency, adaptive bitrate
     // '-c:v',
