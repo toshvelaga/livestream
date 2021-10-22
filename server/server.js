@@ -54,8 +54,6 @@ const wss = new WebSocket.Server({ port: WS_PORT }, () => {
 wss.on('connection', (ws, req) => {
   const myURL = new URL(`http://localhost:${WS_PORT}` + req.url)
 
-  console.log(req.url)
-
   const twitchStreamKey = myURL.searchParams.get('twitchStreamKey')
   const twitch = 'rtmp://dfw.contribute.live-video.net/app/' + twitchStreamKey
 
