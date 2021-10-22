@@ -237,8 +237,9 @@ function Broadcast() {
   }
 
   const facebookPromiseChain = async () => {
-    let facebookAccessToken = getCookie('facebookAccessToken')
     console.log('facebook authentication')
+
+    let facebookAccessToken = getCookie('facebookAccessToken')
     const data = {
       facebookTitle,
       facebookDescription,
@@ -246,8 +247,7 @@ function Broadcast() {
     }
     let facebookData = await API.post('/facebook/broadcast', data).then(
       (res) => {
-        console.log(res)
-        return res
+        return res.data
       }
     )
     console.log(facebookData)
