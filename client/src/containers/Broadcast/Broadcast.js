@@ -25,7 +25,12 @@ Modal.defaultStyles.overlay.zIndex = 101
 
 function Broadcast() {
   const [isModalOpen, setisModalOpen] = useState(false)
-  const [modalContent, setmodalContent] = useState('')
+  const [modalContent, setmodalContent] = useState({
+    facebook: false,
+    youtube: false,
+    twitch: false,
+  })
+  const [loading, setloading] = useState(false)
   const [youtubeTitle, setyoutubeTitle] = useState('')
   const [twitchTitle, settwitchTitle] = useState('')
   const [facebookTitle, setfacebookTitle] = useState('')
@@ -272,7 +277,7 @@ function Broadcast() {
   }
 
   const modalContentDisplay = () => {
-    if (modalContent === 'Youtube') {
+    if (modalContent.youtube === true) {
       return (
         <>
           <TextInput
@@ -297,7 +302,7 @@ function Broadcast() {
           />
         </>
       )
-    } else if (modalContent === 'Twitch') {
+    } else if (modalContent.twitch === true) {
       return (
         <TextInput
           label='Title'
@@ -307,7 +312,7 @@ function Broadcast() {
           errorMsg={null}
         />
       )
-    } else if (modalContent === 'Facebook') {
+    } else if (modalContent.facebook === true) {
       return (
         <>
           <TextInput
@@ -353,45 +358,53 @@ function Broadcast() {
         <div style={{ display: 'flex', marginBottom: '1rem' }}>
           <BroadcastAvatar
             style={
-              modalContent === 'Youtube'
+              modalContent.youtube === true
                 ? { border: '2px solid #03a9f4' }
                 : null
             }
-            onClick={() => setmodalContent('Youtube')}
+            onClick={() =>
+              setmodalContent((prev) => ({
+                ...prev,
+                youtube: !prev.youtube,
+              }))
+            }
           >
             <FaIcons.FaYoutube color={'#ff0000'} size={35} />
           </BroadcastAvatar>
 
           <BroadcastAvatar
             style={
-              modalContent === 'Twitch' ? { border: '2px solid #03a9f4' } : null
+              modalContent.twitch === true
+                ? { border: '2px solid #03a9f4' }
+                : null
             }
-            onClick={() => setmodalContent('Twitch')}
+            onClick={() =>
+              setmodalContent((prev) => ({
+                ...prev,
+                twitch: !prev.twitch,
+              }))
+            }
           >
             <FaIcons.FaTwitch color={'#9047fe'} size={35} />
           </BroadcastAvatar>
 
           <BroadcastAvatar
             style={
-              modalContent === 'Facebook'
+              modalContent.facebook === true
                 ? { border: '2px solid #03a9f4' }
                 : null
             }
-            onClick={() => setmodalContent('Facebook')}
+            onClick={() =>
+              setmodalContent((prev) => ({
+                ...prev,
+                facebook: !prev.facebook,
+              }))
+            }
           >
             <FaIcons.FaFacebookF color={'#1676f2'} size={35} />
           </BroadcastAvatar>
         </div>
-        {/* <Button
-          style={{ width: '100%' }}
-          title='Create Broadcast'
-          fx={youtubePromiseChain}
-        />
-        <Button
-          style={{ width: '100%' }}
-          title='Create Broadcast'
-          fx={twitchPromiseChain}
-        /> */}
+
         {modalContentDisplay()}
         <Button
           style={{ width: '100%' }}
