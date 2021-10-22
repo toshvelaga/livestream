@@ -239,14 +239,17 @@ function Broadcast() {
   const facebookPromiseChain = async () => {
     let facebookAccessToken = getCookie('facebookAccessToken')
     console.log('facebook authentication')
-    let facebookData = await axios
-      .post(
-        `https://graph.facebook.com/v3.3/me/live_videos?title=${facebookTitle}&description=${facebookDescription}?status=LIVE_NOW&access_token=${facebookAccessToken}`
-      )
-      .then((res) => {
+    const data = {
+      facebookTitle,
+      facebookDescription,
+      facebookAccessToken,
+    }
+    let facebookData = await API.post('/facebook/broadcast', data).then(
+      (res) => {
         console.log(res)
-        return res.data
-      })
+        return res
+      }
+    )
     console.log(facebookData)
     let facebookLiveVideoId = facebookData.id
     let facebookDestinationUrl = facebookData.secure_stream_url

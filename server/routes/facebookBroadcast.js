@@ -11,7 +11,7 @@ router.post('/api/facebook/broadcast', async (req, res) => {
 
   let authData = await axios
     .post(
-      `https://graph.facebook.com/v3.3/me/live_videos?title=${facebookTitle}&description=${facebookDescription}status=LIVE_NOW&access_token=${facebookAccessToken}`
+      `https://graph.facebook.com/v3.3/me/live_videos?title=${facebookTitle}&description=${facebookDescription}?status=LIVE_NOW&access_token=${facebookAccessToken}`
     )
     .then((res) => {
       return res.data
