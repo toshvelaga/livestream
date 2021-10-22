@@ -140,7 +140,7 @@ function Destinations() {
         let facebookAccessToken = response.authResponse.accessToken
         setCookie('facebookAccessToken', facebookAccessToken, 1)
       },
-      { scope: 'email,publish_video', auth_type: 'rerequest' }
+      { scope: 'email, publish_video, public_profile', auth_type: 'rerequest' }
     )
   }
 
