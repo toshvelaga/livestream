@@ -348,15 +348,34 @@ function Broadcast() {
         </div>
         <p>Broadcast to:</p>
         <div style={{ display: 'flex' }}>
-          <BroadcastAvatar onClick={() => setmodalContent('Youtube')}>
+          <BroadcastAvatar
+            style={
+              modalContent === 'Youtube'
+                ? { border: '2px solid #03a9f4' }
+                : null
+            }
+            onClick={() => setmodalContent('Youtube')}
+          >
             <FaIcons.FaYoutube color={'#ff0000'} size={35} />
           </BroadcastAvatar>
 
-          <BroadcastAvatar onClick={() => setmodalContent('Twitch')}>
+          <BroadcastAvatar
+            style={
+              modalContent === 'Twitch' ? { border: '2px solid #03a9f4' } : null
+            }
+            onClick={() => setmodalContent('Twitch')}
+          >
             <FaIcons.FaTwitch color={'#9047fe'} size={35} />
           </BroadcastAvatar>
 
-          <BroadcastAvatar onClick={() => setmodalContent('Facebook')}>
+          <BroadcastAvatar
+            style={
+              modalContent === 'Facebook'
+                ? { border: '2px solid #03a9f4' }
+                : null
+            }
+            onClick={() => setmodalContent('Facebook')}
+          >
             <FaIcons.FaFacebookF color={'#1676f2'} size={35} />
           </BroadcastAvatar>
         </div>

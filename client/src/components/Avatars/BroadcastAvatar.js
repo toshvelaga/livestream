@@ -3,7 +3,11 @@ import './BroadcastAvatar.css'
 
 const BroadcastAvatar = (props) => {
   return (
-    <div onClick={props.onClick} className='broadcast-avatar'>
+    <div
+      onClick={props.onClick}
+      style={props.style}
+      className='broadcast-avatar'
+    >
       {props.children}
     </div>
   )
