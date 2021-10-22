@@ -14,7 +14,9 @@ import Navbar from '../../components/Navbar/Navbar'
 import Modal from 'react-modal'
 import getCookie from '../../utils/getCookie'
 import * as MdIcons from 'react-icons/md'
+import * as FaIcons from 'react-icons/fa'
 import './Broadcast.css'
+import BroadcastAvatar from '../../components/Avatars/BroadcastAvatar'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
@@ -288,9 +290,22 @@ function Broadcast() {
           <MdIcons.MdClose color='grey' size={24} />
         </div>
         <p>Broadcast to:</p>
-        <button onClick={() => setmodalContent('Youtube')}>Youtube</button>
+        <div style={{ display: 'flex' }}>
+          <BroadcastAvatar>
+            <FaIcons.FaYoutube color={'#ff0000'} size={35} />
+          </BroadcastAvatar>
+
+          <BroadcastAvatar>
+            <FaIcons.FaTwitch color={'#9047fe'} size={35} />
+          </BroadcastAvatar>
+
+          <BroadcastAvatar>
+            <FaIcons.FaFacebookF color={'#1676f2'} size={35} />
+          </BroadcastAvatar>
+        </div>
+        {/* <button onClick={() => setmodalContent('Youtube')}>Youtube</button>
         <button onClick={() => setmodalContent('Twitch')}>Twitch</button>
-        <button style={{ backgroundColor: 'red' }}>Facebook</button>
+        <button style={{ backgroundColor: 'red' }}>Facebook</button> */}
 
         {/* THIS IS THE YOUTUBE STUFF
 

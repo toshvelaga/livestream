@@ -1,5 +1,17 @@
 .broadcast-avatar {
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
+  border: 1px solid #ddd;
+  margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.broadcast-avatar:hover {
+  cursor: pointer;
+  background-color: #f8f8f8;
+  border: 2px solid #03a9f4;
 }
