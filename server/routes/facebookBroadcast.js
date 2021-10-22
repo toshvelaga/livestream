@@ -23,4 +23,23 @@ router.post('/api/facebook/broadcast', async (req, res) => {
   return res.send(authData)
 })
 
+// END BROADCAST
+
+router.post('/api/facebook/broadcast/end', async (req, res) => {
+  let liveVideoId = req.body.facebookLiveVideoId
+  let accessToken = req.body.accessToken
+
+  await axios
+    .post(
+      `https://graph.facebook.com/v3.3/${liveVideoId}?end_live_video=true&access_token=${accessToken}`
+    )
+    .then((res) => {
+      console.log(res)
+      return res
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
+
 module.exports = router

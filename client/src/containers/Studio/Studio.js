@@ -25,6 +25,7 @@ function Studio() {
   const [youtubeStreamName, setYoutubeStreamName] = useState('')
 
   const [facebookUrl, setFacebookUrl] = useState('')
+  const [facebookLiveVideoId, setfacebookLiveVideoId] = useState('')
 
   const [mediaStream, setMediaStream] = useState(null)
   const [userFacing, setuserFacing] = useState(false)
@@ -87,6 +88,7 @@ function Studio() {
       .then((res) => {
         console.log(res)
         setFacebookUrl(res.data.facebook_destination_url)
+        setfacebookLiveVideoId(res.data.facebook_live_video_id)
       })
       .catch((err) => console.log(err))
   }, [])
@@ -252,6 +254,19 @@ function Studio() {
 
   const twitchAuth = () => {
     console.log('Twitch Authentication')
+  }
+
+  const endFacebookLivestream = () => {
+    console.log('end facebook stream')
+    let facebookAccessToken = getCookie('facebookAccessToken')
+
+    const data = {
+      facebookLiveVideoId,
+      accessToken: facebookAccessToken,
+    }
+    API.post('/facebook/broadcast/end', data)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
   }
 
   return (
