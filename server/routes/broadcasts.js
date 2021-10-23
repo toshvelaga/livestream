@@ -21,6 +21,7 @@ router.post('/api/broadcasts', (req, res, next) => {
     req.body.facebookLiveVideoId,
     req.body.facebookDestinationUrl,
     studioId,
+    req.body.twitchTitle,
   ]
 
   pool.query(
@@ -37,8 +38,9 @@ router.post('/api/broadcasts', (req, res, next) => {
       facebook_description, 
       facebook_live_video_id, 
       facebook_destination_url, 
-      studio_id)
-		VALUES($1, $2, $3, $4, $5, $6 ,$7, $8, $9, $10, $11, $12, $13)`,
+      studio_id,
+      twitch_title)
+		VALUES($1, $2, $3, $4, $5, $6 ,$7, $8, $9, $10, $11, $12, $13, $14)`,
     values,
     (q_err, q_res) => {
       if (q_err) return next(q_err)
