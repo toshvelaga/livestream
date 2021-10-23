@@ -278,7 +278,7 @@ function Broadcast() {
   }
 
   const modalContentDisplay = () => {
-    if (modalContent.youtube === true) {
+    if (modalContent.youtube === true && modalContentDisplayed === 'youtube') {
       return (
         <>
           <TextInput
@@ -303,7 +303,10 @@ function Broadcast() {
           />
         </>
       )
-    } else if (modalContent.twitch === true) {
+    } else if (
+      modalContent.twitch === true &&
+      modalContentDisplayed === 'twitch'
+    ) {
       return (
         <TextInput
           label='Title'
@@ -313,7 +316,10 @@ function Broadcast() {
           errorMsg={null}
         />
       )
-    } else if (modalContent.facebook === true) {
+    } else if (
+      modalContent.facebook === true &&
+      modalContentDisplayed === 'facebook'
+    ) {
       return (
         <>
           <TextInput
