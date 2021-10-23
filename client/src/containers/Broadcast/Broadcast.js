@@ -261,7 +261,8 @@ function Broadcast() {
     youtubeDestinationUrl,
     youtubeBroadcastId,
     facebookLiveVideoId,
-    facebookDestinationUrl
+    facebookDestinationUrl,
+    twitchTitle
   ) => {
     const data = {
       youtubeTitle,
@@ -274,6 +275,7 @@ function Broadcast() {
       facebookDescription,
       facebookLiveVideoId,
       facebookDestinationUrl,
+      twitchTitle,
     }
     API.post('/broadcasts', data)
   }
