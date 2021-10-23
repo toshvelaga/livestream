@@ -297,17 +297,27 @@ function Broadcast() {
     console.log('submit')
     if (modalContent.youtube && !youtubeTitle) {
       setyoutubeTitleError('Please enter a Youtube title')
+    } else {
+      allPromises()
     }
+  }
 
-    Promise.all([
-      youtubePromiseChain(),
-      twitchPromiseChain(),
-      facebookPromiseChain(),
-    ])
-      .then((values) => {
+  const allPromises = () => {
+    try {
+      setloading(true)
+
+      Promise.all([
+        youtubePromiseChain(),
+        twitchPromiseChain(),
+        facebookPromiseChain(),
+      ]).then((values) => {
         console.log(values)
       })
-      .catch((err) => console.log(err))
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setloading(false)
+    }
   }
 
   const modalContentDisplay = () => {
