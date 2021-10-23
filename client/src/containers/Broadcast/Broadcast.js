@@ -228,27 +228,32 @@ function Broadcast() {
     }
   }
 
-  const changeTwitchTitle = () => {
+  const twitchPromiseChain = () => {
+    console.log('twitch promise chain')
     let twitchUserID = getCookie('twitchUserID')
     let twitchToken = getCookie('twitchAccessToken')
 
-    const body = {
-      title: twitchTitle,
-      twitchUserID,
-      twitchToken,
-    }
+    const body = { title: twitchTitle }
 
-    API.patch('/twitch/broadcast', body)
+    axios
+      .patch(
+        `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserID}`,
+        body,
+        {
+          headers: {
+            Authorization: `Bearer ${twitchToken}`,
+            'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID,
+            'Content-Type': 'application/json',
+          },
+        }
+      )
       .then((res) => {
         console.log(res)
-        return res
+        return {
+          twitchTitle: twitchTitle,
+        }
       })
       .catch((err) => console.log(err))
-  }
-
-  const twitchPromiseChain = () => {
-    console.log('twitch promise chain')
-    changeTwitchTitle()
   }
 
   const facebookPromiseChain = async () => {
@@ -396,8 +401,6 @@ function Broadcast() {
       <Navbar />
       <div className='dashboard-container'>
         <h2 style={{ marginTop: '2rem' }}>Broadcasts</h2>
-        <button onClick={changeTwitchTitle}>change twitch title</button>
-
         <Button fx={openModal} title='Create new Broadcast' />
       </div>
       <Modal

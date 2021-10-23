@@ -19,14 +19,14 @@ const broadcastsRouter = require('./routes/broadcasts')
 const compareCodeRouter = require('./routes/compareCode')
 const referralRouter = require('./routes/referral')
 const facebookBroadcastRouter = require('./routes/facebookBroadcast')
-const twitchBroadcastRouter = require('./routes/twitchBroadcast')
+// const twitchBroadcastRouter = require('./routes/twitchBroadcast')
 
 app.use('/', authenticationRouter)
 app.use('/', authorizationRouter)
 app.use('/', broadcastsRouter)
 app.use('/', compareCodeRouter)
 app.use('/', facebookBroadcastRouter)
-app.use('/', twitchBroadcastRouter)
+// app.use('/', twitchBroadcastRouter)
 app.use('/', referralRouter)
 
 if (process.env.NODE_ENV === 'production') {
