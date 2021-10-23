@@ -30,6 +30,7 @@ function Broadcast() {
     youtube: false,
     twitch: false,
   })
+  const [modalContentDisplayed, setmodalContentDisplayed] = useState('')
   const [loading, setloading] = useState(false)
   const [youtubeTitle, setyoutubeTitle] = useState('')
   const [twitchTitle, settwitchTitle] = useState('')
@@ -362,12 +363,13 @@ function Broadcast() {
                 ? { border: '2px solid #03a9f4' }
                 : null
             }
-            onClick={() =>
+            onClick={() => {
               setmodalContent((prev) => ({
                 ...prev,
                 youtube: !prev.youtube,
               }))
-            }
+              setmodalContentDisplayed('youtube')
+            }}
           >
             <FaIcons.FaYoutube color={'#ff0000'} size={35} />
           </BroadcastAvatar>
@@ -378,12 +380,13 @@ function Broadcast() {
                 ? { border: '2px solid #03a9f4' }
                 : null
             }
-            onClick={() =>
+            onClick={() => {
               setmodalContent((prev) => ({
                 ...prev,
                 twitch: !prev.twitch,
               }))
-            }
+              setmodalContentDisplayed('twitch')
+            }}
           >
             <FaIcons.FaTwitch color={'#9047fe'} size={35} />
           </BroadcastAvatar>
@@ -394,12 +397,13 @@ function Broadcast() {
                 ? { border: '2px solid #03a9f4' }
                 : null
             }
-            onClick={() =>
+            onClick={() => {
               setmodalContent((prev) => ({
                 ...prev,
                 facebook: !prev.facebook,
               }))
-            }
+              setmodalContentDisplayed('facebook')
+            }}
           >
             <FaIcons.FaFacebookF color={'#1676f2'} size={35} />
           </BroadcastAvatar>
