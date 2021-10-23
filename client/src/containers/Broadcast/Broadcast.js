@@ -204,6 +204,7 @@ function Broadcast() {
 
   const youtubePromiseChain = async () => {
     try {
+      console.log('youtube promise chain')
       const createdBroadcastId = await createBroadcast()
       const createdStream = await createStream()
 
@@ -212,18 +213,23 @@ function Broadcast() {
 
       await bindBroadcastToStream(createdBroadcastId, createdStreamId)
 
-      saveYoutubeDataToDB(
-        youtubeDestinationUrl,
-        createdBroadcastId,
-        createdStreamId
-      )
+      return {
+        youtubeDestinationUrl: youtubeDestinationUrl,
+        youtubeStreamId: createdStreamId,
+      }
+
+      // saveYoutubeDataToDB(
+      //   youtubeDestinationUrl,
+      //   createdBroadcastId,
+      //   createdStreamId
+      // )
     } catch (error) {
       console.log(error)
     }
   }
 
   const twitchPromiseChain = () => {
-    console.log('twitch modify channel information')
+    console.log('twitch promise chain')
     let twitchUserID = getCookie('twitchUserID')
     let twitchToken = getCookie('twitchAccessToken')
 
@@ -242,13 +248,13 @@ function Broadcast() {
         }
       )
       .then((res) => {
-        console.log(res)
+        return res
       })
       .catch((err) => console.log(err))
   }
 
   const facebookPromiseChain = async () => {
-    console.log('facebook authentication')
+    console.log('facebook promise chain')
 
     let facebookAccessToken = getCookie('facebookAccessToken')
     const data = {
@@ -264,7 +270,12 @@ function Broadcast() {
     console.log(facebookData)
     let facebookLiveVideoId = facebookData.id
     let facebookDestinationUrl = facebookData.secure_stream_url
-    saveFacebookDataToDB(facebookLiveVideoId, facebookDestinationUrl)
+
+    return {
+      facebookLiveVideoId: facebookLiveVideoId,
+      facebookDestinationUrl: facebookDestinationUrl,
+    }
+    // saveFacebookDataToDB(facebookLiveVideoId, facebookDestinationUrl)
   }
 
   const saveFacebookDataToDB = (
@@ -287,6 +298,16 @@ function Broadcast() {
     if (modalContent.youtube && !youtubeTitle) {
       setyoutubeTitleError('Please enter a Youtube title')
     }
+
+    Promise.all([
+      youtubePromiseChain(),
+      twitchPromiseChain(),
+      facebookPromiseChain(),
+    ])
+      .then((values) => {
+        console.log(values)
+      })
+      .catch((err) => console.log(err))
   }
 
   const modalContentDisplay = () => {
