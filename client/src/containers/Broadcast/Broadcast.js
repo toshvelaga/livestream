@@ -42,6 +42,8 @@ function Broadcast() {
 
   const [userId, setuserId] = useState('')
 
+  const [youtubeTitleError, setyoutubeTitleError] = useState('')
+
   let GoogleAuth
 
   const closeModal = () => {
@@ -277,6 +279,10 @@ function Broadcast() {
     })
   }
 
+  const submit = () => {
+    console.log('submit')
+  }
+
   const modalContentDisplay = () => {
     if (modalContent.youtube === true && modalContentDisplayed === 'youtube') {
       return (
@@ -289,7 +295,11 @@ function Broadcast() {
             errorMsg={null}
           />
           <TextArea
-            label='Description'
+            label={
+              <span>
+                Description <i style={{ color: 'grey' }}>(Optional)</i>
+              </span>
+            }
             style={{ width: '100%', marginBottom: '1rem' }}
             value={youtubeDescription}
             onChange={(e) => setyoutubeDescription(e.target.value)}
