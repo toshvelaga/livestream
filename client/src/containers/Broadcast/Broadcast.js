@@ -249,11 +249,11 @@ function Broadcast() {
       )
       .then((res) => {
         console.log(res)
-        return {
-          twitchTitle: twitchTitle,
-        }
       })
       .catch((err) => console.log(err))
+    return {
+      twitchTitle: twitchTitle,
+    }
   }
 
   const facebookPromiseChain = async () => {
