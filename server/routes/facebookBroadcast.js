@@ -1,6 +1,5 @@
 const express = require('express'),
   router = express.Router(),
-  pool = require('../db'),
   { default: axios } = require('axios')
 require('dotenv').config()
 

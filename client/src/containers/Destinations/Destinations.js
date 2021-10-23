@@ -36,23 +36,6 @@ function Destinations() {
     }
   }, [])
 
-  // const handleClick = () => {
-  //   const data = {
-  //     twitchStreamKey,
-  //     facebookStreamKey,
-  //     userId,
-  //   }
-  //   API.put('/destinations', data)
-  //     .then((response) => console.log(response))
-  //     .then(() => {
-  //       setbuttonText('Changes Saved!')
-  //       setTimeout(() => {
-  //         setbuttonText('Save')
-  //       }, 1500)
-  //     })
-  //     .catch((err) => console.log(err))
-  // }
-
   const youtubeAuth = () => {
     return gapi.auth2
       .getAuthInstance()

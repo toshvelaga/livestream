@@ -233,21 +233,15 @@ function Broadcast() {
     let twitchUserID = getCookie('twitchUserID')
     let twitchToken = getCookie('twitchAccessToken')
 
-    const body = { title: twitchTitle }
+    const body = {
+      title: twitchTitle,
+      twitchUserID,
+      twitchToken,
+    }
 
-    axios
-      .patch(
-        `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserID}`,
-        body,
-        {
-          headers: {
-            Authorization: `Bearer ${twitchToken}`,
-            'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID,
-            'Content-Type': 'application/json',
-          },
-        }
-      )
+    API.patch('/twitch/broadcast', body)
       .then((res) => {
+        console.log(res)
         return res
       })
       .catch((err) => console.log(err))
