@@ -38,7 +38,10 @@ function Broadcast() {
   // const [twitchToken, settwitchToken] = useState('')
   const [youtubeDescription, setyoutubeDescription] = useState('')
   const [facebookDescription, setfacebookDescription] = useState('')
-  const [youtubePrivacyPolicy, setyoutubePrivacyPolicy] = useState('')
+  const [youtubePrivacyPolicy, setyoutubePrivacyPolicy] = useState({
+    value: 'Public',
+    label: 'Public',
+  })
 
   const [userId, setuserId] = useState('')
 
@@ -281,6 +284,9 @@ function Broadcast() {
 
   const submit = () => {
     console.log('submit')
+    if (modalContent.youtube && !youtubeTitle) {
+      setyoutubeTitleError('Please enter a Youtube title')
+    }
   }
 
   const modalContentDisplay = () => {
@@ -291,13 +297,18 @@ function Broadcast() {
             label='Title'
             placeholder=''
             value={youtubeTitle}
-            onChange={(e) => setyoutubeTitle(e.target.value)}
-            errorMsg={null}
+            onChange={(e) => {
+              setyoutubeTitle(e.target.value)
+              if (youtubeTitleError) {
+                setyoutubeTitleError('')
+              }
+            }}
+            errorMsg={youtubeTitleError ? youtubeTitleError : null}
           />
           <TextArea
             label={
               <span>
-                Description <i style={{ color: 'grey' }}>(Optional)</i>
+                Description <i style={{ color: '#ccc' }}>(Optional)</i>
               </span>
             }
             style={{ width: '100%', marginBottom: '1rem' }}
@@ -307,6 +318,7 @@ function Broadcast() {
           <Selected
             label='Privacy'
             options={YOUTUBE_PRIVACY_POLICY}
+            value={youtubePrivacyPolicy}
             onChange={(e) => {
               setyoutubePrivacyPolicy(e)
             }}
@@ -429,7 +441,7 @@ function Broadcast() {
         <Button
           style={{ width: '100%' }}
           title='Create Broadcast'
-          fx={facebookPromiseChain}
+          fx={submit}
         />
       </Modal>
     </>
