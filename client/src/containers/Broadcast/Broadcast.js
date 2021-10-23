@@ -198,6 +198,7 @@ function Broadcast() {
 
       return {
         youtubeDestinationUrl: youtubeDestinationUrl,
+        youtubeBroadcastId: createdBroadcastId,
         youtubeStreamId: createdStreamId,
       }
     } catch (error) {
@@ -260,6 +261,7 @@ function Broadcast() {
   const sendDataToDB = (
     youtubeDestinationUrl,
     youtubeBroadcastId,
+    youtubeStreamId,
     facebookLiveVideoId,
     facebookDestinationUrl,
     twitchTitle
@@ -271,6 +273,7 @@ function Broadcast() {
       userId,
       youtubeDestinationUrl,
       youtubeBroadcastId,
+      youtubeStreamId,
       facebookTitle,
       facebookDescription,
       facebookLiveVideoId,
@@ -299,6 +302,16 @@ function Broadcast() {
         facebookPromiseChain(),
       ]).then((values) => {
         console.log(values)
+        const flatObj = Object.assign({}, ...values)
+        console.log(flatObj)
+        sendDataToDB(
+          flatObj.youtubeDestinationUrl,
+          flatObj.youtubeBroadcastId,
+          flatObj.youtubeStreamId,
+          flatObj.facebookLiveVideoId,
+          flatObj.facebookDestinationUrl,
+          flatObj.twitchTitle
+        )
       })
     } catch (error) {
       console.log(error)

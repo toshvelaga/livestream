@@ -16,7 +16,7 @@ CREATE TABLE broadcasts (
     broadcast_time_created timestamp without time zone,
     user_id character varying(255),
     youtube_broadcast_id character varying(255),
-    stream_id character varying(255),
+    youtube_stream_id character varying(255),
     youtube_destination_url character varying(255),
     facebook_title character varying(255),
     facebook_description text,
@@ -25,3 +25,4 @@ CREATE TABLE broadcasts (
     studio_id character varying(255),
     twitch_title character varying(255)
 );
+
