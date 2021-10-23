@@ -22,5 +22,6 @@ CREATE TABLE broadcasts (
     facebook_description text,
     facebook_live_video_id character varying(255),
     facebook_destination_url character varying(255),
-    studio_id character varying(255)
+    studio_id character varying(255),
+    twitch_title character varying(255)
 );
