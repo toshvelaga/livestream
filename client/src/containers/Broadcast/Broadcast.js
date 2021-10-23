@@ -185,23 +185,6 @@ function Broadcast() {
     })
   }
 
-  const saveYoutubeDataToDB = (
-    youtubeDestinationUrl,
-    youtubeBroadcastId,
-    streamId
-  ) => {
-    const data = {
-      youtubeTitle,
-      youtubeDescription,
-      youtubePrivacyPolicy,
-      userId,
-      youtubeDestinationUrl,
-      youtubeBroadcastId,
-      streamId,
-    }
-    API.post('/broadcasts', data)
-  }
-
   const youtubePromiseChain = async () => {
     try {
       console.log('youtube promise chain')
@@ -217,12 +200,6 @@ function Broadcast() {
         youtubeDestinationUrl: youtubeDestinationUrl,
         youtubeStreamId: createdStreamId,
       }
-
-      // saveYoutubeDataToDB(
-      //   youtubeDestinationUrl,
-      //   createdBroadcastId,
-      //   createdStreamId
-      // )
     } catch (error) {
       console.log(error)
     }
@@ -278,22 +255,27 @@ function Broadcast() {
       facebookLiveVideoId: facebookLiveVideoId,
       facebookDestinationUrl: facebookDestinationUrl,
     }
-    // saveFacebookDataToDB(facebookLiveVideoId, facebookDestinationUrl)
   }
 
-  const saveFacebookDataToDB = (
+  const sendDataToDB = (
+    youtubeDestinationUrl,
+    youtubeBroadcastId,
     facebookLiveVideoId,
     facebookDestinationUrl
   ) => {
     const data = {
+      youtubeTitle,
+      youtubeDescription,
+      youtubePrivacyPolicy,
+      userId,
+      youtubeDestinationUrl,
+      youtubeBroadcastId,
       facebookTitle,
       facebookDescription,
       facebookLiveVideoId,
       facebookDestinationUrl,
     }
-    API.post('/broadcasts', data).then((res) => {
-      console.log(res)
-    })
+    API.post('/broadcasts', data)
   }
 
   const submit = () => {
