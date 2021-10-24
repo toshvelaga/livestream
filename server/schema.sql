@@ -6,7 +6,10 @@ CREATE TABLE users (
     user_code integer,
     user_date_created timestamp without time zone,
     user_last_login timestamp without time zone,
-    user_active boolean DEFAULT false
+    user_active boolean DEFAULT false,
+    youtube_auth boolean DEFAULT false,
+    twitch_auth boolean DEFAULT false,
+    facebook_auth boolean DEFAULT false
 );
 
 CREATE TABLE broadcasts (
