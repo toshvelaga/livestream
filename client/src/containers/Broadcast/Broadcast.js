@@ -470,6 +470,7 @@ function Broadcast() {
 
         {modalContentDisplay()}
         <Button
+          loading={loading}
           style={{ width: '100%' }}
           title='Create Broadcast'
           fx={submit}
