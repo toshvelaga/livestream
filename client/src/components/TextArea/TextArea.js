@@ -10,7 +10,9 @@ const TextArea = (props) => {
       <textarea
         className='textarea'
         maxLength={props.maxLength}
-        style={props.style}
+        style={
+          (props.style, props.errorMsg ? { border: '1px solid red' } : null)
+        }
         placeholder={props.placeholder}
         id={props.id}
         name='message'

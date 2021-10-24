@@ -351,7 +351,6 @@ function Broadcast() {
                 Description <i style={{ color: '#ccc' }}>(Optional)</i>
               </span>
             }
-            style={{ width: '100%', marginBottom: '1rem' }}
             value={youtubeDescription}
             onChange={(e) => setyoutubeDescription(e.target.value)}
           />
@@ -393,7 +392,6 @@ function Broadcast() {
           />
           <TextArea
             label='Description'
-            style={{ width: '100%', marginBottom: '1rem' }}
             value={facebookDescription}
             onChange={(e) => setfacebookDescription(e.target.value)}
             errorMsg={
