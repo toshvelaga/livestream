@@ -387,13 +387,23 @@ function Broadcast() {
             label='Title'
             placeholder=''
             value={facebookTitle}
-            onChange={(e) => setfacebookTitle(e.target.value)}
+            onChange={(e) => {
+              setfacebookTitle(e.target.value)
+              if (facebookTitleError) {
+                setfacebookTitleError('')
+              }
+            }}
             errorMsg={facebookTitleError ? facebookTitleError : null}
           />
           <TextArea
             label='Description'
             value={facebookDescription}
-            onChange={(e) => setfacebookDescription(e.target.value)}
+            onChange={(e) => {
+              setfacebookDescription(e.target.value)
+              if (facebookDescriptionError) {
+                setfacebookDescriptionError('')
+              }
+            }}
             errorMsg={
               facebookDescriptionError ? facebookDescriptionError : null
             }
