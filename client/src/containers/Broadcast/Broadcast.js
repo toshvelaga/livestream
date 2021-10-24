@@ -20,6 +20,7 @@ import BroadcastAvatar from '../../components/Avatars/BroadcastAvatar'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
+Modal.setAppElement('#root')
 
 /* global gapi */
 
