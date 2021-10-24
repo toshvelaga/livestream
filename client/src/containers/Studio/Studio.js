@@ -236,7 +236,7 @@ function Studio() {
       })
   }
 
-  const transitionToCompleted = () => {
+  const endYoutubeStream = () => {
     return gapi.client.youtube.liveBroadcasts
       .transition({
         part: ['id,snippet,contentDetails,status'],
@@ -313,9 +313,7 @@ function Studio() {
           <button onClick={createStream}>3. create stream</button>
           <button onClick={bindBroadcastToStream}>4. bind broadcast</button> */}
           <button onClick={transitionToLive}>6. transition to live</button>
-          <button onClick={transitionToCompleted}>
-            7. transition to complete
-          </button>
+          <button onClick={endYoutubeStream}>7. transition to complete</button>
         </div>
       </div>
     </>

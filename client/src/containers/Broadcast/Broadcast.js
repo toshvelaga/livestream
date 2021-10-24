@@ -46,6 +46,8 @@ function Broadcast() {
   const [userId, setuserId] = useState('')
 
   const [youtubeTitleError, setyoutubeTitleError] = useState('')
+  const [facebookTitleError, setfacebookTitleError] = useState('')
+  const [facebookDescriptionError, setfacebookDescriptionError] = useState('')
 
   let GoogleAuth
 

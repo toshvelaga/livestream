@@ -19,8 +19,13 @@ const TextArea = (props) => {
         value={props.value}
         onChange={props.onChange}
       ></textarea>
+      <span style={errorStyles}>{props.errorMsg}</span>
     </div>
   )
+}
+
+const errorStyles = {
+  color: 'red',
 }
 
 export default TextArea
