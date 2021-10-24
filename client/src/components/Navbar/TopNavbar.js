@@ -3,6 +3,7 @@ import * as FaIcons from 'react-icons/fa'
 import navbarStyles from './TopNavbar.module.css'
 import deleteAllCookies from '../../utils/deleteAllCookies'
 import { Link, useHistory, useLocation } from 'react-router-dom'
+import styles from '../../styles/styles'
 
 function TopNavbar() {
   const handleClick = () => {
@@ -16,7 +17,7 @@ function TopNavbar() {
       <button onClick={handleClick} className={navbarStyles.upgradeButton}>
         Upgrade
       </button>
-      <NavItem icon={<FaIcons.FaUser size={20} />}>
+      <NavItem icon={<FaIcons.FaUser color={styles.navItemColor} size={20} />}>
         <DropdownMenu></DropdownMenu>
       </NavItem>
     </Navbar>
