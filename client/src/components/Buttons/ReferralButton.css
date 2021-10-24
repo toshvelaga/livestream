@@ -39,7 +39,6 @@ button > span {
 
 .referral-button:hover {
   background-color: #f1f1f1;
-  border: 1px solid black;
   color: black;
   cursor: pointer;
 }
