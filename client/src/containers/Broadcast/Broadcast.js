@@ -487,6 +487,11 @@ function Broadcast() {
             <FaIcons.FaFacebookF color={'#1676f2'} size={35} />
           </BroadcastAvatar>
         </div>
+        {/* <p style={{ color: '#03a9f4' }}>
+          Streaming to {modalContent.youtube ? 'YouTube' : null}{' '}
+          {modalContent.twitch ? 'Twitch' : null}{' '}
+          {modalContent.facebook ? 'Facebook' : null}
+        </p> */}
 
         {modalContentDisplay()}
         <Button

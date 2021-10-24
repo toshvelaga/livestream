@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import './SideNavbar.css'
+import styles from '../../styles/styles'
 
 function SideNavbar(props) {
   const history = useHistory()
@@ -12,13 +13,13 @@ function SideNavbar(props) {
         onClick={() => history.push('/broadcast')}
         style={
           window.location.pathname === '/broadcast'
-            ? { backgroundColor: '#ddd' }
+            ? { backgroundColor: styles.sideNavbarHoverColor }
             : null
         }
         className='tablinks'
       >
         <div className='side-navbar-icon'>
-          <FaIcons.FaVideo size={20} />
+          <FaIcons.FaVideo size={styles.sideNavbarIconSize} />
         </div>
         <div className='side-navbar-title'>Broadcast</div>
       </li>
@@ -27,13 +28,13 @@ function SideNavbar(props) {
         onClick={() => history.push('/destinations')}
         style={
           window.location.pathname === '/destinations'
-            ? { backgroundColor: '#ddd' }
+            ? { backgroundColor: styles.sideNavbarHoverColor }
             : null
         }
         className='tablinks'
       >
         <div className='side-navbar-icon'>
-          <FaIcons.FaKey size={20} />
+          <FaIcons.FaKey size={styles.sideNavbarIconSize} />
         </div>
         <div className='side-navbar-title'>Destinations</div>
       </li>
@@ -49,13 +50,13 @@ function SideNavbar(props) {
         onClick={() => history.push('/referrals')}
         style={
           window.location.pathname === '/referrals'
-            ? { backgroundColor: '#ddd' }
+            ? { backgroundColor: styles.sideNavbarHoverColor }
             : null
         }
         className='tablinks'
       >
         <div className='side-navbar-icon'>
-          <FaIcons.FaShare size={20} />
+          <FaIcons.FaShare size={styles.sideNavbarIconSize} />
         </div>
         <div className='side-navbar-title'>Referrals</div>
       </li>

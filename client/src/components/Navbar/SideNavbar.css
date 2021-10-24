@@ -19,12 +19,41 @@
   position: fixed;
   top: 0;
   border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #f7f7f7;
   width: 180px;
   z-index: 100;
   height: 100vh;
   padding-top: 50px;
   /* transition: width 0.4s linear; */
+}
+
+/* Style the buttons inside the tab */
+.side-navbar li {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 14px 16px;
+  margin: 0.4rem 0;
+  margin-left: 8px;
+  width: 90%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Change background color of buttons on hover */
+.side-navbar li:hover {
+  background-color: #e3e2e7;
+}
+
+/* Create an active/current "tab button" class */
+.side-navbar button.active {
+  background-color: #ccc;
 }
 
 .side-navbar-title {
@@ -40,6 +69,14 @@
 }
 
 @media screen and (max-width: 1200px) {
+  .side-navbar li {
+    margin-left: 0;
+    display: flex;
+    align-self: center;
+    width: 100%;
+    border-radius: 0;
+  }
+
   .side-navbar-title {
     display: none;
   }
@@ -58,29 +95,4 @@
   .side-navbar {
     display: none;
   }
-}
-
-/* Style the buttons inside the tab */
-.side-navbar li {
-  display: block;
-  background-color: inherit;
-  color: black;
-  padding: 20px 16px;
-  /* width: 100%; */
-  border: none;
-  outline: none;
-  text-align: left;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 17px;
-}
-
-/* Change background color of buttons on hover */
-.side-navbar li:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current "tab button" class */
-.side-navbar button.active {
-  background-color: #ccc;
 }
