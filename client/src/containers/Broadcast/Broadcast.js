@@ -290,6 +290,12 @@ function Broadcast() {
     console.log('submit')
     if (modalContent.youtube && !youtubeTitle) {
       setyoutubeTitleError('Please enter a Youtube title')
+    }
+    if (modalContent.facebook && !facebookTitle) {
+      setfacebookTitleError('Please enter a Facebook title')
+    }
+    if (modalContent.facebook && !facebookDescription) {
+      setfacebookDescriptionError('Please enter a Facebook description')
     } else {
       allPromises()
     }
@@ -383,13 +389,16 @@ function Broadcast() {
             placeholder=''
             value={facebookTitle}
             onChange={(e) => setfacebookTitle(e.target.value)}
-            errorMsg={null}
+            errorMsg={facebookTitleError ? facebookTitleError : null}
           />
           <TextArea
             label='Description'
             style={{ width: '100%', marginBottom: '1rem' }}
             value={facebookDescription}
             onChange={(e) => setfacebookDescription(e.target.value)}
+            errorMsg={
+              facebookDescriptionError ? facebookDescriptionError : null
+            }
           />
         </>
       )

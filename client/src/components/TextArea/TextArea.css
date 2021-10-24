@@ -3,6 +3,15 @@
     'Helvetica Neue', Ubuntu, Arial, sans-serif;
 }
 
+.textarea-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+textarea {
+  margin-bottom: 0.5rem !important;
+}
+
 .textarea {
   box-sizing: border-box;
   border: 1px solid #ccc;

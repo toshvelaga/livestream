@@ -3,7 +3,7 @@ import './TextArea.css'
 
 const TextArea = (props) => {
   return (
-    <div>
+    <div className='textarea-container'>
       <label className='label' htmlFor='fname'>
         {props.label}
       </label>
