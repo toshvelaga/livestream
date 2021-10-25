@@ -31,6 +31,11 @@ function Broadcast() {
     youtube: false,
     twitch: false,
   })
+  const [showBroadcastAvatar, setshowBroadcastAvatar] = useState({
+    facebook: false,
+    youtube: false,
+    twitch: false,
+  })
   const [modalContentDisplayed, setmodalContentDisplayed] = useState('')
   const [loading, setloading] = useState(false)
   const [youtubeTitle, setyoutubeTitle] = useState('')
@@ -68,9 +73,19 @@ function Broadcast() {
   useEffect(() => {
     let userId = getCookie('userId')
     setuserId(userId)
+
+    const body = { userId }
+    API.post('/user/destinations', body)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }, [])
 
   useEffect(() => {
+    // this is for google auth
     handleClientLoad()
   }, [])
 
