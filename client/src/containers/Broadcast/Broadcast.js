@@ -51,6 +51,8 @@ function Broadcast() {
     label: 'Public',
   })
 
+  console.log(modalContent)
+
   const [userId, setuserId] = useState('')
 
   const [youtubeTitleError, setyoutubeTitleError] = useState('')
@@ -91,7 +93,7 @@ function Broadcast() {
       })
   }, [])
 
-  console.log(showBroadcastAvatar)
+  // console.log(showBroadcastAvatar)
 
   useEffect(() => {
     // this is for google auth
@@ -214,75 +216,87 @@ function Broadcast() {
 
   const youtubePromiseChain = async () => {
     try {
-      console.log('youtube promise chain')
-      const createdBroadcastId = await createBroadcast()
-      const createdStream = await createStream()
+      if (modalContent.youtube) {
+        console.log('youtube promise chain')
+        const createdBroadcastId = await createBroadcast()
+        const createdStream = await createStream()
 
-      const youtubeDestinationUrl = createdStream.youtubeDestinationUrl
-      const createdStreamId = createdStream.streamId
+        const youtubeDestinationUrl = createdStream.youtubeDestinationUrl
+        const createdStreamId = createdStream.streamId
 
-      await bindBroadcastToStream(createdBroadcastId, createdStreamId)
+        await bindBroadcastToStream(createdBroadcastId, createdStreamId)
 
-      return {
-        youtubeDestinationUrl: youtubeDestinationUrl,
-        youtubeBroadcastId: createdBroadcastId,
-        youtubeStreamId: createdStreamId,
-      }
+        return {
+          youtubeDestinationUrl: youtubeDestinationUrl,
+          youtubeBroadcastId: createdBroadcastId,
+          youtubeStreamId: createdStreamId,
+        }
+      } else
+        return {
+          youtubeDestinationUrl: '',
+          youtubeBroadcastId: '',
+          youtubeStreamId: '',
+        }
     } catch (error) {
       console.log(error)
     }
   }
 
   const twitchPromiseChain = () => {
-    console.log('twitch promise chain')
-    let twitchUserID = getCookie('twitchUserID')
-    let twitchToken = getCookie('twitchAccessToken')
+    if (modalContent.twitch) {
+      console.log('twitch promise chain')
 
-    const body = { title: twitchTitle }
+      let twitchUserID = getCookie('twitchUserID')
+      let twitchToken = getCookie('twitchAccessToken')
 
-    axios
-      .patch(
-        `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserID}`,
-        body,
-        {
-          headers: {
-            Authorization: `Bearer ${twitchToken}`,
-            'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID,
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => console.log(err))
-    return {
-      twitchTitle: twitchTitle,
-    }
+      const body = { title: twitchTitle }
+
+      axios
+        .patch(
+          `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserID}`,
+          body,
+          {
+            headers: {
+              Authorization: `Bearer ${twitchToken}`,
+              'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID,
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => console.log(err))
+      return {
+        twitchTitle: twitchTitle,
+      }
+    } else return { twitchTitle: '' }
   }
 
   const facebookPromiseChain = async () => {
-    console.log('facebook promise chain')
+    if (modalContent.facebook) {
+      console.log('facebook promise chain')
 
-    let facebookAccessToken = getCookie('facebookAccessToken')
-    const data = {
-      facebookTitle,
-      facebookDescription,
-      facebookAccessToken,
-    }
-    let facebookData = await API.post('/facebook/broadcast', data).then(
-      (res) => {
-        return res.data
+      let facebookAccessToken = getCookie('facebookAccessToken')
+      const data = {
+        facebookTitle,
+        facebookDescription,
+        facebookAccessToken,
       }
-    )
-    console.log(facebookData)
-    let facebookLiveVideoId = facebookData.id
-    let facebookDestinationUrl = facebookData.secure_stream_url
+      let facebookData = await API.post('/facebook/broadcast', data).then(
+        (res) => {
+          return res.data
+        }
+      )
+      console.log(facebookData)
+      let facebookLiveVideoId = facebookData.id
+      let facebookDestinationUrl = facebookData.secure_stream_url
 
-    return {
-      facebookLiveVideoId: facebookLiveVideoId,
-      facebookDestinationUrl: facebookDestinationUrl,
-    }
+      return {
+        facebookLiveVideoId: facebookLiveVideoId,
+        facebookDestinationUrl: facebookDestinationUrl,
+      }
+    } else return { facebookLiveVideoId: '', facebookDestinationUrl: '' }
   }
 
   const sendDataToDB = (
@@ -314,14 +328,17 @@ function Broadcast() {
     console.log('submit')
     if (modalContent.youtube && !youtubeTitle) {
       setyoutubeTitleError('Please enter a Youtube title')
+      return
     }
     if (modalContent.facebook && !facebookTitle) {
       setfacebookTitleError('Please enter a Facebook title')
+      return
     }
     if (modalContent.facebook && !facebookDescription) {
       setfacebookDescriptionError('Please enter a Facebook description')
+      return
     } else {
-      allPromises()
+      return allPromises()
     }
   }
 
@@ -522,6 +539,7 @@ function Broadcast() {
             </BroadcastAvatar>
           ) : null}
         </div>
+
         {/* <p style={{ color: '#03a9f4' }}>
           Streaming to {modalContent.youtube ? 'YouTube' : null}{' '}
           {modalContent.twitch ? 'Twitch' : null}{' '}
