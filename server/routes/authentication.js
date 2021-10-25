@@ -57,11 +57,11 @@ router.post('/api/user/login', async (req, res) => {
 })
 
 router.put('/api/user/destinations', async (req, res, next) => {
-  let userId = req.body.userId
+  const userId = req.body.userId
 
-  let twitchBoolean = req.body.twitchAuthBool
-  let youtubeBoolean = req.body.youtubeAuthBool
-  let facebookBoolean = req.body.facebookAuthBool
+  const twitchBoolean = req.body.twitchAuthBool
+  const youtubeBoolean = req.body.youtubeAuthBool
+  const facebookBoolean = req.body.facebookAuthBool
 
   try {
     if (twitchBoolean) {
@@ -70,6 +70,20 @@ router.put('/api/user/destinations', async (req, res, next) => {
         userId,
       ])
       return res.status(200).send('Twitch authentication added')
+    }
+    if (facebookBoolean) {
+      await pool.query(
+        `UPDATE users SET facebook_auth = $1 WHERE user_id = $2`,
+        [facebookBoolean, userId]
+      )
+      return res.status(200).send('Facebook authentication added')
+    }
+    if (youtubeBoolean) {
+      await pool.query(
+        `UPDATE users SET youtube_auth = $1 WHERE user_id = $2`,
+        [youtubeBoolean, userId]
+      )
+      return res.status(200).send('Youtube authentication added')
     }
   } catch (error) {
     console.error(error.message)

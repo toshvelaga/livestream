@@ -48,8 +48,14 @@ function Destinations() {
       .signIn({ scope: SCOPE })
       .then((res) => {
         console.log(res)
+        youtubeAuthBooleanDB()
       })
       .catch((err) => console.log(err))
+  }
+
+  const youtubeAuthBooleanDB = () => {
+    let data = { youtubeAuthBool: true, userId }
+    API.put('/user/destinations', data)
   }
 
   gapi.load('client:auth2', function () {
@@ -128,9 +134,16 @@ function Destinations() {
         console.log('FB access token:' + response.authResponse.accessToken)
         let facebookAccessToken = response.authResponse.accessToken
         setCookie('facebookAccessToken', facebookAccessToken, 1)
+        facebookAuthBooleanDB()
       },
       { scope: 'email, publish_video, public_profile', auth_type: 'rerequest' }
     )
+  }
+
+  const facebookAuthBooleanDB = () => {
+    console.log('facebook: change boolean to true in database')
+    let data = { facebookAuthBool: true, userId }
+    API.put('/user/destinations', data)
   }
 
   return (
