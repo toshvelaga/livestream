@@ -56,4 +56,9 @@ router.post('/api/user/login', async (req, res) => {
   }
 })
 
+router.put('/api/user/destinations', (req, res, next) => {
+  const values = []
+  console.log('routes')
+})
+
 module.exports = router
