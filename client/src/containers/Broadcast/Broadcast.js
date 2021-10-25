@@ -17,6 +17,7 @@ import * as MdIcons from 'react-icons/md'
 import * as FaIcons from 'react-icons/fa'
 import './Broadcast.css'
 import BroadcastAvatar from '../../components/Avatars/BroadcastAvatar'
+import styles from '../../styles/styles'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
@@ -78,11 +79,18 @@ function Broadcast() {
     API.post('/user/destinations', body)
       .then((res) => {
         console.log(res)
+        setshowBroadcastAvatar({
+          facebook: res.data.facebook_auth,
+          youtube: res.data.youtube_auth,
+          twitch: res.data.twitch_auth,
+        })
       })
       .catch((err) => {
         console.log(err)
       })
   }, [])
+
+  console.log(showBroadcastAvatar)
 
   useEffect(() => {
     // this is for google auth
@@ -451,56 +459,62 @@ function Broadcast() {
         </div>
         <p>Broadcast to:</p>
         <div style={{ display: 'flex', marginBottom: '1rem' }}>
-          <BroadcastAvatar
-            style={
-              modalContent.youtube === true
-                ? { border: '2px solid #03a9f4' }
-                : null
-            }
-            onClick={() => {
-              setmodalContent((prev) => ({
-                ...prev,
-                youtube: !prev.youtube,
-              }))
-              setmodalContentDisplayed('youtube')
-            }}
-          >
-            <FaIcons.FaYoutube color={'#ff0000'} size={35} />
-          </BroadcastAvatar>
+          {showBroadcastAvatar.youtube ? (
+            <BroadcastAvatar
+              style={
+                modalContent.youtube === true
+                  ? { border: styles.broadcastAvatarBorder }
+                  : null
+              }
+              onClick={() => {
+                setmodalContent((prev) => ({
+                  ...prev,
+                  youtube: !prev.youtube,
+                }))
+                setmodalContentDisplayed('youtube')
+              }}
+            >
+              <FaIcons.FaYoutube color={'#ff0000'} size={35} />
+            </BroadcastAvatar>
+          ) : null}
 
-          <BroadcastAvatar
-            style={
-              modalContent.twitch === true
-                ? { border: '2px solid #03a9f4' }
-                : null
-            }
-            onClick={() => {
-              setmodalContent((prev) => ({
-                ...prev,
-                twitch: !prev.twitch,
-              }))
-              setmodalContentDisplayed('twitch')
-            }}
-          >
-            <FaIcons.FaTwitch color={'#9047fe'} size={35} />
-          </BroadcastAvatar>
+          {showBroadcastAvatar.twitch ? (
+            <BroadcastAvatar
+              style={
+                modalContent.twitch === true
+                  ? { border: styles.broadcastAvatarBorder }
+                  : null
+              }
+              onClick={() => {
+                setmodalContent((prev) => ({
+                  ...prev,
+                  twitch: !prev.twitch,
+                }))
+                setmodalContentDisplayed('twitch')
+              }}
+            >
+              <FaIcons.FaTwitch color={'#9047fe'} size={35} />
+            </BroadcastAvatar>
+          ) : null}
 
-          <BroadcastAvatar
-            style={
-              modalContent.facebook === true
-                ? { border: '2px solid #03a9f4' }
-                : null
-            }
-            onClick={() => {
-              setmodalContent((prev) => ({
-                ...prev,
-                facebook: !prev.facebook,
-              }))
-              setmodalContentDisplayed('facebook')
-            }}
-          >
-            <FaIcons.FaFacebookF color={'#1676f2'} size={35} />
-          </BroadcastAvatar>
+          {showBroadcastAvatar.facebook ? (
+            <BroadcastAvatar
+              style={
+                modalContent.facebook === true
+                  ? { border: styles.broadcastAvatarBorder }
+                  : null
+              }
+              onClick={() => {
+                setmodalContent((prev) => ({
+                  ...prev,
+                  facebook: !prev.facebook,
+                }))
+                setmodalContentDisplayed('facebook')
+              }}
+            >
+              <FaIcons.FaFacebookF color={'#1676f2'} size={35} />
+            </BroadcastAvatar>
+          ) : null}
         </div>
         {/* <p style={{ color: '#03a9f4' }}>
           Streaming to {modalContent.youtube ? 'YouTube' : null}{' '}
