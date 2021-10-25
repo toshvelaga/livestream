@@ -31,10 +31,16 @@ function Destinations() {
       let code = getUrlParams('code')
       console.log('code: ' + code)
       twitchAuth(code)
+      twitchAuthBooleanDB()
     } else {
       console.log('No code param in URL')
     }
   }, [])
+
+  const twitchAuthBooleanDB = () => {
+    let data = { twitchAuthBool: true, userId }
+    API.put('/user/destinations', data)
+  }
 
   const youtubeAuth = () => {
     return gapi.auth2

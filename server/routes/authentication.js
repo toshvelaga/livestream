@@ -56,9 +56,25 @@ router.post('/api/user/login', async (req, res) => {
   }
 })
 
-router.put('/api/user/destinations', (req, res, next) => {
-  const values = []
-  console.log('routes')
+router.put('/api/user/destinations', async (req, res, next) => {
+  let userId = req.body.userId
+
+  let twitchBoolean = req.body.twitchAuthBool
+  let youtubeBoolean = req.body.youtubeAuthBool
+  let facebookBoolean = req.body.facebookAuthBool
+
+  try {
+    if (twitchBoolean) {
+      await pool.query(`UPDATE users SET twitch_auth = $1 WHERE user_id = $2`, [
+        twitchBoolean,
+        userId,
+      ])
+      return res.status(200).send('Twitch authentication added')
+    }
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send('Server error occurred while updating user')
+  }
 })
 
 module.exports = router
