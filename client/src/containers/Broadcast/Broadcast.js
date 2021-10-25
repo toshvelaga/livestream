@@ -13,10 +13,11 @@ import TextArea from '../../components/TextArea/TextArea'
 import Navbar from '../../components/Navbar/Navbar'
 import Modal from 'react-modal'
 import getCookie from '../../utils/getCookie'
+import BroadcastAvatar from '../../components/Avatars/BroadcastAvatar'
+import NoDestinationsMessage from '../../components/Messages/NoDestinationsMessage'
 import * as MdIcons from 'react-icons/md'
 import * as FaIcons from 'react-icons/fa'
 import './Broadcast.css'
-import BroadcastAvatar from '../../components/Avatars/BroadcastAvatar'
 import styles from '../../styles/styles'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
@@ -459,6 +460,11 @@ function Broadcast() {
         </div>
         <p>Broadcast to:</p>
         <div style={{ display: 'flex', marginBottom: '1rem' }}>
+          {!showBroadcastAvatar.youtube &&
+          !showBroadcastAvatar.twitch &&
+          !showBroadcastAvatar.facebook ? (
+            <NoDestinationsMessage />
+          ) : null}
           {showBroadcastAvatar.youtube ? (
             <BroadcastAvatar
               style={
