@@ -75,7 +75,7 @@ a {
   --button-size: calc(var(--nav-size) * 0.5);
   width: var(--button-size);
   height: var(--button-size);
-  background-color: #dddddd;
+  background-color: #e3e2e7;
   border-radius: 50%;
   padding: 5px;
   margin: 2px;
@@ -110,10 +110,9 @@ a {
 }
 
 .menuItem {
-  height: 40px;
+  height: 35px;
   display: flex;
   align-items: center;
-  /* border-radius: var(--border-radius); */
   border-radius: 0;
   transition: background var(--speed);
   padding: 0.5rem;
@@ -121,6 +120,6 @@ a {
 }
 
 .menuItem:hover {
-  background-color: #dddddd;
+  background-color: #e3e2e7;
   cursor: pointer;
 }
