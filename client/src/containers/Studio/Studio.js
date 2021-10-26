@@ -149,9 +149,9 @@ function Studio() {
     liveStreamRecorder.start(1000)
     // start streaming to Youtube
 
-    // setTimeout(() => {
-    //   transitionYoutubeToLive()
-    // }, 6000)
+    setTimeout(() => {
+      transitionYoutubeToLive()
+    }, 6000)
   }
 
   const stopStream = () => {
@@ -298,7 +298,7 @@ function Studio() {
             onCanPlay={handleCanPlay}
             autoPlay
             playsInline
-            muted={mute}
+            muted={true}
           />
         </div>
         <div className='studio-bottom-button-container'>
