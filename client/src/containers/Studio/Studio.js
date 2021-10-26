@@ -147,6 +147,10 @@ function Studio() {
     }
     // Start recording, and dump data every second
     liveStreamRecorder.start(1000)
+    // start streaming to Youtube
+    setTimeout(() => {
+      transitionYoutubeToLive()
+    }, 5000)
   }
 
   const stopStream = () => {
@@ -154,6 +158,8 @@ function Studio() {
     ws.current.close()
     liveStreamRecorder = null
     // liveStreamRecorder.stop()
+    endYoutubeStream()
+    endFacebookLivestream()
   }
 
   const toggleMute = () => {
@@ -224,7 +230,7 @@ function Studio() {
     setSigninStatus()
   }
 
-  const transitionToLive = () => {
+  const transitionYoutubeToLive = () => {
     return gapi.client.youtube.liveBroadcasts
       .transition({
         part: ['id,snippet,contentDetails,status'],
@@ -254,10 +260,6 @@ function Studio() {
       .catch((err) => {
         console.log('Execute error', err)
       })
-  }
-
-  const twitchAuth = () => {
-    console.log('Twitch Authentication')
   }
 
   const endFacebookLivestream = () => {
@@ -295,7 +297,7 @@ function Studio() {
             onCanPlay={handleCanPlay}
             autoPlay
             playsInline
-            muted={mute}
+            muted={true}
           />
         </div>
         <div className='button-container'>
@@ -309,15 +311,6 @@ function Studio() {
             fx={recordScreen}
           />
           <BroadcastButton title={!mute ? 'Mute' : 'Muted'} fx={toggleMute} />
-        </div>
-
-        <div style={{ marginTop: '1rem' }}>
-          <button onClick={twitchAuth}>Auth with Twitch</button>
-          {/* <button onClick={createBroadcast}>2. create broadcast</button>
-          <button onClick={createStream}>3. create stream</button>
-          <button onClick={bindBroadcastToStream}>4. bind broadcast</button> */}
-          <button onClick={transitionToLive}>6. transition to live</button>
-          <button onClick={endYoutubeStream}>7. transition to complete</button>
         </div>
       </div>
     </>
