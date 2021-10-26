@@ -29,4 +29,12 @@ CREATE TABLE broadcasts (
     user_id uuid DEFAULT uuid_generate_v4() REFERENCES users(user_id)
 );
 
+CREATE TABLE destinations (
+    user_id uuid DEFAULT uuid_generate_v4() PRIMARY KEY REFERENCES users(user_id),
+    twitch_user_id character varying(255),
+    twitch_access_token character varying(255),
+    twitch_refresh_token character varying(255),
+    facebook_access_token character varying(255)
+);
+
 
