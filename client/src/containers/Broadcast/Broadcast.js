@@ -333,46 +333,46 @@ function Broadcast() {
   }
 
   const submit = () => {
-    console.log('submit')
-    if (modalContent.youtube && !youtubeTitle) {
-      setyoutubeTitleError('Please enter a Youtube title')
-      return
-    }
-    if (modalContent.facebook && !facebookTitle) {
-      setfacebookTitleError('Please enter a Facebook title')
-      return
-    }
-    if (modalContent.facebook && !facebookDescription) {
-      setfacebookDescriptionError('Please enter a Facebook description')
-      return
-    } else {
-      return allPromises()
-    }
-  }
-
-  const allPromises = () => {
-    setloading(true)
     try {
-      Promise.all([
-        youtubePromiseChain(),
-        twitchPromiseChain(),
-        facebookPromiseChain(),
-      ]).then((values) => {
-        const flatObj = Object.assign({}, ...values)
-        sendDataToDB(
-          flatObj.youtubeDestinationUrl,
-          flatObj.youtubeBroadcastId,
-          flatObj.youtubeStreamId,
-          flatObj.facebookLiveVideoId,
-          flatObj.facebookDestinationUrl,
-          flatObj.twitchTitle
-        )
-      })
+      setloading(true)
+
+      if (modalContent.youtube && !youtubeTitle) {
+        setyoutubeTitleError('Please enter a Youtube title')
+        return
+      }
+      if (modalContent.facebook && !facebookTitle) {
+        setfacebookTitleError('Please enter a Facebook title')
+        return
+      }
+      if (modalContent.facebook && !facebookDescription) {
+        setfacebookDescriptionError('Please enter a Facebook description')
+        return
+      } else {
+        return allPromises()
+      }
     } catch (error) {
       console.log(error)
     } finally {
       setloading(false)
     }
+  }
+
+  const allPromises = () => {
+    Promise.all([
+      youtubePromiseChain(),
+      twitchPromiseChain(),
+      facebookPromiseChain(),
+    ]).then((values) => {
+      const flatObj = Object.assign({}, ...values)
+      sendDataToDB(
+        flatObj.youtubeDestinationUrl,
+        flatObj.youtubeBroadcastId,
+        flatObj.youtubeStreamId,
+        flatObj.facebookLiveVideoId,
+        flatObj.facebookDestinationUrl,
+        flatObj.twitchTitle
+      )
+    })
   }
 
   const modalContentDisplay = () => {
@@ -544,12 +544,6 @@ function Broadcast() {
             </BroadcastAvatar>
           ) : null}
         </div>
-
-        {/* <p style={{ color: '#03a9f4' }}>
-          Streaming to {modalContent.youtube ? 'YouTube' : null}{' '}
-          {modalContent.twitch ? 'Twitch' : null}{' '}
-          {modalContent.facebook ? 'Facebook' : null}
-        </p> */}
 
         {modalContentDisplay()}
         <Button

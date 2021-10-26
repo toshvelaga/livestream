@@ -44,7 +44,6 @@ router.post('/api/broadcasts', async (req, res, next) => {
 		VALUES($1, $2, $3, $4, $5, $6 ,$7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
     values
   )
-  console.log(results)
   if (results.rows) {
     return res.send(results.rows[0])
   } else if (err) {
@@ -60,7 +59,6 @@ router.get('/api/broadcasts', async (req, res) => {
     `SELECT * FROM broadcasts WHERE (user_id = $1 AND studio_id = $2)`,
     [userId, studioId]
   )
-  console.log(results)
   if (results.rows) {
     return res.send(results.rows[0])
   }

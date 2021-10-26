@@ -22,9 +22,7 @@ function Studio() {
   const [seconds, setSeconds] = useState(0)
   const [isActive, setIsActive] = useState(false)
 
-  const [youtubeIngestionUrl, setYoutubeIngestionUrl] = useState('')
-  const [youtubeStreamName, setYoutubeStreamName] = useState('')
-  const [youtubeStreamId, setYoutubeStreamId] = useState('')
+  const [youtubeUrl, setyoutubeUrl] = useState('')
   const [youtubeBroadcastId, setYoutubeBroadcastId] = useState('')
 
   const [facebookUrl, setFacebookUrl] = useState('')
@@ -42,9 +40,10 @@ function Studio() {
   const developmentWsUrl = 'ws://localhost:3001'
 
   //!!! THIS IS THE URL I AM STREAMING TO
-  const youtubeUrl = youtubeIngestionUrl + '/' + youtubeStreamName
   const twitchStreamKey = getCookie('twitchStreamKey')
-  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${facebookUrl}`
+  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
+    facebookUrl
+  )}`
 
   let liveStream
   let liveStreamRecorder
@@ -92,6 +91,8 @@ function Studio() {
         console.log(res)
         setFacebookUrl(res.data.facebook_destination_url)
         setfacebookLiveVideoId(res.data.facebook_live_video_id)
+        setYoutubeBroadcastId(res.data.youtube_broadcast_id)
+        setyoutubeUrl(res.data.youtube_destination_url)
       })
       .catch((err) => console.log(err))
   }, [])
@@ -111,7 +112,7 @@ function Studio() {
     return () => {
       ws.current.close()
     }
-  }, [facebookUrl])
+  }, [facebookUrl, youtubeUrl])
 
   useEffect(() => {
     let interval = null
@@ -147,9 +148,10 @@ function Studio() {
     // Start recording, and dump data every second
     liveStreamRecorder.start(1000)
     // start streaming to Youtube
-    setTimeout(() => {
-      transitionYoutubeToLive()
-    }, 5000)
+
+    // setTimeout(() => {
+    //   transitionYoutubeToLive()
+    // }, 6000)
   }
 
   const stopStream = () => {
@@ -296,7 +298,7 @@ function Studio() {
             onCanPlay={handleCanPlay}
             autoPlay
             playsInline
-            muted={true}
+            muted={mute}
           />
         </div>
         <div className='studio-bottom-button-container'>
