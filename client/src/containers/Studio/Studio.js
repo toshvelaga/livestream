@@ -24,15 +24,14 @@ function Studio() {
 
   const [youtubeIngestionUrl, setYoutubeIngestionUrl] = useState('')
   const [youtubeStreamName, setYoutubeStreamName] = useState('')
+  const [youtubeStreamId, setYoutubeStreamId] = useState('')
+  const [youtubeBroadcastId, setYoutubeBroadcastId] = useState('')
 
   const [facebookUrl, setFacebookUrl] = useState('')
   const [facebookLiveVideoId, setfacebookLiveVideoId] = useState('')
 
   const [mediaStream, setMediaStream] = useState(null)
   const [userFacing, setuserFacing] = useState(false)
-
-  const [streamId, setstreamId] = useState('')
-  const [broadcastId, setbroadcastId] = useState('')
 
   const { id } = useParams()
 
@@ -235,7 +234,7 @@ function Studio() {
       .transition({
         part: ['id,snippet,contentDetails,status'],
         broadcastStatus: 'live',
-        id: broadcastId,
+        id: youtubeBroadcastId,
       })
       .then((res) => {
         // Handle the results here (response.result has the parsed body).
@@ -251,7 +250,7 @@ function Studio() {
       .transition({
         part: ['id,snippet,contentDetails,status'],
         broadcastStatus: 'complete',
-        id: broadcastId,
+        id: youtubeBroadcastId,
       })
       .then((res) => {
         // Handle the results here (response.result has the parsed body).
