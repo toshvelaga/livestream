@@ -35,6 +35,7 @@ function App() {
           <ProtectedRoute path='/destinations' component={Destinations} />
           <ProtectedRoute path='/referrals' component={Referral} />
           <ProtectedRoute path='/studio' component={Studio} />
+          <ProtectedRoute path='/studio/:id' component={Studio} />
 
           <AuthRoute exact path='/login/code' component={Code} />
           <AuthRoute exact path='/login' component={Login} />
