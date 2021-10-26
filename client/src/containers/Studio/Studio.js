@@ -300,7 +300,7 @@ function Studio() {
             muted={true}
           />
         </div>
-        <div className='button-container'>
+        <div className='studio-bottom-button-container'>
           <BroadcastButton
             title={!isActive ? 'Go Live' : 'Stop Recording'}
             fx={!isActive ? startStream : stopStream}

@@ -9,12 +9,12 @@
   font-family: var(--main-font);
 }
 
-.video-container {
-  width: 100%;
+.studio-bottom-button-container {
+  margin-top: 1rem;
 }
 
-.studio-container {
-  margin-top: 0.5rem;
+.video-container {
+  width: 100%;
 }
 
 @media only screen and (max-width: 1000px) {
