@@ -17,6 +17,11 @@
   width: 100%;
 }
 
+#play-button {
+  background-color: #db022b;
+  color: white;
+}
+
 @media only screen and (max-width: 1000px) {
   .studio-container {
     width: 80%;

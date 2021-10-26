@@ -7,6 +7,7 @@ function BroadcastButton(props) {
     <>
       <button
         style={props.style}
+        id={props.id}
         className='broadcast-button'
         onClick={props.fx}
       >

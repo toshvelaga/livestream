@@ -302,6 +302,7 @@ function Studio() {
         </div>
         <div className='studio-bottom-button-container'>
           <BroadcastButton
+            id='play-button'
             title={!isActive ? 'Go Live' : 'Stop Recording'}
             fx={!isActive ? startStream : stopStream}
           />
