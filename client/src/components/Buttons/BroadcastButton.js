@@ -11,6 +11,7 @@ function BroadcastButton(props) {
         className='broadcast-button'
         onClick={props.fx}
       >
+        {props.children}
         {props.title}
       </button>
     </>
