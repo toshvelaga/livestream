@@ -19,6 +19,7 @@ import * as MdIcons from 'react-icons/md'
 import * as FaIcons from 'react-icons/fa'
 import './Broadcast.css'
 import styles from '../../styles/styles'
+import { useHistory } from 'react-router-dom'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
@@ -60,6 +61,7 @@ function Broadcast() {
   const [facebookDescriptionError, setfacebookDescriptionError] = useState('')
 
   let GoogleAuth
+  let history = useHistory()
 
   const closeModal = () => {
     setisModalOpen(false)
@@ -322,7 +324,11 @@ function Broadcast() {
       twitchTitle,
     }
     API.post('/broadcasts', data).then((res) => {
-      console.log(res)
+      if (res.data.studio_id) {
+        console.log(res.data.studio_id)
+        let studioId = res.data.studio_id
+        history.push(`/studio/${studioId}`)
+      }
     })
   }
 
