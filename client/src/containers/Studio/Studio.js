@@ -7,6 +7,7 @@ import getCookie from '../../utils/getCookie'
 import API from '../../api/api'
 import './Studio.css'
 import { SCOPE, DISCOVERY } from '../../constants/constants'
+import { useParams } from 'react-router-dom'
 
 const CAPTURE_OPTIONS = {
   audio: true,
@@ -32,6 +33,8 @@ function Studio() {
 
   const [streamId, setstreamId] = useState('')
   const [broadcastId, setbroadcastId] = useState('')
+
+  const { id } = useParams()
 
   const videoRef = useRef()
   const ws = useRef()
@@ -78,11 +81,12 @@ function Studio() {
 
   useEffect(() => {
     let userId = getCookie('userId')
-    const studioId = 'vxPFx-dhPZGlZ451MILNZ'
+    console.log('the studio id is: ' + id)
 
     API.get('/broadcasts', {
       params: {
-        studioId: studioId,
+        userId,
+        studioId: id,
       },
     })
       .then((res) => {
