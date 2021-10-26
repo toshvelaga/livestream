@@ -3,7 +3,7 @@ const express = require('express'),
   pool = require('../db'),
   { nanoid } = require('nanoid')
 
-router.post('/api/broadcasts', (req, res, next) => {
+router.post('/api/broadcasts', async (req, res, next) => {
   let timeCreated = new Date().toUTCString()
   let studioId = nanoid()
 
@@ -24,7 +24,7 @@ router.post('/api/broadcasts', (req, res, next) => {
     req.body.twitchTitle,
   ]
 
-  pool.query(
+  let results = await pool.query(
     `INSERT INTO broadcasts (
       youtube_title, 
       youtube_description, 
@@ -41,13 +41,15 @@ router.post('/api/broadcasts', (req, res, next) => {
       studio_id,
       twitch_title
     )
-		VALUES($1, $2, $3, $4, $5, $6 ,$7, $8, $9, $10, $11, $12, $13, $14)`,
-    values,
-    (q_err, q_res) => {
-      if (q_err) return next(q_err)
-      res.json(q_res.rows)
-    }
+		VALUES($1, $2, $3, $4, $5, $6 ,$7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
+    values
   )
+  console.log(results)
+  if (results.rows) {
+    return res.send(results.rows[0])
+  } else if (err) {
+    console.error('there was an error: ', err)
+  }
 })
 
 router.get('/api/broadcasts', async (req, res) => {

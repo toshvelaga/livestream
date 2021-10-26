@@ -321,7 +321,9 @@ function Broadcast() {
       facebookDestinationUrl,
       twitchTitle,
     }
-    API.post('/broadcasts', data)
+    API.post('/broadcasts', data).then((res) => {
+      console.log(res)
+    })
   }
 
   const submit = () => {
@@ -343,17 +345,14 @@ function Broadcast() {
   }
 
   const allPromises = () => {
+    setloading(true)
     try {
-      setloading(true)
-
       Promise.all([
         youtubePromiseChain(),
         twitchPromiseChain(),
         facebookPromiseChain(),
       ]).then((values) => {
-        console.log(values)
         const flatObj = Object.assign({}, ...values)
-        console.log(flatObj)
         sendDataToDB(
           flatObj.youtubeDestinationUrl,
           flatObj.youtubeBroadcastId,
