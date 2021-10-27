@@ -4,7 +4,11 @@ const WebSocket = require('ws')
 const app = express()
 const cors = require('cors')
 const path = require('path')
+const cluster = require('cluster')
+const numCPUs = require('os').cpus().length
 require('dotenv').config()
+
+console.log(numCPUs)
 
 app.use(cors())
 
