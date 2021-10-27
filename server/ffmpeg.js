@@ -1,5 +1,5 @@
 const twitch = 'twitchurl'
-const facebook = ''
+const facebook = 'facebookurl'
 const youtube = 'youtubeurl'
 
 const twitchSetings = [
@@ -123,4 +123,14 @@ const ffmpegFx = () => {
   return inputSettings
 }
 
-console.log(ffmpegFx())
+// console.log(ffmpegFx())
+
+const arr1 = () => {
+  return [1, 2, 3, 4, 5]
+}
+
+const arr2 = () => {
+  return [6, 7, 8, 9, 10]
+}
+
+console.log(arr1().concat(arr2()))
