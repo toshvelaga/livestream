@@ -1,8 +1,6 @@
-const twitch = 'twitchurl'
-const facebook = 'facebookurl'
-const youtube = 'youtubeurl'
+export const inputSettings = ['-i', '-']
 
-const twitchSetings = [
+export const twitchSetings = [
   // video codec config: low latency, adaptive bitrate
   '-c:v',
   'libx264',
@@ -39,7 +37,7 @@ const twitchSetings = [
   twitch,
 ]
 
-const youtubeSettings = [
+export const youtubeSettings = [
   // video codec config: low latency, adaptive bitrate
   '-c:v',
   'libx264',
@@ -72,7 +70,7 @@ const youtubeSettings = [
   youtube,
 ]
 
-const facebookSettings = [
+export const facebookSettings = [
   // video codec config: low latency, adaptive bitrate
   '-c:v',
   'libx264',
@@ -105,8 +103,6 @@ const facebookSettings = [
   facebook,
 ]
 
-const inputSettings = ['-i', '-']
-
 if (twitch) {
   inputSettings.push(...twitchSetings)
 }
@@ -123,14 +119,4 @@ const ffmpegFx = () => {
   return inputSettings
 }
 
-// console.log(ffmpegFx())
-
-const arr1 = () => {
-  return [1, 2, 3, 4, 5]
-}
-
-const arr2 = () => {
-  return [6, 7, 8, 9, 10]
-}
-
-console.log(arr1().concat(arr2()))
+console.log(ffmpegFx())
