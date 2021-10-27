@@ -56,11 +56,10 @@ wss.on('connection', (ws, req) => {
 
   const twitchStreamKey = myURL.searchParams.get('twitchStreamKey')
   const twitch = 'rtmp://dfw.contribute.live-video.net/app/' + twitchStreamKey
+  const youtube = myURL.searchParams.get('youtubeUrl')
+  const facebook = myURL.searchParams.get('facebookUrl')
 
-  const youtubeUrl = myURL.searchParams.get('youtubeUrl')
-
-  const facebookUrl = myURL.searchParams.get('facebookUrl')
-  console.log(facebookUrl)
+  // abstract out logic
 
   const ffmpeg = child_process.spawn('ffmpeg', [
     '-i',
@@ -130,7 +129,7 @@ wss.on('connection', (ws, req) => {
 
     '-f',
     'flv',
-    youtubeUrl,
+    youtube,
 
     // video codec config: low latency, adaptive bitrate
     '-c:v',
@@ -161,17 +160,17 @@ wss.on('connection', (ws, req) => {
 
     '-f',
     'flv',
-    facebookUrl,
+    facebook,
   ])
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
 
-  // ffmpeg.on('close', (code, signal) => {
-  //   console.log(
-  //     'FFmpeg child process closed, code ' + code + ', signal ' + signal
-  //   )
-  //   ws.terminate()
-  // })
+  ffmpeg.on('close', (code, signal) => {
+    console.log(
+      'FFmpeg child process closed, code ' + code + ', signal ' + signal
+    )
+    ws.terminate()
+  })
 
   // Handle STDIN pipe errors by logging to the console.
   // These errors most commonly occur when FFmpeg closes and there is still
