@@ -59,13 +59,13 @@ wss.on('connection', (ws, req) => {
 
   // abstract out logic
 
-  console.log(
-    inputSettings.concat(
-      twitchSettings(),
-      youtubeSettings(),
-      facebookSettings()
-    )
+  const ffmpegInput = inputSettings.concat(
+    twitchSettings(twitch),
+    youtubeSettings(youtube),
+    facebookSettings(facebook)
   )
+
+  console.log(ffmpegInput)
 
   const ffmpeg = child_process.spawn('ffmpeg', [
     '-i',
