@@ -1,7 +1,7 @@
 const inputSettings = ['-i', '-']
 
 const twitchSettings = (twitch) => {
-  if (!twitch == '') {
+  if (twitch) {
     return [
       // video codec config: low latency, adaptive bitrate
       '-c:v',
@@ -38,11 +38,11 @@ const twitchSettings = (twitch) => {
       'flv',
       twitch,
     ]
-  } else return
+  } else return []
 }
 
 const youtubeSettings = (youtube) => {
-  if (!youtube == undefined) {
+  if (youtube && youtube !== 'undefined') {
     return [
       // video codec config: low latency, adaptive bitrate
       '-c:v',
@@ -79,7 +79,7 @@ const youtubeSettings = (youtube) => {
 }
 
 const facebookSettings = (facebook) => {
-  if (!facebook == undefined) {
+  if (facebook && facebook !== 'undefined') {
     return [
       // video codec config: low latency, adaptive bitrate
       '-c:v',
