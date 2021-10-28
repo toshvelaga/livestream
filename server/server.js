@@ -24,6 +24,7 @@ const authenticationRouter = require('./routes/authentication')
 const authorizationRouter = require('./routes/authorization')
 const broadcastsRouter = require('./routes/broadcasts')
 const compareCodeRouter = require('./routes/compareCode')
+const destinationsRouter = require('./routes/destinations')
 const referralRouter = require('./routes/referral')
 const facebookBroadcastRouter = require('./routes/facebookBroadcast')
 // const twitchBroadcastRouter = require('./routes/twitchBroadcast')
@@ -32,6 +33,7 @@ app.use('/', authenticationRouter)
 app.use('/', authorizationRouter)
 app.use('/', broadcastsRouter)
 app.use('/', compareCodeRouter)
+app.use('/', destinationsRouter)
 app.use('/', facebookBroadcastRouter)
 // app.use('/', twitchBroadcastRouter)
 app.use('/', referralRouter)
@@ -66,7 +68,6 @@ wss.on('connection', (ws, req) => {
   const ffmpeg = child_process.spawn('ffmpeg', ffmpegInput)
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
-
   ffmpeg.on('close', (code, signal) => {
     console.log(
       'FFmpeg child process closed, code ' + code + ', signal ' + signal
