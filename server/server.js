@@ -4,11 +4,16 @@ const WebSocket = require('ws')
 const app = express()
 const cors = require('cors')
 const path = require('path')
-const cluster = require('cluster')
-const numCPUs = require('os').cpus().length
-require('dotenv').config()
+// const cluster = require('cluster')
+// const numCPUs = require('os').cpus().length
+const {
+  inputSettings,
+  twitchSettings,
+  youtubeSettings,
+  facebookSettings,
+} = require('./ffmpeg')
 
-console.log(numCPUs)
+require('dotenv').config()
 
 app.use(cors())
 
@@ -33,18 +38,7 @@ app.use('/', facebookBroadcastRouter)
 // app.use('/', twitchBroadcastRouter)
 app.use('/', referralRouter)
 
-if (process.env.NODE_ENV === 'production') {
-  // serve static content
-  // npm run build
-  app.use(express.static(path.join(__dirname, 'client/build')))
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
-  })
-}
-
 const PORT = process.env.PORT || 5001
-
 const WS_PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {
@@ -64,6 +58,14 @@ wss.on('connection', (ws, req) => {
   const facebook = myURL.searchParams.get('facebookUrl')
 
   // abstract out logic
+
+  console.log(
+    inputSettings.concat(
+      twitchSettings(),
+      youtubeSettings(),
+      facebookSettings()
+    )
+  )
 
   const ffmpeg = child_process.spawn('ffmpeg', [
     '-i',
