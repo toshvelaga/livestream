@@ -52,8 +52,6 @@ function Broadcast() {
     label: 'Public',
   })
 
-  console.log(modalContent)
-
   const [userId, setuserId] = useState('')
 
   const [youtubeTitleError, setyoutubeTitleError] = useState('')
@@ -94,8 +92,6 @@ function Broadcast() {
         console.log(err)
       })
   }, [])
-
-  // console.log(showBroadcastAvatar)
 
   useEffect(() => {
     // this is for google auth
@@ -287,6 +283,7 @@ function Broadcast() {
       }
       let facebookData = await API.post('/facebook/broadcast', data).then(
         (res) => {
+          console.log(res.data)
           return res.data
         }
       )

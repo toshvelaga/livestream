@@ -147,11 +147,13 @@ function Studio() {
     }
     // Start recording, and dump data every second
     liveStreamRecorder.start(1000)
-    // start streaming to Youtube
 
-    setTimeout(() => {
-      transitionYoutubeToLive()
-    }, 6000)
+    // start streaming to Youtube
+    if (youtubeBroadcastId) {
+      setTimeout(() => {
+        transitionYoutubeToLive()
+      }, 6000)
+    }
   }
 
   const stopStream = () => {
