@@ -4,16 +4,14 @@ const WebSocket = require('ws')
 const app = express()
 const cors = require('cors')
 const path = require('path')
-// const cluster = require('cluster')
-// const numCPUs = require('os').cpus().length
+require('dotenv').config()
+
 const {
   inputSettings,
   twitchSettings,
   youtubeSettings,
   facebookSettings,
 } = require('./ffmpeg')
-
-require('dotenv').config()
 
 app.use(cors())
 
@@ -56,12 +54,6 @@ wss.on('connection', (ws, req) => {
   const twitch = 'rtmp://dfw.contribute.live-video.net/app/' + twitchStreamKey
   const youtube = myURL.searchParams.get('youtubeUrl')
   const facebook = myURL.searchParams.get('facebookUrl')
-
-  console.log('TWITCH' + twitch)
-  console.log('FACEBOOK' + facebook)
-  console.log('YOUTUBE' + youtube)
-
-  // abstract out logic
 
   const ffmpegInput = inputSettings.concat(
     twitchSettings(twitch),
