@@ -27,7 +27,7 @@ const compareCodeRouter = require('./routes/compareCode')
 const destinationsRouter = require('./routes/destinations')
 const referralRouter = require('./routes/referral')
 const facebookBroadcastRouter = require('./routes/facebookBroadcast')
-// const twitchBroadcastRouter = require('./routes/twitchBroadcast')
+const twitchBroadcastRouter = require('./routes/twitchBroadcast')
 
 app.use('/', authenticationRouter)
 app.use('/', authorizationRouter)
@@ -35,7 +35,7 @@ app.use('/', broadcastsRouter)
 app.use('/', compareCodeRouter)
 app.use('/', destinationsRouter)
 app.use('/', facebookBroadcastRouter)
-// app.use('/', twitchBroadcastRouter)
+app.use('/', twitchBroadcastRouter)
 app.use('/', referralRouter)
 
 const PORT = process.env.PORT || 5001

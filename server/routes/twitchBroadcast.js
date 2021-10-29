@@ -4,19 +4,17 @@ const express = require('express'),
 require('dotenv').config()
 
 router.patch('/api/twitch/broadcast', async (req, res) => {
-  let twitchTitle = req.body.twitchTitle
-  let twitchUserID = req.body.twitchUserID
-  let twitchToken = req.body.twitchToken
-
-  const body = { title: twitchTitle }
+  const twitchUserID = req.body.twitchUserID
+  const twitchAccessToken = req.body.twitchAccessToken
+  const title = req.body.title
 
   let authData = await axios
     .patch(
       `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserID}`,
-      body,
+      { title },
       {
         headers: {
-          Authorization: `Bearer ${twitchToken}`,
+          Authorization: `Bearer ${twitchAccessToken}`,
           'Client-Id': process.env.TWITCH_CLIENT_ID,
           'Content-Type': 'application/json',
         },
