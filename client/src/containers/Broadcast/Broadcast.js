@@ -263,15 +263,12 @@ function Broadcast() {
     if (modalContent.twitch) {
       console.log('twitch promise chain')
 
-      // let twitchUserID = getCookie('twitchUserID')
-      // let twitchToken = getCookie('twitchAccessToken')
-
-      // const twitchUserID = req.body.twitchUserID
-      // const twitchAccessToken = req.body.twitchAccessToken
-      // const twitchAccessRefreshToken = req.body.twitchAccessRefreshToken
-      // const title = req.body.title
-
-      const body = { title: twitchTitle }
+      const body = {
+        twitchUserId,
+        twitchAccessToken,
+        twitchAccessRefreshToken,
+        title: twitchTitle,
+      }
 
       axios
         .patch('/twitch/broadcast', body)
