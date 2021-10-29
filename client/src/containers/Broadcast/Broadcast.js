@@ -58,6 +58,10 @@ function Broadcast() {
   const [facebookTitleError, setfacebookTitleError] = useState('')
   const [facebookDescriptionError, setfacebookDescriptionError] = useState('')
 
+  const [twitchUserId, settwitchUserId] = useState('')
+  const [twitchAccessToken, settwitchAccessToken] = useState('')
+  const [twitchAccessRefreshToken, settwitchAccessRefreshToken] = useState('')
+
   let GoogleAuth
   let history = useHistory()
 
@@ -244,23 +248,18 @@ function Broadcast() {
     if (modalContent.twitch) {
       console.log('twitch promise chain')
 
-      let twitchUserID = getCookie('twitchUserID')
-      let twitchToken = getCookie('twitchAccessToken')
+      // let twitchUserID = getCookie('twitchUserID')
+      // let twitchToken = getCookie('twitchAccessToken')
+
+      // const twitchUserID = req.body.twitchUserID
+      // const twitchAccessToken = req.body.twitchAccessToken
+      // const twitchAccessRefreshToken = req.body.twitchAccessRefreshToken
+      // const title = req.body.title
 
       const body = { title: twitchTitle }
 
       axios
-        .patch(
-          `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserID}`,
-          body,
-          {
-            headers: {
-              Authorization: `Bearer ${twitchToken}`,
-              'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID,
-              'Content-Type': 'application/json',
-            },
-          }
-        )
+        .patch('/twitch/broadcast', body)
         .then((res) => {
           console.log(res)
         })
