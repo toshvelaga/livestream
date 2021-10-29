@@ -21,20 +21,20 @@ app.use(
 )
 
 const authenticationRouter = require('./routes/authentication')
-const authorizationRouter = require('./routes/authorization')
 const broadcastsRouter = require('./routes/broadcasts')
 const compareCodeRouter = require('./routes/compareCode')
 const destinationsRouter = require('./routes/destinations')
 const referralRouter = require('./routes/referral')
 const facebookBroadcastRouter = require('./routes/facebookBroadcast')
+const twitchAuthorizationRouter = require('./routes/twitchAuthorization')
 const twitchBroadcastRouter = require('./routes/twitchBroadcast')
 
 app.use('/', authenticationRouter)
-app.use('/', authorizationRouter)
 app.use('/', broadcastsRouter)
 app.use('/', compareCodeRouter)
 app.use('/', destinationsRouter)
 app.use('/', facebookBroadcastRouter)
+app.use('/', twitchAuthorizationRouter)
 app.use('/', twitchBroadcastRouter)
 app.use('/', referralRouter)
 
