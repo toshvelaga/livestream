@@ -121,13 +121,14 @@ function Destinations() {
     setCookie('twitchRefreshToken', twitchRefreshToken, 1)
     setCookie('twitchUserID', twitchUserID, 90)
 
-    await saveTwitchDataToDB(
+    await getTwitchStreamKey()
+
+    saveTwitchDataToDB(
+      userId,
       twitchAccessToken,
       twitchRefreshToken,
       twitchUserID
     )
-
-    await getTwitchStreamKey()
   }
 
   const saveTwitchDataToDB = (
@@ -143,7 +144,7 @@ function Destinations() {
       twitchRefreshToken,
       twitchUserID,
     }
-    API.put('/api/destinations', body)
+    API.put('/destinations', body)
       .then((res) => {
         console.log(res)
       })
