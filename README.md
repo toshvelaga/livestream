@@ -4,6 +4,8 @@
   <img src="https://readmeassets.s3.us-east-2.amazonaws.com/Screen+Shot+2021-08-22+at+2.25.26+PM.png">
 </span>
 
+<div style="position: relative; padding-bottom: 62.5%; height: 0;"><iframe src="https://www.loom.com/embed/35a86c6f73d144d59527092118cf525d" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
+
 Check out a live demo [HERE](https://ohmystream.co/)
 
 Web based software to record a livestream in the browser and stream simultaneously to Youtube, Facebook, and Twitch. Software is similar in functionality to OBS and streamlabs.
