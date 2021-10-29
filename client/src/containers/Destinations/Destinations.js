@@ -112,15 +112,34 @@ function Destinations() {
 
     let twitchAccessToken = auth.access_token
     let twitchRefreshToken = auth.refresh_token
-    setCookie('twitchAccessToken', twitchAccessToken, 1)
-    setCookie('twitchRefreshToken', twitchRefreshToken, 1)
 
     let validation = await validateTwitchRequest(twitchAccessToken)
     console.log(validation)
     let twitchUserID = validation.user_id
+
+    setCookie('twitchAccessToken', twitchAccessToken, 1)
+    setCookie('twitchRefreshToken', twitchRefreshToken, 1)
     setCookie('twitchUserID', twitchUserID, 90)
 
     await getTwitchStreamKey()
+  }
+
+  const saveTwitchDataToDB = (
+    twitchAccessToken,
+    twitchRefreshToken,
+    twitchUserID
+  ) => {
+    console.log('saveTwitchDataToDB')
+    const body = {
+      twitchAccessToken,
+      twitchRefreshToken,
+      twitchUserID,
+    }
+    API.put('/api/destinations', body)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => console.log(err))
   }
 
   const facebookAuth = () => {
