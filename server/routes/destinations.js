@@ -40,8 +40,8 @@ router.post('/api/destinations', async (req, res) => {
   const userId = req.body.userId
 
   let results = await pool.query(
-    `SELECT * FROM destinations WHERE user_id = $1 RETURNING *`,
-    [userId, studioId]
+    `SELECT * FROM destinations WHERE user_id = $1`,
+    [userId]
   )
   if (results.rows) {
     return res.send(results.rows[0])

@@ -97,6 +97,19 @@ function Broadcast() {
         console.log(err)
       })
     // api call to get twitch data
+    API.post('/destinations', body)
+      .then((res) => {
+        console.log(res)
+        const { twitch_user_id, twitch_access_token, twitch_refresh_token } =
+          res.data
+
+        settwitchUserId(twitch_user_id)
+        settwitchAccessToken(twitch_access_token)
+        settwitchAccessRefreshToken(twitch_refresh_token)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }, [])
 
   useEffect(() => {
