@@ -15,6 +15,7 @@ import {
   TWITCH_RESPONSE_TYPE,
 } from '../../constants/constants'
 import * as FaIcons from 'react-icons/fa'
+import styles from '../../styles/styles'
 
 /* global gapi */
 /* global FB */
@@ -200,12 +201,10 @@ function Destinations() {
 
           <Card
             style={
-              destinationSelected.facebook
-                ? { backgroundColor: '#d2eefc', border: '1px solid #03a9f4' }
-                : null
+              destinationSelected.facebook ? styles.destinationSelected : null
             }
             cardTitleStyle={
-              destinationSelected.facebook ? { color: 'black' } : null
+              destinationSelected.facebook ? styles.blackFontColor : null
             }
             onClick={facebookAuth}
             title={'Facebook'}
