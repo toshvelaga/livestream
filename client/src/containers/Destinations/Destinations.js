@@ -100,9 +100,9 @@ function Destinations() {
       `https://api.twitch.tv/helix/streams/key?broadcaster_id=${broadcaster_id}`,
       config
     ).then((res) => {
-      console.log(res.data.data[0].stream_key)
       let twitchStreamKey = res.data.data[0].stream_key
       setCookie('twitchStreamKey', twitchStreamKey, 90)
+      return twitchStreamKey
     })
   }
 
@@ -121,13 +121,14 @@ function Destinations() {
     setCookie('twitchRefreshToken', twitchRefreshToken, 1)
     setCookie('twitchUserID', twitchUserID, 90)
 
-    await getTwitchStreamKey()
+    const twitchStreamKey = await getTwitchStreamKey()
 
     saveTwitchDataToDB(
       userId,
       twitchAccessToken,
       twitchRefreshToken,
-      twitchUserID
+      twitchUserID,
+      twitchStreamKey
     )
   }
 
@@ -135,7 +136,8 @@ function Destinations() {
     userId,
     twitchAccessToken,
     twitchRefreshToken,
-    twitchUserID
+    twitchUserID,
+    twitchStreamKey
   ) => {
     console.log('saveTwitchDataToDB')
     const body = {
@@ -143,6 +145,7 @@ function Destinations() {
       twitchAccessToken,
       twitchRefreshToken,
       twitchUserID,
+      twitchStreamKey,
     }
     API.put('/destinations', body)
       .then((res) => {
