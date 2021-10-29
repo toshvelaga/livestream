@@ -1,7 +1,7 @@
 require('dotenv').config()
 
-const refreshTwitchToken = (refreshToken) => {
-  return axios
+const refreshTwitchToken = async (refreshToken) => {
+  const data = await axios
     .post(
       `https://id.twitch.tv/oauth2/token
     --data-urlencode
@@ -14,6 +14,7 @@ const refreshTwitchToken = (refreshToken) => {
     .catch((err) => {
       console.log(err)
     })
+  return data
 }
 
 module.exports = refreshTwitchToken
