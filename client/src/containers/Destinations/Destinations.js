@@ -23,6 +23,11 @@ function Destinations() {
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
   const [buttonText, setbuttonText] = useState('Add Destination')
+  const [destinationSelected, setdestinationSelected] = useState({
+    youtube: false,
+    twitch: false,
+    facebook: false,
+  })
   let userId = getCookie('userId')
 
   useEffect(() => {
@@ -181,7 +186,7 @@ function Destinations() {
     <>
       <Navbar />
       <div style={{ margin: '10rem auto', width: '50%' }}>
-        <h2>Destinations page</h2>
+        <h2>Added Destinations</h2>
         <div className='destinations-container'>
           <Card onClick={youtubeAuth} title={'YouTube'}>
             <FaIcons.FaYoutube color={'#ff0000'} size={50} />
@@ -193,7 +198,18 @@ function Destinations() {
             </Card>
           </a>
 
-          <Card onClick={facebookAuth} title={'Facebook'}>
+          <Card
+            style={
+              destinationSelected.facebook
+                ? { backgroundColor: '#d2eefc', border: '1px solid #03a9f4' }
+                : null
+            }
+            cardTitleStyle={
+              destinationSelected.facebook ? { color: 'black' } : null
+            }
+            onClick={facebookAuth}
+            title={'Facebook'}
+          >
             <FaIcons.FaFacebook color={'#1676f2'} size={50} />
           </Card>
         </div>

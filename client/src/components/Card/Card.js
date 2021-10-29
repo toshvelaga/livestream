@@ -4,10 +4,12 @@ import './Card.css'
 
 function Card(props) {
   return (
-    <div onClick={props.onClick} className='card-styles'>
+    <div style={props.style} onClick={props.onClick} className='card-styles'>
       <div className='inner-card-content'>
         {props.children}
-        <p className='card-title'>{props.title}</p>
+        <p style={props.cardTitleStyle} className='card-title'>
+          {props.title}
+        </p>
         {/* <FaIcons.FaCheckCircle size='20' color='green' /> */}
       </div>
     </div>

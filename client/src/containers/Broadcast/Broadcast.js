@@ -264,7 +264,7 @@ function Broadcast() {
         .then((res) => {
           console.log(res)
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err.response))
       return {
         twitchTitle: twitchTitle,
       }
@@ -324,7 +324,7 @@ function Broadcast() {
       if (res.data.studio_id) {
         console.log(res.data.studio_id)
         let studioId = res.data.studio_id
-        history.push(`/studio/${studioId}`)
+        // history.push(`/studio/${studioId}`)
       }
     })
   }
