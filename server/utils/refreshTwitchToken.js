@@ -10,7 +10,10 @@ const refreshTwitchToken = async (refreshToken) => {
     &client_id=${process.env.TWITCH_CLIENT_ID}
     &client_secret=${process.env.TWITCH_SECRET}`
     )
-    .then((res) => console.log(res))
+    .then((res) => {
+      console.log(res)
+      return res.data
+    })
     .catch((err) => {
       console.log(err)
     })
