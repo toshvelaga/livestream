@@ -121,16 +121,24 @@ function Destinations() {
     setCookie('twitchRefreshToken', twitchRefreshToken, 1)
     setCookie('twitchUserID', twitchUserID, 90)
 
+    await saveTwitchDataToDB(
+      twitchAccessToken,
+      twitchRefreshToken,
+      twitchUserID
+    )
+
     await getTwitchStreamKey()
   }
 
   const saveTwitchDataToDB = (
+    userId,
     twitchAccessToken,
     twitchRefreshToken,
     twitchUserID
   ) => {
     console.log('saveTwitchDataToDB')
     const body = {
+      userId,
       twitchAccessToken,
       twitchRefreshToken,
       twitchUserID,

@@ -26,7 +26,6 @@ router.put('/api/destinations', async (req, res) => {
       facebookAccessToken,
     ]
   )
-
   if (results.rows) {
     return res.send(results.rows[0])
   } else if (err) {
