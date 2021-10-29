@@ -83,6 +83,7 @@ function Broadcast() {
     setuserId(userId)
 
     const body = { userId }
+    // api call to show broadcast avatar
     API.post('/user/destinations', body)
       .then((res) => {
         console.log(res)
@@ -95,6 +96,7 @@ function Broadcast() {
       .catch((err) => {
         console.log(err)
       })
+    // api call to get twitch data
   }, [])
 
   useEffect(() => {
