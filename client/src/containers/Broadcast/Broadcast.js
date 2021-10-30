@@ -264,6 +264,7 @@ function Broadcast() {
       console.log('twitch promise chain')
 
       const body = {
+        userId,
         twitchUserId,
         twitchAccessToken,
         twitchAccessRefreshToken,

@@ -26,11 +26,12 @@ router.patch('/api/twitch/broadcast', async (req, res) => {
       console.log(res)
       return res
     })
-    .catch((err) => {
+    .catch(async (err) => {
       console.log(err.response.status)
       if (err.response.status === 401) {
         // return refreshTwitchToken(twitchAccessRefreshToken)
-        console.log(refreshTwitchToken(twitchAccessRefreshToken))
+        let data = await refreshTwitchToken(twitchAccessRefreshToken)
+        console.log(data)
       }
     })
 
