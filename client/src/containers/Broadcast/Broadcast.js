@@ -103,6 +103,21 @@ function Broadcast() {
         const { twitch_user_id, twitch_access_token, twitch_refresh_token } =
           res.data
 
+        let config = {
+          headers: {
+            Authorization: `Bearer ${twitch_access_token}`,
+          },
+        }
+
+        axios
+          .get('https://id.twitch.tv/oauth2/validate', config)
+          .then((res) => {
+            console.log(res)
+          })
+          .catch((err) => {
+            console.log(err.response)
+          })
+
         settwitchUserId(twitch_user_id)
         settwitchAccessToken(twitch_access_token)
         settwitchAccessRefreshToken(twitch_refresh_token)
