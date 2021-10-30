@@ -1,3 +1,4 @@
+const { default: axios } = require('axios')
 require('dotenv').config()
 
 const refreshTwitchToken = async (refreshToken) => {
@@ -12,12 +13,16 @@ const refreshTwitchToken = async (refreshToken) => {
     )
     .then((res) => {
       console.log(res)
-      return res.data
     })
     .catch((err) => {
       console.log(err)
     })
-  return data
+
+  if (data) {
+    return res.send(data)
+  } else if (err) {
+    console.error('there was an error: ', err)
+  }
 }
 
 module.exports = refreshTwitchToken

@@ -270,8 +270,7 @@ function Broadcast() {
         title: twitchTitle,
       }
 
-      axios
-        .patch('/twitch/broadcast', body)
+      API.patch('/twitch/broadcast', body)
         .then((res) => {
           console.log(res)
         })
