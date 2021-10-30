@@ -19,7 +19,7 @@ router.patch('/api/twitch/broadcast', async (req, res) => {
       { title },
       {
         headers: {
-          Authorization: `Bearer ${twitchAccessToken}`,
+          Authorization: `Bearer 03u8nhj3kfkixq6ch1mq7036a3fk5f`,
           'Client-Id': process.env.TWITCH_CLIENT_ID,
           'Content-Type': 'application/json',
         },
@@ -29,28 +29,11 @@ router.patch('/api/twitch/broadcast', async (req, res) => {
       console.log(res)
       return res
     })
-    .catch(async (err) => {
+    .catch((err) => {
       console.log(err.response.status)
       if (err.response.status === 401) {
         // return refreshTwitchToken(twitchAccessRefreshToken)
-        let data = await refreshTwitchToken(twitchAccessRefreshToken)
-        console.log(data)
-        // const { access_token, refresh_token } = data
-        // add access_token and refresh_token to DB
-        // await updateDbTwitchValues(userId, access_token, refresh_token)
-        // console.log(access_token)
-
-        // axios.patch(
-        //   `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserID}`,
-        //   { title: 'hello' },
-        //   {
-        //     headers: {
-        //       Authorization: `Bearer ${data.access_token}`,
-        //       'Client-Id': process.env.TWITCH_CLIENT_ID,
-        //       'Content-Type': 'application/json',
-        //     },
-        //   }
-        // )
+        console.log('the wrong token was used, thats why there is a 401')
       }
     })
 

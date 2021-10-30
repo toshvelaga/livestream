@@ -121,8 +121,8 @@ function Broadcast() {
           .then((res) => {
             console.log(res)
             settwitchUserId(twitch_user_id)
-            settwitchAccessToken(twitch_access_token)
-            settwitchAccessRefreshToken(twitch_refresh_token)
+            // settwitchAccessToken(twitch_access_token)
+            // settwitchAccessRefreshToken(twitch_refresh_token)
           })
           .catch((err) => {
             console.log(err.response)
@@ -144,6 +144,7 @@ function Broadcast() {
   }, [])
 
   console.log('twitchAccessToken ' + twitchAccessToken)
+  console.log('twitchAccessRefreshToken ' + twitchAccessRefreshToken)
 
   useEffect(() => {
     // this is for google auth
