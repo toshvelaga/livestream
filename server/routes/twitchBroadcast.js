@@ -8,18 +8,21 @@ router.patch('/api/twitch/broadcast', async (req, res) => {
   // twitch docs: https://dev.twitch.tv/docs/api/reference#get-channel-information
 
   const userId = req.body.userId
-  const twitchUserID = req.body.twitchUserID
+  const twitchUserId = req.body.twitchUserId
   const twitchAccessToken = req.body.twitchAccessToken
   const twitchAccessRefreshToken = req.body.twitchAccessRefreshToken
   const title = req.body.title
 
+  console.log('twitch access token ' + twitchAccessToken)
+  console.log('twitch user id ' + twitchUserId)
+
   let authData = await axios
     .patch(
-      `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserID}`,
+      `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserId}`,
       { title },
       {
         headers: {
-          Authorization: `Bearer 03u8nhj3kfkixq6ch1mq7036a3fk5f`,
+          Authorization: `Bearer ${twitchAccessToken}`,
           'Client-Id': process.env.TWITCH_CLIENT_ID,
           'Content-Type': 'application/json',
         },

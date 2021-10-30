@@ -110,6 +110,8 @@ function Broadcast() {
         const { twitch_user_id, twitch_access_token, twitch_refresh_token } =
           res.data
 
+        settwitchUserId(twitch_user_id)
+
         let config = {
           headers: {
             Authorization: `Bearer ${twitch_access_token}`,
@@ -120,7 +122,7 @@ function Broadcast() {
           .get('https://id.twitch.tv/oauth2/validate', config)
           .then((res) => {
             console.log(res)
-            settwitchUserId(twitch_user_id)
+            // settwitchUserId(twitch_user_id)
             // settwitchAccessToken(twitch_access_token)
             // settwitchAccessRefreshToken(twitch_refresh_token)
           })
@@ -145,6 +147,7 @@ function Broadcast() {
 
   console.log('twitchAccessToken ' + twitchAccessToken)
   console.log('twitchAccessRefreshToken ' + twitchAccessRefreshToken)
+  console.log('twitch user id ' + twitchUserId)
 
   useEffect(() => {
     // this is for google auth
