@@ -1,5 +1,6 @@
 const express = require('express'),
   router = express.Router(),
+  updateDbTwitchValues = require('../utils/updateDbTwitchValues'),
   pool = require('../db'),
   { default: axios } = require('axios')
 require('dotenv').config()

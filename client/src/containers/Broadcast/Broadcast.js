@@ -96,6 +96,13 @@ function Broadcast() {
       .catch((err) => {
         console.log(err)
       })
+  }, [])
+
+  useEffect(() => {
+    let userId = getCookie('userId')
+    setuserId(userId)
+
+    const body = { userId }
     // api call to get twitch data
     API.post('/destinations', body)
       .then((res) => {
@@ -113,19 +120,30 @@ function Broadcast() {
           .get('https://id.twitch.tv/oauth2/validate', config)
           .then((res) => {
             console.log(res)
+            settwitchUserId(twitch_user_id)
+            settwitchAccessToken(twitch_access_token)
+            settwitchAccessRefreshToken(twitch_refresh_token)
           })
           .catch((err) => {
             console.log(err.response)
+            if (err.response.status === 401) {
+              console.log('the token is fucked up')
+              API.post('/authorize/twitch/refresh', {
+                refreshToken: twitch_refresh_token,
+              }).then((res) => {
+                console.log(res)
+                settwitchAccessToken(res.data.access_token)
+                settwitchAccessRefreshToken(res.data.refresh_token)
+              })
+            }
           })
-
-        settwitchUserId(twitch_user_id)
-        settwitchAccessToken(twitch_access_token)
-        settwitchAccessRefreshToken(twitch_refresh_token)
       })
       .catch((err) => {
         console.log(err)
       })
   }, [])
+
+  console.log('twitchAccessToken ' + twitchAccessToken)
 
   useEffect(() => {
     // this is for google auth
