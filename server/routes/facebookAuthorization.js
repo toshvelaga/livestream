@@ -14,6 +14,9 @@ router.post('/api/authorize/facebook', async (req, res) => {
 
   console.log(data)
   console.log('get long facebook token')
+  if (data) {
+    return res.status(200).send(data)
+  }
 })
 
 module.exports = router
