@@ -1,6 +1,7 @@
 const express = require('express'),
   router = express.Router(),
   refreshTwitchToken = require('../utils/refreshTwitchToken'),
+  updateDbTwitchValues = require('../utils/updateDbTwitchValues'),
   { default: axios } = require('axios')
 require('dotenv').config()
 
@@ -39,6 +40,12 @@ router.patch('/api/twitch/broadcast', async (req, res) => {
         console.log('the wrong token was used, thats why there is a 401')
       }
     })
+
+  await updateDbTwitchValues(
+    userId,
+    twitchAccessToken,
+    twitchAccessRefreshToken
+  )
 
   return res.send(authData)
 })
