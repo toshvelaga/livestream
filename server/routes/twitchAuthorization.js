@@ -22,19 +22,28 @@ router.post('/api/authorize/twitch', async (req, res) => {
 })
 
 router.post('/api/authorize/twitch/refresh', async (req, res) => {
-  let refreshToken = req.body.refreshToken
+  const userId = req.body.userId
+  const refreshToken = req.body.refreshToken
 
   let data = await axios
     .post(
       `https://id.twitch.tv/oauth2/token?grant_type=refresh_token&refresh_token=${refreshToken}&client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_SECRET}`
     )
     .then((res) => {
+      console.log(res.data)
+      console.log('user id ' + userId)
+      console.log('twitch access token on server ' + res.data.access_token)
+      console.log('twitch refresh token on server ' + res.data.refresh_token)
+
+      const { access_token, refresh_token } = res.data
+      updateDbTwitchValues(userId, access_token, refresh_token)
+
       return res.data
     })
     .catch((err) => {
       console.log(err)
     })
-  console.log(data)
+  // console.log(data)
   return res.status(200).send(data)
 })
 

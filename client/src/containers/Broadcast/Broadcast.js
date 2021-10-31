@@ -122,15 +122,13 @@ function Broadcast() {
           .get('https://id.twitch.tv/oauth2/validate', config)
           .then((res) => {
             console.log(res)
-            // settwitchUserId(twitch_user_id)
-            // settwitchAccessToken(twitch_access_token)
-            // settwitchAccessRefreshToken(twitch_refresh_token)
           })
           .catch((err) => {
             console.log(err.response)
             if (err.response.status === 401) {
               console.log('the token is fucked up')
               API.post('/authorize/twitch/refresh', {
+                userId,
                 refreshToken: twitch_refresh_token,
               }).then((res) => {
                 console.log(res)

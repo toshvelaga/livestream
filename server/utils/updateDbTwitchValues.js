@@ -1,3 +1,5 @@
+const pool = require('../db')
+
 const updateDbTwitchValues = async (
   userId,
   twitchAccessToken,
@@ -14,3 +16,5 @@ const updateDbTwitchValues = async (
   )
   return results
 }
+
+module.exports = updateDbTwitchValues
