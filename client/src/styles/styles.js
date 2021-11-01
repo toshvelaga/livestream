@@ -1,6 +1,6 @@
 const styles = {
-  // sideNavbarHoverColor: '#e3e2e7',
-  sideNavbarHoverColor: '#d2eefc',
+  sideNavbarHoverColor: '#e3e2e7',
+  // sideNavbarHoverColor: '#d2eefc',
   sideNavbarIconSize: 18,
   navItemColor: '#3b3b3b',
   broadcastAvatarBorder: '2px solid #03a9f4',

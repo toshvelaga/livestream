@@ -17,7 +17,14 @@ function TopNavbar() {
       <button onClick={handleClick} className={navbarStyles.upgradeButton}>
         Upgrade
       </button>
-      <NavItem icon={<FaIcons.FaUser color={styles.navItemColor} size={20} />}>
+      <NavItem
+        icon={
+          <FaIcons.FaUser
+            color={styles.navItemColor}
+            size={styles.sideNavbarIconSize}
+          />
+        }
+      >
         <DropdownMenu></DropdownMenu>
       </NavItem>
     </Navbar>
