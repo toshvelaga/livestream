@@ -18,7 +18,6 @@ import {
 import * as FaIcons from 'react-icons/fa'
 import styles from '../../styles/styles'
 
-/* global gapi */
 /* global FB */
 
 function Destinations() {
@@ -51,34 +50,9 @@ function Destinations() {
     API.put('/user/destinations', data)
   }
 
-  const youtubeAuth = () => {
-    return gapi.auth2
-      .getAuthInstance()
-      .signIn({ scope: SCOPE })
-      .then((res) => {
-        console.log(res)
-        youtubeAuthBooleanDB()
-      })
-      .catch((err) => console.log(err))
-  }
-
   const youtubeAuthBooleanDB = () => {
     let data = { youtubeAuthBool: true, userId }
     API.put('/user/destinations', data)
-  }
-
-  // gapi.load('client:auth2', function () {
-  //   gapi.auth2.init({
-  //     client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-  //   })
-  // })
-
-  // Authorizing client initially (I only want them to have to do this once)
-
-  // Setting the access token (expires in 3600s)
-  const handleAuthResult = async (authResult) => {
-    let signInResponse = await authResult.signIn()
-    console.log(signInResponse)
   }
 
   const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`
@@ -200,9 +174,11 @@ function Destinations() {
       <div style={{ margin: '10rem auto', width: '50%' }}>
         <h2>Added Destinations</h2>
         <div className='destinations-container'>
-          <Card onClick={youtubeAuth} title={'YouTube'}>
-            <FaIcons.FaYoutube color={'#ff0000'} size={50} />
-          </Card>
+          <a alt='youtube api authorization' href={googleAuthUrl}>
+            <Card title={'YouTube'}>
+              <FaIcons.FaYoutube color={'#ff0000'} size={50} />
+            </Card>
+          </a>
 
           <a href={twitchURL}>
             <Card title={'Twitch'}>
