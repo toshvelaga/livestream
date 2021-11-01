@@ -9,6 +9,7 @@ export const TWITCH_RESPONSE_TYPE = 'token'
 export const DISCOVERY =
   'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'
 
+export const YOUTUBE_REDIRECT_URL = 'http://localhost:3000/destinations'
 export const YOUTUBE_PRIVACY_POLICY = [
   { value: 'Private', label: 'Private' },
   { value: 'Public', label: 'Public' },

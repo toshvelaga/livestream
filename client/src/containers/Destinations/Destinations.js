@@ -13,6 +13,7 @@ import {
   TWITCH_SCOPE,
   TWITCH_REDIRECT_URL,
   TWITCH_RESPONSE_TYPE,
+  YOUTUBE_REDIRECT_URL,
 } from '../../constants/constants'
 import * as FaIcons from 'react-icons/fa'
 import styles from '../../styles/styles'
@@ -42,6 +43,8 @@ function Destinations() {
       console.log('No code param in URL')
     }
   }, [])
+
+  const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?scope=${SCOPE}&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=${YOUTUBE_REDIRECT_URL}&response_type=code&client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}`
 
   const twitchAuthBooleanDB = () => {
     let data = { twitchAuthBool: true, userId }
@@ -189,7 +192,12 @@ function Destinations() {
       <div style={{ margin: '10rem auto', width: '50%' }}>
         <h2>Added Destinations</h2>
         <div className='destinations-container'>
-          <Card onClick={youtubeAuth} title={'YouTube'}>
+          <Card
+            onClick={() =>
+              window.open(googleAuthUrl, '_blank', 'width=500, height=600')
+            }
+            title={'YouTube'}
+          >
             <FaIcons.FaYoutube color={'#ff0000'} size={50} />
           </Card>
 
