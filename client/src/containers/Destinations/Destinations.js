@@ -24,12 +24,28 @@ function Destinations() {
   const [twitchStreamKey, setTwitchStreamKey] = useState('')
   const [facebookStreamKey, setFacebookStreamKey] = useState('')
   const [buttonText, setbuttonText] = useState('Add Destination')
-  const [destinationSelected, setdestinationSelected] = useState({
-    youtube: false,
-    twitch: false,
-    facebook: false,
-  })
+  const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
+  const [twitchAccessToken, settwitchAccessToken] = useState('')
+  const [facebookAccessToken, setfacebookAccessToken] = useState('')
   let userId = getCookie('userId')
+
+  useEffect(() => {
+    API.post('/destinations', { userId })
+      .then((res) => {
+        console.log(res)
+        const {
+          youtube_access_token,
+          twitch_access_token,
+          facebook_access_token,
+        } = res.data
+        setyoutubeAccessToken(youtube_access_token)
+        settwitchAccessToken(twitch_access_token)
+        setfacebookAccessToken(facebook_access_token)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   useEffect(() => {
     let url = window.location.href
@@ -42,6 +58,7 @@ function Destinations() {
       console.log('params: ' + window.location.search)
       let code = getUrlParams('code')
       console.log(code)
+      API.post('/authorize/youtube', { userId, code })
     } else {
       console.log('No code param in URL')
     }
@@ -179,24 +196,28 @@ function Destinations() {
         <h2>Added Destinations</h2>
         <div className='destinations-container'>
           <a alt='youtube api authorization' href={googleAuthUrl}>
-            <Card title={'YouTube'}>
+            <Card
+              style={youtubeAccessToken ? styles.destinationSelected : null}
+              cardTitleStyle={youtubeAccessToken ? styles.blackFontColor : null}
+              title={'YouTube'}
+            >
               <FaIcons.FaYoutube color={'#ff0000'} size={50} />
             </Card>
           </a>
 
           <a href={twitchURL}>
-            <Card title={'Twitch'}>
+            <Card
+              style={twitchAccessToken ? styles.destinationSelected : null}
+              cardTitleStyle={twitchAccessToken ? styles.blackFontColor : null}
+              title={'Twitch'}
+            >
               <FaIcons.FaTwitch color={'#9047fe'} size={50} />
             </Card>
           </a>
 
           <Card
-            style={
-              destinationSelected.facebook ? styles.destinationSelected : null
-            }
-            cardTitleStyle={
-              destinationSelected.facebook ? styles.blackFontColor : null
-            }
+            style={facebookAccessToken ? styles.destinationSelected : null}
+            cardTitleStyle={facebookAccessToken ? styles.blackFontColor : null}
             onClick={facebookAuth}
             title={'Facebook'}
           >
