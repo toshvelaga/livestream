@@ -61,6 +61,9 @@ function Broadcast() {
   const [twitchUserId, settwitchUserId] = useState('')
   const [twitchAccessToken, settwitchAccessToken] = useState('')
   const [twitchAccessRefreshToken, settwitchAccessRefreshToken] = useState('')
+  const [facebookAccessToken, setfacebookAccessToken] = useState('')
+  const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
+  const [youtubeAccessRefreshToken, setyoutubeAccessRefreshToken] = useState('')
 
   let GoogleAuth
   let history = useHistory()
@@ -107,8 +110,14 @@ function Broadcast() {
     API.post('/destinations', body)
       .then((res) => {
         console.log(res)
-        const { twitch_user_id, twitch_access_token, twitch_refresh_token } =
-          res.data
+        const {
+          twitch_user_id,
+          twitch_access_token,
+          twitch_refresh_token,
+          facebook_access_token,
+          youtube_access_token,
+          youtube_refresh_token,
+        } = res.data
 
         settwitchUserId(twitch_user_id)
 
@@ -146,55 +155,6 @@ function Broadcast() {
   console.log('twitchAccessToken ' + twitchAccessToken)
   console.log('twitchAccessRefreshToken ' + twitchAccessRefreshToken)
   console.log('twitch user id ' + twitchUserId)
-
-  useEffect(() => {
-    // this is for google auth
-    handleClientLoad()
-  }, [])
-
-  function handleClientLoad() {
-    // Load the API's client and auth2 modules.
-    // Call the initClient function after the modules load.
-    gapi.load('client:auth2', initClient)
-  }
-
-  function initClient() {
-    // Initialize the gapi.client object, which app uses to make API requests.
-    // Get API key and client ID from API Console.
-    // 'scope' field specifies space-delimited list of access scopes.
-    gapi.client
-      .init({
-        apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-        discoveryDocs: [DISCOVERY],
-        scope: SCOPE,
-      })
-      .then(function () {
-        GoogleAuth = gapi.auth2.getAuthInstance()
-
-        // Listen for sign-in state changes.
-        GoogleAuth.isSignedIn.listen(updateSigninStatus)
-
-        // Handle initial sign-in state. (Determine if user is already signed in.)
-        var user = GoogleAuth.currentUser.get()
-        setSigninStatus()
-      })
-  }
-
-  function setSigninStatus() {
-    var user = GoogleAuth.currentUser.get()
-    console.log(user)
-    var isAuthorized = user.hasGrantedScopes(SCOPE)
-    if (isAuthorized) {
-      console.log('signed in and authorized')
-    } else {
-      console.log('not authorized')
-    }
-  }
-
-  function updateSigninStatus() {
-    setSigninStatus()
-  }
 
   //!!! createBroadcast IS CALLED SECOND. BROADCAST APPEARS ON YOUTUBE
   const createBroadcast = () => {
