@@ -3,18 +3,46 @@ const express = require('express'),
   { default: axios } = require('axios')
 require('dotenv').config()
 
-router.patch('/api/youtube/broadcast', async (req, res) => {
+router.post('/api/youtube/broadcast', async (req, res) => {
   // youtube api create broadcast
+  const {
+    youtubeBroadcastTitle,
+    youtubeBroadcastDescription,
+    youtubePrivacyStatus,
+    youtubeAccessToken,
+  } = req.body
 
-  //   curl --request POST \
-  //   'https://youtube.googleapis.com/youtube/v3/liveBroadcasts?part=snippet%2CcontentDetails%2Cstatus%2Cid&key=[YOUR_API_KEY]' \
-  //   --header 'Authorization: Bearer [YOUR_ACCESS_TOKEN]' \
-  //   --header 'Accept: application/json' \
-  //   --header 'Content-Type: application/json' \
-  //   --data '{"snippet":{"title":"Test broadcast","scheduledStartTime":"YOUR_SCHEDULED_START_TIME","description":"hell"},"contentDetails":{"recordFromStart":true,"enableAutoStart":true,"monitorStream":{"enableMonitorStream":false}},"status":{"privacyStatus":"unlisted","selfDeclaredMadeForKids":true}}' \
-  //   --compressed
+  const data = {
+    snippet: {
+      title: 'Test broadcast',
+      scheduledStartTime: `${new Date().toISOString()}`,
+      description: 'hell',
+    },
+    contentDetails: {
+      recordFromStart: true,
+      enableAutoStart: true,
+      monitorStream: { enableMonitorStream: false },
+    },
+    status: { privacyStatus: 'unlisted', selfDeclaredMadeForKids: true },
+  }
 
-  return res.send({ msg: 'broadcast' })
+  const config = {
+    headers: {
+      Authorization: `Bearer ${youtubeAccessToken}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }
+
+  let broadcast = await axios.post(
+    `https://youtube.googleapis.com/youtube/v3/liveBroadcasts?part=snippet%2CcontentDetails%2Cstatus%2Cid&key=${process.env.GOOGLE_API_KEY}`,
+    data,
+    config
+  )
+
+  console.log(broadcast)
+
+  return res.send({ msg: 'broadcast success' })
 })
 
 module.exports = router
