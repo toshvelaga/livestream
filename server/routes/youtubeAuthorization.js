@@ -1,6 +1,7 @@
 const express = require('express'),
   router = express.Router(),
   updateDbYoutubeValues = require('../utils/updateDbYoutubeValues'),
+  updateYoutubeAccessToken = require('../utils/updateYoutubeAccessToken'),
   pool = require('../db'),
   { default: axios } = require('axios')
 require('dotenv').config()
@@ -40,7 +41,10 @@ router.post('/api/authorize/youtube/refresh', async (req, res) => {
 
   console.log(youtubeData.data)
 
-  return res.status(200).send({ msg: 'it works' })
+  const { access_token } = youtubeData.data
+  updateYoutubeAccessToken(userId, access_token)
+
+  return res.status(200).send(youtubeData.data)
 })
 
 module.exports = router

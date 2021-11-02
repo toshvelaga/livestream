@@ -38,6 +38,10 @@ function Destinations() {
       console.log('code: ' + code)
       twitchAuth(code)
       twitchAuthBooleanDB()
+    } else if (window.location.search.includes('&code')) {
+      console.log('params: ' + window.location.search)
+      let code = getUrlParams('code')
+      console.log(code)
     } else {
       console.log('No code param in URL')
     }
