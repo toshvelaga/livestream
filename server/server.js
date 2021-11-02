@@ -30,6 +30,7 @@ const facebookBroadcastRouter = require('./routes/facebookBroadcast')
 const twitchAuthorizationRouter = require('./routes/twitchAuthorization')
 const twitchBroadcastRouter = require('./routes/twitchBroadcast')
 const youtubeAuthorizationRouter = require('./routes/youtubeAuthorization')
+const youtubeBroadcastRouter = require('./routes/youtubeBroadcast')
 
 app.use('/', authenticationRouter)
 app.use('/', broadcastsRouter)
@@ -41,6 +42,7 @@ app.use('/', twitchAuthorizationRouter)
 app.use('/', twitchBroadcastRouter)
 app.use('/', referralRouter)
 app.use('/', youtubeAuthorizationRouter)
+app.use('/', youtubeBroadcastRouter)
 
 const PORT = process.env.PORT || 5001
 const WS_PORT = process.env.PORT || 3001

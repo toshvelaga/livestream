@@ -127,6 +127,21 @@ function Broadcast() {
           },
         }
 
+        // validate google token
+        axios
+          .get(
+            `https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=${youtube_access_token}`
+          )
+          .then((res) => {
+            console.log(res)
+            console.log('google access token expires in ' + res.data.expires_in)
+            setyoutubeAccessToken(youtube_access_token)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+
+        // validate twitch token
         axios
           .get('https://id.twitch.tv/oauth2/validate', config)
           .then((res) => {
