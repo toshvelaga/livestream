@@ -25,8 +25,6 @@ Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
 Modal.setAppElement('#root')
 
-/* global gapi */
-
 function Broadcast() {
   const [isModalOpen, setisModalOpen] = useState(false)
   const [modalContent, setmodalContent] = useState({
@@ -52,7 +50,7 @@ function Broadcast() {
     label: 'Public',
   })
 
-  const [userId, setuserId] = useState('')
+  const [userId, setuserId] = useState(getCookie('userId'))
 
   const [youtubeTitleError, setyoutubeTitleError] = useState('')
   const [facebookTitleError, setfacebookTitleError] = useState('')
@@ -82,8 +80,7 @@ function Broadcast() {
   }
 
   useEffect(() => {
-    let userId = getCookie('userId')
-    setuserId(userId)
+    console.log('user id in the useEffect hook ' + userId)
 
     const body = { userId }
     // api call to show broadcast avatar
@@ -102,9 +99,6 @@ function Broadcast() {
   }, [])
 
   useEffect(() => {
-    let userId = getCookie('userId')
-    setuserId(userId)
-
     const body = { userId }
     // api call to get twitch data
     API.post('/destinations', body)
@@ -183,76 +177,6 @@ function Broadcast() {
   console.log('twitchAccessToken ' + twitchAccessToken)
   console.log('twitchAccessRefreshToken ' + twitchAccessRefreshToken)
   console.log('twitch user id ' + twitchUserId)
-
-  //!!! createBroadcast IS CALLED SECOND. BROADCAST APPEARS ON YOUTUBE
-  const createBroadcast = () => {
-    return gapi.client.youtube.liveBroadcasts
-      .insert({
-        part: ['id,snippet,contentDetails,status'],
-        resource: {
-          snippet: {
-            title: youtubeTitle,
-            scheduledStartTime: `${new Date().toISOString()}`,
-            description: youtubeDescription,
-          },
-          contentDetails: {
-            recordFromStart: true,
-            enableAutoStart: false,
-            monitorStream: {
-              enableMonitorStream: false,
-            },
-          },
-          status: {
-            privacyStatus: youtubePrivacyPolicy.value.toLowerCase(),
-            selfDeclaredMadeForKids: true,
-          },
-        },
-      })
-      .then((res) => {
-        return res.result.id
-      })
-  }
-
-  //!!! CALL createStream AFTER createBroadcast. IN THE RESPONSE SET youtubeIngestionUrl AND youtubeStreamName
-  const createStream = () => {
-    return gapi.client.youtube.liveStreams
-      .insert({
-        part: ['snippet,cdn,contentDetails,status'],
-        resource: {
-          snippet: {
-            title: youtubeTitle,
-            description: youtubeDescription,
-          },
-          cdn: {
-            frameRate: 'variable',
-            ingestionType: 'rtmp',
-            resolution: 'variable',
-            format: '',
-          },
-          contentDetails: {
-            isReusable: true,
-          },
-        },
-      })
-      .then((res) => {
-        return {
-          streamId: res.result.id,
-          youtubeDestinationUrl:
-            res.result.cdn.ingestionInfo.ingestionAddress +
-            '/' +
-            res.result.cdn.ingestionInfo.streamName,
-        }
-      })
-  }
-
-  //!!! LAST FUNCTION TO BE CALLED BEFORE GOING LIVE.
-  const bindBroadcastToStream = (broadcastId, streamId) => {
-    return gapi.client.youtube.liveBroadcasts.bind({
-      part: ['id,snippet,contentDetails,status'],
-      id: broadcastId,
-      streamId: streamId,
-    })
-  }
 
   const youtubePromiseChain = async () => {
     const data = {
