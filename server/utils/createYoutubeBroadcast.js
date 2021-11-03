@@ -39,7 +39,8 @@ const createYoutubeBroadcast = async (
       config
     )
     .then((res) => {
-      return res
+      console.log('youtube broadcast id ' + res.data.id)
+      return res.data.id
     })
     .catch((err) => console.log(err))
 

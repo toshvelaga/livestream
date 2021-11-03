@@ -22,12 +22,13 @@ router.post('/api/youtube/broadcast', async (req, res) => {
     youtubePrivacyPolicy,
     youtubeAccessToken
   )
-  const youtubeStreamId = await createYoutubeStream(
-    youtubeBroadcastTitle,
-    youtubeBroadcastDescription,
-    youtubeAccessToken
-  )
-  await bindYoutubeBroadcastToStream(youtubeBroadcastId, youtubeStreamId)
+
+  //   const youtubeStreamId = await createYoutubeStream(
+  //     youtubeBroadcastTitle,
+  //     youtubeBroadcastDescription,
+  //     youtubeAccessToken
+  //   )
+  //   await bindYoutubeBroadcastToStream(youtubeBroadcastId, youtubeStreamId)
 
   return res.send({ msg: 'broadcast success' })
 })
