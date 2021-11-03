@@ -1,19 +1,27 @@
 const { default: axios } = require('axios')
 require('dotenv').config()
 
-const createYoutubeBroadcast = async (youtubeAccessToken) => {
+const createYoutubeBroadcast = async (
+  youtubeBroadcastTitle,
+  youtubeBroadcastDescription,
+  youtubePrivacyPolicy,
+  youtubeAccessToken
+) => {
   const data = {
     snippet: {
-      title: 'Test broadcast',
+      title: youtubeBroadcastTitle,
       scheduledStartTime: `${new Date().toISOString()}`,
-      description: 'hell',
+      description: youtubeBroadcastDescription,
     },
     contentDetails: {
       recordFromStart: true,
       enableAutoStart: true,
       monitorStream: { enableMonitorStream: false },
     },
-    status: { privacyStatus: 'unlisted', selfDeclaredMadeForKids: true },
+    status: {
+      privacyStatus: youtubePrivacyPolicy.value.toLowerCase(),
+      selfDeclaredMadeForKids: true,
+    },
   }
 
   const config = {

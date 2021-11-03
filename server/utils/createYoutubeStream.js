@@ -1,9 +1,16 @@
 const { default: axios } = require('axios')
 require('dotenv').config()
 
-const createYoutubeStream = async (youtubeAccessToken) => {
+const createYoutubeStream = async (
+  youtubeBroadcastTitle,
+  youtubeBroadcastDescription,
+  youtubeAccessToken
+) => {
   const data = {
-    snippet: { title: 'hell', description: 'hell' },
+    snippet: {
+      title: youtubeBroadcastTitle,
+      description: youtubeBroadcastDescription,
+    },
     cdn: {
       format: '',
       ingestionType: 'rtmp',
