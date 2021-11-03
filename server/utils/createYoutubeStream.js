@@ -35,8 +35,11 @@ const createYoutubeStream = async (
       config
     )
     .then((res) => {
-      console.log(res)
-      return res
+      const { ingestionAddress, streamName } = res.data.cdn.ingestionInfo
+      return {
+        id: res.data.id,
+        youtubeDestinationUrl: ingestionAddress + '/' + streamName,
+      }
     })
     .catch((error) => {
       console.log(error)

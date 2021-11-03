@@ -18,8 +18,6 @@ const bindYoutubeBroadcastToStream = async (
     config
   )
 
-  console.log(bindedBroadcast)
-
   return bindedBroadcast
 }
 
