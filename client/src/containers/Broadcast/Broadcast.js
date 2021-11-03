@@ -138,7 +138,20 @@ function Broadcast() {
             setyoutubeAccessToken(youtube_access_token)
           })
           .catch((err) => {
-            console.log(err)
+            console.log(err.response)
+            if (err.response.status === 400) {
+              API.post('/authorize/youtube/refresh', {
+                userId,
+                refreshToken: youtube_refresh_token,
+              })
+                .then((res) => {
+                  console.log(res)
+                  setyoutubeAccessToken(res.data.accessToken)
+                })
+                .catch((err) => {
+                  console.log(err)
+                })
+            }
           })
 
         // validate twitch token
