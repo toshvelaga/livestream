@@ -14,9 +14,11 @@ const bindYoutubeBroadcastToStream = async (
   }
 
   const bindedBroadcast = await axios.post(
-    `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/bind?id=${youtubeBroadcastId}&part=id%2Csnippet%2CcontentDetails%2Cstatus&streamId=${youtubeStreamId}&key=${process.env.GOOGLE_API_KEY}`,
+    `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/bind?id=${youtubeBroadcastId}&part=snippet&streamId=${youtubeStreamId}&access_token=${youtubeAccessToken}&key=${process.env.GOOGLE_API_KEY}`,
     config
   )
+
+  console.log(bindedBroadcast)
 
   return bindedBroadcast
 }

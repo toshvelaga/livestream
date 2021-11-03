@@ -28,7 +28,7 @@ const createYoutubeStream = async (
     },
   }
 
-  const stream = await axios
+  const stream = axios
     .post(
       `https://youtube.googleapis.com/youtube/v3/liveStreams?part=snippet%2Ccdn%2CcontentDetails%2Cstatus&key=${process.env.GOOGLE_API_KEY}`,
       data,

@@ -14,11 +14,9 @@ router.post('/api/youtube/broadcast', async (req, res) => {
     youtubeBroadcastDescription,
     youtubePrivacyPolicy,
     youtubeAccessToken,
-    youtubeBroadcastId,
-    youtubeStreamId,
   } = req.body
 
-  const BroadcastId = await createYoutubeBroadcast(
+  const youtubeBroadcastId = await createYoutubeBroadcast(
     youtubeBroadcastTitle,
     youtubeBroadcastDescription,
     youtubePrivacyPolicy,
@@ -30,16 +28,22 @@ router.post('/api/youtube/broadcast', async (req, res) => {
     youtubeBroadcastDescription,
     youtubeAccessToken
   )
+
   console.log(youtubeStream)
+  console.log(youtubeStream.id)
+  console.log(youtubeStream.youtubeDestinationUrl)
 
-  const StreamId = youtubeStream.id
-  const youtubeDestinationUrl = youtubeStream.youtubeDestinationUrl
+  await bindYoutubeBroadcastToStream(
+    youtubeBroadcastId,
+    youtubeStream.id,
+    youtubeAccessToken
+  )
 
-  await bindYoutubeBroadcastToStream(BroadcastId, StreamId, youtubeAccessToken)
-
-  console.log(bindYoutubeBroadcastToStream)
-
-  return res.send({ msg: 'success' })
+  return res.status(200).send({
+    youtubeDestinationUrl: youtubeStream.youtubeDestinationUrl,
+    youtubeBroadcastId: youtubeBroadcastId,
+    youtubeStreamId: youtubeStream.id,
+  })
 })
 
 module.exports = router

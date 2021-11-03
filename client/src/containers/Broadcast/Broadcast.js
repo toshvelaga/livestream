@@ -255,31 +255,19 @@ function Broadcast() {
   }
 
   const youtubePromiseChain = async () => {
-    try {
-      if (modalContent.youtube) {
-        console.log('youtube promise chain')
-        const createdBroadcastId = await createBroadcast()
-        const createdStream = await createStream()
-
-        const youtubeDestinationUrl = createdStream.youtubeDestinationUrl
-        const createdStreamId = createdStream.streamId
-
-        await bindBroadcastToStream(createdBroadcastId, createdStreamId)
-
-        return {
-          youtubeDestinationUrl: youtubeDestinationUrl,
-          youtubeBroadcastId: createdBroadcastId,
-          youtubeStreamId: createdStreamId,
-        }
-      } else
-        return {
-          youtubeDestinationUrl: '',
-          youtubeBroadcastId: '',
-          youtubeStreamId: '',
-        }
-    } catch (error) {
-      console.log(error)
+    const data = {
+      youtubeBroadcastTitle: youtubeTitle,
+      youtubeBroadcastDescription: youtubeDescription,
+      youtubePrivacyPolicy: youtubePrivacyPolicy,
+      youtubeAccessToken: youtubeAccessToken,
     }
+    await API.post('/youtube/broadcast', data)
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   const twitchPromiseChain = () => {
@@ -386,6 +374,11 @@ function Broadcast() {
     } finally {
       setloading(false)
     }
+  }
+
+  const testsubmit = () => {
+    console.log('test submit')
+    youtubePromiseChain()
   }
 
   const allPromises = () => {
@@ -577,12 +570,13 @@ function Broadcast() {
         </div>
 
         {modalContentDisplay()}
-        <Button
+        {/* <Button
           loading={loading}
           style={{ width: '100%' }}
           title='Create Broadcast'
           fx={submit}
-        />
+        /> */}
+        <button onClick={testsubmit}>TEST SUBMIT</button>
       </Modal>
     </>
   )
