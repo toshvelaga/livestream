@@ -32,14 +32,18 @@ const createYoutubeBroadcast = async (
     },
   }
 
-  const broadcast = await axios.post(
-    `https://youtube.googleapis.com/youtube/v3/liveBroadcasts?part=snippet%2CcontentDetails%2Cstatus%2Cid&key=${process.env.GOOGLE_API_KEY}`,
-    data,
-    config
-  )
+  const broadcast = await axios
+    .post(
+      `https://youtube.googleapis.com/youtube/v3/liveBroadcasts?part=snippet%2CcontentDetails%2Cstatus%2Cid&key=${process.env.GOOGLE_API_KEY}`,
+      data,
+      config
+    )
+    .then((res) => {
+      return res
+    })
+    .catch((err) => console.log(err))
 
-  console.log(broadcast.data)
-  return broadcast.data
+  return broadcast
 }
 
 module.exports = createYoutubeBroadcast
