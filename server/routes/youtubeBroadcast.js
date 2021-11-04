@@ -85,13 +85,12 @@ router.post('/api/youtube/broadcast/end', async (req, res) => {
     headers: {
       Authorization: `Bearer ${youtubeAccessToken}`,
       Accept: 'application/json',
-      'Content-Type': 'application/json',
     },
   }
 
   await axios
     .post(
-      `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/transition?broadcastStatus=complete&id=${youtubeBroadcastId}&part=id%2Csnippet%2CcontentDetails%2Cstatus&key=${process.env.GOOGLE_API_KEY}`,
+      `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/transition?broadcastStatus=complete&id=${youtubeBroadcastId}&part=id&part=status&key=${process.env.GOOGLE_API_KEY}`,
       config
     )
     .then((res) => {
