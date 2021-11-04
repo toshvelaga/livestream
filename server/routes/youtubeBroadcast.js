@@ -89,12 +89,19 @@ router.post('/api/youtube/broadcast/end', async (req, res) => {
     },
   }
 
-  axios.post(
-    `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/transition?broadcastStatus=complete&id=${youtubeBroadcastId}&part=id%2Csnippet%2CcontentDetails%2Cstatus&key=${process.env.GOOGLE_API_KEY}`,
-    config
-  )
+  await axios
+    .post(
+      `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/transition?broadcastStatus=complete&id=${youtubeBroadcastId}&part=id%2Csnippet%2CcontentDetails%2Cstatus&key=${process.env.GOOGLE_API_KEY}`,
+      config
+    )
+    .then((res) => {
+      console.log(res.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 
-  // ADD RETURN STATEMENT
+  return res.status(200).send({ msg: 'youtube live stream ended' })
 })
 
 module.exports = router
