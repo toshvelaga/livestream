@@ -189,7 +189,7 @@ function Broadcast() {
         let youtubeData = await API.post('/youtube/broadcast', data)
           .then((res) => {
             console.log(res)
-            return res
+            return res.data
           })
           .catch((err) => {
             console.log(err)
