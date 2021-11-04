@@ -51,20 +51,29 @@ router.post('/api/youtube/broadcast/live', async (req, res) => {
 
   const { youtubeBroadcastId, youtubeAccessToken } = req.body
 
+  console.log('youtube broadcast id ' + youtubeBroadcastId)
+  console.log('youtube access token ' + youtubeAccessToken)
+
   const config = {
     headers: {
       Authorization: `Bearer ${youtubeAccessToken}`,
       Accept: 'application/json',
-      'Content-Type': 'application/json',
     },
   }
 
-  axios.post(
-    `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/transition?broadcastStatus=live&id=${youtubeBroadcastId}&part=id%2Csnippet%2CcontentDetails%2Cstatus&key=${process.env.GOOGLE_API_KEY}`,
-    config
-  )
+  await axios
+    .post(
+      `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/transition?broadcastStatus=live&id=${youtubeBroadcastId}&part=id&part=status&key=${process.env.GOOGLE_API_KEY}`,
+      config
+    )
+    .then((res) => {
+      console.log(res.data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 
-  // ADD RETURN STATEMENT
+  return res.status(200).send({ msg: 'youtube going live' })
 })
 
 router.post('/api/youtube/broadcast/end', async (req, res) => {

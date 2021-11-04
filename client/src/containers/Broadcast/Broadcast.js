@@ -286,7 +286,7 @@ function Broadcast() {
       if (res.data.studio_id) {
         console.log(res.data.studio_id)
         let studioId = res.data.studio_id
-        // history.push(`/studio/${studioId}`)
+        history.push(`/studio/${studioId}`)
       }
     })
   }
