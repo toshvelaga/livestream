@@ -23,15 +23,15 @@ router.post('/api/youtube/broadcast', async (req, res) => {
     youtubeAccessToken
   )
 
-  const youtubeStream = await createYoutubeStream(
+  let youtubeStream = await createYoutubeStream(
     youtubeBroadcastTitle,
     youtubeBroadcastDescription,
     youtubeAccessToken
   )
 
-  console.log(youtubeStream)
-  console.log(youtubeStream.id)
-  console.log(youtubeStream.youtubeDestinationUrl)
+  // console.log(youtubeStream)
+  // console.log(youtubeStream.id)
+  // console.log(youtubeStream.youtubeDestinationUrl)
 
   await bindYoutubeBroadcastToStream(
     youtubeBroadcastId,

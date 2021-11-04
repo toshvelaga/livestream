@@ -14,9 +14,6 @@ router.patch('/api/twitch/broadcast', async (req, res) => {
   const twitchAccessRefreshToken = req.body.twitchAccessRefreshToken
   const title = req.body.title
 
-  console.log('twitch access token ' + twitchAccessToken)
-  console.log('twitch user id ' + twitchUserId)
-
   let authData = await axios
     .patch(
       `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserId}`,
@@ -47,7 +44,7 @@ router.patch('/api/twitch/broadcast', async (req, res) => {
     twitchAccessRefreshToken
   )
 
-  return res.send(authData)
+  return res.status(204).send({ msg: 'success' })
 })
 
 module.exports = router

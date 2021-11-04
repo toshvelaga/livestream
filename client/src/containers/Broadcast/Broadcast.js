@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {
-  YOUTUBE_PRIVACY_POLICY,
-  SCOPE,
-  DISCOVERY,
-} from '../../constants/constants'
+import { YOUTUBE_PRIVACY_POLICY } from '../../constants/constants'
 import API from '../../api/api'
 import axios from 'axios'
 import Button from '../../components/Buttons/Button'
@@ -42,7 +38,6 @@ function Broadcast() {
   const [youtubeTitle, setyoutubeTitle] = useState('')
   const [twitchTitle, settwitchTitle] = useState('')
   const [facebookTitle, setfacebookTitle] = useState('')
-  // const [twitchToken, settwitchToken] = useState('')
   const [youtubeDescription, setyoutubeDescription] = useState('')
   const [facebookDescription, setfacebookDescription] = useState('')
   const [youtubePrivacyPolicy, setyoutubePrivacyPolicy] = useState({
@@ -63,7 +58,6 @@ function Broadcast() {
   const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
   const [youtubeAccessRefreshToken, setyoutubeAccessRefreshToken] = useState('')
 
-  let GoogleAuth
   let history = useHistory()
 
   const closeModal = () => {
@@ -114,6 +108,7 @@ function Broadcast() {
         } = res.data
 
         settwitchUserId(twitch_user_id)
+        setfacebookAccessToken(facebook_access_token)
 
         let config = {
           headers: {
@@ -153,6 +148,8 @@ function Broadcast() {
           .get('https://id.twitch.tv/oauth2/validate', config)
           .then((res) => {
             console.log(res)
+            settwitchAccessToken(twitch_access_token)
+            settwitchAccessRefreshToken(twitch_refresh_token)
           })
           .catch((err) => {
             console.log(err.response)
@@ -179,20 +176,39 @@ function Broadcast() {
   console.log('twitch user id ' + twitchUserId)
 
   const youtubePromiseChain = async () => {
-    const data = {
-      youtubeBroadcastTitle: youtubeTitle,
-      youtubeBroadcastDescription: youtubeDescription,
-      youtubePrivacyPolicy: youtubePrivacyPolicy,
-      youtubeAccessToken: youtubeAccessToken,
+    try {
+      if (modalContent.youtube) {
+        console.log('youtube promise chain')
+
+        const data = {
+          youtubeBroadcastTitle: youtubeTitle,
+          youtubeBroadcastDescription: youtubeDescription,
+          youtubePrivacyPolicy: youtubePrivacyPolicy,
+          youtubeAccessToken: youtubeAccessToken,
+        }
+        let youtubeData = await API.post('/youtube/broadcast', data)
+          .then((res) => {
+            console.log(res)
+            return res
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+
+        return {
+          youtubeDestinationUrl: youtubeData.youtubeDestinationUrl,
+          youtubeBroadcastId: youtubeData.youtubeBroadcastId,
+          youtubeStreamId: youtubeData.youtubeStreamId,
+        }
+      } else
+        return {
+          youtubeDestinationUrl: '',
+          youtubeBroadcastId: '',
+          youtubeStreamId: '',
+        }
+    } catch (error) {
+      console.log(error)
     }
-    await API.post('/youtube/broadcast', data)
-      .then((res) => {
-        console.log(res)
-        return res
-      })
-      .catch((err) => {
-        console.log(err)
-      })
   }
 
   const twitchPromiseChain = () => {
@@ -222,7 +238,6 @@ function Broadcast() {
     if (modalContent.facebook) {
       console.log('facebook promise chain')
 
-      let facebookAccessToken = getCookie('facebookAccessToken')
       const data = {
         facebookTitle,
         facebookDescription,
@@ -495,13 +510,13 @@ function Broadcast() {
         </div>
 
         {modalContentDisplay()}
-        {/* <Button
+        <Button
           loading={loading}
           style={{ width: '100%' }}
           title='Create Broadcast'
           fx={submit}
-        /> */}
-        <button onClick={testsubmit}>TEST SUBMIT</button>
+        />
+        {/* <button onClick={testsubmit}>TEST SUBMIT</button> */}
       </Modal>
     </>
   )
