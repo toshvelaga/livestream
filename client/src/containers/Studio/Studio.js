@@ -88,10 +88,18 @@ function Studio() {
     })
       .then((res) => {
         console.log(res)
-        setFacebookUrl(res.data.facebook_destination_url)
-        setfacebookLiveVideoId(res.data.facebook_live_video_id)
-        setYoutubeBroadcastId(res.data.youtube_broadcast_id)
-        setyoutubeUrl(res.data.youtube_destination_url)
+
+        const {
+          facebook_destination_url,
+          facebook_live_video_id,
+          youtube_broadcast_id,
+          youtube_destination_url,
+        } = res.data
+
+        setFacebookUrl(facebook_destination_url)
+        setfacebookLiveVideoId(facebook_live_video_id)
+        setYoutubeBroadcastId(youtube_broadcast_id)
+        setyoutubeUrl(youtube_destination_url)
       })
       .catch((err) => console.log(err))
 
