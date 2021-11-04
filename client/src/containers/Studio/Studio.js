@@ -101,18 +101,22 @@ function Studio() {
   }
 
   const endYoutubeStream = () => {
-    const body = { youtubeBroadcastId, youtubeAccessToken }
-    API.post('/youtube/broadcast/end', body)
+    if (youtubeBroadcastId) {
+      const body = { youtubeBroadcastId, youtubeAccessToken }
+      API.post('/youtube/broadcast/end', body)
+    } else return null
   }
 
   const endFacebookLivestream = () => {
-    const data = {
-      facebookLiveVideoId,
-      accessToken: facebookAccessToken,
-    }
-    API.post('/facebook/broadcast/end', data)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
+    if (facebookLiveVideoId) {
+      const data = {
+        facebookLiveVideoId,
+        accessToken: facebookAccessToken,
+      }
+      API.post('/facebook/broadcast/end', data)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    } else return null
   }
 
   if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
