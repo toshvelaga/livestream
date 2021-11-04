@@ -6,15 +6,12 @@ import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
 import API from '../../api/api'
 import './Studio.css'
-import { SCOPE, DISCOVERY } from '../../constants/constants'
 import { useParams } from 'react-router-dom'
 
 const CAPTURE_OPTIONS = {
   audio: true,
   video: true,
 }
-
-/* global gapi */
 
 function Studio() {
   const [isVideoOn, setisVideoOn] = useState(true)
@@ -24,9 +21,13 @@ function Studio() {
 
   const [youtubeUrl, setyoutubeUrl] = useState('')
   const [youtubeBroadcastId, setYoutubeBroadcastId] = useState('')
+  const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
 
   const [facebookUrl, setFacebookUrl] = useState('')
   const [facebookLiveVideoId, setfacebookLiveVideoId] = useState('')
+  const [facebookAccessToken, setfacebookAccessToken] = useState('')
+
+  const [twitchStreamKey, settwitchStreamKey] = useState('')
 
   const [mediaStream, setMediaStream] = useState(null)
   const [userFacing, setuserFacing] = useState(false)
@@ -40,14 +41,12 @@ function Studio() {
   const developmentWsUrl = 'ws://localhost:3001'
 
   //!!! THIS IS THE URL I AM STREAMING TO
-  const twitchStreamKey = getCookie('twitchStreamKey')
   const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
     facebookUrl
   )}`
 
   let liveStream
   let liveStreamRecorder
-  let GoogleAuth
 
   if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
     videoRef.current.srcObject = mediaStream
@@ -95,6 +94,16 @@ function Studio() {
         setyoutubeUrl(res.data.youtube_destination_url)
       })
       .catch((err) => console.log(err))
+
+    API.post('/destinations', { userId }).then((res) => {
+      console.log(res)
+      const { twitch_stream_key, facebook_access_token, youtube_access_token } =
+        res.data
+
+      settwitchStreamKey(twitch_stream_key)
+      setfacebookAccessToken(facebook_access_token)
+      setyoutubeAccessToken(youtube_access_token)
+    })
   }, [])
 
   useEffect(() => {
@@ -112,7 +121,7 @@ function Studio() {
     return () => {
       ws.current.close()
     }
-  }, [facebookUrl, youtubeUrl])
+  }, [facebookUrl, youtubeUrl, twitchStreamKey])
 
   useEffect(() => {
     let interval = null
@@ -125,10 +134,6 @@ function Studio() {
     }
     return () => clearInterval(interval)
   }, [isActive, seconds])
-
-  useEffect(() => {
-    handleClientLoad()
-  }, [])
 
   const toggle = () => {
     setIsActive(!isActive)
@@ -189,86 +194,17 @@ function Studio() {
     videoRef.current.play()
   }
 
-  function handleClientLoad() {
-    // Load the API's client and auth2 modules.
-    // Call the initClient function after the modules load.
-    gapi.load('client:auth2', initClient)
-  }
-
-  function initClient() {
-    // Initialize the gapi.client object, which app uses to make API requests.
-    // Get API key and client ID from API Console.
-    // 'scope' field specifies space-delimited list of access scopes.
-    gapi.client
-      .init({
-        apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
-        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-        discoveryDocs: [DISCOVERY],
-        scope: SCOPE,
-      })
-      .then(function () {
-        GoogleAuth = gapi.auth2.getAuthInstance()
-
-        // Listen for sign-in state changes.
-        GoogleAuth.isSignedIn.listen(updateSigninStatus)
-
-        // Handle initial sign-in state. (Determine if user is already signed in.)
-        var user = GoogleAuth.currentUser.get()
-        setSigninStatus()
-      })
-  }
-
-  function setSigninStatus() {
-    var user = GoogleAuth.currentUser.get()
-    console.log(user)
-    var isAuthorized = user.hasGrantedScopes(SCOPE)
-    if (isAuthorized) {
-      console.log('signed in and authorized')
-    } else {
-      console.log('not authorized')
-    }
-  }
-
-  function updateSigninStatus() {
-    setSigninStatus()
-  }
-
   const transitionYoutubeToLive = () => {
-    return gapi.client.youtube.liveBroadcasts
-      .transition({
-        part: ['id,snippet,contentDetails,status'],
-        broadcastStatus: 'live',
-        id: youtubeBroadcastId,
-      })
-      .then((res) => {
-        // Handle the results here (response.result has the parsed body).
-        console.log('Response', res)
-      })
-      .catch((err) => {
-        console.log('Execute error', err)
-      })
+    const body = { youtubeBroadcastId, youtubeAccessToken }
+    API.post('/youtube/broadcast/live', body)
   }
 
   const endYoutubeStream = () => {
-    return gapi.client.youtube.liveBroadcasts
-      .transition({
-        part: ['id,snippet,contentDetails,status'],
-        broadcastStatus: 'complete',
-        id: youtubeBroadcastId,
-      })
-      .then((res) => {
-        // Handle the results here (response.result has the parsed body).
-        console.log('Response', res)
-      })
-      .catch((err) => {
-        console.log('Execute error', err)
-      })
+    const body = { youtubeBroadcastId, youtubeAccessToken }
+    API.post('/youtube/broadcast/end', body)
   }
 
   const endFacebookLivestream = () => {
-    console.log('end facebook stream')
-    let facebookAccessToken = getCookie('facebookAccessToken')
-
     const data = {
       facebookLiveVideoId,
       accessToken: facebookAccessToken,
