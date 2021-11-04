@@ -14,67 +14,31 @@ const CAPTURE_OPTIONS = {
 }
 
 function Studio() {
+  const [youtubeUrl, setyoutubeUrl] = useState('')
+  const [youtubeBroadcastId, setYoutubeBroadcastId] = useState('')
+  const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
+  const [facebookUrl, setFacebookUrl] = useState('')
+  const [facebookLiveVideoId, setfacebookLiveVideoId] = useState('')
+  const [facebookAccessToken, setfacebookAccessToken] = useState('')
+  const [twitchStreamKey, settwitchStreamKey] = useState('')
+
   const [isVideoOn, setisVideoOn] = useState(true)
   const [mute, setMute] = useState(false)
   const [seconds, setSeconds] = useState(0)
   const [isActive, setIsActive] = useState(false)
-
-  const [youtubeUrl, setyoutubeUrl] = useState('')
-  const [youtubeBroadcastId, setYoutubeBroadcastId] = useState('')
-  const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
-
-  const [facebookUrl, setFacebookUrl] = useState('')
-  const [facebookLiveVideoId, setfacebookLiveVideoId] = useState('')
-  const [facebookAccessToken, setfacebookAccessToken] = useState('')
-
-  const [twitchStreamKey, settwitchStreamKey] = useState('')
-
   const [mediaStream, setMediaStream] = useState(null)
   const [userFacing, setuserFacing] = useState(false)
-
-  const { id } = useParams()
-
   const videoRef = useRef()
-  const ws = useRef()
-
-  const productionWsUrl = 'wss://www.ohmystream.xyz/websocket'
-  const developmentWsUrl = 'ws://localhost:3001'
-
-  //!!! THIS IS THE URL I AM STREAMING TO
-  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
-    facebookUrl
-  )}`
-
   let liveStream
   let liveStreamRecorder
 
-  if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
-    videoRef.current.srcObject = mediaStream
-  }
-
-  async function enableStream() {
-    try {
-      let stream = await navigator.mediaDevices.getUserMedia({
-        video: isVideoOn,
-        audio: true,
-      })
-      setMediaStream(stream)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(() => {
-    if (!mediaStream) {
-      enableStream()
-    } else {
-      return function cleanup() {
-        mediaStream.getVideoTracks().forEach((track) => {
-          track.stop()
-        })
-      }
-    }
-  }, [mediaStream])
+  const { id } = useParams()
+  const ws = useRef()
+  const productionWsUrl = 'wss://www.ohmystream.xyz/websocket'
+  const developmentWsUrl = 'ws://localhost:3001'
+  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
+    facebookUrl
+  )}`
 
   useEffect(() => {
     let userId = getCookie('userId')
@@ -131,7 +95,56 @@ function Studio() {
     }
   }, [facebookUrl, youtubeUrl, twitchStreamKey])
 
+  const transitionYoutubeToLive = () => {
+    const body = { youtubeBroadcastId, youtubeAccessToken }
+    API.post('/youtube/broadcast/live', body)
+  }
+
+  const endYoutubeStream = () => {
+    const body = { youtubeBroadcastId, youtubeAccessToken }
+    API.post('/youtube/broadcast/end', body)
+  }
+
+  const endFacebookLivestream = () => {
+    const data = {
+      facebookLiveVideoId,
+      accessToken: facebookAccessToken,
+    }
+    API.post('/facebook/broadcast/end', data)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+  }
+
+  if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
+    videoRef.current.srcObject = mediaStream
+  }
+
+  async function enableStream() {
+    try {
+      let stream = await navigator.mediaDevices.getUserMedia({
+        video: isVideoOn,
+        audio: true,
+      })
+      setMediaStream(stream)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   useEffect(() => {
+    if (!mediaStream) {
+      enableStream()
+    } else {
+      return function cleanup() {
+        mediaStream.getVideoTracks().forEach((track) => {
+          track.stop()
+        })
+      }
+    }
+  }, [mediaStream])
+
+  useEffect(() => {
+    // seconds for the timer component
     let interval = null
     if (isActive) {
       interval = setInterval(() => {
@@ -200,26 +213,6 @@ function Studio() {
 
   const handleCanPlay = () => {
     videoRef.current.play()
-  }
-
-  const transitionYoutubeToLive = () => {
-    const body = { youtubeBroadcastId, youtubeAccessToken }
-    API.post('/youtube/broadcast/live', body)
-  }
-
-  const endYoutubeStream = () => {
-    const body = { youtubeBroadcastId, youtubeAccessToken }
-    API.post('/youtube/broadcast/end', body)
-  }
-
-  const endFacebookLivestream = () => {
-    const data = {
-      facebookLiveVideoId,
-      accessToken: facebookAccessToken,
-    }
-    API.post('/facebook/broadcast/end', data)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err))
   }
 
   return (
