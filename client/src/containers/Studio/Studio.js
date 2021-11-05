@@ -42,7 +42,6 @@ function Studio() {
 
   useEffect(() => {
     let userId = getCookie('userId')
-    console.log('the studio id is: ' + id)
 
     API.get('/broadcasts', {
       params: {
@@ -84,8 +83,6 @@ function Studio() {
         ? new WebSocket(productionWsUrl + streamUrlParams)
         : new WebSocket(developmentWsUrl + streamUrlParams)
 
-    console.log(ws.current)
-
     ws.current.onopen = () => {
       console.log('WebSocket Open')
     }
@@ -119,6 +116,20 @@ function Studio() {
     } else return null
   }
 
+  useEffect(() => {
+    // seconds for the timer component
+    let interval = null
+    if (isActive) {
+      interval = setInterval(() => {
+        setSeconds((seconds) => seconds + 1)
+      }, 1000)
+    } else if (!isActive && seconds !== 0) {
+      clearInterval(interval)
+    }
+    return () => clearInterval(interval)
+  }, [isActive, seconds])
+
+  // dont know what this does
   if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
     videoRef.current.srcObject = mediaStream
   }
@@ -147,19 +158,7 @@ function Studio() {
     }
   }, [mediaStream])
 
-  useEffect(() => {
-    // seconds for the timer component
-    let interval = null
-    if (isActive) {
-      interval = setInterval(() => {
-        setSeconds((seconds) => seconds + 1)
-      }, 1000)
-    } else if (!isActive && seconds !== 0) {
-      clearInterval(interval)
-    }
-    return () => clearInterval(interval)
-  }, [isActive, seconds])
-
+  // toggles the stream to active or inactive
   const toggle = () => {
     setIsActive(!isActive)
   }
@@ -199,10 +198,7 @@ function Studio() {
     setMute(!mute)
   }
 
-  const toggleCamera = () => {
-    // toggle camera on and off here
-    setisVideoOn(false)
-  }
+  console.log(liveStreamRecorder?.status())
 
   const recordScreen = async () => {
     let stream
@@ -213,10 +209,6 @@ function Studio() {
 
     videoRef.current.srcObject = stream
     setuserFacing(!userFacing)
-  }
-
-  const handleCanPlay = () => {
-    videoRef.current.play()
   }
 
   return (
@@ -238,7 +230,6 @@ function Studio() {
           <video
             className='video-container'
             ref={videoRef}
-            onCanPlay={handleCanPlay}
             autoPlay
             playsInline
             muted={true}
@@ -250,7 +241,6 @@ function Studio() {
             title={!isActive ? 'Go Live' : 'Stop Recording'}
             fx={!isActive ? startStream : stopStream}
           />
-          {/* <BroadcastButton title='Disable Camera' fx={toggleCamera} /> */}
           <BroadcastButton
             title={!userFacing ? 'Share Screen' : 'Stop Sharing'}
             fx={recordScreen}
