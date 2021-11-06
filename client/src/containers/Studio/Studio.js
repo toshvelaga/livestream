@@ -8,6 +8,8 @@ import API from '../../api/api'
 import './Studio.css'
 import { useParams } from 'react-router-dom'
 
+// check out which video track is active: https://developer.mozilla.org/en-US/docs/Web/API/VideoTrack
+
 const CAPTURE_OPTIONS = {
   audio: true,
   video: true,
@@ -21,10 +23,10 @@ function Studio() {
   const [facebookLiveVideoId, setfacebookLiveVideoId] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const [twitchStreamKey, settwitchStreamKey] = useState('')
+  const [seconds, setSeconds] = useState(0)
 
   const [isVideoOn, setisVideoOn] = useState(true)
   const [mute, setMute] = useState(false)
-  const [seconds, setSeconds] = useState(0)
   const [isActive, setIsActive] = useState(false)
   const [mediaStream, setMediaStream] = useState(null)
   const [userFacing, setuserFacing] = useState(false)
@@ -132,18 +134,7 @@ function Studio() {
   // dont know what this does
   if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
     videoRef.current.srcObject = mediaStream
-  }
-
-  async function enableStream() {
-    try {
-      let stream = await navigator.mediaDevices.getUserMedia({
-        video: isVideoOn,
-        audio: true,
-      })
-      setMediaStream(stream)
-    } catch (err) {
-      console.log(err)
-    }
+    console.log(mediaStream.getVideoTracks())
   }
 
   useEffect(() => {
@@ -158,6 +149,18 @@ function Studio() {
     }
   }, [mediaStream])
 
+  async function enableStream() {
+    try {
+      let stream = await navigator.mediaDevices.getUserMedia({
+        video: isVideoOn,
+        audio: true,
+      })
+      setMediaStream(stream)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   // toggles the stream to active or inactive
   const toggle = () => {
     setIsActive(!isActive)
@@ -165,6 +168,16 @@ function Studio() {
 
   const startStream = () => {
     toggle()
+    recorderInit()
+    // start streaming to Youtube
+    if (youtubeBroadcastId) {
+      setTimeout(() => {
+        transitionYoutubeToLive()
+      }, 6000)
+    }
+  }
+
+  const recorderInit = () => {
     liveStream = videoRef.current.captureStream(30) // 30 FPS
     liveStreamRecorder = new MediaRecorder(liveStream, {
       mimeType: 'video/webm;codecs=h264',
@@ -176,13 +189,6 @@ function Studio() {
     }
     // Start recording, and dump data every second
     liveStreamRecorder.start(1000)
-
-    // start streaming to Youtube
-    if (youtubeBroadcastId) {
-      setTimeout(() => {
-        transitionYoutubeToLive()
-      }, 6000)
-    }
   }
 
   const stopStream = () => {
@@ -197,8 +203,6 @@ function Studio() {
   const toggleMute = () => {
     setMute(!mute)
   }
-
-  console.log(liveStreamRecorder?.status())
 
   const recordScreen = async () => {
     let stream
