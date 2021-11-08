@@ -30,9 +30,12 @@ function Studio() {
   const [isActive, setIsActive] = useState(false)
   const [mediaStream, setMediaStream] = useState(null)
   const [userFacing, setuserFacing] = useState(false)
+  const [videoUrl, setvideoUrl] = useState('')
+  const [chunks, setchunks] = useState([])
+
   const videoRef = useRef()
+  const liveStreamRecorder = useRef(null)
   let liveStream
-  let liveStreamRecorder
 
   const { id } = useParams()
   const ws = useRef()
@@ -134,7 +137,6 @@ function Studio() {
   // dont know what this does
   if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
     videoRef.current.srcObject = mediaStream
-    console.log(mediaStream.getVideoTracks())
   }
 
   useEffect(() => {
@@ -147,7 +149,7 @@ function Studio() {
         })
       }
     }
-  }, [mediaStream])
+  }, [])
 
   async function enableStream() {
     try {
@@ -166,7 +168,7 @@ function Studio() {
     setIsActive(!isActive)
   }
 
-  const startStream = () => {
+  const startRecording = () => {
     toggle()
     recorderInit()
     // start streaming to Youtube
@@ -179,41 +181,55 @@ function Studio() {
 
   const recorderInit = () => {
     liveStream = videoRef.current.captureStream(30) // 30 FPS
-    liveStreamRecorder = new MediaRecorder(liveStream, {
+    liveStreamRecorder.current = new MediaRecorder(liveStream, {
       mimeType: 'video/webm;codecs=h264',
       videoBitsPerSecond: 3 * 1024 * 1024,
     })
-    liveStreamRecorder.ondataavailable = (e) => {
-      ws.current.send(e.data)
+    liveStreamRecorder.current.ondataavailable = (e) => {
+      // ws.current.send(e.data)
+      chunks.push(e.data)
       console.log('send data', e.data)
     }
     // Start recording, and dump data every second
-    liveStreamRecorder.start(1000)
+    liveStreamRecorder.current.start(1000)
   }
 
-  const stopStream = () => {
-    setIsActive(false)
-    ws.current.close()
-    liveStreamRecorder = null
+  const stopRecording = () => {
+    // setIsActive(false)
+    // ws.current.close()
     // liveStreamRecorder.stop()
-    endYoutubeStream()
-    endFacebookLivestream()
+    // endYoutubeStream()
+    // endFacebookLivestream()
+
+    liveStreamRecorder.current.stop()
+
+    const recVideoBlob = new Blob(chunks, {
+      type: 'video/webm;codecs=h264',
+    })
+    // console.log('recVideo', recVideoBlob)
+    const videoURL = window.URL.createObjectURL(recVideoBlob)
+    setvideoUrl(videoURL)
+
+    console.log(videoURL)
   }
 
   const toggleMute = () => {
     setMute(!mute)
   }
 
-  const recordScreen = async () => {
+  const toggleRecording = async () => {
     let stream
     !userFacing
       ? (stream = await navigator.mediaDevices.getDisplayMedia(CAPTURE_OPTIONS))
       : (stream = await navigator.mediaDevices.getUserMedia(CAPTURE_OPTIONS))
     setMediaStream(stream)
 
-    videoRef.current.srcObject = stream
+    // videoRef.current.srcObject = stream
     setuserFacing(!userFacing)
+    videoRef.current.srcObject.replaceVideoTrack(stream.getVideoTracks()[0]) //Video
   }
+
+  console.log(mediaStream)
 
   return (
     <>
@@ -238,18 +254,19 @@ function Studio() {
             playsInline
             muted={true}
           />
+          {videoUrl ? <video controls src={videoUrl} /> : null}
         </div>
         <div className='studio-bottom-button-container'>
           <BroadcastButton
             id='play-button'
             title={!isActive ? 'Go Live' : 'Stop Recording'}
-            fx={!isActive ? startStream : stopStream}
+            fx={!isActive ? startRecording : stopRecording}
           />
           <BroadcastButton
             title={!userFacing ? 'Share Screen' : 'Stop Sharing'}
-            fx={recordScreen}
+            fx={toggleRecording}
           />
-          <BroadcastButton title={!mute ? 'Mute' : 'Muted'} fx={toggleMute} />
+          {/* <BroadcastButton title={!mute ? 'Mute' : 'Muted'} fx={toggleMute} /> */}
         </div>
       </div>
     </>
