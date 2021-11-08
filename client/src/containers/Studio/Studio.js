@@ -194,6 +194,8 @@ function Studio() {
     liveStreamRecorder.current.start(1000)
   }
 
+  console.log(navigator)
+
   const stopRecording = () => {
     // setIsActive(false)
     // ws.current.close()
