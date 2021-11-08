@@ -224,12 +224,9 @@ function Studio() {
       : (stream = await navigator.mediaDevices.getUserMedia(CAPTURE_OPTIONS))
     setMediaStream(stream)
 
-    // videoRef.current.srcObject = stream
+    videoRef.current.srcObject = stream
     setuserFacing(!userFacing)
-    videoRef.current.srcObject.replaceVideoTrack(stream.getVideoTracks()[0]) //Video
   }
-
-  console.log(mediaStream)
 
   return (
     <>
