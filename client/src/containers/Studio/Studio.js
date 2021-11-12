@@ -8,8 +8,6 @@ import API from '../../api/api'
 import './Studio.css'
 import { useParams } from 'react-router-dom'
 
-// check out which video track is active: https://developer.mozilla.org/en-US/docs/Web/API/VideoTrack
-
 const CAPTURE_OPTIONS = {
   audio: true,
   video: true,
@@ -95,30 +93,6 @@ function Studio() {
     }
   }, [facebookUrl, youtubeUrl, twitchStreamKey])
 
-  const transitionYoutubeToLive = () => {
-    const body = { youtubeBroadcastId, youtubeAccessToken }
-    API.post('/youtube/broadcast/live', body)
-  }
-
-  const endYoutubeStream = () => {
-    if (youtubeBroadcastId) {
-      const body = { youtubeBroadcastId, youtubeAccessToken }
-      API.post('/youtube/broadcast/end', body)
-    } else return null
-  }
-
-  const endFacebookLivestream = () => {
-    if (facebookLiveVideoId) {
-      const data = {
-        facebookLiveVideoId,
-        accessToken: facebookAccessToken,
-      }
-      API.post('/facebook/broadcast/end', data)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err))
-    } else return null
-  }
-
   useEffect(() => {
     // seconds for the timer component
     let interval = null
@@ -148,11 +122,6 @@ function Studio() {
     stream.replaceAudioTrack(stream.getAudioTracks()[0])
   }
 
-  // toggles the stream to active or inactive
-  const toggle = () => {
-    setIsActive(!isActive)
-  }
-
   const startRecording = () => {
     toggle()
     recorderInit()
@@ -162,6 +131,11 @@ function Studio() {
         transitionYoutubeToLive()
       }, 6000)
     }
+  }
+
+  // toggles the stream to active or inactive
+  const toggle = () => {
+    setIsActive(!isActive)
   }
 
   const recorderInit = () => {
@@ -201,6 +175,30 @@ function Studio() {
   const toggleScreenSharing = () => {
     userFacing ? screen() : camera()
     setuserFacing(!userFacing)
+  }
+
+  const transitionYoutubeToLive = () => {
+    const body = { youtubeBroadcastId, youtubeAccessToken }
+    API.post('/youtube/broadcast/live', body)
+  }
+
+  const endYoutubeStream = () => {
+    if (youtubeBroadcastId) {
+      const body = { youtubeBroadcastId, youtubeAccessToken }
+      API.post('/youtube/broadcast/end', body)
+    } else return null
+  }
+
+  const endFacebookLivestream = () => {
+    if (facebookLiveVideoId) {
+      const data = {
+        facebookLiveVideoId,
+        accessToken: facebookAccessToken,
+      }
+      API.post('/facebook/broadcast/end', data)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    } else return null
   }
 
   return (
