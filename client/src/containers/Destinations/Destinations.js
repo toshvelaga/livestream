@@ -21,9 +21,6 @@ import styles from '../../styles/styles'
 /* global FB */
 
 function Destinations() {
-  const [twitchStreamKey, setTwitchStreamKey] = useState('')
-  const [facebookStreamKey, setFacebookStreamKey] = useState('')
-  const [buttonText, setbuttonText] = useState('Add Destination')
   const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
   const [twitchAccessToken, settwitchAccessToken] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
