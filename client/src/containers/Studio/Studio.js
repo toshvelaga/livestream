@@ -123,7 +123,7 @@ function Studio() {
   }
 
   const startRecording = () => {
-    toggle()
+    toggleActive()
     recorderInit()
     // start streaming to Youtube
     if (youtubeBroadcastId) {
@@ -134,7 +134,7 @@ function Studio() {
   }
 
   // toggles the stream to active or inactive
-  const toggle = () => {
+  const toggleActive = () => {
     setIsActive(!isActive)
   }
 
@@ -145,8 +145,8 @@ function Studio() {
       videoBitsPerSecond: 3 * 1024 * 1024,
     })
     mediaRecorder.current.ondataavailable = (e) => {
-      // ws.current.send(e.data)
-      chunks.push(e.data)
+      ws.current.send(e.data)
+      // chunks.push(e.data)
       console.log('send data', e.data)
     }
     // Start recording, and dump data every second
@@ -154,18 +154,18 @@ function Studio() {
   }
 
   const stopRecording = () => {
-    // setIsActive(false)
-    // ws.current.close()
-    // liveStreamRecorder.stop()
-    // endYoutubeStream()
-    // endFacebookLivestream()
+    toggleActive()
+    ws.current.close()
+    // mediaRecorder.stop()
+    endYoutubeStream()
+    endFacebookLivestream()
 
     mediaRecorder.current.stop()
-    const recVideoBlob = new Blob(chunks, {
-      type: 'video/webm;codecs=h264',
-    })
-    const videoURL = window.URL.createObjectURL(recVideoBlob)
-    setvideoUrl(videoURL)
+    // const recVideoBlob = new Blob(chunks, {
+    //   type: 'video/webm;codecs=h264',
+    // })
+    // const videoURL = window.URL.createObjectURL(recVideoBlob)
+    // setvideoUrl(videoURL)
   }
 
   const toggleRecording = () => {
@@ -224,7 +224,7 @@ function Studio() {
             playsInline
             muted={true}
           />
-          {videoUrl ? <video controls src={videoUrl} /> : null}
+          {/* {videoUrl ? <video controls src={videoUrl} /> : null} */}
         </div>
         <div className='studio-bottom-button-container'>
           <BroadcastButton
