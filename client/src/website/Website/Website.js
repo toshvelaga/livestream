@@ -37,7 +37,7 @@ function Website(props) {
           Livestreaming Made Easy
         </h1>
         <p className='website-main-description'>
-          ohmystream allows creators to livestream to Twitch, Youtube, and
+          Ohmystream allows creators to livestream to Twitch, Youtube, and
           Facebook at the same time.
         </p>
         <div
@@ -62,18 +62,14 @@ function Website(props) {
               <div className='icon-website-container'>
                 <FaIcons.FaTwitch color='#9047fe' size={40} />
               </div>
-              <p className='website-text-description'>
-                Stream to Twitch using your stream key
-              </p>
+              <p className='website-text-description'>Stream to Twitch</p>
             </div>
 
             <div class='column sm-3 even'>
               <div className='icon-website-container'>
                 <FaIcons.FaYoutube color='#ff0000' size={40} />
               </div>
-              <p className='website-text-description'>
-                Stream to Youtube using your stream key
-              </p>
+              <p className='website-text-description'>Stream to Youtube</p>
             </div>
           </div>
         </div>
@@ -84,9 +80,7 @@ function Website(props) {
               <div className='icon-website-container'>
                 <FaIcons.FaFacebookF color='#1878f1' size={40} />
               </div>
-              <p className='website-text-description'>
-                Stream to Facebook coming soon
-              </p>
+              <p className='website-text-description'>Stream to Facebook</p>
             </div>
 
             <div class='column sm-3 even'>

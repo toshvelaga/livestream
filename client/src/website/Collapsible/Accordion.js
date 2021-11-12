@@ -19,7 +19,7 @@ export default class Accordion extends Component {
     {
       label: 'What features are you adding in the future?',
       content:
-        'Authentication via twitch, google and facebook instead of having to find your stream key. The ability to stream with other users using webRTC. Ability to add overlays on your content in real time',
+        'The ability to stream with other users using webRTC. Additional streaming destinations such as twitter and linkedin. Being able to respond to your messages in real time. Ability to add overlays on your content in real time.',
     },
     {
       label: 'How much does this cost?',
@@ -27,9 +27,9 @@ export default class Accordion extends Component {
         "Right now it's totally free! Will be adding paid plans with advanced features in the future.",
     },
     {
-      label: 'Where can I find the source code?',
+      label: 'Do you have support?',
       content:
-        'All of the source code is available on GitHub: https://github.com/toshvelaga/livestream',
+        'Yes if you have any additional questions or support issues feel free to reach out to me at toshvelaga@gmail.com',
     },
   ]
 
