@@ -22,6 +22,10 @@
   color: white;
 }
 
+#play-button:hover {
+  background-color: #ff6738;
+}
+
 @media only screen and (max-width: 1000px) {
   .studio-container {
     width: 80%;
