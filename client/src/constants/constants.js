@@ -3,7 +3,11 @@ export const TWITCH_SCOPE = encodeURIComponent(
   'channel:manage:broadcast channel:read:stream_key'
 )
 
-export const TWITCH_REDIRECT_URL = 'http://localhost:3000/destinations'
+export const TWITCH_REDIRECT_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'https://ohmystream.co/destinations'
+    : 'http://localhost:3000/destinations'
+
 export const TWITCH_RESPONSE_TYPE = 'token'
 
 export const DISCOVERY =
