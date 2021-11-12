@@ -25,17 +25,15 @@ function Studio() {
   const [twitchStreamKey, settwitchStreamKey] = useState('')
   const [seconds, setSeconds] = useState(0)
 
-  const [isVideoOn, setisVideoOn] = useState(true)
-  const [mute, setMute] = useState(false)
   const [isActive, setIsActive] = useState(false)
-  const [mediaStream, setMediaStream] = useState(null)
-  const [userFacing, setuserFacing] = useState(false)
+  const [userFacing, setuserFacing] = useState(true)
   const [videoUrl, setvideoUrl] = useState('')
   const [chunks, setchunks] = useState([])
 
   const videoRef = useRef()
-  const liveStreamRecorder = useRef(null)
+  const mediaRecorder = useRef()
   let liveStream
+  let tempStream = new MediaStream()
 
   const { id } = useParams()
   const ws = useRef()
@@ -134,33 +132,20 @@ function Studio() {
     return () => clearInterval(interval)
   }, [isActive, seconds])
 
-  // dont know what this does
-  if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
-    videoRef.current.srcObject = mediaStream
-  }
-
   useEffect(() => {
-    if (!mediaStream) {
-      enableStream()
-    } else {
-      return function cleanup() {
-        mediaStream.getVideoTracks().forEach((track) => {
-          track.stop()
-        })
-      }
-    }
+    camera()
+    videoRef.current.srcObject = tempStream.remoteStream
   }, [])
 
-  async function enableStream() {
-    try {
-      let stream = await navigator.mediaDevices.getUserMedia({
-        video: isVideoOn,
-        audio: true,
-      })
-      setMediaStream(stream)
-    } catch (err) {
-      console.log(err)
-    }
+  async function screen() {
+    const stream = await navigator.mediaDevices.getDisplayMedia(CAPTURE_OPTIONS)
+    stream.replaceVideoTrack(stream.getVideoTracks()[0])
+  }
+
+  async function camera() {
+    const stream = await navigator.mediaDevices.getUserMedia(CAPTURE_OPTIONS)
+    stream.replaceVideoTrack(stream.getVideoTracks()[0])
+    stream.replaceAudioTrack(stream.getAudioTracks()[0])
   }
 
   // toggles the stream to active or inactive
@@ -181,20 +166,18 @@ function Studio() {
 
   const recorderInit = () => {
     liveStream = videoRef.current.captureStream(30) // 30 FPS
-    liveStreamRecorder.current = new MediaRecorder(liveStream, {
+    mediaRecorder.current = new MediaRecorder(liveStream, {
       mimeType: 'video/webm;codecs=h264',
       videoBitsPerSecond: 3 * 1024 * 1024,
     })
-    liveStreamRecorder.current.ondataavailable = (e) => {
+    mediaRecorder.current.ondataavailable = (e) => {
       // ws.current.send(e.data)
       chunks.push(e.data)
       console.log('send data', e.data)
     }
     // Start recording, and dump data every second
-    liveStreamRecorder.current.start(1000)
+    mediaRecorder.current.start(1000)
   }
-
-  console.log(navigator)
 
   const stopRecording = () => {
     // setIsActive(false)
@@ -203,30 +186,20 @@ function Studio() {
     // endYoutubeStream()
     // endFacebookLivestream()
 
-    liveStreamRecorder.current.stop()
-
+    mediaRecorder.current.stop()
     const recVideoBlob = new Blob(chunks, {
       type: 'video/webm;codecs=h264',
     })
-    // console.log('recVideo', recVideoBlob)
     const videoURL = window.URL.createObjectURL(recVideoBlob)
     setvideoUrl(videoURL)
-
-    console.log(videoURL)
   }
 
-  const toggleMute = () => {
-    setMute(!mute)
+  const toggleRecording = () => {
+    !isActive ? startRecording() : stopRecording()
   }
 
-  const toggleRecording = async () => {
-    let stream
-    !userFacing
-      ? (stream = await navigator.mediaDevices.getDisplayMedia(CAPTURE_OPTIONS))
-      : (stream = await navigator.mediaDevices.getUserMedia(CAPTURE_OPTIONS))
-    setMediaStream(stream)
-
-    videoRef.current.srcObject = stream
+  const toggleScreenSharing = () => {
+    userFacing ? screen() : camera()
     setuserFacing(!userFacing)
   }
 
@@ -259,13 +232,12 @@ function Studio() {
           <BroadcastButton
             id='play-button'
             title={!isActive ? 'Go Live' : 'Stop Recording'}
-            fx={!isActive ? startRecording : stopRecording}
-          />
-          <BroadcastButton
-            title={!userFacing ? 'Share Screen' : 'Stop Sharing'}
             fx={toggleRecording}
           />
-          {/* <BroadcastButton title={!mute ? 'Mute' : 'Muted'} fx={toggleMute} /> */}
+          <BroadcastButton
+            title={userFacing ? 'Share Screen' : 'Stop Sharing'}
+            fx={toggleScreenSharing}
+          />
         </div>
       </div>
     </>
