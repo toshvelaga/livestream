@@ -7,9 +7,15 @@ require('dotenv').config()
 
 router.post('/api/authorize/twitch', async (req, res) => {
   let authorizationCode = req.body.authorizationCode
+
+  const twitchRedirectUrl =
+    process.env.NODE_ENV === 'production'
+      ? process.env.TWITCH_REDIRECT_URL_PROD
+      : process.env.TWITCH_REDIRECT_URL_DEV
+
   let authData = await axios
     .post(
-      `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_SECRET}&code=${authorizationCode}&grant_type=authorization_code&redirect_uri=${process.env.TWITCH_REDIRECT_URL}`
+      `https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_SECRET}&code=${authorizationCode}&grant_type=authorization_code&redirect_uri=${twitchRedirectUrl}`
     )
     .then((res) => {
       return res.data

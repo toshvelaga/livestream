@@ -13,7 +13,12 @@ router.post('/api/authorize/youtube', async (req, res) => {
 
   const { userId, code } = req.body
 
-  var dataString = `code=${code}&client_id=${process.env.YOUTUBE_CLIENT_ID}&client_secret=${process.env.YOUTUBE_CLIENT_SECRET}&redirect_uri=${process.env.YOUTUBE_REDIRECT_URL}&grant_type=authorization_code`
+  const youtubeRedirectUrl =
+    process.env.NODE_ENV === 'production'
+      ? process.env.YOUTUBE_REDIRECT_URL_PROD
+      : process.env.YOUTUBE_REDIRECT_URL_DEV
+
+  var dataString = `code=${code}&client_id=${process.env.YOUTUBE_CLIENT_ID}&client_secret=${process.env.YOUTUBE_CLIENT_SECRET}&redirect_uri=${youtubeRedirectUrl}&grant_type=authorization_code`
 
   const youtubeData = await axios.post(
     'https://accounts.google.com/o/oauth2/token',
