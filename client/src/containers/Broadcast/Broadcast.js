@@ -56,7 +56,8 @@ function Broadcast() {
   const [twitchAccessRefreshToken, settwitchAccessRefreshToken] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
-  const [youtubeAccessRefreshToken, setyoutubeAccessRefreshToken] = useState('')
+  // DO I NEED TO SET THIS SOMEWHERE?
+  // const [youtubeAccessRefreshToken, setyoutubeAccessRefreshToken] = useState('')
 
   let history = useHistory()
 
@@ -170,10 +171,6 @@ function Broadcast() {
         console.log(err)
       })
   }, [])
-
-  console.log('twitchAccessToken ' + twitchAccessToken)
-  console.log('twitchAccessRefreshToken ' + twitchAccessRefreshToken)
-  console.log('twitch user id ' + twitchUserId)
 
   const youtubePromiseChain = async () => {
     try {
@@ -328,13 +325,21 @@ function Broadcast() {
       facebookPromiseChain(),
     ]).then((values) => {
       const flatObj = Object.assign({}, ...values)
+      const {
+        youtubeDestinationUrl,
+        youtubeBroadcastId,
+        youtubeStreamId,
+        facebookLiveVideoId,
+        facebookDestinationUrl,
+        twitchTitle,
+      } = flatObj
       sendDataToDB(
-        flatObj.youtubeDestinationUrl,
-        flatObj.youtubeBroadcastId,
-        flatObj.youtubeStreamId,
-        flatObj.facebookLiveVideoId,
-        flatObj.facebookDestinationUrl,
-        flatObj.twitchTitle
+        youtubeDestinationUrl,
+        youtubeBroadcastId,
+        youtubeStreamId,
+        facebookLiveVideoId,
+        facebookDestinationUrl,
+        twitchTitle
       )
     })
   }
