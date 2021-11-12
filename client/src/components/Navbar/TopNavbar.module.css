@@ -75,9 +75,11 @@ a {
   --button-size: calc(var(--nav-size) * 0.5);
   width: var(--button-size);
   height: var(--button-size);
-  background-color: #e3e2e7;
-  border-radius: 50%;
-  padding: 5px;
+  /* background-color: #e3e2e7;
+  border-radius: 50%; */
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  padding: 6px;
   margin: 2px;
   display: flex;
   align-items: center;
@@ -86,7 +88,8 @@ a {
 }
 
 .iconButton:hover {
-  filter: brightness(1.2);
+  background-color: #e3e2e7;
+  cursor: pointer;
 }
 
 /* Dropdown Menu */
