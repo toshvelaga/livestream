@@ -117,6 +117,7 @@ function Destinations() {
 
   const twitchAuth = async (code) => {
     let auth = await sendCodeToTwitch(code)
+    console.log('supposed to get twitch auth data here')
     console.log(auth)
 
     let twitchAccessToken = auth.access_token
