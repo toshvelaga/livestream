@@ -121,7 +121,9 @@ function Destinations() {
     console.log(auth)
 
     let twitchAccessToken = auth.access_token
+    console.log('twitchAccessToken: ' + twitchAccessToken)
     let twitchRefreshToken = auth.refresh_token
+    console.log('twitchRefreshToken: ' + twitchRefreshToken)
 
     let validation = await validateTwitchRequest(twitchAccessToken)
     console.log(validation)
