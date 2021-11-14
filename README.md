@@ -25,6 +25,7 @@ Frontend tech stack:
 - CSS
 - React Router
 - React Icons
+- [react-hot-toast](https://github.com/timolins/react-hot-toast)
 
 Backend tech stack:
 

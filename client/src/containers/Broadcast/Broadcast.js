@@ -55,6 +55,7 @@ function Broadcast() {
   const [twitchAccessToken, settwitchAccessToken] = useState('')
   const [twitchAccessRefreshToken, settwitchAccessRefreshToken] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
+  const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
   const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
   // DO I NEED TO SET THIS SOMEWHERE?
   // const [youtubeAccessRefreshToken, setyoutubeAccessRefreshToken] = useState('')
@@ -104,12 +105,14 @@ function Broadcast() {
           twitch_access_token,
           twitch_refresh_token,
           facebook_access_token,
+          facebook_long_access_token,
           youtube_access_token,
           youtube_refresh_token,
         } = res.data
 
         settwitchUserId(twitch_user_id)
         setfacebookAccessToken(facebook_access_token)
+        setlongFacebookAccessToken(facebook_long_access_token)
 
         let config = {
           headers: {
