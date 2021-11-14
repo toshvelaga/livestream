@@ -48,16 +48,19 @@ function Destinations() {
   useEffect(() => {
     let url = window.location.href
     if (url.includes('?code')) {
+      // logic for Twitch
       let code = getUrlParams('code')
       console.log('code: ' + code)
       twitchAuth(code)
       twitchAuthBooleanDB()
       toastSuccessMessage('Twitch added as destination')
     } else if (window.location.search.includes('&code')) {
+      // logic for Youtube
       console.log('params: ' + window.location.search)
       let code = getUrlParams('code')
       console.log(code)
       API.post('/authorize/youtube', { userId, code })
+      toastSuccessMessage('Youtube added as destination')
     } else {
       console.log('No code param in URL')
     }
