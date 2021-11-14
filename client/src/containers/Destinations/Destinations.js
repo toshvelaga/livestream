@@ -178,6 +178,7 @@ function Destinations() {
         let facebookAccessToken = response.authResponse.accessToken
         setCookie('facebookAccessToken', facebookAccessToken, 1)
         facebookAuthBooleanDB()
+        toastSuccessMessage('Facebook added as destination')
       },
       { scope: 'email, publish_video, public_profile', auth_type: 'rerequest' }
     )
