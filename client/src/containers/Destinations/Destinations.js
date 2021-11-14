@@ -5,8 +5,12 @@ import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
 import setCookie from '../../utils/setCookie'
 import getUrlParams from '../../utils/getUrlParams'
-// import saveTwitchDataToDB from '../../utils/saveTwitchDataToDB'
-import './Destinations.css'
+import {
+  twitchAuthBooleanDB,
+  sendCodeToTwitch,
+  validateTwitchRequest,
+  saveTwitchDataToDB,
+} from '../../utils/twitchDestinationUtils'
 import {
   SCOPE,
   TWITCH_SCOPE,
@@ -17,6 +21,7 @@ import { useHistory } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import toast, { Toaster } from 'react-hot-toast'
 import styles from '../../styles/styles'
+import './Destinations.css'
 
 /* global FB */
 
@@ -51,13 +56,13 @@ function Destinations() {
       // logic for Twitch
       let code = getUrlParams('code')
       twitchAuth(code)
-      twitchAuthBooleanDB()
+      twitchAuthBooleanDB(userId)
       history.push('/destinations')
       toastSuccessMessage('Twitch added as destination')
     } else if (window.location.search.includes('&code')) {
       // logic for Youtube
       let code = getUrlParams('code')
-      API.post('/authorize/youtube', { userId, code })
+      youtubeAuth(userId, code)
       youtubeAuthBooleanDB()
       history.push('/destinations')
       toastSuccessMessage('Youtube added as destination')
@@ -68,9 +73,8 @@ function Destinations() {
 
   const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?scope=${SCOPE}&access_type=offline&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=${YOUTUBE_REDIRECT_URL}&response_type=code&client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}`
 
-  const twitchAuthBooleanDB = () => {
-    let data = { twitchAuthBool: true, userId }
-    API.put('/user/destinations', data)
+  const youtubeAuth = (userId, code) => {
+    API.post('/authorize/youtube', { userId, code })
   }
 
   const youtubeAuthBooleanDB = () => {
@@ -81,26 +85,6 @@ function Destinations() {
   const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`
 
   const toastSuccessMessage = (msg) => toast.success(msg)
-
-  const sendCodeToTwitch = async (code) => {
-    const data = {
-      authorizationCode: code,
-    }
-    return await API.post('/authorize/twitch', data).then((res) => {
-      return res.data
-    })
-  }
-
-  const validateTwitchRequest = async (token) => {
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    }
-    return await API.get('https://id.twitch.tv/oauth2/validate', config).then(
-      (res) => {
-        return res.data
-      }
-    )
-  }
 
   const getTwitchStreamKey = async () => {
     let token = getCookie('twitchAccessToken')
@@ -144,28 +128,6 @@ function Destinations() {
       twitchUserID,
       twitchStreamKey
     )
-  }
-
-  const saveTwitchDataToDB = (
-    userId,
-    twitchAccessToken,
-    twitchRefreshToken,
-    twitchUserID,
-    twitchStreamKey
-  ) => {
-    console.log('saveTwitchDataToDB')
-    const body = {
-      userId,
-      twitchAccessToken,
-      twitchRefreshToken,
-      twitchUserID,
-      twitchStreamKey,
-    }
-    API.put('/destinations', body)
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => console.log(err))
   }
 
   const facebookAuth = () => {
