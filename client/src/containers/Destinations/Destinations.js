@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
-import TextInput from '../../components/TextInput/TextInput'
-import Button from '../../components/Buttons/Button'
 import Card from '../../components/Card/Card'
 import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
@@ -13,7 +11,6 @@ import {
   SCOPE,
   TWITCH_SCOPE,
   TWITCH_REDIRECT_URL,
-  TWITCH_RESPONSE_TYPE,
   YOUTUBE_REDIRECT_URL,
 } from '../../constants/constants'
 import { useHistory } from 'react-router-dom'
@@ -85,27 +82,27 @@ function Destinations() {
 
   const toastSuccessMessage = (msg) => toast.success(msg)
 
-  const sendCodeToTwitch = (code) => {
+  const sendCodeToTwitch = async (code) => {
     const data = {
       authorizationCode: code,
     }
-    return API.post('/authorize/twitch', data).then((res) => {
+    return await API.post('/authorize/twitch', data).then((res) => {
       return res.data
     })
   }
 
-  const validateTwitchRequest = (token) => {
+  const validateTwitchRequest = async (token) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     }
-    return API.get('https://id.twitch.tv/oauth2/validate', config).then(
+    return await API.get('https://id.twitch.tv/oauth2/validate', config).then(
       (res) => {
         return res.data
       }
     )
   }
 
-  const getTwitchStreamKey = () => {
+  const getTwitchStreamKey = async () => {
     let token = getCookie('twitchAccessToken')
     let broadcaster_id = getCookie('twitchUserID')
 
@@ -115,7 +112,7 @@ function Destinations() {
         'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID,
       },
     }
-    return API.get(
+    return await API.get(
       `https://api.twitch.tv/helix/streams/key?broadcaster_id=${broadcaster_id}`,
       config
     ).then((res) => {
