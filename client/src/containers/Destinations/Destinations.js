@@ -50,16 +50,14 @@ function Destinations() {
     if (url.includes('?code')) {
       // logic for Twitch
       let code = getUrlParams('code')
-      console.log('code: ' + code)
       twitchAuth(code)
       twitchAuthBooleanDB()
       toastSuccessMessage('Twitch added as destination')
     } else if (window.location.search.includes('&code')) {
       // logic for Youtube
-      console.log('params: ' + window.location.search)
       let code = getUrlParams('code')
-      console.log(code)
       API.post('/authorize/youtube', { userId, code })
+      youtubeAuthBooleanDB()
       toastSuccessMessage('Youtube added as destination')
     } else {
       console.log('No code param in URL')
@@ -117,7 +115,6 @@ function Destinations() {
       config
     ).then((res) => {
       let twitchStreamKey = res.data.data[0].stream_key
-      setCookie('twitchStreamKey', twitchStreamKey, 90)
       return twitchStreamKey
     })
   }
@@ -135,10 +132,6 @@ function Destinations() {
     let validation = await validateTwitchRequest(twitchAccessToken)
     console.log(validation)
     let twitchUserID = validation.user_id
-
-    setCookie('twitchAccessToken', twitchAccessToken, 1)
-    setCookie('twitchRefreshToken', twitchRefreshToken, 1)
-    setCookie('twitchUserID', twitchUserID, 90)
 
     const twitchStreamKey = await getTwitchStreamKey()
 
