@@ -7,6 +7,7 @@ import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
 import setCookie from '../../utils/setCookie'
 import getUrlParams from '../../utils/getUrlParams'
+// import saveTwitchDataToDB from '../../utils/saveTwitchDataToDB'
 import './Destinations.css'
 import {
   SCOPE,
@@ -15,6 +16,7 @@ import {
   TWITCH_RESPONSE_TYPE,
   YOUTUBE_REDIRECT_URL,
 } from '../../constants/constants'
+import { useHistory } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import toast, { Toaster } from 'react-hot-toast'
 import styles from '../../styles/styles'
@@ -25,6 +27,7 @@ function Destinations() {
   const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
   const [twitchAccessToken, settwitchAccessToken] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
+  const history = useHistory()
   let userId = getCookie('userId')
 
   useEffect(() => {
@@ -52,12 +55,14 @@ function Destinations() {
       let code = getUrlParams('code')
       twitchAuth(code)
       twitchAuthBooleanDB()
+      history.push('/destinations')
       toastSuccessMessage('Twitch added as destination')
     } else if (window.location.search.includes('&code')) {
       // logic for Youtube
       let code = getUrlParams('code')
       API.post('/authorize/youtube', { userId, code })
       youtubeAuthBooleanDB()
+      history.push('/destinations')
       toastSuccessMessage('Youtube added as destination')
     } else {
       console.log('No code param in URL')
@@ -131,8 +136,8 @@ function Destinations() {
 
     let validation = await validateTwitchRequest(twitchAccessToken)
     console.log(validation)
-    let twitchUserID = validation.user_id
 
+    const twitchUserID = validation.user_id
     const twitchStreamKey = await getTwitchStreamKey()
 
     saveTwitchDataToDB(
