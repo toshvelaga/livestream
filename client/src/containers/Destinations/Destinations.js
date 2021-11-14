@@ -16,6 +16,7 @@ import {
   YOUTUBE_REDIRECT_URL,
 } from '../../constants/constants'
 import * as FaIcons from 'react-icons/fa'
+import toast, { Toaster } from 'react-hot-toast'
 import styles from '../../styles/styles'
 
 /* global FB */
@@ -51,6 +52,7 @@ function Destinations() {
       console.log('code: ' + code)
       twitchAuth(code)
       twitchAuthBooleanDB()
+      toastSuccessMessage('Twitch added as destination')
     } else if (window.location.search.includes('&code')) {
       console.log('params: ' + window.location.search)
       let code = getUrlParams('code')
@@ -74,6 +76,8 @@ function Destinations() {
   }
 
   const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`
+
+  const toastSuccessMessage = (msg) => toast.success(msg)
 
   const sendCodeToTwitch = (code) => {
     const data = {
@@ -192,6 +196,7 @@ function Destinations() {
   return (
     <>
       <Navbar />
+      <Toaster position='top-center' reverseOrder={true} />
       <div style={{ margin: '10rem auto', width: '50%' }}>
         <h2>Added Destinations</h2>
         <div className='destinations-container'>
