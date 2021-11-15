@@ -54,6 +54,7 @@ function Broadcast() {
   const [twitchUserId, settwitchUserId] = useState('')
   const [twitchAccessToken, settwitchAccessToken] = useState('')
   const [twitchAccessRefreshToken, settwitchAccessRefreshToken] = useState('')
+  const [facebookUserId, setfacebookUserId] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
   const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
@@ -104,6 +105,7 @@ function Broadcast() {
           twitch_user_id,
           twitch_access_token,
           twitch_refresh_token,
+          facebook_user_id,
           facebook_access_token,
           facebook_long_access_token,
           youtube_access_token,
@@ -111,6 +113,7 @@ function Broadcast() {
         } = res.data
 
         settwitchUserId(twitch_user_id)
+        setfacebookUserId(facebook_user_id)
         setfacebookAccessToken(facebook_access_token)
         setlongFacebookAccessToken(facebook_long_access_token)
 
@@ -239,6 +242,7 @@ function Broadcast() {
       console.log('facebook promise chain')
 
       const data = {
+        facebookUserId,
         facebookTitle,
         facebookDescription,
         facebookAccessToken,
