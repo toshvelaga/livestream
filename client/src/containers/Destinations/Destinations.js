@@ -89,8 +89,6 @@ function Destinations() {
 
   const twitchAuth = async (code) => {
     let auth = await sendCodeToTwitch(code)
-    console.log('supposed to get twitch auth data here')
-    console.log(auth)
 
     let twitchAccessToken = auth.access_token
     let twitchRefreshToken = auth.refresh_token
@@ -122,7 +120,7 @@ function Destinations() {
   const facebookAuth = () => {
     FB.getLoginStatus(function (response) {
       console.log(response)
-      // console.log('FB access token:' + response.authResponse.accessToken)
+      console.log('FB access token:' + response.authResponse.accessToken)
     })
     FB.login(
       function (response) {

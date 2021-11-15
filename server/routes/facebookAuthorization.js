@@ -18,7 +18,7 @@ router.post('/api/authorize/facebook', async (req, res) => {
   console.log('get long FB access token ' + result.data.access_token)
   const longFacebookAccessToken = result.data.access_token
 
-  updateDbFacebookValues(userId, longFacebookAccessToken)
+  updateDbFacebookValues(userId, facebookAccessToken, longFacebookAccessToken)
   return res
     .status(200)
     .send({ longFacebookAccessToken: longFacebookAccessToken })
