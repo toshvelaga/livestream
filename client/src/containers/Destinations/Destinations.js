@@ -59,9 +59,9 @@ function Destinations() {
       let code = getUrlParams('code')
       console.log('twitch authorization code ' + code)
       twitchAuth(code)
-      // twitchAuthBooleanDB(userId)
-      // history.push('/destinations')
-      // toastSuccessMessage('Twitch added as destination')
+      twitchAuthBooleanDB(userId)
+      history.push('/destinations')
+      toastSuccessMessage('Twitch added as destination')
     } else if (window.location.search.includes('&code')) {
       // logic for Youtube
       let code = getUrlParams('code')
@@ -110,13 +110,13 @@ function Destinations() {
     console.log('twitchUserID: ' + twitchUserID)
     console.log('twitchStreamKey: ' + twitchStreamKey)
 
-    // saveTwitchDataToDB(
-    //   userId,
-    //   twitchAccessToken,
-    //   twitchRefreshToken,
-    //   twitchUserID,
-    //   twitchStreamKey
-    // )
+    saveTwitchDataToDB(
+      userId,
+      twitchAccessToken,
+      twitchRefreshToken,
+      twitchUserID,
+      twitchStreamKey
+    )
   }
 
   const facebookAuth = () => {
