@@ -126,7 +126,9 @@ function Destinations() {
         console.log(response)
         console.log('FB access token:' + response.authResponse.accessToken)
         let facebookAccessToken = response.authResponse.accessToken
-        saveFacebookDataToDB(userId, facebookAccessToken)
+        let facebookUserId = response.authResponse.userID
+
+        saveFacebookDataToDB(userId, facebookAccessToken, facebookUserId)
         facebookAuthBooleanDB()
         toastSuccessMessage('Facebook added as destination')
       },
@@ -134,8 +136,16 @@ function Destinations() {
     )
   }
 
-  const saveFacebookDataToDB = (userId, facebookAccessToken) => {
-    API.post('/authorize/facebook', { userId, facebookAccessToken })
+  const saveFacebookDataToDB = (
+    userId,
+    facebookAccessToken,
+    facebookUserId
+  ) => {
+    API.post('/authorize/facebook', {
+      userId,
+      facebookAccessToken,
+      facebookUserId,
+    })
   }
 
   const facebookAuthBooleanDB = () => {
