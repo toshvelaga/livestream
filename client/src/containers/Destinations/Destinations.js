@@ -10,7 +10,9 @@ import {
   sendCodeToTwitch,
   validateTwitchRequest,
   saveTwitchDataToDB,
+  getTwitchStreamKey,
 } from '../../utils/twitchDestinationUtils'
+import toastSuccessMessage from '../../utils/toastSuccessMessage'
 import {
   SCOPE,
   TWITCH_SCOPE,
@@ -19,7 +21,7 @@ import {
 } from '../../constants/constants'
 import { useHistory } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
-import toast, { Toaster } from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 import styles from '../../styles/styles'
 import './Destinations.css'
 
@@ -55,10 +57,11 @@ function Destinations() {
     if (url.includes('?code')) {
       // logic for Twitch
       let code = getUrlParams('code')
+      console.log('twitch authorization code ' + code)
       twitchAuth(code)
-      twitchAuthBooleanDB(userId)
-      history.push('/destinations')
-      toastSuccessMessage('Twitch added as destination')
+      // twitchAuthBooleanDB(userId)
+      // history.push('/destinations')
+      // toastSuccessMessage('Twitch added as destination')
     } else if (window.location.search.includes('&code')) {
       // logic for Youtube
       let code = getUrlParams('code')
@@ -84,50 +87,36 @@ function Destinations() {
 
   const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`
 
-  const toastSuccessMessage = (msg) => toast.success(msg)
-
-  const getTwitchStreamKey = async () => {
-    let token = getCookie('twitchAccessToken')
-    let broadcaster_id = getCookie('twitchUserID')
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Client-Id': process.env.REACT_APP_TWITCH_CLIENT_ID,
-      },
-    }
-    return await API.get(
-      `https://api.twitch.tv/helix/streams/key?broadcaster_id=${broadcaster_id}`,
-      config
-    ).then((res) => {
-      let twitchStreamKey = res.data.data[0].stream_key
-      return twitchStreamKey
-    })
-  }
-
   const twitchAuth = async (code) => {
     let auth = await sendCodeToTwitch(code)
     console.log('supposed to get twitch auth data here')
     console.log(auth)
 
     let twitchAccessToken = auth.access_token
-    console.log('twitchAccessToken: ' + twitchAccessToken)
     let twitchRefreshToken = auth.refresh_token
-    console.log('twitchRefreshToken: ' + twitchRefreshToken)
-
     let validation = await validateTwitchRequest(twitchAccessToken)
     console.log(validation)
-
+    const twitchClientId = validation.client_id
     const twitchUserID = validation.user_id
-    const twitchStreamKey = await getTwitchStreamKey()
-
-    saveTwitchDataToDB(
-      userId,
+    const twitchStreamKey = await getTwitchStreamKey(
       twitchAccessToken,
-      twitchRefreshToken,
-      twitchUserID,
-      twitchStreamKey
+      twitchClientId,
+      twitchUserID
     )
+
+    console.log('twitchAccessToken: ' + twitchAccessToken)
+    console.log('twitchRefreshToken: ' + twitchRefreshToken)
+    console.log('twitchClientId: ' + twitchClientId)
+    console.log('twitchUserID: ' + twitchUserID)
+    console.log('twitchStreamKey: ' + twitchStreamKey)
+
+    // saveTwitchDataToDB(
+    //   userId,
+    //   twitchAccessToken,
+    //   twitchRefreshToken,
+    //   twitchUserID,
+    //   twitchStreamKey
+    // )
   }
 
   const facebookAuth = () => {
