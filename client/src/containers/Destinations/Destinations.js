@@ -3,7 +3,6 @@ import Navbar from '../../components/Navbar/Navbar'
 import Card from '../../components/Card/Card'
 import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
-import setCookie from '../../utils/setCookie'
 import getUrlParams from '../../utils/getUrlParams'
 import {
   twitchAuthBooleanDB,
