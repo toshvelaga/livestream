@@ -242,6 +242,7 @@ function Broadcast() {
         facebookTitle,
         facebookDescription,
         facebookAccessToken,
+        longFacebookAccessToken,
       }
       let facebookData = await API.post('/facebook/broadcast', data).then(
         (res) => {
@@ -314,11 +315,6 @@ function Broadcast() {
     } finally {
       setloading(false)
     }
-  }
-
-  const testsubmit = () => {
-    console.log('test submit')
-    youtubePromiseChain()
   }
 
   const allPromises = () => {
@@ -524,7 +520,6 @@ function Broadcast() {
           title='Create Broadcast'
           fx={submit}
         />
-        {/* <button onClick={testsubmit}>TEST SUBMIT</button> */}
       </Modal>
     </>
   )

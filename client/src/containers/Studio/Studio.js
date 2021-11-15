@@ -20,6 +20,7 @@ function Studio() {
   const [facebookUrl, setFacebookUrl] = useState('')
   const [facebookLiveVideoId, setfacebookLiveVideoId] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
+  const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
   const [twitchStreamKey, settwitchStreamKey] = useState('')
   const [seconds, setSeconds] = useState(0)
 
@@ -69,11 +70,16 @@ function Studio() {
 
     API.post('/destinations', { userId }).then((res) => {
       console.log(res)
-      const { twitch_stream_key, facebook_access_token, youtube_access_token } =
-        res.data
+      const {
+        twitch_stream_key,
+        facebook_access_token,
+        facebook_long_access_token,
+        youtube_access_token,
+      } = res.data
 
       settwitchStreamKey(twitch_stream_key)
       setfacebookAccessToken(facebook_access_token)
+      setlongFacebookAccessToken(facebook_long_access_token)
       setyoutubeAccessToken(youtube_access_token)
     })
   }, [])
@@ -156,7 +162,6 @@ function Studio() {
   const stopRecording = () => {
     toggleActive()
     ws.current.close()
-    // mediaRecorder.stop()
     endYoutubeStream()
     endFacebookLivestream()
 
@@ -194,6 +199,7 @@ function Studio() {
       const data = {
         facebookLiveVideoId,
         accessToken: facebookAccessToken,
+        longFacebookAccessToken: longFacebookAccessToken,
       }
       API.post('/facebook/broadcast/end', data)
         .then((res) => console.log(res))
