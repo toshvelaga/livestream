@@ -2,6 +2,7 @@ const express = require('express'),
   router = express.Router(),
   pool = require('../db')
 
+// I GUESS I AM JUST USING THIS FOR TWITCH: twitchDestinationUtils.js
 router.put('/api/destinations', async (req, res) => {
   const userId = req.body.userId
   const twitchUserID = req.body.twitchUserID
