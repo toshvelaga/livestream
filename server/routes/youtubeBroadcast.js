@@ -76,9 +76,7 @@ router.post('/api/youtube/broadcast/live', async (req, res) => {
   return res.status(200).send({ msg: 'youtube going live' })
 })
 
-router.post('/api/youtube/broadcast/end', async (req, res) => {
-  console.log('transition youtube to end')
-
+router.post('/api/youtube/broadcast/end', (req, res) => {
   const { youtubeBroadcastId, youtubeAccessToken } = req.body
 
   const config = {
@@ -88,9 +86,9 @@ router.post('/api/youtube/broadcast/end', async (req, res) => {
     },
   }
 
-  await axios
+  axios
     .post(
-      `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/transition?broadcastStatus=complete&id=${youtubeBroadcastId}&part=id&part=status&key=${process.env.GOOGLE_API_KEY}`,
+      `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/transition?broadcastStatus=complete&id=${youtubeBroadcastId}&part=snippet%2Cstatus&key=${process.env.GOOGLE_API_KEY}`,
       config
     )
     .then((res) => {

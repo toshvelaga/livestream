@@ -1,4 +1,4 @@
-export const SCOPE = 'https://www.googleapis.com/auth/youtube.force-ssl'
+export const SCOPE = 'https://www.googleapis.com/auth/youtube'
 export const TWITCH_SCOPE = encodeURIComponent(
   'channel:manage:broadcast channel:read:stream_key'
 )
