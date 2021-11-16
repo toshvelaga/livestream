@@ -59,7 +59,9 @@ wss.on('connection', (ws, req) => {
   const myURL = new URL(`http://localhost:${WS_PORT}` + req.url)
 
   const twitchStreamKey = myURL.searchParams.get('twitchStreamKey')
-  const twitch = 'rtmp://dfw.contribute.live-video.net/app/' + twitchStreamKey
+  const twitch = twitchStreamKey
+    ? 'rtmp://dfw.contribute.live-video.net/app/' + twitchStreamKey
+    : null
   const youtube = myURL.searchParams.get('youtubeUrl')
   const facebook = myURL.searchParams.get('facebookUrl')
 
