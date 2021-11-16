@@ -199,6 +199,9 @@ function Studio() {
     } else return null
   }
 
+  console.log('youtube access token: ' + youtubeAccessToken)
+  console.log('youtube broadcast id: ' + youtubeBroadcastId)
+
   const endFacebookLivestream = () => {
     if (facebookLiveVideoId) {
       const data = {
