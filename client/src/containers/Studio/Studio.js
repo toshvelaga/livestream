@@ -161,11 +161,12 @@ function Studio() {
 
   const stopRecording = () => {
     toggleActive()
+    mediaRecorder.current.stop()
     ws.current.close()
     endYoutubeStream()
     endFacebookLivestream()
 
-    mediaRecorder.current.stop()
+    // mediaRecorder.current.stop()
     // const recVideoBlob = new Blob(chunks, {
     //   type: 'video/webm;codecs=h264',
     // })
@@ -191,6 +192,10 @@ function Studio() {
     if (youtubeBroadcastId) {
       const body = { youtubeBroadcastId, youtubeAccessToken }
       API.post('/youtube/broadcast/end', body)
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => console.log(err))
     } else return null
   }
 

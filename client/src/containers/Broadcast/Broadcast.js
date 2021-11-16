@@ -178,6 +178,8 @@ function Broadcast() {
       })
   }, [])
 
+  console.log(youtubeAccessToken)
+
   const youtubePromiseChain = async () => {
     try {
       if (modalContent.youtube) {
