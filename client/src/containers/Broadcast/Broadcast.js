@@ -54,6 +54,7 @@ function Broadcast() {
   const [twitchUserId, settwitchUserId] = useState('')
   const [twitchAccessToken, settwitchAccessToken] = useState('')
   const [twitchAccessRefreshToken, settwitchAccessRefreshToken] = useState('')
+  const [twitchStreamKey, settwitchStreamKey] = useState('')
   const [facebookUserId, setfacebookUserId] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
@@ -105,6 +106,7 @@ function Broadcast() {
           twitch_user_id,
           twitch_access_token,
           twitch_refresh_token,
+          twitch_stream_key,
           facebook_user_id,
           facebook_access_token,
           facebook_long_access_token,
@@ -114,6 +116,7 @@ function Broadcast() {
 
         setyoutubeAccessToken(youtube_access_token)
         settwitchUserId(twitch_user_id)
+        settwitchStreamKey(twitch_stream_key)
         setfacebookUserId(facebook_user_id)
         setfacebookAccessToken(facebook_access_token)
         setlongFacebookAccessToken(facebook_long_access_token)
@@ -183,6 +186,8 @@ function Broadcast() {
       })
   }, [])
 
+  console.log(twitchStreamKey)
+
   const youtubePromiseChain = async () => {
     try {
       if (modalContent.youtube) {
@@ -238,8 +243,9 @@ function Broadcast() {
         .catch((err) => console.log(err.response))
       return {
         twitchTitle: twitchTitle,
+        twitchStreamKey: twitchStreamKey,
       }
-    } else return { twitchTitle: '' }
+    } else return { twitchTitle: '', twitchStreamKey: '' }
   }
 
   const facebookPromiseChain = async () => {
@@ -276,7 +282,8 @@ function Broadcast() {
     youtubeStreamId,
     facebookLiveVideoId,
     facebookDestinationUrl,
-    twitchTitle
+    twitchTitle,
+    twitchStreamKey
   ) => {
     const data = {
       youtubeTitle,
@@ -291,6 +298,7 @@ function Broadcast() {
       facebookLiveVideoId,
       facebookDestinationUrl,
       twitchTitle,
+      twitchStreamKey,
     }
     API.post('/broadcasts', data).then((res) => {
       if (res.data.studio_id) {
@@ -340,6 +348,7 @@ function Broadcast() {
         facebookLiveVideoId,
         facebookDestinationUrl,
         twitchTitle,
+        twitchStreamKey,
       } = flatObj
       sendDataToDB(
         youtubeDestinationUrl,
@@ -347,7 +356,8 @@ function Broadcast() {
         youtubeStreamId,
         facebookLiveVideoId,
         facebookDestinationUrl,
-        twitchTitle
+        twitchTitle,
+        twitchStreamKey
       )
     })
   }
