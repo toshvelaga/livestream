@@ -13,7 +13,6 @@ CREATE TABLE users (
 );
 
 CREATE TABLE broadcasts (
-    user_id uuid DEFAULT uuid_generate_v4() REFERENCES users(user_id),
     youtube_title character varying(255),
     youtube_description text,
     youtube_privacy_policy character varying(255),
@@ -26,7 +25,9 @@ CREATE TABLE broadcasts (
     facebook_live_video_id character varying(255),
     facebook_destination_url character varying(255),
     studio_id character varying(255) NOT NULL,
-    twitch_title character varying(255)
+    twitch_title character varying(255),
+    user_id uuid DEFAULT uuid_generate_v4() REFERENCES users(user_id),
+    twitch_stream_key character varying(255)
 );
 
 CREATE TABLE destinations (

@@ -183,8 +183,6 @@ function Broadcast() {
       })
   }, [])
 
-  console.log(youtubeAccessToken)
-
   const youtubePromiseChain = async () => {
     try {
       if (modalContent.youtube) {
@@ -353,6 +351,9 @@ function Broadcast() {
       )
     })
   }
+
+  console.log('avatar: ' + JSON.stringify(showBroadcastAvatar))
+  console.log('modal content: ' + JSON.stringify(modalContent))
 
   const modalContentDisplay = () => {
     if (modalContent.youtube === true && modalContentDisplayed === 'youtube') {
