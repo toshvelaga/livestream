@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import BroadcastButton from '../../components/Buttons/BroadcastButton'
+import SquareDestinationButton from '../../components/Buttons/SquareDestinationButton'
 import Timer from '../../components/Timer/Timer'
 import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
 import API from '../../api/api'
 import './Studio.css'
 import { useParams } from 'react-router-dom'
+import * as FaIcons from 'react-icons/fa'
 
 const CAPTURE_OPTIONS = {
   audio: true,
@@ -59,25 +61,25 @@ function Studio() {
           facebook_live_video_id,
           youtube_broadcast_id,
           youtube_destination_url,
+          twitch_stream_key,
         } = res.data
 
         setFacebookUrl(facebook_destination_url)
         setfacebookLiveVideoId(facebook_live_video_id)
         setYoutubeBroadcastId(youtube_broadcast_id)
         setyoutubeUrl(youtube_destination_url)
+        settwitchStreamKey(twitch_stream_key)
       })
       .catch((err) => console.log(err))
 
     API.post('/destinations', { userId }).then((res) => {
       console.log(res)
       const {
-        twitch_stream_key,
         facebook_access_token,
         facebook_long_access_token,
         youtube_access_token,
       } = res.data
 
-      settwitchStreamKey(twitch_stream_key)
       setfacebookAccessToken(facebook_access_token)
       setlongFacebookAccessToken(facebook_long_access_token)
       setyoutubeAccessToken(youtube_access_token)
@@ -231,6 +233,7 @@ function Studio() {
               {isActive ? 'LIVE' : 'END'}: {formatTime(seconds)}
             </Timer>
           </div>
+
           <video
             className='video-container'
             ref={videoRef}

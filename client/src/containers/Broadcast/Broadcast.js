@@ -245,7 +245,8 @@ function Broadcast() {
         twitchTitle: twitchTitle,
         twitchStreamKey: twitchStreamKey,
       }
-    } else return { twitchTitle: '', twitchStreamKey: '' }
+    } else return { twitchTitle: '', twitchStreamKey: null }
+    // HAVE TO SET TWITCH STREAM KEY TO NULL for server.js
   }
 
   const facebookPromiseChain = async () => {
