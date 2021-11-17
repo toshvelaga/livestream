@@ -16,6 +16,7 @@ const createYoutubeBroadcast = async (
     contentDetails: {
       recordFromStart: true,
       enableAutoStart: true,
+      enableAutoStop: true,
       monitorStream: { enableMonitorStream: false },
     },
     status: {
