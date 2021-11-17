@@ -5,6 +5,7 @@ function BroadcastButton(props) {
   return (
     <>
       <button
+        disabled={props.disabled}
         style={props.style}
         id={props.id}
         className='broadcast-button'

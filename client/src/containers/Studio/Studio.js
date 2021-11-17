@@ -28,6 +28,7 @@ function Studio() {
 
   const [isActive, setIsActive] = useState(false)
   const [userFacing, setuserFacing] = useState(true)
+  const [streamFinished, setstreamFinished] = useState(false)
   const [videoUrl, setvideoUrl] = useState('')
   const [chunks, setchunks] = useState([])
 
@@ -167,6 +168,7 @@ function Studio() {
     ws.current.close()
     endYoutubeStream()
     endFacebookLivestream()
+    setstreamFinished(true)
 
     // mediaRecorder.current.stop()
     // const recVideoBlob = new Blob(chunks, {
@@ -245,6 +247,7 @@ function Studio() {
         </div>
         <div className='studio-bottom-button-container'>
           <BroadcastButton
+            disabled={streamFinished ? true : false}
             id='play-button'
             title={!isActive ? 'Go Live' : 'Stop Recording'}
             fx={toggleRecording}
