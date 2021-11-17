@@ -112,6 +112,7 @@ function Broadcast() {
           youtube_refresh_token,
         } = res.data
 
+        setyoutubeAccessToken(youtube_access_token)
         settwitchUserId(twitch_user_id)
         setfacebookUserId(facebook_user_id)
         setfacebookAccessToken(facebook_access_token)
@@ -123,7 +124,7 @@ function Broadcast() {
           },
         }
 
-        if (showBroadcastAvatar.youtube) {
+        if (youtube_access_token) {
           // validate google token
           axios
             .get(
