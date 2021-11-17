@@ -22,6 +22,7 @@ router.post('/api/broadcasts', async (req, res, next) => {
     req.body.facebookDestinationUrl,
     studioId,
     req.body.twitchTitle,
+    req.body.twitchStreamKey,
   ]
 
   let results = await pool.query(
@@ -39,9 +40,10 @@ router.post('/api/broadcasts', async (req, res, next) => {
       facebook_live_video_id, 
       facebook_destination_url, 
       studio_id,
-      twitch_title
+      twitch_title,
+      twitch_stream_key
     )
-		VALUES($1, $2, $3, $4, $5, $6 ,$7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
+		VALUES($1, $2, $3, $4, $5, $6 ,$7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING *`,
     values
   )
   if (results.rows) {
