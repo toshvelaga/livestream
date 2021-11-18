@@ -188,7 +188,10 @@ function Studio() {
   }
 
   const transitionYoutubeToLive = () => {
-    const body = { youtubeBroadcastId, youtubeAccessToken }
+    const body = {
+      youtubeBroadcastId: youtubeBroadcastId,
+      youtubeAccessToken: youtubeAccessToken,
+    }
     API.post('/youtube/broadcast/live', body)
   }
 

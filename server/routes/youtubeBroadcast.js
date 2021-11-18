@@ -70,7 +70,7 @@ router.post('/api/youtube/broadcast/live', async (req, res) => {
       console.log(res.data)
     })
     .catch((err) => {
-      console.log(err)
+      console.log(err.response.data.error.errors)
     })
 
   return res.status(200).send({ msg: 'youtube going live' })
