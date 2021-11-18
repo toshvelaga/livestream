@@ -15,10 +15,10 @@ const createYoutubeBroadcast = async (
     },
     contentDetails: {
       recordFromStart: true,
-      enableAutoStart: true,
-      enableAutoStop: true,
-      // enableAutoStart: false,
-      // enableAutoStop: false,
+      // enableAutoStart: true,
+      // enableAutoStop: true,
+      enableAutoStart: false,
+      enableAutoStop: false,
       monitorStream: { enableMonitorStream: false },
     },
     status: {

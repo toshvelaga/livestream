@@ -63,13 +63,15 @@ router.post('/api/youtube/broadcast/live', async (req, res) => {
 
   await axios
     .post(
-      `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/transition?broadcastStatus=live&id=${youtubeBroadcastId}&part=id&part=status&key=${process.env.GOOGLE_API_KEY}`,
+      `https://youtube.googleapis.com/youtube/v3/liveBroadcasts/transition?broadcastStatus=live&id=${youtubeBroadcastId}&part=id%2Csnippet`,
       config
     )
     .then((res) => {
       console.log(res.data)
     })
     .catch((err) => {
+      console.log(err.response.data)
+      console.log(err.response.data.error.details)
       console.log(err.response.data.error.errors)
     })
 
@@ -81,7 +83,7 @@ router.post('/api/youtube/broadcast/end', (req, res) => {
 
   const config = {
     headers: {
-      Authorization: `Bearer ${youtubeAccessToken}`,
+      Authorization: `Bearer ya29.a0ARrdaM80h8rVBgBuUAMv_AhOfQ_YbSxuVoux-cfbsdryX5il4ZTzY43bvHA04Q7qrrre3AB2BeOnVR2n2shdFSu5uBJ7W3xyo6imDHMPbJhM4Jtv8froB_rJWA3GKtFOaX5dWjTx0Vjvo43ZbMAQXmuVWDGK3A`,
       Accept: 'application/json',
     },
   }
