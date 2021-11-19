@@ -4,8 +4,9 @@
 }
 
 .studio-container {
-  width: 50%;
+  width: 70%;
   margin: 1rem auto;
+  padding-left: 100px;
   font-family: var(--main-font);
 }
 

@@ -12,7 +12,10 @@ import * as FaIcons from 'react-icons/fa'
 
 const CAPTURE_OPTIONS = {
   audio: true,
-  video: true,
+  video: {
+    width: { ideal: 4096 },
+    height: { ideal: 2160 },
+  },
 }
 
 function Studio() {
