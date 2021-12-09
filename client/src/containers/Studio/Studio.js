@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import BroadcastButton from '../../components/Buttons/BroadcastButton'
-import SquareDestinationButton from '../../components/Buttons/SquareDestinationButton'
 import Timer from '../../components/Timer/Timer'
 import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
 import API from '../../api/api'
 import './Studio.css'
 import { useParams } from 'react-router-dom'
-import * as FaIcons from 'react-icons/fa'
 
 const CAPTURE_OPTIONS = {
   audio: true,
