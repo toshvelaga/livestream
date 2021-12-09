@@ -3,33 +3,15 @@ import * as FaIcons from 'react-icons/fa'
 
 export const SidebarData = [
   {
-    title: 'Dashboard',
-    path: '/',
-    icon: <FaIcons.FaThLarge />,
+    title: 'Broadcast',
+    path: '/broadcast',
+    icon: <FaIcons.FaVideo />,
     cName: 'nav-text',
   },
   {
-    title: 'Company',
-    path: '/reports',
-    icon: <FaIcons.FaBusinessTime />,
+    title: 'Destinations',
+    path: '/destinations',
+    icon: <FaIcons.FaKey />,
     cName: 'nav-text',
   },
-  // {
-  //   title: "Campaign",
-  //   path: "/products",
-  //   icon: <FaIcons.FaCalendarWeek />,
-  //   cName: "nav-text",
-  // },
-  // {
-  //   title: "Analytics",
-  //   path: "/analytics",
-  //   icon: <FaIcons.FaChartBar />,
-  //   cName: "nav-text",
-  // },
-  // {
-  //   title: "Settings",
-  //   path: "/settings",
-  //   icon: <FaIcons.FaCog />,
-  //   cName: "nav-text",
-  // },
 ]

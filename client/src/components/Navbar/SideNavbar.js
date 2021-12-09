@@ -9,6 +9,7 @@ function SideNavbar(props) {
 
   return (
     <ul className='side-navbar'>
+      {/* Broadcasts */}
       <li
         onClick={() => history.push('/broadcast')}
         style={
@@ -23,7 +24,7 @@ function SideNavbar(props) {
         </div>
         <div className='side-navbar-title'>Broadcast</div>
       </li>
-
+      {/* Destinations */}
       <li
         onClick={() => history.push('/destinations')}
         style={
@@ -38,15 +39,9 @@ function SideNavbar(props) {
         </div>
         <div className='side-navbar-title'>Destinations</div>
       </li>
+      {/* Referrals */}
 
-      {/* <li className='tablinks'>
-        <div className='side-navbar-icon'>
-          <FaIcons.FaChartBar size={20} />
-        </div>
-        <div className='side-navbar-title'>Analytics</div>
-      </li> */}
-
-      <li
+      {/* <li
         onClick={() => history.push('/referrals')}
         style={
           window.location.pathname === '/referrals'
@@ -59,7 +54,7 @@ function SideNavbar(props) {
           <FaIcons.FaShare size={styles.sideNavbarIconSize} />
         </div>
         <div className='side-navbar-title'>Referrals</div>
-      </li>
+      </li> */}
     </ul>
   )
 }
