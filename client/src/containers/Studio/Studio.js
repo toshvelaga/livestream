@@ -11,8 +11,10 @@ import { useParams } from 'react-router-dom'
 const CAPTURE_OPTIONS = {
   audio: true,
   video: {
-    width: { ideal: 4096 },
-    height: { ideal: 2160 },
+    height: { min: 720, max: 1280 },
+    width: { min: 1080, max: 1920 },
+    frameRate: { min: 15, ideal: 24, max: 30 },
+    facingMode: 'user',
   },
 }
 
@@ -151,7 +153,8 @@ function Studio() {
   const recorderInit = () => {
     liveStream = videoRef.current.captureStream(30) // 30 FPS
     mediaRecorder.current = new MediaRecorder(liveStream, {
-      mimeType: 'video/webm;codecs=h264',
+      // mimeType: 'video/webm;codecs=h264',
+      mimeType: 'video/webm;codecs=vp8,opus',
       videoBitsPerSecond: 3 * 1024 * 1024,
     })
     mediaRecorder.current.ondataavailable = (e) => {
