@@ -266,7 +266,8 @@ function Studio() {
                   : null
               }
             >
-              You are currently sharing your screen.
+              You are currently sharing your screen. Go to a different tab or
+              desktop app to share.
             </p>
             <video
               style={
