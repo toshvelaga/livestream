@@ -20,7 +20,11 @@ const CAPTURE_OPTIONS_USER_FACING = {
 
 const CAPTURE_OPTIONS_RECORD_SCREEN = {
   audio: true,
-  video: { frameRate: 30 },
+  video: {
+    height: 1080,
+    width: 1920,
+    frameRate: { ideal: 24, max: 30 },
+  },
 }
 
 function Studio() {
@@ -252,22 +256,37 @@ function Studio() {
             </Timer>
           </div>
 
-          <video
-            style={
-              !userFacing
-                ? {
-                    /* override other styles to make responsive */
-                    width: '100%',
-                    height: 'auto',
-                  }
-                : null
-            }
-            className='video-container'
-            ref={videoRef}
-            autoPlay
-            playsInline
-            muted={true}
-          />
+          <div>
+            <p
+              style={
+                userFacing
+                  ? {
+                      display: 'none',
+                    }
+                  : null
+              }
+            >
+              You are currently sharing your screen.
+            </p>
+            <video
+              style={
+                !userFacing
+                  ? {
+                      /* override other styles to make responsive */
+                      // width: '100%',
+                      // height: 'auto',
+                      visibility: 'hidden',
+                    }
+                  : null
+              }
+              className='video-container'
+              ref={videoRef}
+              autoPlay
+              playsInline
+              muted={true}
+            />
+          </div>
+
           {/* {videoUrl ? <video controls src={videoUrl} /> : null} */}
         </div>
         <div className='studio-bottom-button-container'>
