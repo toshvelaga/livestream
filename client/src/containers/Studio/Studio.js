@@ -8,7 +8,7 @@ import API from '../../api/api'
 import './Studio.css'
 import { useParams } from 'react-router-dom'
 
-const CAPTURE_OPTIONS = {
+const CAPTURE_OPTIONS_USER_FACING = {
   audio: true,
   video: {
     height: { min: 720, max: 1280 },
@@ -16,6 +16,11 @@ const CAPTURE_OPTIONS = {
     frameRate: { min: 15, ideal: 24, max: 30 },
     facingMode: 'user',
   },
+}
+
+const CAPTURE_OPTIONS_RECORD_SCREEN = {
+  audio: true,
+  video: { frameRate: 30 },
 }
 
 function Studio() {
@@ -124,12 +129,16 @@ function Studio() {
   }, [])
 
   async function screen() {
-    const stream = await navigator.mediaDevices.getDisplayMedia(CAPTURE_OPTIONS)
+    const stream = await navigator.mediaDevices.getDisplayMedia(
+      CAPTURE_OPTIONS_RECORD_SCREEN
+    )
     stream.replaceVideoTrack(stream.getVideoTracks()[0])
   }
 
   async function camera() {
-    const stream = await navigator.mediaDevices.getUserMedia(CAPTURE_OPTIONS)
+    const stream = await navigator.mediaDevices.getUserMedia(
+      CAPTURE_OPTIONS_USER_FACING
+    )
     stream.replaceVideoTrack(stream.getVideoTracks()[0])
     stream.replaceAudioTrack(stream.getAudioTracks()[0])
   }
@@ -244,6 +253,15 @@ function Studio() {
           </div>
 
           <video
+            style={
+              !userFacing
+                ? {
+                    /* override other styles to make responsive */
+                    width: '100%',
+                    height: 'auto',
+                  }
+                : null
+            }
             className='video-container'
             ref={videoRef}
             autoPlay
