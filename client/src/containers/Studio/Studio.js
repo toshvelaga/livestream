@@ -46,6 +46,7 @@ function Studio() {
 
   const videoRef = useRef()
   const mediaRecorder = useRef()
+  const stream = useRef(null)
   let liveStream
   let tempStream = new MediaStream()
 
@@ -141,18 +142,23 @@ function Studio() {
   }, [])
 
   async function screen() {
-    const stream = await navigator.mediaDevices.getDisplayMedia(
+    stream.current = await navigator.mediaDevices.getDisplayMedia(
       CAPTURE_OPTIONS_RECORD_SCREEN
     )
-    stream.replaceVideoTrack(stream.getVideoTracks()[0])
+    stream.current.replaceVideoTrack(stream.current.getVideoTracks()[0])
   }
 
   async function camera() {
-    const stream = await navigator.mediaDevices.getUserMedia(
+    stream.current = await navigator.mediaDevices.getUserMedia(
       CAPTURE_OPTIONS_USER_FACING
     )
-    stream.replaceVideoTrack(stream.getVideoTracks()[0])
-    stream.replaceAudioTrack(stream.getAudioTracks()[0])
+    stream.current.replaceVideoTrack(stream.current.getVideoTracks()[0])
+    stream.current.replaceAudioTrack(stream.current.getAudioTracks()[0])
+  }
+
+  const toggleCamera = () => {
+    stream.current.getVideoTracks()[0].enabled =
+      !stream.current.getVideoTracks()[0].enabled
   }
 
   const startRecording = () => {
@@ -312,6 +318,7 @@ function Studio() {
             title={userFacing ? 'Share Screen' : 'Stop Sharing'}
             fx={toggleScreenSharing}
           />
+          <BroadcastButton title={'Toggle Camera'} fx={toggleCamera} />
         </div>
       </div>
     </>
