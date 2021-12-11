@@ -36,7 +36,6 @@ function Studio() {
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
   const [twitchStreamKey, settwitchStreamKey] = useState('')
-  const [seconds, setSeconds] = useState(0)
 
   const [isActive, setIsActive] = useState(false)
   const [userFacing, setuserFacing] = useState(true)
@@ -56,6 +55,13 @@ function Studio() {
   const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
     facebookUrl
   )}`
+
+  // const [seconds, setSeconds] = useState(0)
+  const [elapsedSeconds, setelapsedSeconds] = useState(0)
+  // const [timerStarted, setTimerStarted] = useState(false)
+  // let elapsedSeconds = 0
+  let timer = useRef(null)
+  let on = false
 
   useEffect(() => {
     let userId = getCookie('userId')
@@ -114,18 +120,49 @@ function Studio() {
     }
   }, [facebookUrl, youtubeUrl, twitchStreamKey])
 
-  useEffect(() => {
-    // seconds for the timer component
-    let interval = null
-    if (isActive) {
-      interval = setInterval(() => {
-        setSeconds((seconds) => seconds + 1)
-      }, 1000)
-    } else if (!isActive && seconds !== 0) {
-      clearInterval(interval)
+  const accurateTimer = (fn, time = 1000) => {
+    // nextAt is the value for the next time the timer should fire.
+    // timeout holds the timeoutID so the timer can be stopped.
+    let nextAt, timeout
+    // initilzes nextAt as now + the time in milliseconds you pass to accurateTimer.
+    nextAt = new Date().getTime() + time
+
+    // This function schedules the next function call.
+    const wrapper = () => {
+      // next function call is always calculated from when the timer started
+      nextAt += time
+      // there is where the next setTimeout is adjusted to keep the time accurate.
+      timeout = setTimeout(wrapper, nextAt - new Date().getTime())
+      // the function passed to accurateTimer is called.
+      fn()
     }
-    return () => clearInterval(interval)
-  }, [isActive, seconds])
+
+    // this function stops the timer.
+    const cancel = () => clearTimeout(timeout)
+
+    // the first function call is scheduled.
+    timeout = setTimeout(wrapper, nextAt - new Date().getTime())
+
+    // the cancel function is returned so it can be called outside accurateTimer.
+    return { cancel }
+  }
+
+  const startTimer = () => {
+    if (on) return
+    timer.current = accurateTimer(() => {
+      setelapsedSeconds((elapsedSeconds) => elapsedSeconds + 1)
+      on = true
+      let seconds = elapsedSeconds % 60
+      seconds = seconds > 9 ? seconds : `0${seconds}`
+      console.log(`${elapsedSeconds} seconds have passed.`)
+    })
+  }
+
+  const stopTimer = () => {
+    if (on) console.log('Timer Stopped')
+    on = false
+    timer.current.cancel()
+  }
 
   useEffect(() => {
     camera()
@@ -246,16 +283,17 @@ function Studio() {
         <div id='container'>
           <div
             style={
-              seconds === 0
+              elapsedSeconds === 0
                 ? { visibility: 'hidden' }
                 : { visibility: 'visible' }
             }
           >
             <Timer>
-              {isActive ? 'LIVE' : 'END'}: {formatTime(seconds)}
+              {isActive ? 'LIVE' : 'END'}: {formatTime(elapsedSeconds)}
             </Timer>
           </div>
-
+          <button onClick={startTimer}>Timer</button>
+          <button onClick={stopTimer}>Stop Timer</button>
           <div>
             <p
               style={
