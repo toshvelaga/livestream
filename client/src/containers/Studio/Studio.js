@@ -4,6 +4,7 @@ import BroadcastButton from '../../components/Buttons/BroadcastButton'
 import Timer from '../../components/Timer/Timer'
 import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
+import accurateTimer from '../../utils/accurateTimer'
 import API from '../../api/api'
 import './Studio.css'
 import { useParams } from 'react-router-dom'
@@ -56,10 +57,7 @@ function Studio() {
     facebookUrl
   )}`
 
-  // const [seconds, setSeconds] = useState(0)
   const [elapsedSeconds, setelapsedSeconds] = useState(0)
-  // const [timerStarted, setTimerStarted] = useState(false)
-  // let elapsedSeconds = 0
   let timer = useRef(null)
   let on = false
 
@@ -120,33 +118,6 @@ function Studio() {
     }
   }, [facebookUrl, youtubeUrl, twitchStreamKey])
 
-  const accurateTimer = (fn, time = 1000) => {
-    // nextAt is the value for the next time the timer should fire.
-    // timeout holds the timeoutID so the timer can be stopped.
-    let nextAt, timeout
-    // initilzes nextAt as now + the time in milliseconds you pass to accurateTimer.
-    nextAt = new Date().getTime() + time
-
-    // This function schedules the next function call.
-    const wrapper = () => {
-      // next function call is always calculated from when the timer started
-      nextAt += time
-      // there is where the next setTimeout is adjusted to keep the time accurate.
-      timeout = setTimeout(wrapper, nextAt - new Date().getTime())
-      // the function passed to accurateTimer is called.
-      fn()
-    }
-
-    // this function stops the timer.
-    const cancel = () => clearTimeout(timeout)
-
-    // the first function call is scheduled.
-    timeout = setTimeout(wrapper, nextAt - new Date().getTime())
-
-    // the cancel function is returned so it can be called outside accurateTimer.
-    return { cancel }
-  }
-
   const startTimer = () => {
     if (on) return
     timer.current = accurateTimer(() => {
@@ -154,7 +125,7 @@ function Studio() {
       on = true
       let seconds = elapsedSeconds % 60
       seconds = seconds > 9 ? seconds : `0${seconds}`
-      console.log(`${elapsedSeconds} seconds have passed.`)
+      // console.log(`${elapsedSeconds} seconds have passed.`)
     })
   }
 
@@ -187,6 +158,7 @@ function Studio() {
   const startRecording = () => {
     toggleActive()
     recorderInit()
+    startTimer()
     // start streaming to Youtube
     if (youtubeBroadcastId) {
       setTimeout(() => {
@@ -223,6 +195,7 @@ function Studio() {
     endYoutubeStream()
     endFacebookLivestream()
     setstreamFinished(true)
+    stopTimer()
 
     // mediaRecorder.current.stop()
     // const recVideoBlob = new Blob(chunks, {
@@ -260,8 +233,8 @@ function Studio() {
     } else return null
   }
 
-  console.log('youtube access token: ' + youtubeAccessToken)
-  console.log('youtube broadcast id: ' + youtubeBroadcastId)
+  // console.log('youtube access token: ' + youtubeAccessToken)
+  // console.log('youtube broadcast id: ' + youtubeBroadcastId)
 
   const endFacebookLivestream = () => {
     if (facebookLiveVideoId) {
@@ -292,8 +265,8 @@ function Studio() {
               {isActive ? 'LIVE' : 'END'}: {formatTime(elapsedSeconds)}
             </Timer>
           </div>
-          <button onClick={startTimer}>Timer</button>
-          <button onClick={stopTimer}>Stop Timer</button>
+          {/* <button onClick={startTimer}>Timer</button>
+          <button onClick={stopTimer}>Stop Timer</button> */}
           <div>
             <p
               style={
