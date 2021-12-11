@@ -161,6 +161,11 @@ function Studio() {
       !stream.current.getVideoTracks()[0].enabled
   }
 
+  const toggleMicrophone = () => {
+    stream.current.getAudioTracks()[0].enabled =
+      !stream.current.getAudioTracks()[0].enabled
+  }
+
   const startRecording = () => {
     toggleActive()
     recorderInit()
@@ -287,16 +292,13 @@ function Studio() {
               desktop app to share.
             </p>
             <video
-              style={
-                !userFacing
-                  ? {
-                      /* override other styles to make responsive */
-                      // width: '100%',
-                      // height: 'auto',
-                      visibility: 'hidden',
-                    }
-                  : null
-              }
+              // style={
+              //   !userFacing
+              //     ? {
+              //         visibility: 'hidden',
+              //       }
+              //     : null
+              // }
               className='video-container'
               ref={videoRef}
               autoPlay
@@ -319,6 +321,7 @@ function Studio() {
             fx={toggleScreenSharing}
           />
           <BroadcastButton title={'Toggle Camera'} fx={toggleCamera} />
+          <BroadcastButton title={'Toggle Mic'} fx={toggleMicrophone} />
         </div>
       </div>
     </>

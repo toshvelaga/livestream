@@ -36,11 +36,10 @@ function Website(props) {
         >
           Livestreaming Made Easy
         </h1>
-
         <p className='website-main-description'>
-          Ohmystream allows creators to livestream to Twitch, Youtube, and
-          Facebook at the same time.
+          Stream to Twitch, Youtube, and Facebook at the same time.
         </p>
+
         <div
           style={{
             marginTop: '2rem',
@@ -105,6 +104,24 @@ function Website(props) {
         >
           <PricingPlan />
         </div> */}
+
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: '2rem',
+          }}
+        >
+          <iframe
+            width='640'
+            height='400'
+            src='https://www.loom.com/embed/35a86c6f73d144d59527092118cf525d'
+            frameborder='0'
+            webkitallowfullscreen
+            mozallowfullscreen
+            allowfullscreen
+          ></iframe>
+        </div>
 
         <h1
           style={{
