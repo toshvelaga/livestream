@@ -51,6 +51,8 @@ const youtubeSettings = (youtube) => {
       'veryfast',
       '-tune',
       'zerolatency',
+      '-g:v',
+      '60',
 
       // audio codec config: sampling frequency (11025, 22050, 44100), bitrate 64 kbits
       '-c:a',
