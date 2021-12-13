@@ -1,4 +1,4 @@
-const inputSettings = ['-i', '-']
+const inputSettings = ['-i', '-', '-v', 'error']
 
 const twitchSettings = (twitch) => {
   if (twitch) {
