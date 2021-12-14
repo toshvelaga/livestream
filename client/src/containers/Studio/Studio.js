@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import * as FaIcons from 'react-icons/fa'
-import * as BsIcons from 'react-icons/bs'
+import * as MdIcons from 'react-icons/md'
 import Navbar from '../../components/Navbar/Navbar'
 import BroadcastButton from '../../components/Buttons/BroadcastButton'
 import Timer from '../../components/Timer/Timer'
@@ -44,6 +44,8 @@ function Studio() {
   const [userFacing, setuserFacing] = useState(true)
   const [streamFinished, setstreamFinished] = useState(false)
   const [muted, setmuted] = useState(false)
+  const [cameraOn, setcameraOn] = useState(true)
+
   const [videoUrl, setvideoUrl] = useState('')
   const [chunks, setchunks] = useState([])
 
@@ -160,6 +162,7 @@ function Studio() {
   }
 
   const toggleCamera = () => {
+    setcameraOn(!cameraOn)
     stream.current.getVideoTracks()[0].enabled =
       !stream.current.getVideoTracks()[0].enabled
   }
@@ -324,13 +327,21 @@ function Studio() {
             title={userFacing ? 'Share Screen' : 'Stop Sharing'}
             fx={toggleScreenSharing}
           />
-          <BroadcastButton title={'Toggle Camera'} fx={toggleCamera} />
-          <BroadcastButton title={!muted ? '' : 'Muted'} fx={toggleMicrophone}>
+          <BroadcastButton fx={toggleCamera}>
+            {cameraOn ? (
+              <FaIcons.FaVideo size={20} />
+            ) : (
+              <FaIcons.FaVideoSlash size={20} />
+            )}
+          </BroadcastButton>
+
+          <BroadcastButton fx={toggleMicrophone}>
             {!muted ? (
               <FaIcons.FaMicrophone size={20} />
             ) : (
               <FaIcons.FaMicrophoneSlash size={20} />
-            )}
+            )}{' '}
+            {!muted ? '' : 'Muted'}
           </BroadcastButton>
         </div>
       </div>
