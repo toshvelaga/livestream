@@ -7,8 +7,13 @@ import styles from '../../styles/styles'
 function SideNavbar(props) {
   const history = useHistory()
 
+  const url = window.location.pathname
+  console.log(url.includes('studio'))
+
   return (
-    <ul className='side-navbar'>
+    <ul
+      className={!url.includes('studio') ? 'side-navbar' : 'side-navbar-hidden'}
+    >
       {/* Broadcasts */}
       <li
         onClick={() => history.push('/broadcast')}
