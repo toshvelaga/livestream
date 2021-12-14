@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import * as FaIcons from 'react-icons/fa'
-import * as MdIcons from 'react-icons/md'
 import Navbar from '../../components/Navbar/Navbar'
 import BroadcastButton from '../../components/Buttons/BroadcastButton'
 import Timer from '../../components/Timer/Timer'
@@ -324,9 +323,11 @@ function Studio() {
             fx={toggleRecording}
           />
           <BroadcastButton
-            title={userFacing ? 'Share Screen' : 'Stop Sharing'}
+            // title={userFacing ? 'Share Screen' : 'Stop Sharing'}
             fx={toggleScreenSharing}
-          />
+          >
+            <FaIcons.FaLaptop size={20} />
+          </BroadcastButton>
           <BroadcastButton fx={toggleCamera}>
             {cameraOn ? (
               <FaIcons.FaVideo size={20} />
