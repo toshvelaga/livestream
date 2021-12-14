@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
+import * as FaIcons from 'react-icons/fa'
+import * as BsIcons from 'react-icons/bs'
 import Navbar from '../../components/Navbar/Navbar'
 import BroadcastButton from '../../components/Buttons/BroadcastButton'
 import Timer from '../../components/Timer/Timer'
@@ -41,6 +43,7 @@ function Studio() {
   const [isActive, setIsActive] = useState(false)
   const [userFacing, setuserFacing] = useState(true)
   const [streamFinished, setstreamFinished] = useState(false)
+  const [muted, setmuted] = useState(false)
   const [videoUrl, setvideoUrl] = useState('')
   const [chunks, setchunks] = useState([])
 
@@ -162,6 +165,7 @@ function Studio() {
   }
 
   const toggleMicrophone = () => {
+    setmuted(!muted)
     stream.current.getAudioTracks()[0].enabled =
       !stream.current.getAudioTracks()[0].enabled
   }
@@ -244,8 +248,8 @@ function Studio() {
     } else return null
   }
 
-  // console.log('youtube access token: ' + youtubeAccessToken)
-  // console.log('youtube broadcast id: ' + youtubeBroadcastId)
+  console.log('youtube access token: ' + youtubeAccessToken)
+  console.log('youtube broadcast id: ' + youtubeBroadcastId)
 
   const endFacebookLivestream = () => {
     if (facebookLiveVideoId) {
@@ -321,7 +325,13 @@ function Studio() {
             fx={toggleScreenSharing}
           />
           <BroadcastButton title={'Toggle Camera'} fx={toggleCamera} />
-          <BroadcastButton title={'Toggle Mic'} fx={toggleMicrophone} />
+          <BroadcastButton title={!muted ? '' : 'Muted'} fx={toggleMicrophone}>
+            {!muted ? (
+              <FaIcons.FaMicrophone size={20} />
+            ) : (
+              <FaIcons.FaMicrophoneSlash size={20} />
+            )}
+          </BroadcastButton>
         </div>
       </div>
     </>

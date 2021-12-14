@@ -3,6 +3,10 @@
     'Helvetica Neue', Ubuntu, Arial, sans-serif;
 }
 
+button > * {
+  vertical-align: middle;
+}
+
 .broadcast-button {
   /* background-color: #03a9f4; */
   background-color: #dddddd;
@@ -16,6 +20,7 @@
   text-transform: uppercase;
   font-family: var(--main-font);
   margin-right: 10px;
+  vertical-align: middle;
 }
 
 .broadcast-button:hover {
