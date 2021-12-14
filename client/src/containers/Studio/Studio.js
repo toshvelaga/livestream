@@ -324,9 +324,11 @@ function Studio() {
             fx={toggleRecording}
           />
           <BroadcastButton
-            title={userFacing ? 'Share Screen' : 'Stop Sharing'}
+            // title={userFacing ? 'Share Screen' : 'Stop Sharing'}
             fx={toggleScreenSharing}
-          />
+          >
+            <FaIcons.FaLaptop size={20} />
+          </BroadcastButton>
           <BroadcastButton fx={toggleCamera}>
             {cameraOn ? (
               <FaIcons.FaVideo size={20} />
