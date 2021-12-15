@@ -312,51 +312,25 @@ function Broadcast() {
     })
   }
 
-  const youtube = async () => {
-    const broadcastId = await createBroadcast()
-    const stream = await createStream()
-
-    bindBroadcastToStream(broadcastId, stream.streamId)
-
-    return {
-      youtubeBroadcastId: broadcastId,
-      youtubeStreamId: stream.streamId,
-      youtubeDestinationUrl: stream.youtubeDestinationUrl,
-    }
-  }
-
-  console.log(youtubeAccessToken)
-
   const youtubePromiseChain = async () => {
     try {
       if (modalContent.youtube) {
         console.log('youtube promise chain')
 
-        const data = {
-          youtubeBroadcastTitle: youtubeTitle,
-          youtubeBroadcastDescription: youtubeDescription,
-          youtubePrivacyPolicy: youtubePrivacyPolicy,
-          youtubeAccessToken: youtubeAccessToken,
-        }
-        let youtubeData = await API.post('/youtube/broadcast', data)
-          .then((res) => {
-            console.log(res)
-            return res.data
-          })
-          .catch((err) => {
-            console.log(err)
-          })
+        const broadcastId = await createBroadcast()
+        const stream = await createStream()
+        bindBroadcastToStream(broadcastId, stream.streamId)
 
         return {
-          youtubeDestinationUrl: youtubeData.youtubeDestinationUrl,
-          youtubeBroadcastId: youtubeData.youtubeBroadcastId,
-          youtubeStreamId: youtubeData.youtubeStreamId,
+          youtubeBroadcastId: broadcastId,
+          youtubeStreamId: stream.streamId,
+          youtubeDestinationUrl: stream.youtubeDestinationUrl,
         }
       } else
         return {
-          youtubeDestinationUrl: '',
           youtubeBroadcastId: '',
           youtubeStreamId: '',
+          youtubeDestinationUrl: '',
         }
     } catch (error) {
       console.log(error)
@@ -679,7 +653,7 @@ function Broadcast() {
           title='Create Broadcast'
           fx={submit}
         />
-        <button onClick={youtube}>create broadcast</button>
+        {/* <button onClick={youtube}>create broadcast</button> */}
       </Modal>
     </>
   )
