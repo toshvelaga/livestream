@@ -118,7 +118,6 @@ function Broadcast() {
           facebook_access_token,
           facebook_long_access_token,
           youtube_access_token,
-          youtube_refresh_token,
         } = res.data
 
         setyoutubeAccessToken(youtube_access_token)
@@ -132,37 +131,6 @@ function Broadcast() {
           headers: {
             Authorization: `Bearer ${twitch_access_token}`,
           },
-        }
-
-        if (youtube_access_token) {
-          // validate google token
-          axios
-            .get(
-              `https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=${youtube_access_token}`
-            )
-            .then((res) => {
-              console.log(res)
-              console.log(
-                'google access token expires in ' + res.data.expires_in
-              )
-              setyoutubeAccessToken(youtube_access_token)
-            })
-            .catch((err) => {
-              console.log(err.response)
-              if (err.response.status === 400) {
-                API.post('/authorize/youtube/refresh', {
-                  userId,
-                  refreshToken: youtube_refresh_token,
-                })
-                  .then((res) => {
-                    console.log(res)
-                    setyoutubeAccessToken(res.data.accessToken)
-                  })
-                  .catch((err) => {
-                    console.log(err)
-                  })
-              }
-            })
         }
 
         // validate twitch token
