@@ -64,9 +64,6 @@ function Broadcast() {
   const [facebookUserId, setfacebookUserId] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
-  const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
-  // DO I NEED TO SET THIS SOMEWHERE?
-  // const [youtubeAccessRefreshToken, setyoutubeAccessRefreshToken] = useState('')
 
   let history = useHistory()
   let GoogleAuth
@@ -85,8 +82,6 @@ function Broadcast() {
   }
 
   useEffect(() => {
-    console.log('user id in the useEffect hook ' + userId)
-
     const body = { userId }
     // api call to show broadcast avatar
     API.post('/user/destinations', body)
@@ -117,10 +112,8 @@ function Broadcast() {
           facebook_user_id,
           facebook_access_token,
           facebook_long_access_token,
-          youtube_access_token,
         } = res.data
 
-        setyoutubeAccessToken(youtube_access_token)
         settwitchUserId(twitch_user_id)
         settwitchStreamKey(twitch_stream_key)
         setfacebookUserId(facebook_user_id)
@@ -257,9 +250,8 @@ function Broadcast() {
         part: ['snippet,cdn,contentDetails,status'],
         resource: {
           snippet: {
-            title: "Your new video stream's name",
-            description:
-              'A description of your video stream. This field is optional.',
+            title: youtubeTitle,
+            description: youtubeDescription,
           },
           cdn: {
             frameRate: 'variable',
@@ -287,17 +279,12 @@ function Broadcast() {
   }
 
   //!!! CALL AFTER CREATING STREAM.
-  const bindBroadcastToStream = async (b, s) => {
-    // let b = await createBroadcast()
-    // let s = await createStream().streamId
-    console.log(b)
-    console.log(s)
-
+  const bindBroadcastToStream = async (youtubeBroadcastId, youtubeStreamId) => {
     return gapi.client.youtube.liveBroadcasts
       .bind({
         part: ['id,snippet,contentDetails,status'],
-        id: b,
-        streamId: s,
+        id: youtubeBroadcastId,
+        streamId: youtubeStreamId,
       })
       .then((res) => {
         console.log('Response', res)
@@ -648,7 +635,6 @@ function Broadcast() {
           title='Create Broadcast'
           fx={submit}
         />
-        {/* <button onClick={youtube}>create broadcast</button> */}
       </Modal>
     </>
   )
