@@ -335,10 +335,8 @@ function Studio() {
 
   return (
     <>
-      <Navbar />
-      <div className='studio-container'>
-        {/* take to streaming destination */}
-        <div>
+      <Navbar>
+        <div style={{ marginTop: '8px' }}>
           <a
             href={`https://studio.youtube.com/video/${youtubeBroadcastId}/livestreaming`}
             target='_blank'
@@ -361,7 +359,8 @@ function Studio() {
             </BroadcastButton>
           </a>
         </div>
-
+      </Navbar>
+      <div className='studio-container'>
         <div id='container'>
           <div
             style={

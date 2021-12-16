@@ -7,7 +7,7 @@ import TopNavbar from './TopNavbar'
 import { SidebarData } from './SidebarData'
 import { IconContext } from 'react-icons'
 
-function Navbar() {
+function Navbar(props) {
   const [sidebar, setSidebar] = useState(false)
   const [width, setWidth] = useState(0)
 
@@ -54,7 +54,7 @@ function Navbar() {
       {/* fixed side navbar with buttons */}
 
       <SideNavbar />
-      <TopNavbar />
+      <TopNavbar>{props.children}</TopNavbar>
 
       {/* Mobile navbar overlay for small screen size */}
       <IconContext.Provider value={{ color: 'black' }}>
