@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import * as FaIcons from 'react-icons/fa'
 import Navbar from '../../components/Navbar/Navbar'
 import BroadcastButton from '../../components/Buttons/BroadcastButton'
+import DestinationButton from '../../components/Buttons/DestinationButton'
 import Timer from '../../components/Timer/Timer'
 import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
@@ -342,27 +343,27 @@ function Studio() {
             rel='noreferrer'
             target='_blank'
           >
-            <BroadcastButton>
+            <DestinationButton>
               <FaIcons.FaYoutube color={'#ff0000'} size={20} />
-            </BroadcastButton>
+            </DestinationButton>
           </a>
           <a
             href={`https://www.twitch.tv/${twitchUsername}`}
             rel='noreferrer'
             target='_blank'
           >
-            <BroadcastButton>
+            <DestinationButton>
               <FaIcons.FaTwitch color={'#9047fe'} size={20} />
-            </BroadcastButton>
+            </DestinationButton>
           </a>
           <a
             href={`https://www.facebook.com/tosh.vel/videos/${facebookLiveVideoId}`}
             rel='noreferrer'
             target='_blank'
           >
-            <BroadcastButton fx={() => alert('clicked')}>
+            <DestinationButton fx={() => alert('clicked')}>
               <FaIcons.FaFacebook color={'#1676f2'} size={20} />
-            </BroadcastButton>
+            </DestinationButton>
           </a>
           <BroadcastButton
             disabled={streamFinished ? true : false}
