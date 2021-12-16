@@ -36,7 +36,6 @@ const CAPTURE_OPTIONS_RECORD_SCREEN = {
 function Studio() {
   const [youtubeUrl, setyoutubeUrl] = useState('')
   const [youtubeBroadcastId, setYoutubeBroadcastId] = useState('')
-  const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
   const [facebookUrl, setFacebookUrl] = useState('')
   const [facebookLiveVideoId, setfacebookLiveVideoId] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
@@ -101,15 +100,10 @@ function Studio() {
 
     API.post('/destinations', { userId }).then((res) => {
       console.log(res)
-      const {
-        facebook_access_token,
-        facebook_long_access_token,
-        youtube_access_token,
-      } = res.data
+      const { facebook_access_token, facebook_long_access_token } = res.data
 
       setfacebookAccessToken(facebook_access_token)
       setlongFacebookAccessToken(facebook_long_access_token)
-      setyoutubeAccessToken(youtube_access_token)
     })
   }, [])
 
@@ -233,12 +227,11 @@ function Studio() {
     recorderInit()
     startTimer()
     // start streaming to Youtube
-
-    // if (youtubeBroadcastId) {
-    //   setTimeout(() => {
-    //     transitionYoutubeToLive()
-    //   }, 6000)
-    // }
+    if (youtubeBroadcastId) {
+      setTimeout(() => {
+        transitionYoutubeToLive()
+      }, 6000)
+    }
   }
 
   // toggles the stream to active or inactive
@@ -321,9 +314,6 @@ function Studio() {
         console.log('Execute error', err)
       })
   }
-
-  console.log('youtube access token: ' + youtubeAccessToken)
-  console.log('youtube broadcast id: ' + youtubeBroadcastId)
 
   const endFacebookLivestream = () => {
     if (facebookLiveVideoId) {
@@ -415,8 +405,6 @@ function Studio() {
             )}{' '}
             {!muted ? '' : 'Muted'}
           </BroadcastButton>
-          {/* FOR TESTING */}
-          <button onClick={transitionYoutubeToLive}></button>
         </div>
       </div>
     </>
