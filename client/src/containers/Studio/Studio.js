@@ -331,6 +331,24 @@ function Studio() {
     <>
       <Navbar />
       <div className='studio-container'>
+        {/* take to streaming destination */}
+        <div>
+          <a
+            href={`https://studio.youtube.com/video/${youtubeBroadcastId}/livestreaming`}
+            target='_blank'
+          >
+            <BroadcastButton>
+              <FaIcons.FaYoutube color={'#ff0000'} size={20} />
+            </BroadcastButton>
+          </a>
+          <BroadcastButton fx={() => alert('clicked')}>
+            <FaIcons.FaTwitch color={'#9047fe'} size={20} />
+          </BroadcastButton>
+          <BroadcastButton fx={() => alert('clicked')}>
+            <FaIcons.FaFacebook color={'#1676f2'} size={20} />
+          </BroadcastButton>
+        </div>
+
         <div id='container'>
           <div
             style={

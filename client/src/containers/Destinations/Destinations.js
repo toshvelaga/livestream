@@ -105,6 +105,7 @@ function Destinations() {
 
   const twitchAuth = async (code) => {
     let auth = await sendCodeToTwitch(code)
+    console.log(auth)
 
     let twitchAccessToken = auth.access_token
     let twitchRefreshToken = auth.refresh_token
@@ -175,8 +176,9 @@ function Destinations() {
       <Toaster position='top-center' reverseOrder={true} />
       <div style={{ margin: '10rem auto', width: '50%' }}>
         <h2>Added Destinations</h2>
-        <div onClick={youtubeAuthClient} className='destinations-container'>
+        <div className='destinations-container'>
           <Card
+            onClick={youtubeAuthClient}
             style={youtubeAccessToken ? styles.destinationSelected : null}
             cardTitleStyle={youtubeAccessToken ? styles.blackFontColor : null}
             title={'YouTube'}
