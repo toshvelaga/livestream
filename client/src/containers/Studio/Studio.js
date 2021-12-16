@@ -40,6 +40,7 @@ function Studio() {
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
   const [twitchStreamKey, settwitchStreamKey] = useState('')
+  const [twitchUsername, settwitchUsername] = useState('')
 
   const [isActive, setIsActive] = useState(false)
   const [userFacing, setuserFacing] = useState(true)
@@ -99,10 +100,15 @@ function Studio() {
 
     API.post('/destinations', { userId }).then((res) => {
       console.log(res)
-      const { facebook_access_token, facebook_long_access_token } = res.data
+      const {
+        facebook_access_token,
+        facebook_long_access_token,
+        twitch_user_name,
+      } = res.data
 
       setfacebookAccessToken(facebook_access_token)
       setlongFacebookAccessToken(facebook_long_access_token)
+      settwitchUsername(twitch_user_name)
     })
   }, [])
 
@@ -341,10 +347,11 @@ function Studio() {
               <FaIcons.FaYoutube color={'#ff0000'} size={20} />
             </BroadcastButton>
           </a>
-          <BroadcastButton fx={() => alert('clicked')}>
-            <FaIcons.FaTwitch color={'#9047fe'} size={20} />
-          </BroadcastButton>
-
+          <a href={`https://www.twitch.tv/${twitchUsername}`} target='_blank'>
+            <BroadcastButton>
+              <FaIcons.FaTwitch color={'#9047fe'} size={20} />
+            </BroadcastButton>
+          </a>
           <a
             href={`https://www.facebook.com/tosh.vel/videos/${facebookLiveVideoId}`}
             target='_blank'
