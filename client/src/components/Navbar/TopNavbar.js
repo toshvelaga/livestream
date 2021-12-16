@@ -11,23 +11,29 @@ function TopNavbar(props) {
       'You are currently on the free tier. If you want more features please email toshvelaga@gmail.com'
     )
   }
+  const url = window.location.pathname
+
   return (
     <Navbar>
       {/* <NavItem icon={<BellIcon />} /> */}
       {props.children}
-      <button onClick={handleClick} className={navbarStyles.upgradeButton}>
-        Upgrade
-      </button>
-      <NavItem
-        icon={
-          <FaIcons.FaUser
-            color={styles.navItemColor}
-            size={styles.sideNavbarIconSize}
-          />
-        }
-      >
-        <DropdownMenu></DropdownMenu>
-      </NavItem>
+      {!url.includes('/studio') && (
+        <>
+          <button onClick={handleClick} className={navbarStyles.upgradeButton}>
+            Upgrade
+          </button>
+          <NavItem
+            icon={
+              <FaIcons.FaUser
+                color={styles.navItemColor}
+                size={styles.sideNavbarIconSize}
+              />
+            }
+          >
+            <DropdownMenu></DropdownMenu>
+          </NavItem>
+        </>
+      )}
     </Navbar>
   )
 }
