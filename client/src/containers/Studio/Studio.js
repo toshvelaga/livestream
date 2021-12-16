@@ -10,6 +10,9 @@ import accurateTimer from '../../utils/accurateTimer'
 import API from '../../api/api'
 import './Studio.css'
 import { useParams } from 'react-router-dom'
+import { SCOPE, DISCOVERY } from '../../constants/constants'
+
+/* global gapi */
 
 const CAPTURE_OPTIONS_USER_FACING = {
   audio: true,
@@ -54,6 +57,7 @@ function Studio() {
   const stream = useRef(null)
   let liveStream
   let tempStream = new MediaStream()
+  let GoogleAuth
 
   const { id } = useParams()
   const ws = useRef()
@@ -123,6 +127,57 @@ function Studio() {
       ws.current.close()
     }
   }, [facebookUrl, youtubeUrl, twitchStreamKey])
+
+  useEffect(() => {
+    handleClientLoad()
+  }, [])
+
+  function handleClientLoad() {
+    // Load the API's client and auth2 modules.
+    // Call the initClient function after the modules load.
+    gapi.load('client:auth2', initClient)
+  }
+
+  function initClient() {
+    // Initialize the gapi.client object, which app uses to make API requests.
+    // Get API key and client ID from API Console.
+    // 'scope' field specifies space-delimited list of access scopes.
+    gapi.client
+      .init({
+        apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        discoveryDocs: [DISCOVERY],
+        scope: SCOPE,
+      })
+      .then(function () {
+        GoogleAuth = gapi.auth2.getAuthInstance()
+
+        // Listen for sign-in state changes.
+        GoogleAuth.isSignedIn.listen(updateSigninStatus)
+
+        // Handle initial sign-in state. (Determine if user is already signed in.)
+        var user = GoogleAuth.currentUser.get()
+        console.log('user' + JSON.stringify(user))
+        if (!user) {
+          setSigninStatus()
+        }
+      })
+  }
+
+  function setSigninStatus() {
+    var user = GoogleAuth.currentUser.get()
+    console.log(user)
+    var isAuthorized = user.hasGrantedScopes(SCOPE)
+    if (isAuthorized) {
+      console.log('signed in and authorized')
+    } else {
+      console.log('not authorized')
+    }
+  }
+
+  function updateSigninStatus() {
+    setSigninStatus()
+  }
 
   const startTimer = () => {
     if (on) return
@@ -232,23 +287,38 @@ function Studio() {
     setuserFacing(!userFacing)
   }
 
+  //!!! CLICK GO LIVE FIRST TO SEND VIDEO TO THE SERVER and then CALL transitionToLive
   const transitionYoutubeToLive = () => {
-    const body = {
-      youtubeBroadcastId: youtubeBroadcastId,
-      youtubeAccessToken: youtubeAccessToken,
-    }
-    API.post('/youtube/broadcast/live', body)
+    return gapi.client.youtube.liveBroadcasts
+      .transition({
+        part: ['id,snippet,contentDetails,status'],
+        broadcastStatus: 'live',
+        id: youtubeBroadcastId,
+      })
+      .then((res) => {
+        // Handle the results here (response.result has the parsed body).
+        console.log('Response', res)
+      })
+      .catch((err) => {
+        console.log('Execute error', err)
+      })
   }
 
+  //!!! THIS IS CALLED AT THE VERY END TO STOP THE YOUTUBE BROADCAST
   const endYoutubeStream = () => {
-    if (youtubeBroadcastId) {
-      const body = { youtubeBroadcastId, youtubeAccessToken }
-      API.post('/youtube/broadcast/end', body)
-        .then((res) => {
-          console.log(res)
-        })
-        .catch((err) => console.log(err))
-    } else return null
+    return gapi.client.youtube.liveBroadcasts
+      .transition({
+        part: ['id,snippet,contentDetails,status'],
+        broadcastStatus: 'complete',
+        id: youtubeBroadcastId,
+      })
+      .then((res) => {
+        // Handle the results here (response.result has the parsed body).
+        console.log('Response', res)
+      })
+      .catch((err) => {
+        console.log('Execute error', err)
+      })
   }
 
   console.log('youtube access token: ' + youtubeAccessToken)
@@ -283,8 +353,7 @@ function Studio() {
               {isActive ? 'LIVE' : 'END'}: {formatTime(elapsedSeconds)}
             </Timer>
           </div>
-          {/* <button onClick={startTimer}>Timer</button>
-          <button onClick={stopTimer}>Stop Timer</button> */}
+
           <div>
             <p
               style={

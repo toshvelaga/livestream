@@ -190,7 +190,10 @@ function Broadcast() {
 
         // Handle initial sign-in state. (Determine if user is already signed in.)
         var user = GoogleAuth.currentUser.get()
-        setSigninStatus()
+        console.log('user' + JSON.stringify(user))
+        if (!user) {
+          setSigninStatus()
+        }
       })
   }
 
