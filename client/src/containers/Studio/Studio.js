@@ -358,6 +358,12 @@ function Studio() {
               <FaIcons.FaFacebook color={'#1676f2'} size={20} />
             </BroadcastButton>
           </a>
+          <BroadcastButton
+            disabled={streamFinished ? true : false}
+            id='play-button'
+            title={!isActive ? 'Go Live' : 'Stop Recording'}
+            fx={toggleRecording}
+          />
         </div>
       </Navbar>
       <div className='studio-container'>
@@ -406,12 +412,6 @@ function Studio() {
           {/* {videoUrl ? <video controls src={videoUrl} /> : null} */}
         </div>
         <div className='studio-bottom-button-container'>
-          <BroadcastButton
-            disabled={streamFinished ? true : false}
-            id='play-button'
-            title={!isActive ? 'Go Live' : 'Stop Recording'}
-            fx={toggleRecording}
-          />
           <BroadcastButton
             // title={userFacing ? 'Share Screen' : 'Stop Sharing'}
             fx={toggleScreenSharing}
