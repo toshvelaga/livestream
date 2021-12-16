@@ -344,9 +344,15 @@ function Studio() {
           <BroadcastButton fx={() => alert('clicked')}>
             <FaIcons.FaTwitch color={'#9047fe'} size={20} />
           </BroadcastButton>
-          <BroadcastButton fx={() => alert('clicked')}>
-            <FaIcons.FaFacebook color={'#1676f2'} size={20} />
-          </BroadcastButton>
+
+          <a
+            href={`https://www.facebook.com/tosh.vel/videos/${facebookLiveVideoId}`}
+            target='_blank'
+          >
+            <BroadcastButton fx={() => alert('clicked')}>
+              <FaIcons.FaFacebook color={'#1676f2'} size={20} />
+            </BroadcastButton>
+          </a>
         </div>
 
         <div id='container'>
