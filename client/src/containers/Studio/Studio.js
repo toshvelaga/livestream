@@ -233,11 +233,12 @@ function Studio() {
     recorderInit()
     startTimer()
     // start streaming to Youtube
-    if (youtubeBroadcastId) {
-      setTimeout(() => {
-        transitionYoutubeToLive()
-      }, 6000)
-    }
+
+    // if (youtubeBroadcastId) {
+    //   setTimeout(() => {
+    //     transitionYoutubeToLive()
+    //   }, 6000)
+    // }
   }
 
   // toggles the stream to active or inactive
@@ -414,6 +415,8 @@ function Studio() {
             )}{' '}
             {!muted ? '' : 'Muted'}
           </BroadcastButton>
+          {/* FOR TESTING */}
+          <button onClick={transitionYoutubeToLive}></button>
         </div>
       </div>
     </>

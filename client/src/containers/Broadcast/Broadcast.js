@@ -213,8 +213,9 @@ function Broadcast() {
   }
 
   //!!! createBroadcast IS CALLED SECOND. BROADCAST APPEARS ON YOUTUBE
-  const createBroadcast = () => {
-    return gapi.client.youtube.liveBroadcasts
+  const createBroadcast = async () => {
+    let broadcastId
+    await gapi.client.youtube.liveBroadcasts
       .insert({
         part: ['id,snippet,contentDetails,status'],
         resource: {
@@ -225,6 +226,7 @@ function Broadcast() {
           },
           contentDetails: {
             recordFromStart: true,
+            // startWithSlate: true,
             enableAutoStart: false,
             monitorStream: {
               enableMonitorStream: false,
@@ -237,19 +239,27 @@ function Broadcast() {
         },
       })
       .then((res) => {
-        return res.result.id
+        broadcastId = res.result.id
       })
+      .catch((err) => {
+        console.error('Execute error', err)
+      })
+    return broadcastId
   }
 
   //!!! CALL createStream AFTER createBroadcast. IN THE RESPONSE SET youtubeIngestionUrl AND youtubeStreamName
-  const createStream = (broadcastId) => {
-    return gapi.client.youtube.liveStreams
+  const createStream = async () => {
+    let streamId
+    let youtubeDestinationUrl
+
+    await gapi.client.youtube.liveStreams
       .insert({
         part: ['snippet,cdn,contentDetails,status'],
         resource: {
           snippet: {
-            title: youtubeTitle,
-            description: youtubeDescription,
+            title: "Your new video stream's name",
+            description:
+              'A description of your video stream. This field is optional.',
           },
           cdn: {
             frameRate: 'variable',
@@ -263,24 +273,38 @@ function Broadcast() {
         },
       })
       .then((res) => {
-        return {
-          streamId: res.result.id,
-          broadcastId: broadcastId,
-          youtubeDestinationUrl:
-            res.result.cdn.ingestionInfo.ingestionAddress +
-            '/' +
-            res.result.cdn.ingestionInfo.streamName,
-        }
+        console.log('Response', res)
+        streamId = res.result.id
+        youtubeDestinationUrl =
+          res.result.cdn.ingestionInfo.ingestionAddress +
+          '/' +
+          res.result.cdn.ingestionInfo.streamName
       })
+      .catch((err) => {
+        console.log('Execute error', err)
+      })
+    return { streamId, youtubeDestinationUrl }
   }
 
-  //!!! LAST FUNCTION TO BE CALLED BEFORE GOING LIVE.
-  const bindBroadcastToStream = (broadcastId, streamId) => {
-    return gapi.client.youtube.liveBroadcasts.bind({
-      part: ['id,snippet,contentDetails,status'],
-      id: broadcastId,
-      streamId: streamId,
-    })
+  //!!! CALL AFTER CREATING STREAM.
+  const bindBroadcastToStream = async (b, s) => {
+    // let b = await createBroadcast()
+    // let s = await createStream().streamId
+    console.log(b)
+    console.log(s)
+
+    return gapi.client.youtube.liveBroadcasts
+      .bind({
+        part: ['id,snippet,contentDetails,status'],
+        id: b,
+        streamId: s,
+      })
+      .then((res) => {
+        console.log('Response', res)
+      })
+      .catch((err) => {
+        console.error('Execute error', err)
+      })
   }
 
   const youtubePromiseChain = async () => {
