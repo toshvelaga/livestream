@@ -9,6 +9,7 @@ router.put('/api/destinations', async (req, res) => {
   const twitchAccessToken = req.body.twitchAccessToken
   const twitchRefreshToken = req.body.twitchRefreshToken
   const twitchStreamKey = req.body.twitchStreamKey
+  const twitchUsername = req.body.twitchUsername
 
   let results = await pool.query(
     `INSERT INTO destinations (
@@ -16,15 +17,17 @@ router.put('/api/destinations', async (req, res) => {
       twitch_user_id, 
       twitch_access_token,
       twitch_refresh_token,
-      twitch_stream_key
+      twitch_stream_key,
+      twitch_user_name
     )
-	VALUES($1, $2, $3, $4, $5) ON CONFLICT (user_id) DO UPDATE SET twitch_user_id = EXCLUDED.twitch_user_id, twitch_access_token = EXCLUDED.twitch_access_token, twitch_refresh_token = EXCLUDED.twitch_refresh_token, twitch_stream_key = EXCLUDED.twitch_stream_key`,
+	VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT (user_id) DO UPDATE SET twitch_user_id = EXCLUDED.twitch_user_id, twitch_access_token = EXCLUDED.twitch_access_token, twitch_refresh_token = EXCLUDED.twitch_refresh_token, twitch_stream_key = EXCLUDED.twitch_stream_key, twitch_user_name = EXCLUDED.twitch_user_name`,
     [
       userId,
       twitchUserID,
       twitchAccessToken,
       twitchRefreshToken,
       twitchStreamKey,
+      twitchUsername,
     ]
   )
   if (results.rows) {

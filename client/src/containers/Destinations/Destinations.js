@@ -111,7 +111,9 @@ function Destinations() {
     let twitchRefreshToken = auth.refresh_token
     let validation = await validateTwitchRequest(twitchAccessToken)
     console.log(validation)
+
     const twitchClientId = validation.client_id
+    const twitchUsername = validation.login
     const twitchUserID = validation.user_id
     const twitchStreamKey = await getTwitchStreamKey(
       twitchAccessToken,
@@ -130,7 +132,8 @@ function Destinations() {
       twitchAccessToken,
       twitchRefreshToken,
       twitchUserID,
-      twitchStreamKey
+      twitchStreamKey,
+      twitchUsername
     )
   }
 

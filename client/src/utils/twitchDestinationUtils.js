@@ -52,7 +52,8 @@ export const saveTwitchDataToDB = (
   twitchAccessToken,
   twitchRefreshToken,
   twitchUserID,
-  twitchStreamKey
+  twitchStreamKey,
+  twitchUsername
 ) => {
   const body = {
     userId,
@@ -60,6 +61,7 @@ export const saveTwitchDataToDB = (
     twitchRefreshToken,
     twitchUserID,
     twitchStreamKey,
+    twitchUsername,
   }
   API.put('/destinations', body)
     .then((res) => {
