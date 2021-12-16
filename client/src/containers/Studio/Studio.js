@@ -339,19 +339,25 @@ function Studio() {
         <div style={{ marginTop: '8px' }}>
           <a
             href={`https://studio.youtube.com/video/${youtubeBroadcastId}/livestreaming`}
+            rel='noreferrer'
             target='_blank'
           >
             <BroadcastButton>
               <FaIcons.FaYoutube color={'#ff0000'} size={20} />
             </BroadcastButton>
           </a>
-          <a href={`https://www.twitch.tv/${twitchUsername}`} target='_blank'>
+          <a
+            href={`https://www.twitch.tv/${twitchUsername}`}
+            rel='noreferrer'
+            target='_blank'
+          >
             <BroadcastButton>
               <FaIcons.FaTwitch color={'#9047fe'} size={20} />
             </BroadcastButton>
           </a>
           <a
             href={`https://www.facebook.com/tosh.vel/videos/${facebookLiveVideoId}`}
+            rel='noreferrer'
             target='_blank'
           >
             <BroadcastButton fx={() => alert('clicked')}>
