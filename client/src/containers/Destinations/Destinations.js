@@ -24,6 +24,7 @@ import { Toaster } from 'react-hot-toast'
 import styles from '../../styles/styles'
 import './Destinations.css'
 
+/* global gapi */
 /* global FB */
 
 function Destinations() {
@@ -72,6 +73,22 @@ function Destinations() {
       console.log('No code param in URL')
     }
   }, [])
+
+  const youtubeAuthClient = () => {
+    return gapi.auth2
+      .getAuthInstance()
+      .signIn({ scope: SCOPE })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => console.log(err))
+  }
+
+  gapi.load('client:auth2', function () {
+    gapi.auth2.init({
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+    })
+  })
 
   const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&response_type=code&state=state_parameter_passthrough_value&scope=${SCOPE}&access_type=offline&redirect_uri=${YOUTUBE_REDIRECT_URL}&prompt=consent&include_granted_scopes=true`
 
@@ -158,16 +175,14 @@ function Destinations() {
       <Toaster position='top-center' reverseOrder={true} />
       <div style={{ margin: '10rem auto', width: '50%' }}>
         <h2>Added Destinations</h2>
-        <div className='destinations-container'>
-          <a alt='youtube api authorization' href={googleAuthUrl}>
-            <Card
-              style={youtubeAccessToken ? styles.destinationSelected : null}
-              cardTitleStyle={youtubeAccessToken ? styles.blackFontColor : null}
-              title={'YouTube'}
-            >
-              <FaIcons.FaYoutube color={'#ff0000'} size={50} />
-            </Card>
-          </a>
+        <div onClick={youtubeAuthClient} className='destinations-container'>
+          <Card
+            style={youtubeAccessToken ? styles.destinationSelected : null}
+            cardTitleStyle={youtubeAccessToken ? styles.blackFontColor : null}
+            title={'YouTube'}
+          >
+            <FaIcons.FaYoutube color={'#ff0000'} size={50} />
+          </Card>
 
           <a href={twitchURL}>
             <Card

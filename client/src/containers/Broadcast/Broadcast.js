@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { YOUTUBE_PRIVACY_POLICY } from '../../constants/constants'
+import {
+  YOUTUBE_PRIVACY_POLICY,
+  SCOPE,
+  DISCOVERY,
+} from '../../constants/constants'
 import API from '../../api/api'
 import axios from 'axios'
 import Button from '../../components/Buttons/Button'
@@ -20,6 +24,8 @@ import { useHistory } from 'react-router-dom'
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
 Modal.setAppElement('#root')
+
+/* global gapi */
 
 function Broadcast() {
   const [isModalOpen, setisModalOpen] = useState(false)
@@ -58,11 +64,9 @@ function Broadcast() {
   const [facebookUserId, setfacebookUserId] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
-  const [youtubeAccessToken, setyoutubeAccessToken] = useState('')
-  // DO I NEED TO SET THIS SOMEWHERE?
-  // const [youtubeAccessRefreshToken, setyoutubeAccessRefreshToken] = useState('')
 
   let history = useHistory()
+  let GoogleAuth
 
   const closeModal = () => {
     setisModalOpen(false)
@@ -78,8 +82,6 @@ function Broadcast() {
   }
 
   useEffect(() => {
-    console.log('user id in the useEffect hook ' + userId)
-
     const body = { userId }
     // api call to show broadcast avatar
     API.post('/user/destinations', body)
@@ -110,11 +112,8 @@ function Broadcast() {
           facebook_user_id,
           facebook_access_token,
           facebook_long_access_token,
-          youtube_access_token,
-          youtube_refresh_token,
         } = res.data
 
-        setyoutubeAccessToken(youtube_access_token)
         settwitchUserId(twitch_user_id)
         settwitchStreamKey(twitch_stream_key)
         setfacebookUserId(facebook_user_id)
@@ -125,37 +124,6 @@ function Broadcast() {
           headers: {
             Authorization: `Bearer ${twitch_access_token}`,
           },
-        }
-
-        if (youtube_access_token) {
-          // validate google token
-          axios
-            .get(
-              `https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=${youtube_access_token}`
-            )
-            .then((res) => {
-              console.log(res)
-              console.log(
-                'google access token expires in ' + res.data.expires_in
-              )
-              setyoutubeAccessToken(youtube_access_token)
-            })
-            .catch((err) => {
-              console.log(err.response)
-              if (err.response.status === 400) {
-                API.post('/authorize/youtube/refresh', {
-                  userId,
-                  refreshToken: youtube_refresh_token,
-                })
-                  .then((res) => {
-                    console.log(res)
-                    setyoutubeAccessToken(res.data.accessToken)
-                  })
-                  .catch((err) => {
-                    console.log(err)
-                  })
-              }
-            })
         }
 
         // validate twitch token
@@ -186,38 +154,165 @@ function Broadcast() {
       })
   }, [])
 
-  console.log(youtubeAccessToken)
+  useEffect(() => {
+    handleClientLoad()
+  }, [])
+
+  function handleClientLoad() {
+    // Load the API's client and auth2 modules.
+    // Call the initClient function after the modules load.
+    gapi.load('client:auth2', initClient)
+  }
+
+  function initClient() {
+    // Initialize the gapi.client object, which app uses to make API requests.
+    // Get API key and client ID from API Console.
+    // 'scope' field specifies space-delimited list of access scopes.
+    gapi.client
+      .init({
+        apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        discoveryDocs: [DISCOVERY],
+        scope: SCOPE,
+      })
+      .then(function () {
+        GoogleAuth = gapi.auth2.getAuthInstance()
+
+        // Listen for sign-in state changes.
+        GoogleAuth.isSignedIn.listen(updateSigninStatus)
+
+        // Handle initial sign-in state. (Determine if user is already signed in.)
+        var user = GoogleAuth.currentUser.get()
+        console.log('user' + JSON.stringify(user))
+        if (!user) {
+          setSigninStatus()
+        }
+      })
+  }
+
+  function setSigninStatus() {
+    var user = GoogleAuth.currentUser.get()
+    console.log(user)
+    var isAuthorized = user.hasGrantedScopes(SCOPE)
+    if (isAuthorized) {
+      console.log('signed in and authorized')
+    } else {
+      console.log('not authorized')
+    }
+  }
+
+  function updateSigninStatus() {
+    setSigninStatus()
+  }
+
+  //!!! createBroadcast IS CALLED SECOND. BROADCAST APPEARS ON YOUTUBE
+  const createBroadcast = async () => {
+    let broadcastId
+    await gapi.client.youtube.liveBroadcasts
+      .insert({
+        part: ['id,snippet,contentDetails,status'],
+        resource: {
+          snippet: {
+            title: youtubeTitle,
+            scheduledStartTime: `${new Date().toISOString()}`,
+            description: youtubeDescription,
+          },
+          contentDetails: {
+            recordFromStart: true,
+            // startWithSlate: true,
+            enableAutoStart: false,
+            monitorStream: {
+              enableMonitorStream: false,
+            },
+          },
+          status: {
+            privacyStatus: youtubePrivacyPolicy.value.toLowerCase(),
+            selfDeclaredMadeForKids: true,
+          },
+        },
+      })
+      .then((res) => {
+        broadcastId = res.result.id
+      })
+      .catch((err) => {
+        console.error('Execute error', err)
+      })
+    return broadcastId
+  }
+
+  //!!! CALL createStream AFTER createBroadcast. IN THE RESPONSE SET youtubeIngestionUrl AND youtubeStreamName
+  const createStream = async () => {
+    let streamId
+    let youtubeDestinationUrl
+
+    await gapi.client.youtube.liveStreams
+      .insert({
+        part: ['snippet,cdn,contentDetails,status'],
+        resource: {
+          snippet: {
+            title: youtubeTitle,
+            description: youtubeDescription,
+          },
+          cdn: {
+            frameRate: 'variable',
+            ingestionType: 'rtmp',
+            resolution: 'variable',
+            format: '',
+          },
+          contentDetails: {
+            isReusable: true,
+          },
+        },
+      })
+      .then((res) => {
+        console.log('Response', res)
+        streamId = res.result.id
+        youtubeDestinationUrl =
+          res.result.cdn.ingestionInfo.ingestionAddress +
+          '/' +
+          res.result.cdn.ingestionInfo.streamName
+      })
+      .catch((err) => {
+        console.log('Execute error', err)
+      })
+    return { streamId, youtubeDestinationUrl }
+  }
+
+  //!!! CALL AFTER CREATING STREAM.
+  const bindBroadcastToStream = async (youtubeBroadcastId, youtubeStreamId) => {
+    return gapi.client.youtube.liveBroadcasts
+      .bind({
+        part: ['id,snippet,contentDetails,status'],
+        id: youtubeBroadcastId,
+        streamId: youtubeStreamId,
+      })
+      .then((res) => {
+        console.log('Response', res)
+      })
+      .catch((err) => {
+        console.error('Execute error', err)
+      })
+  }
 
   const youtubePromiseChain = async () => {
     try {
       if (modalContent.youtube) {
         console.log('youtube promise chain')
 
-        const data = {
-          youtubeBroadcastTitle: youtubeTitle,
-          youtubeBroadcastDescription: youtubeDescription,
-          youtubePrivacyPolicy: youtubePrivacyPolicy,
-          youtubeAccessToken: youtubeAccessToken,
-        }
-        let youtubeData = await API.post('/youtube/broadcast', data)
-          .then((res) => {
-            console.log(res)
-            return res.data
-          })
-          .catch((err) => {
-            console.log(err)
-          })
+        const broadcastId = await createBroadcast()
+        const stream = await createStream()
+        bindBroadcastToStream(broadcastId, stream.streamId)
 
         return {
-          youtubeDestinationUrl: youtubeData.youtubeDestinationUrl,
-          youtubeBroadcastId: youtubeData.youtubeBroadcastId,
-          youtubeStreamId: youtubeData.youtubeStreamId,
+          youtubeBroadcastId: broadcastId,
+          youtubeStreamId: stream.streamId,
+          youtubeDestinationUrl: stream.youtubeDestinationUrl,
         }
       } else
         return {
-          youtubeDestinationUrl: '',
           youtubeBroadcastId: '',
           youtubeStreamId: '',
+          youtubeDestinationUrl: '',
         }
     } catch (error) {
       console.log(error)
