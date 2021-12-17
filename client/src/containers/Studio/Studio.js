@@ -385,7 +385,7 @@ function Studio() {
           )}
           {facebookUrl && (
             <a
-              href={`https://www.facebook.com/tosh.vel/videos/${facebookLiveVideoId}`}
+              href={`https://www.facebook.com${facebookPermalinkUrl}`}
               rel='noreferrer'
               target='_blank'
             >
