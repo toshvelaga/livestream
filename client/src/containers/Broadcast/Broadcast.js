@@ -642,6 +642,7 @@ function Broadcast() {
 
         {modalContentDisplay()}
         <Button
+          disabled={loading}
           loading={loading}
           style={{ width: '100%' }}
           title='Create Broadcast'
