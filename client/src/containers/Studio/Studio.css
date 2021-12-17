@@ -6,18 +6,17 @@
 .studio-container {
   width: 80%;
   margin: 1rem auto;
-  padding-left: 200px;
   font-family: var(--main-font);
 }
 
 .studio-bottom-button-container {
   margin-top: 1rem;
-  width: 70%;
   text-align: center;
 }
 
 .video-container {
-  width: 70%;
+  width: 100%;
+  margin: 0 auto;
 }
 
 #play-button {
