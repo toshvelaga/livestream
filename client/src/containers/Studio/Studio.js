@@ -367,7 +367,7 @@ function Studio() {
             rel='noreferrer'
             target='_blank'
           >
-            <DestinationButton fx={() => alert('clicked')}>
+            <DestinationButton>
               <FaIcons.FaFacebook color={'#1676f2'} size={20} />
             </DestinationButton>
           </a>
