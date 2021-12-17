@@ -450,7 +450,7 @@ function Studio() {
         <div className='studio-bottom-button-container'>
           <StudioButton
             // title={userFacing ? 'Share Screen' : 'Stop Sharing'}
-            fx={toggleScreenSharing}
+            onClick={toggleScreenSharing}
           >
             <FaIcons.FaLaptop size={20} />
           </StudioButton>
