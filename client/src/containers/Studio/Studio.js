@@ -344,33 +344,39 @@ function Studio() {
     <>
       <Navbar>
         <div style={{ marginTop: '8px' }}>
-          <a
-            href={`https://studio.youtube.com/video/${youtubeBroadcastId}/livestreaming`}
-            rel='noreferrer'
-            target='_blank'
-          >
-            <DestinationButton>
-              <FaIcons.FaYoutube color={'#ff0000'} size={20} />
-            </DestinationButton>
-          </a>
-          <a
-            href={`https://www.twitch.tv/${twitchUsername}`}
-            rel='noreferrer'
-            target='_blank'
-          >
-            <DestinationButton>
-              <FaIcons.FaTwitch color={'#9047fe'} size={20} />
-            </DestinationButton>
-          </a>
-          <a
-            href={`https://www.facebook.com/tosh.vel/videos/${facebookLiveVideoId}`}
-            rel='noreferrer'
-            target='_blank'
-          >
-            <DestinationButton>
-              <FaIcons.FaFacebook color={'#1676f2'} size={20} />
-            </DestinationButton>
-          </a>
+          {youtubeUrl && (
+            <a
+              href={`https://studio.youtube.com/video/${youtubeBroadcastId}/livestreaming`}
+              rel='noreferrer'
+              target='_blank'
+            >
+              <DestinationButton>
+                <FaIcons.FaYoutube color={'#ff0000'} size={20} />
+              </DestinationButton>
+            </a>
+          )}
+          {twitchStreamKey && (
+            <a
+              href={`https://www.twitch.tv/${twitchUsername}`}
+              rel='noreferrer'
+              target='_blank'
+            >
+              <DestinationButton>
+                <FaIcons.FaTwitch color={'#9047fe'} size={20} />
+              </DestinationButton>
+            </a>
+          )}
+          {facebookUrl && (
+            <a
+              href={`https://www.facebook.com/tosh.vel/videos/${facebookLiveVideoId}`}
+              rel='noreferrer'
+              target='_blank'
+            >
+              <DestinationButton>
+                <FaIcons.FaFacebook color={'#1676f2'} size={20} />
+              </DestinationButton>
+            </a>
+          )}
           <BroadcastButton
             disabled={streamFinished ? true : false}
             id='play-button'
