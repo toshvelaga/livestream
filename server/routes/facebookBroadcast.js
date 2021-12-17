@@ -3,6 +3,29 @@ const express = require('express'),
   { default: axios } = require('axios')
 require('dotenv').config()
 
+// GET PERMALINK_URL
+
+router.post('/api/facebook/broadcast/permalink', async (req, res) => {
+  let facebookAccessToken = req.body.facebookAccessToken
+  let longFacebookAccessToken = req.body.longFacebookAccessToken
+  let facebookLiveVideoId = req.body.facebookLiveVideoId
+
+  let data = await axios
+    .post(
+      `https://graph.facebook.com/${facebookLiveVideoId}?fields=permalink_url&access_token=${longFacebookAccessToken}`
+    )
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+
+  return res.send(data.permalink_url)
+})
+
+// START THE BROADCAST
+
 router.post('/api/facebook/broadcast', async (req, res) => {
   let facebookUserId = req.body.facebookUserId
   let facebookTitle = req.body.facebookTitle

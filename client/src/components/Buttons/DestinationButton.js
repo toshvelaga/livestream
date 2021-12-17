@@ -9,7 +9,7 @@ function DestinationButton(props) {
         style={props.style}
         id={props.id}
         className='destination-button'
-        onClick={props.fx}
+        onClick={props.onClick}
       >
         {props.children}
         {props.title}

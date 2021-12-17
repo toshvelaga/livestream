@@ -11,7 +11,7 @@ import getCookie from '../../utils/getCookie'
 import accurateTimer from '../../utils/accurateTimer'
 import API from '../../api/api'
 import './Studio.css'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { SCOPE, DISCOVERY } from '../../constants/constants'
 
 /* global gapi */
@@ -69,6 +69,7 @@ function Studio() {
     facebookUrl
   )}`
 
+  const history = useHistory()
   const [elapsedSeconds, setelapsedSeconds] = useState(0)
   let timer = useRef(null)
   let on = false
@@ -338,6 +339,7 @@ function Studio() {
 
   const exitStudio = () => {
     console.log('exit studio')
+    history.push('/broadcast')
   }
 
   return (

@@ -121,12 +121,6 @@ function Destinations() {
       twitchUserID
     )
 
-    console.log('twitchAccessToken: ' + twitchAccessToken)
-    console.log('twitchRefreshToken: ' + twitchRefreshToken)
-    console.log('twitchClientId: ' + twitchClientId)
-    console.log('twitchUserID: ' + twitchUserID)
-    console.log('twitchStreamKey: ' + twitchStreamKey)
-
     saveTwitchDataToDB(
       userId,
       twitchAccessToken,
