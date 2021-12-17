@@ -56,6 +56,8 @@ function Broadcast() {
   const [youtubeTitleError, setyoutubeTitleError] = useState('')
   const [facebookTitleError, setfacebookTitleError] = useState('')
   const [facebookDescriptionError, setfacebookDescriptionError] = useState('')
+  const [noSelectedDestinationError, setnoSelectedDestinationError] =
+    useState(false)
 
   const [twitchUserId, settwitchUserId] = useState('')
   const [twitchAccessToken, settwitchAccessToken] = useState('')
@@ -406,27 +408,31 @@ function Broadcast() {
   }
 
   const submit = () => {
-    try {
-      setloading(true)
+    if (
+      !modalContent.youtube &&
+      !modalContent.twitch &&
+      !modalContent.facebook
+    ) {
+      setnoSelectedDestinationError(true)
+      setTimeout(() => {
+        setnoSelectedDestinationError(false)
+      }, 2000)
+      return
+    }
 
-      if (modalContent.youtube && !youtubeTitle) {
-        setyoutubeTitleError('Please enter a Youtube title')
-        return
-      }
-      if (modalContent.facebook && !facebookTitle) {
-        setfacebookTitleError('Please enter a Facebook title')
-        return
-      }
-      if (modalContent.facebook && !facebookDescription) {
-        setfacebookDescriptionError('Please enter a Facebook description')
-        return
-      } else {
-        return allPromises()
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setloading(false)
+    if (modalContent.youtube && !youtubeTitle) {
+      setyoutubeTitleError('Please enter a Youtube title')
+      return
+    }
+    if (modalContent.facebook && !facebookTitle) {
+      setfacebookTitleError('Please enter a Facebook title')
+      return
+    }
+    if (modalContent.facebook && !facebookDescription) {
+      setfacebookDescriptionError('Please enter a Facebook description')
+      return
+    } else {
+      return allPromises()
     }
   }
 
@@ -627,6 +633,11 @@ function Broadcast() {
             </BroadcastAvatar>
           ) : null}
         </div>
+        {noSelectedDestinationError && (
+          <p style={{ color: 'red' }}>
+            Please select at least one platform to broadcast on.
+          </p>
+        )}
 
         {modalContentDisplay()}
         <Button
