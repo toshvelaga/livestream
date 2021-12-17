@@ -437,6 +437,7 @@ function Broadcast() {
   }
 
   const allPromises = () => {
+    setloading(true)
     Promise.all([
       youtubePromiseChain(),
       twitchPromiseChain(),
