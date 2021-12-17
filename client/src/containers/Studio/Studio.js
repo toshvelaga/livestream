@@ -42,6 +42,7 @@ function Studio() {
   const [facebookLiveVideoId, setfacebookLiveVideoId] = useState('')
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
+  const [facebookPermalinkUrl, setfacebookPermalinkUrl] = useState('')
   const [twitchStreamKey, settwitchStreamKey] = useState('')
   const [twitchUsername, settwitchUsername] = useState('')
 
@@ -115,6 +116,20 @@ function Studio() {
       settwitchUsername(twitch_user_name)
     })
   }, [])
+
+  // get facebook permalink url
+
+  useEffect(() => {
+    if (facebookLiveVideoId) {
+      API.post('/facebook/broadcast/permalink', {
+        facebookLiveVideoId,
+        longFacebookAccessToken,
+      }).then((res) => {
+        console.log(res.data)
+        setfacebookPermalinkUrl(res.data)
+      })
+    }
+  }, [facebookLiveVideoId, longFacebookAccessToken])
 
   useEffect(() => {
     ws.current =

@@ -6,9 +6,8 @@ require('dotenv').config()
 // GET PERMALINK_URL
 
 router.post('/api/facebook/broadcast/permalink', async (req, res) => {
-  let facebookAccessToken = req.body.facebookAccessToken
-  let longFacebookAccessToken = req.body.longFacebookAccessToken
   let facebookLiveVideoId = req.body.facebookLiveVideoId
+  let longFacebookAccessToken = req.body.longFacebookAccessToken
 
   let data = await axios
     .post(
