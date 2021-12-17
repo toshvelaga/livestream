@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import * as FaIcons from 'react-icons/fa'
+import * as MdIcons from 'react-icons/md'
 import Navbar from '../../components/Navbar/Navbar'
 import BroadcastButton from '../../components/Buttons/BroadcastButton'
 import DestinationButton from '../../components/Buttons/DestinationButton'
+import StudioButton from '../../components/Buttons/StudioButton'
 import Timer from '../../components/Timer/Timer'
 import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
@@ -334,6 +336,10 @@ function Studio() {
     } else return null
   }
 
+  const exitStudio = () => {
+    console.log('exit studio')
+  }
+
   return (
     <>
       <Navbar>
@@ -419,28 +425,31 @@ function Studio() {
           {/* {videoUrl ? <video controls src={videoUrl} /> : null} */}
         </div>
         <div className='studio-bottom-button-container'>
-          <BroadcastButton
+          <StudioButton
             // title={userFacing ? 'Share Screen' : 'Stop Sharing'}
             fx={toggleScreenSharing}
           >
             <FaIcons.FaLaptop size={20} />
-          </BroadcastButton>
-          <BroadcastButton fx={toggleCamera}>
+          </StudioButton>
+          <StudioButton onClick={toggleCamera}>
             {cameraOn ? (
               <FaIcons.FaVideo size={20} />
             ) : (
               <FaIcons.FaVideoSlash size={20} />
             )}
-          </BroadcastButton>
+          </StudioButton>
 
-          <BroadcastButton fx={toggleMicrophone}>
+          <StudioButton onClick={toggleMicrophone}>
             {!muted ? (
               <FaIcons.FaMicrophone size={20} />
             ) : (
               <FaIcons.FaMicrophoneSlash size={20} />
-            )}{' '}
-            {!muted ? '' : 'Muted'}
-          </BroadcastButton>
+            )}
+          </StudioButton>
+
+          <StudioButton onClick={exitStudio}>
+            <MdIcons.MdExitToApp size={20} />
+          </StudioButton>
         </div>
       </div>
     </>
