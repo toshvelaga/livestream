@@ -266,8 +266,8 @@ function Studio() {
   const recorderInit = () => {
     liveStream = videoRef.current.captureStream(30) // 30 FPS
     mediaRecorder.current = new MediaRecorder(liveStream, {
-      // mimeType: 'video/webm;codecs=h264',
-      mimeType: 'video/webm;codecs=vp8,opus',
+      mimeType: 'video/webm;codecs=h264',
+      // mimeType: 'video/webm;codecs=vp8,opus',
       videoBitsPerSecond: 3 * 1024 * 1024,
     })
     mediaRecorder.current.ondataavailable = (e) => {
