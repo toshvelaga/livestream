@@ -1,4 +1,4 @@
-const ffmpeg2 = (facebook, youtube) => {
+const ffmpeg2 = (youtube, twitch, facebook) => {
   return [
     '-i',
     '-',
@@ -39,7 +39,7 @@ const ffmpeg2 = (facebook, youtube) => {
     '+global_header',
     '-f',
     'tee',
-    `[f=flv:onfail=ignore]${facebook}|[f=flv:onfail=ignore]${youtube}`,
+    `[f=flv:onfail=ignore]${youtube}|[f=flv:onfail=ignore]${twitch}|[f=flv:onfail=ignore]${facebook}`,
   ]
 }
 

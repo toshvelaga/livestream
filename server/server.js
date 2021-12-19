@@ -69,12 +69,15 @@ wss.on('connection', (ws, req) => {
   const facebook = myURL.searchParams.get('facebookUrl')
 
   const ffmpegInput = inputSettings.concat(
-    twitchSettings(twitch),
     youtubeSettings(youtube),
+    twitchSettings(twitch),
     facebookSettings(facebook)
   )
 
-  const ffmpeg = child_process.spawn('ffmpeg', ffmpeg2(facebook, youtube))
+  const ffmpeg = child_process.spawn(
+    'ffmpeg',
+    ffmpeg2(youtube, facebook, twitch)
+  )
   // const ffmpeg = child_process.spawn('ffmpeg', ffmpegInput)
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
