@@ -74,8 +74,8 @@ wss.on('connection', (ws, req) => {
     facebookSettings(facebook)
   )
 
-  // const ffmpeg = child_process.spawn('ffmpeg', ffmpeg2(facebook, youtube))
-  const ffmpeg = child_process.spawn('ffmpeg', ffmpegInput)
+  const ffmpeg = child_process.spawn('ffmpeg', ffmpeg2(facebook, youtube))
+  // const ffmpeg = child_process.spawn('ffmpeg', ffmpegInput)
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
   ffmpeg.on('close', (code, signal) => {
