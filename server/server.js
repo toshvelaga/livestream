@@ -76,7 +76,7 @@ wss.on('connection', (ws, req) => {
 
   const ffmpeg = child_process.spawn(
     'ffmpeg',
-    ffmpeg2(youtube, facebook, twitch)
+    ffmpeg2(youtube, twitch, facebook)
   )
   // const ffmpeg = child_process.spawn('ffmpeg', ffmpegInput)
 
