@@ -119,17 +119,17 @@ function Studio() {
 
   // get facebook permalink url
 
-  // useEffect(() => {
-  //   if (facebookLiveVideoId) {
-  //     API.post('/facebook/broadcast/permalink', {
-  //       facebookLiveVideoId,
-  //       longFacebookAccessToken,
-  //     }).then((res) => {
-  //       console.log(res.data)
-  //       setfacebookPermalinkUrl(res.data)
-  //     })
-  //   }
-  // }, [facebookLiveVideoId, longFacebookAccessToken])
+  useEffect(() => {
+    if (facebookLiveVideoId) {
+      API.post('/facebook/broadcast/permalink', {
+        facebookLiveVideoId,
+        longFacebookAccessToken,
+      }).then((res) => {
+        console.log(res.data)
+        setfacebookPermalinkUrl(res.data)
+      })
+    }
+  }, [facebookLiveVideoId, longFacebookAccessToken])
 
   useEffect(() => {
     ws.current =
