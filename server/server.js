@@ -60,12 +60,12 @@ const wss = new WebSocket.Server({ port: WS_PORT }, () => {
 wss.on('connection', (ws, req) => {
   const myURL = new URL(`http://localhost:${WS_PORT}` + req.url)
 
+  const youtube = myURL.searchParams.get('youtubeUrl')
   const twitchStreamKey = myURL.searchParams.get('twitchStreamKey')
   const twitch =
     twitchStreamKey !== 'null'
       ? 'rtmp://dfw.contribute.live-video.net/app/' + twitchStreamKey
       : null
-  const youtube = myURL.searchParams.get('youtubeUrl')
   const facebook = myURL.searchParams.get('facebookUrl')
 
   const ffmpegInput = inputSettings.concat(
@@ -74,11 +74,11 @@ wss.on('connection', (ws, req) => {
     facebookSettings(facebook)
   )
 
-  const ffmpeg = child_process.spawn(
-    'ffmpeg',
-    ffmpeg2(youtube, twitch, facebook)
-  )
-  // const ffmpeg = child_process.spawn('ffmpeg', ffmpegInput)
+  // const ffmpeg = child_process.spawn(
+  //   'ffmpeg',
+  //   ffmpeg2(youtube, twitch, facebook)
+  // )
+  const ffmpeg = child_process.spawn('ffmpeg', ffmpegInput)
 
   // If FFmpeg stops for any reason, close the WebSocket connection.
   ffmpeg.on('close', (code, signal) => {

@@ -33,8 +33,6 @@ const ffmpeg2 = (youtube, twitch, facebook) => {
     '-async',
     '1',
 
-    '-f',
-    'flv',
     '-flags',
     '+global_header',
     '-f',
