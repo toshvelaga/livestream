@@ -2,6 +2,7 @@ const ffmpeg2 = (youtube, twitch, facebook) => {
   return [
     '-i',
     '-',
+    // select first stream intended for output
     '-map',
     '0',
     // video codec config: low latency, adaptive bitrate
