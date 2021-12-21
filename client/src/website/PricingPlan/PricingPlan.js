@@ -20,12 +20,11 @@ function PricingPlan() {
             {/* <em>Great for beginners and hobbyists.</em> */}
           </div>
           <ul class='features'>
-            <li>Unlimited Podcasts</li>
-            <li>Unlimited Episodes</li>
-            <li>Basic Analytics</li>
-            <li>Embeddable Player</li>
-            <li>Email Support</li>
-            <li>Customizable Website</li>
+            <li>Unlimited Broadcasts</li>
+            <li>Stream to up to 3 destinations simultaneously</li>
+            <li>Automatically configures highest video resolution</li>
+            <li>Low glass to glass latency</li>
+
             <li style={{ color: 'transparent' }}>|</li>
           </ul>
           {/* <a class="selectPlan">Select Plan</a> */}
@@ -38,26 +37,26 @@ function PricingPlan() {
         </div>
         <div class='infoContainer'>
           <div class='prices'>
-            <p>$19 </p>
+            <p>$10 </p>
             <span style={{ marginLeft: '5px' }}>/mo</span>
           </div>
           <div class='p desc'>
             {/* <em>Recommended for podcasters looking to start a movement.</em> */}
           </div>
           <ul class='features'>
-            <li>Unlimited Podcasts</li>
-            <li>Unlimited Episodes</li>
-            <li>Analytics</li>
-            <li>Embeddable Player</li>
-            <li>Email Support</li>
-            <li>Customizable Website</li>
+            <li>Unlimited Broadcasts</li>
+            <li>Stream to more than 3 destinations simultaneously</li>
+            <li>Automatically configures highest video resolution</li>
+            <li>Invite up to 4 on screen participants</li>
+            <li>Record broadcasts in the cloud to edit later</li>
             <li style={{ color: 'transparent' }}>|</li>
           </ul>
           {/* <a class="selectPlan">Select Plan</a> */}
           <PriceButton title='Sign Up' />
         </div>
       </div>
-      <div class='plan'>
+
+      {/* <div class='plan'>
         <div class='titleContainer'>
           <div class='title'>Premium</div>
         </div>
@@ -68,8 +67,7 @@ function PricingPlan() {
           </div>
           <div class='p desc'>
             <em>
-              {/* Recommended for podcasters who are serious about building a big
-							audience. */}
+              Recommended for podcasters looking to start a movement.
             </em>
           </div>
           <ul class='features'>
@@ -81,10 +79,9 @@ function PricingPlan() {
             <li>Customizable Website</li>
             <li>Monetization Features</li>
           </ul>
-          {/* <a class="selectPlan">Select Plan</a> */}
           <PriceButton title='Sign Up' />
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

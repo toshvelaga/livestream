@@ -53,9 +53,6 @@ function Website(props) {
           />
         </div>
 
-        <h1 style={{ textAlign: 'center', marginTop: '2rem', color: '#fff' }}>
-          Grow Your Podcast
-        </h1>
         <div class='container-two'>
           <div class='row'>
             <div class='column sm-3 odd'>
@@ -88,13 +85,35 @@ function Website(props) {
                 <FaIcons.FaLinkedin color='#0966c2' size={40} />
               </div>
               <p className='website-text-description'>
-                Stream to Linkedin Coming soon
+                Stream to Linkedin coming soon
               </p>
             </div>
           </div>
         </div>
 
-        {/* <h1 style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <div class='container-two'>
+          <div class='row'>
+            <div class='column sm-3 odd'>
+              <div className='icon-website-container'>
+                <FaIcons.FaTwitter color='#1b9bee' size={40} />
+              </div>
+              <p className='website-text-description'>
+                Stream to Twitter Coming soon
+              </p>
+            </div>
+
+            <div class='column sm-3 even'>
+              <div className='icon-website-container'>
+                <FaIcons.FaSitemap size={40} />
+              </div>
+              <p className='website-text-description'>
+                Stream to any custom RTMP destination
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h1 style={{ textAlign: 'center', marginTop: '2rem' }}>
           Pricing Plans
         </h1>
 
@@ -103,7 +122,7 @@ function Website(props) {
           style={{ paddingTop: '2rem', paddingBottom: '1rem' }}
         >
           <PricingPlan />
-        </div> */}
+        </div>
 
         <div
           style={{
