@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from 'react'
+import React, { useEffect, useState, Suspense, lazy } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import Login from './containers/Login/Login'
@@ -14,7 +14,7 @@ import Referral from './containers/Referral/Referral'
 import Studio from './containers/Studio/Studio'
 import Spinner from './website/Spinner/Spinner'
 // import Website from './website/Website/Website'
-const Website = React.lazy(() => import('./website/Website/Website'))
+const Website = lazy(() => import('./website/Website/Website'))
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState('')
