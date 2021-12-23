@@ -11,7 +11,7 @@
   width: 8rem;
   height: 8rem;
   border-radius: 50%;
-  background: conic-gradient(rgba(29, 185, 84, 25%), #1db954);
+  background: conic-gradient(rgba(3, 169, 244, 25%), #03a9f4);
   position: relative;
   animation: spin 1.4s linear infinite;
   transform: translateZ(0);
