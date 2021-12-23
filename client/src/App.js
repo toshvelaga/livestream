@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Suspense } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ReactGA from 'react-ga'
 import Login from './containers/Login/Login'
@@ -12,7 +12,9 @@ import AuthRoute from './AuthRoute'
 import Destinations from './containers/Destinations/Destinations'
 import Referral from './containers/Referral/Referral'
 import Studio from './containers/Studio/Studio'
-import Website from './website/Website/Website'
+import Spinner from './website/Spinner/Spinner'
+// import Website from './website/Website/Website'
+const Website = React.lazy(() => import('./website/Website/Website'))
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState('')
@@ -41,7 +43,9 @@ function App() {
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register/code' component={Code} />
           <AuthRoute exact path='/register' component={Register} />
-          <AuthRoute exact path='/' component={Website} />
+          <Suspense fallback={<Spinner />}>
+            <AuthRoute exact path='/' component={Website} />
+          </Suspense>
           <Route path='*' component={PageNotFound} />
         </Switch>
       </Router>

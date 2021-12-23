@@ -1,0 +1,42 @@
+.spinnerContainer {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*   background: #191414; */
+}
+
+.spinner {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background: conic-gradient(rgba(29, 185, 84, 25%), #1db954);
+  position: relative;
+  animation: spin 1.4s linear infinite;
+  transform: translateZ(0);
+}
+
+.spinner::after {
+  background: #fff;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
