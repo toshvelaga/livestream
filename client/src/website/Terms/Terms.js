@@ -1,9 +1,17 @@
 import React from 'react'
 import './Terms.css'
+import ohmystream from '../../assets/ohmystream.png'
 
 function Terms() {
   return (
     <div className='terms-container'>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <img
+          className='ohmystream-logo'
+          src={ohmystream}
+          alt='ohmystream logo'
+        />
+      </div>
       <p>
         Terms of Service Interpretation and Definitions Interpretation The words
         of which the initial letter is capitalized have meanings defined under
