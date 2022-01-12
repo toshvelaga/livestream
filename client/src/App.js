@@ -46,8 +46,8 @@ function App() {
           <AuthRoute exact path='/register' component={Register} />
 
           {/* LANDING PAGE ROUTES */}
-          <AuthRoute exact path='/terms' component={Terms} />
-          <AuthRoute exact path='/privacy-policy' component={Privacy} />
+          <Route exact path='/terms' component={Terms} />
+          <Route exact path='/privacy-policy' component={Privacy} />
           <Suspense fallback={<Spinner />}>
             <AuthRoute exact path='/' component={Website} />
           </Suspense>
