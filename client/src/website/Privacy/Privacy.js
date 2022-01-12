@@ -1,9 +1,17 @@
 import React from 'react'
 import './Privacy.css'
+import ohmystream from '../../assets/ohmystream.png'
 
 function Privacy() {
   return (
     <div className='privacy-container'>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <img
+          className='ohmystream-logo'
+          src={ohmystream}
+          alt='ohmystream logo'
+        />
+      </div>
       <p>
         At Ohymstream, accessible from https://www.ohmystream.co, one of our
         main priorities is the privacy of our visitors. This Privacy Policy
