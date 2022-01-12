@@ -13,8 +13,9 @@ import Destinations from './containers/Destinations/Destinations'
 import Referral from './containers/Referral/Referral'
 import Studio from './containers/Studio/Studio'
 import Spinner from './website/Spinner/Spinner'
+import Terms from './website/Terms/Terms'
+import Privacy from './website/Privacy/Privacy'
 const Website = lazy(() => import('./website/Website/Website'))
-const Terms = lazy(() => import('./website/Terms/Terms'))
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState('')
@@ -45,9 +46,8 @@ function App() {
           <AuthRoute exact path='/register' component={Register} />
 
           {/* LANDING PAGE ROUTES */}
-          <Suspense fallback={<Spinner />}>
-            <AuthRoute exact path='/terms' component={Terms} />
-          </Suspense>
+          <AuthRoute exact path='/terms' component={Terms} />
+          <AuthRoute exact path='/privacy' component={Privacy} />
           <Suspense fallback={<Spinner />}>
             <AuthRoute exact path='/' component={Website} />
           </Suspense>

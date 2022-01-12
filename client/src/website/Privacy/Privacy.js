@@ -1,10 +1,11 @@
 import React from 'react'
+import './Privacy.css'
 
 function Privacy() {
   return (
-    <div>
-      <p style={{ color: 'grey' }}>
-        `At Ohymstream, accessible from https://www.ohmystream.co, one of our
+    <div className='privacy-container'>
+      <p>
+        At Ohymstream, accessible from https://www.ohmystream.co, one of our
         main priorities is the privacy of our visitors. This Privacy Policy
         document contains types of information that is collected and recorded by
         Cyberleads and how we use it. If you have additional questions or
@@ -92,7 +93,7 @@ function Privacy() {
         Information from children under the age of 13. If you think that your
         child provided this kind of information on our website, we strongly
         encourage you to contact us immediately and we will do our best efforts
-        to promptly remove such information from our records.`
+        to promptly remove such information from our records.
       </p>
     </div>
   )
