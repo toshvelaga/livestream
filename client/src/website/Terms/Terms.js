@@ -1,13 +1,14 @@
 import React from 'react'
+import './Terms.css'
 
 function Terms() {
   return (
-    <div>
-      <p style={{ color: 'grey' }}>
-        `Terms of Service Interpretation and Definitions Interpretation The
-        words of which the initial letter is capitalized have meanings defined
-        under the following conditions. The following definitions shall have the
-        same meaning regardless of whether they appear in singular or in plural.
+    <div className='terms-container'>
+      <p>
+        Terms of Service Interpretation and Definitions Interpretation The words
+        of which the initial letter is capitalized have meanings defined under
+        the following conditions. The following definitions shall have the same
+        meaning regardless of whether they appear in singular or in plural.
         Definitions For the purposes of these Terms and Conditions: Affiliate
         means an entity that controls, is controlled by or is under common
         control with a party, where "control" means ownership of 50% or more of
@@ -143,7 +144,7 @@ function Terms() {
         bound by the revised terms. If You do not agree to the new terms, in
         whole or in part, please stop using the website and the Service. Contact
         Us If you have any questions about these Terms and Conditions, You can
-        contact us through the chatbox on the bottom right corner`
+        contact us through the chatbox on the bottom right corner
       </p>
     </div>
   )
