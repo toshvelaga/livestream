@@ -12,10 +12,10 @@ import AuthRoute from './AuthRoute'
 import Destinations from './containers/Destinations/Destinations'
 import Referral from './containers/Referral/Referral'
 import Studio from './containers/Studio/Studio'
+import Billing from './containers/Billing/Billing'
 import Spinner from './website/Spinner/Spinner'
 import Terms from './website/Terms/Terms'
 import Privacy from './website/Privacy/Privacy'
-import Pricing from './containers/Pricing/Pricing'
 const Website = lazy(() => import('./website/Website/Website'))
 
 function App() {
@@ -40,6 +40,7 @@ function App() {
           <ProtectedRoute path='/referrals' component={Referral} />
           <ProtectedRoute path='/studio/:id' component={Studio} />
           <ProtectedRoute path='/studio' component={Studio} />
+          <ProtectedRoute path='/billing' component={Billing} />
 
           <AuthRoute exact path='/login/code' component={Code} />
           <AuthRoute exact path='/login' component={Login} />
@@ -48,7 +49,6 @@ function App() {
 
           {/* LANDING PAGE ROUTES */}
           <Route exact path='/terms' component={Terms} />
-          <Route exact path='/pricing' component={Pricing} />
           <Route exact path='/privacy-policy' component={Privacy} />
           <Suspense fallback={<Spinner />}>
             <AuthRoute exact path='/' component={Website} />
