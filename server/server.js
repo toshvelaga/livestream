@@ -4,6 +4,10 @@ const WebSocket = require('ws')
 const app = express()
 const cors = require('cors')
 const path = require('path')
+const stripe = require('stripe')(
+  'sk_test_51KHCx1GYm8Ujy0UZE1heg7ga8ZxcWg6ZvzfmT9toFbnEBW1cjs4Wv29jZ9rnQ56mXSn7pgfqgaZpBToK0g8gFDgA00c7N57qef'
+)
+
 require('dotenv').config()
 
 const {

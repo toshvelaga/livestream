@@ -15,6 +15,7 @@ import Studio from './containers/Studio/Studio'
 import Spinner from './website/Spinner/Spinner'
 import Terms from './website/Terms/Terms'
 import Privacy from './website/Privacy/Privacy'
+import Pricing from './containers/Pricing/Pricing'
 const Website = lazy(() => import('./website/Website/Website'))
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
 
           {/* LANDING PAGE ROUTES */}
           <Route exact path='/terms' component={Terms} />
+          <Route exact path='/pricing' component={Pricing} />
           <Route exact path='/privacy-policy' component={Privacy} />
           <Suspense fallback={<Spinner />}>
             <AuthRoute exact path='/' component={Website} />
