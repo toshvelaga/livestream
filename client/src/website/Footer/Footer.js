@@ -12,7 +12,14 @@ function Footer() {
         </Link>
       </span>
       <span className='footer-link'>
-        <Link style={{ textDecoration: 'none' }} to='privacy-policy'>
+        <Link
+          to={{
+            pathname:
+              'https://www.termsfeed.com/live/808297c1-cd41-476c-8eee-166145da1fc5',
+          }}
+          target='_blank'
+          style={{ textDecoration: 'none' }}
+        >
           Privacy Policy
         </Link>
       </span>
