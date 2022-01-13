@@ -2,14 +2,14 @@ import React, { useState, useRef, useEffect } from 'react'
 import * as FaIcons from 'react-icons/fa'
 import navbarStyles from './TopNavbar.module.css'
 import deleteAllCookies from '../../utils/deleteAllCookies'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Link, useHistory, useLocation, history } from 'react-router-dom'
 import styles from '../../styles/styles'
 
 function TopNavbar(props) {
+  const history = useHistory()
+
   const handleClick = () => {
-    alert(
-      'You are currently on the free tier. If you want more features please email toshvelaga@gmail.com'
-    )
+    history.push('/billing')
   }
   const url = window.location.pathname
 
@@ -108,10 +108,13 @@ function DropdownMenu() {
   return (
     <div className={navbarStyles.dropdown} ref={dropdownRef}>
       <div className={navbarStyles.menu}>
-        <DropdownItem onClick={onLogout}>Logout</DropdownItem>
+        <DropdownItem onClick={() => history.push('/billing')}>
+          Billing
+        </DropdownItem>
         <DropdownItem onClick={() => alert('coming soon')}>
           Settings
         </DropdownItem>
+        <DropdownItem onClick={onLogout}>Logout</DropdownItem>
       </div>
     </div>
   )
