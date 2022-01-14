@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 // https://codepen.io/danhearn/pen/LjJXmj
 
-function PriceButton(props) {
+function UpgradePriceButton(props) {
   return (
     <>
       <Link to='/billing/confirm'>
@@ -44,7 +44,7 @@ function PricingPlan() {
             </li>
             <li style={{ color: 'transparent' }}>|</li>
           </ul>
-          <PriceButton title='Upgrade' />
+          <UpgradePriceButton title='Upgrade' />
         </div>
       </div>
     </div>
