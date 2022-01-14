@@ -14,8 +14,7 @@ function Footer() {
       <span className='footer-link'>
         <Link
           to={{
-            pathname:
-              'https://www.termsfeed.com/live/808297c1-cd41-476c-8eee-166145da1fc5',
+            pathname: '/privacy-policy',
           }}
           target='_blank'
           style={{ textDecoration: 'none' }}
