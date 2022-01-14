@@ -4,7 +4,10 @@ const express = require('express'),
   router = express.Router(),
   pool = require('../db'),
   nodemailer = require('nodemailer'),
-  validateEmail = require('../utils/validateEmail')
+  validateEmail = require('../utils/validateEmail'),
+  stripe = require('stripe')(
+    'sk_test_51KHCx1GYm8Ujy0UZE1heg7ga8ZxcWg6ZvzfmT9toFbnEBW1cjs4Wv29jZ9rnQ56mXSn7pgfqgaZpBToK0g8gFDgA00c7N57qef'
+  )
 
 const YOUR_DOMAIN = 'http://localhost:3000'
 
