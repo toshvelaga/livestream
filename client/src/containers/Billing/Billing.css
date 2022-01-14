@@ -1,0 +1,9 @@
+:root {
+  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--main-font);
+}

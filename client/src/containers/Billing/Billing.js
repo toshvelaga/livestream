@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import PricingPlan from './PricingPlan'
 import './Billing.css'
+import Navbar from '../../components/Navbar/Navbar'
 
 const ProductDisplay = () => (
   <section>
+    <Navbar />
     <div className='product'>
-      <h1>Billing Page</h1>
-      <p>You are currently on the free plan.</p>
+      <p style={{ textAlign: 'center' }}>
+        Upgrade now to get access to all features.
+      </p>
+      <PricingPlan />
     </div>
     <form action='/create-checkout-session' method='POST'>
       {/* Add a hidden field with the lookup_key of your Price */}

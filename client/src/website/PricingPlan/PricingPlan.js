@@ -44,11 +44,11 @@ function PricingPlan() {
             {/* <em>Recommended for podcasters looking to start a movement.</em> */}
           </div>
           <ul class='features'>
-            <li>✅ Unlimited Broadcasts</li>
-            <li>✅ Stream to more than 3 destinations simultaneously</li>
-            <li>✅ Automatically configures highest video resolution</li>
-            <li>✅ Invite up to 4 on screen participants</li>
-            <li>✅ Record broadcasts in the cloud to edit later</li>
+            <li>Unlimited Broadcasts</li>
+            <li>Stream to more than 3 destinations simultaneously</li>
+            <li>Automatically configures highest video resolution</li>
+            <li>Invite up to 4 on screen participants</li>
+            <li>Record broadcasts in the cloud to edit later</li>
             <li style={{ color: 'transparent' }}>|</li>
           </ul>
           {/* <a class="selectPlan">Select Plan</a> */}
