@@ -5,10 +5,7 @@ const ProductDisplay = () => (
   <section>
     <div className='product'>
       <h1>Billing Page</h1>
-      <div className='description'>
-        <h3>Starter plan</h3>
-        <h5>$20.00 / month</h5>
-      </div>
+      <p>You are currently on the free plan.</p>
     </div>
     <form action='/create-checkout-session' method='POST'>
       {/* Add a hidden field with the lookup_key of your Price */}
