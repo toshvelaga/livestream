@@ -9,7 +9,8 @@ CREATE TABLE users (
     user_active boolean DEFAULT false,
     youtube_auth boolean DEFAULT false,
     twitch_auth boolean DEFAULT false,
-    facebook_auth boolean DEFAULT false
+    facebook_auth boolean DEFAULT false,
+    payment_tier character varying(255) DEFAULT 'FREE'::character varying
 );
 
 CREATE TABLE broadcasts (
