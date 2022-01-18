@@ -1,6 +1,7 @@
 import React from 'react'
 import './Terms.css'
 import ohmystream from '../../assets/ohmystream.png'
+import ohmystreamlogo from '../../assets/ohmystreamlogo.png'
 
 function Terms() {
   return (
@@ -8,7 +9,7 @@ function Terms() {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <img
           className='ohmystream-logo'
-          src={ohmystream}
+          src={ohmystreamlogo}
           alt='ohmystream logo'
         />
       </div>
