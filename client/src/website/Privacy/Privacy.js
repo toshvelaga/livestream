@@ -9,7 +9,7 @@ function Privacy() {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <img
           className='ohmystream-logo'
-          src={ohmystreamlogo}
+          src={ohmystream}
           alt='ohmystream logo'
         />
       </div>
