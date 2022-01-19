@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 function UpgradePriceButton(props) {
   return (
     <>
-      <Link to='/billing/confirm'>
+      <a href='https://buy.stripe.com/14kcOGfKZ5FI60oaEE'>
         <button
           id='checkout'
           style={props.style}
@@ -16,7 +16,7 @@ function UpgradePriceButton(props) {
         >
           {props.title}
         </button>
-      </Link>
+      </a>
     </>
   )
 }
