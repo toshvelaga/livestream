@@ -28,7 +28,9 @@ CREATE TABLE broadcasts (
     studio_id character varying(255) NOT NULL,
     twitch_title character varying(255),
     user_id uuid DEFAULT uuid_generate_v4() REFERENCES users(user_id),
-    twitch_stream_key character varying(255)
+    twitch_stream_key character varying(255),
+    custom_rtmp_server character varying(255),
+    custom_rtmp_stream_key character varying(255)
 );
 
 CREATE TABLE destinations (
