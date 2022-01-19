@@ -21,7 +21,7 @@ router.post('/api/email/support', async (req, res) => {
     from: 'Ohmystream <toshvelaga@gmail.com>',
     to: SUPPORT_EMAIL,
     subject: `You have a new support message from ${email}`,
-    text: `${text}`,
+    html: `<p>MESSAGE FROM: ${email}</p><p>${text}</p>`,
   }
 
   return transporter.sendMail(mailOptions, (err, response) => {
