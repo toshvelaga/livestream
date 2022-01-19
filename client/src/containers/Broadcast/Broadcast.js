@@ -391,8 +391,8 @@ function Broadcast() {
     facebookDestinationUrl,
     twitchTitle,
     twitchStreamKey,
-    customServer,
-    customStreamKey
+    customRtmpServer,
+    customRtmpStreamKey
   ) => {
     const data = {
       youtubeTitle,
@@ -408,8 +408,8 @@ function Broadcast() {
       facebookDestinationUrl,
       twitchTitle,
       twitchStreamKey,
-      customServer,
-      customStreamKey,
+      customRtmpServer,
+      customRtmpStreamKey,
     }
     API.post('/broadcasts', data).then((res) => {
       if (res.data.studio_id) {
@@ -478,7 +478,9 @@ function Broadcast() {
         facebookLiveVideoId,
         facebookDestinationUrl,
         twitchTitle,
-        twitchStreamKey
+        twitchStreamKey,
+        customRtmpServer,
+        customRtmpStreamKey
       )
     })
   }
