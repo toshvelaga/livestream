@@ -70,6 +70,9 @@ function Broadcast() {
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
 
+  const [customServer, setcustomServer] = useState('')
+  const [customStreamKey, setcustomStreamKey] = useState('')
+
   let history = useHistory()
   let GoogleAuth
 
@@ -550,6 +553,11 @@ function Broadcast() {
           />
         </>
       )
+    } else if (
+      modalContent.customRTMP === true &&
+      modalContentDisplayed === 'customRTMP'
+    ) {
+      return <p>CUSTOM RTMP</p>
     }
   }
 
