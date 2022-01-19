@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import API from '../../api/api'
 import Button from '../../components/Buttons/Button'
 import Navbar from '../../components/Navbar/Navbar'
 import TextArea from '../../components/TextArea/TextArea'
@@ -14,12 +14,19 @@ function Settings() {
     setemail(getCookie('userEmail'))
   }, [])
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = async () => {
     if (!text || text.length < 10) {
       alert(
         'Please add a valid question that is more than 10 characters long 🙏.'
       )
-    } else alert('submit')
+    } else {
+      const response = await API.post('/email/support', {
+        email: email,
+        text: text,
+      })
+      console.log(response)
+      alert('Thank you! Your question has been submitted.')
+    }
   }
   return (
     <>
