@@ -5,9 +5,14 @@ import { Link } from 'react-router-dom'
 // https://codepen.io/danhearn/pen/LjJXmj
 
 function UpgradePriceButton(props) {
+  const STRIPE_URL =
+    process.env.NODE_ENV === 'production'
+      ? 'https://buy.stripe.com/14kcOGfKZ5FI60oaEE'
+      : 'https://buy.stripe.com/test_14k7wu57a89I5IA3cc'
+
   return (
     <>
-      <a href='https://buy.stripe.com/14kcOGfKZ5FI60oaEE'>
+      <a href={STRIPE_URL}>
         <button
           id='checkout'
           style={props.style}
