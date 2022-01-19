@@ -14,7 +14,11 @@ function Settings() {
   }, [])
 
   const onSubmitHandler = () => {
-    alert('submit')
+    if (!text || text.length < 10) {
+      alert(
+        'Please add a valid question that is more than 10 characters long 🙏.'
+      )
+    } else alert('submit')
   }
   return (
     <>
