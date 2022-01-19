@@ -34,7 +34,7 @@ router.post('/api/email/support', async (req, res) => {
 })
 
 router.post('/api/email/payment-button-click', async (req, res) => {
-  const { email, text } = req.body
+  const { email } = req.body
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',

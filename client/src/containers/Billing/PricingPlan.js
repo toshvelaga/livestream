@@ -1,6 +1,7 @@
 import React from 'react'
 import './PricingPlan.css'
-import { Link } from 'react-router-dom'
+import API from '../../api/api'
+import getCookie from '../../utils/getCookie'
 
 // https://codepen.io/danhearn/pen/LjJXmj
 
@@ -27,6 +28,14 @@ function UpgradePriceButton(props) {
 }
 
 function PricingPlan() {
+  const email = getCookie('userEmail')
+
+  const onClickHandler = async () => {
+    await API.post('/email/payment-button-click', {
+      email: email,
+    })
+  }
+
   return (
     <div class='planContainer'>
       <div class='plan'>
@@ -49,7 +58,7 @@ function PricingPlan() {
             </li>
             <li style={{ color: 'transparent' }}>|</li>
           </ul>
-          <UpgradePriceButton title='Upgrade' />
+          <UpgradePriceButton title='Upgrade' onClick={onClickHandler} />
         </div>
       </div>
     </div>
