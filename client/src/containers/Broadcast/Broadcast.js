@@ -70,8 +70,10 @@ function Broadcast() {
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
 
+  // for custom RTMP server
   const [customServer, setcustomServer] = useState('')
   const [customStreamKey, setcustomStreamKey] = useState('')
+  const [customServerError, setcustomServerError] = useState('')
 
   let history = useHistory()
   let GoogleAuth
@@ -418,12 +420,13 @@ function Broadcast() {
     if (
       !modalContent.youtube &&
       !modalContent.twitch &&
-      !modalContent.facebook
+      !modalContent.facebook &&
+      !modalContent.customRTMP
     ) {
       setnoSelectedDestinationError(true)
       setTimeout(() => {
         setnoSelectedDestinationError(false)
-      }, 2000)
+      }, 3000)
       return
     }
 
@@ -437,6 +440,10 @@ function Broadcast() {
     }
     if (modalContent.facebook && !facebookDescription) {
       setfacebookDescriptionError('Please enter a Facebook description')
+      return
+    }
+    if (modalContent.customRTMP && !customServer) {
+      setcustomServerError('Please enter a custom RTMP server')
       return
     } else {
       return allPromises()
@@ -557,7 +564,30 @@ function Broadcast() {
       modalContent.customRTMP === true &&
       modalContentDisplayed === 'customRTMP'
     ) {
-      return <p>CUSTOM RTMP</p>
+      return (
+        <>
+          {/* <p>Custom RTMP destination</p> */}
+          <TextInput
+            label='Server'
+            placeholder=''
+            value={customServer}
+            onChange={(e) => {
+              setcustomServer(e.target.value)
+              if (customServerError) {
+                setcustomServerError('')
+              }
+            }}
+            errorMsg={customServerError ? customServerError : null}
+          />
+          <TextInput
+            label='Stream Key'
+            placeholder=''
+            value={customStreamKey}
+            onChange={(e) => setcustomStreamKey(e.target.value)}
+            errorMsg={null}
+          />
+        </>
+      )
     }
   }
 
