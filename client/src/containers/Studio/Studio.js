@@ -45,6 +45,8 @@ function Studio() {
   const [facebookPermalinkUrl, setfacebookPermalinkUrl] = useState('')
   const [twitchStreamKey, settwitchStreamKey] = useState('')
   const [twitchUsername, settwitchUsername] = useState('')
+  const [customRtmpServer, setcustomRtmpServer] = useState('')
+  const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
 
   const [isActive, setIsActive] = useState(false)
   const [userFacing, setuserFacing] = useState(true)
@@ -68,6 +70,8 @@ function Studio() {
   const developmentWsUrl = 'ws://localhost:3001'
   const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
     facebookUrl
+  )}&customRtmpServer=${encodeURIComponent(
+    customRtmpServer + customRtmpStreamKey
   )}`
 
   const history = useHistory()
@@ -93,6 +97,8 @@ function Studio() {
           youtube_broadcast_id,
           youtube_destination_url,
           twitch_stream_key,
+          custom_rtmp_server,
+          custom_rtmp_stream_key,
         } = res.data
 
         setFacebookUrl(facebook_destination_url)
@@ -100,6 +106,8 @@ function Studio() {
         setYoutubeBroadcastId(youtube_broadcast_id)
         setyoutubeUrl(youtube_destination_url)
         settwitchStreamKey(twitch_stream_key)
+        setcustomRtmpServer(custom_rtmp_server)
+        setcustomRtmpStreamKey(custom_rtmp_stream_key)
       })
       .catch((err) => console.log(err))
 
