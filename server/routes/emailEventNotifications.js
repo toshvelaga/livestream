@@ -28,7 +28,7 @@ router.post('/api/email/support', async (req, res) => {
     if (err) {
       console.error('there was an error: ', err)
     } else {
-      console.log('success')
+      return res.status(201).send('success')
     }
   })
 })

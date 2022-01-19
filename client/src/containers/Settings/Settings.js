@@ -20,11 +20,10 @@ function Settings() {
         'Please add a valid question that is more than 10 characters long 🙏.'
       )
     } else {
-      const response = await API.post('/email/support', {
+      await API.post('/email/support', {
         email: email,
         text: text,
       })
-      console.log(response)
       alert('Thank you! Your question has been submitted.')
     }
   }
