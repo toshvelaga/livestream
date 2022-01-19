@@ -72,11 +72,13 @@ wss.on('connection', (ws, req) => {
       ? 'rtmp://dfw.contribute.live-video.net/app/' + twitchStreamKey
       : null
   const facebook = myURL.searchParams.get('facebookUrl')
+  const customRTMP = myURL.searchParams.get('customRTMP')
 
   const ffmpegInput = inputSettings.concat(
     youtubeSettings(youtube),
     twitchSettings(twitch),
-    facebookSettings(facebook)
+    facebookSettings(facebook),
+    customRTMPSettings(customRTMP)
   )
 
   // const ffmpeg = child_process.spawn(
