@@ -17,6 +17,7 @@ import BroadcastAvatar from '../../components/Avatars/BroadcastAvatar'
 import NoDestinationsMessage from '../../components/Messages/NoDestinationsMessage'
 import * as MdIcons from 'react-icons/md'
 import * as FaIcons from 'react-icons/fa'
+import RTMP from '../../assets/RTMP.png'
 import './Broadcast.css'
 import styles from '../../styles/styles'
 import { useHistory } from 'react-router-dom'
@@ -33,11 +34,13 @@ function Broadcast() {
     facebook: false,
     youtube: false,
     twitch: false,
+    customRTMP: false,
   })
   const [showBroadcastAvatar, setshowBroadcastAvatar] = useState({
     facebook: false,
     youtube: false,
     twitch: false,
+    customRTMP: true,
   })
   const [modalContentDisplayed, setmodalContentDisplayed] = useState('')
   const [loading, setloading] = useState(false)
@@ -93,6 +96,7 @@ function Broadcast() {
           facebook: res.data.facebook_auth,
           youtube: res.data.youtube_auth,
           twitch: res.data.twitch_auth,
+          customRTMP: true,
         })
       })
       .catch((err) => {
@@ -631,6 +635,30 @@ function Broadcast() {
               }}
             >
               <FaIcons.FaFacebookF color={'#1676f2'} size={35} />
+            </BroadcastAvatar>
+          ) : null}
+
+          {/* CUSTOM RTMP SERVER AND STREAM KEY */}
+          {showBroadcastAvatar.customRTMP ? (
+            <BroadcastAvatar
+              style={
+                modalContent.customRTMP === true
+                  ? { border: styles.broadcastAvatarBorder }
+                  : null
+              }
+              onClick={() => {
+                setmodalContent((prev) => ({
+                  ...prev,
+                  customRTMP: !prev.customRTMP,
+                }))
+                setmodalContentDisplayed('customRTMP')
+              }}
+            >
+              <img
+                src={RTMP}
+                alt='custom RTMP destination'
+                style={{ height: '50px' }}
+              />
             </BroadcastAvatar>
           ) : null}
         </div>
