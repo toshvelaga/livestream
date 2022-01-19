@@ -111,7 +111,7 @@ function DropdownMenu() {
         <DropdownItem onClick={() => history.push('/billing')}>
           Billing
         </DropdownItem>
-        <DropdownItem onClick={() => alert('coming soon')}>
+        <DropdownItem onClick={() => history.push('/settings')}>
           Settings
         </DropdownItem>
         <DropdownItem onClick={onLogout}>Logout</DropdownItem>
