@@ -48,7 +48,7 @@ router.post('/api/email/payment-button-click', async (req, res) => {
     from: 'Ohmystream <toshvelaga@gmail.com>',
     to: SUPPORT_EMAIL,
     subject: `An ohmystream user ${email} clicked the payment button`,
-    html: `<p>An ohmystream user ${email} clicked the payment button</p>`,
+    html: `<p>An ohmystream user ${email} clicked the payment upgrade button</p>`,
   }
 
   return transporter.sendMail(mailOptions, (err, response) => {
