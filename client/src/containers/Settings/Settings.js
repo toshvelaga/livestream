@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Button from '../../components/Buttons/Button'
 import Navbar from '../../components/Navbar/Navbar'
 import TextArea from '../../components/TextArea/TextArea'
 import getCookie from '../../utils/getCookie'
@@ -11,6 +12,10 @@ function Settings() {
   useEffect(() => {
     setemail(getCookie('userEmail'))
   }, [])
+
+  const onSubmitHandler = () => {
+    alert('submit')
+  }
   return (
     <>
       <Navbar />
@@ -29,6 +34,7 @@ function Settings() {
             value={text}
             onChange={(e) => settext(e.target.value)}
           />
+          <Button title='Submit' fx={onSubmitHandler} />
         </div>
       </div>
     </>
