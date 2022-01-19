@@ -28,6 +28,7 @@ function Register() {
       console.log(response)
       if (response.data.user_id) {
         setCookie('userId', `${response.data.user_id}`, 7)
+        setCookie('userEmail', email, 7)
         history.push('/login/code')
       }
     } catch (err) {
