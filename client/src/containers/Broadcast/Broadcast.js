@@ -71,9 +71,9 @@ function Broadcast() {
   const [longFacebookAccessToken, setlongFacebookAccessToken] = useState('')
 
   // for custom RTMP server
-  const [customServer, setcustomServer] = useState('')
-  const [customStreamKey, setcustomStreamKey] = useState('')
-  const [customServerError, setcustomServerError] = useState('')
+  const [customRtmpServer, setcustomRtmpServer] = useState('')
+  const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
+  const [customRtmpServerError, setcustomRtmpServerError] = useState('')
 
   let history = useHistory()
   let GoogleAuth
@@ -390,7 +390,9 @@ function Broadcast() {
     facebookLiveVideoId,
     facebookDestinationUrl,
     twitchTitle,
-    twitchStreamKey
+    twitchStreamKey,
+    customServer,
+    customStreamKey
   ) => {
     const data = {
       youtubeTitle,
@@ -406,6 +408,8 @@ function Broadcast() {
       facebookDestinationUrl,
       twitchTitle,
       twitchStreamKey,
+      customServer,
+      customStreamKey,
     }
     API.post('/broadcasts', data).then((res) => {
       if (res.data.studio_id) {
@@ -442,8 +446,8 @@ function Broadcast() {
       setfacebookDescriptionError('Please enter a Facebook description')
       return
     }
-    if (modalContent.customRTMP && !customServer) {
-      setcustomServerError('Please enter a custom RTMP server')
+    if (modalContent.customRTMP && !customRtmpServer) {
+      setcustomRtmpServerError('Please enter a custom RTMP server')
       return
     } else {
       return allPromises()
@@ -570,20 +574,20 @@ function Broadcast() {
           <TextInput
             label='Server'
             placeholder=''
-            value={customServer}
+            value={customRtmpServer}
             onChange={(e) => {
-              setcustomServer(e.target.value)
-              if (customServerError) {
-                setcustomServerError('')
+              setcustomRtmpServer(e.target.value)
+              if (customRtmpServerError) {
+                setcustomRtmpServerError('')
               }
             }}
-            errorMsg={customServerError ? customServerError : null}
+            errorMsg={customRtmpServerError ? customRtmpServerError : null}
           />
           <TextInput
             label='Stream Key'
             placeholder=''
-            value={customStreamKey}
-            onChange={(e) => setcustomStreamKey(e.target.value)}
+            value={customRtmpStreamKey}
+            onChange={(e) => setcustomRtmpStreamKey(e.target.value)}
             errorMsg={null}
           />
         </>
