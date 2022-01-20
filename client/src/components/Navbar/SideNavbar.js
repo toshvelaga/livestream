@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import './SideNavbar.css'
 import styles from '../../styles/styles'
+import eventTrack from '../../utils/eventTrack'
 
 function SideNavbar(props) {
   const history = useHistory()
@@ -29,7 +30,10 @@ function SideNavbar(props) {
       </li>
       {/* Destinations */}
       <li
-        onClick={() => history.push('/destinations')}
+        onClick={() => {
+          history.push('/destinations')
+          eventTrack('App', 'Destinations Tab Clicked', 'Button')
+        }}
         style={
           window.location.pathname === '/destinations'
             ? { backgroundColor: styles.sideNavbarHoverColor }
