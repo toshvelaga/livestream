@@ -641,7 +641,12 @@ function Broadcast() {
                 setmodalContentDisplayed('youtube')
               }}
             >
-              <FaIcons.FaYoutube color={'#ff0000'} size={35} />
+              <FaIcons.FaYoutube
+                data-tip='Youtube'
+                color={'#ff0000'}
+                size={35}
+              />
+              <ReactTooltip />
             </BroadcastAvatar>
           ) : null}
 
@@ -660,7 +665,8 @@ function Broadcast() {
                 setmodalContentDisplayed('twitch')
               }}
             >
-              <FaIcons.FaTwitch color={'#9047fe'} size={35} />
+              <FaIcons.FaTwitch data-tip='Twitch' color={'#9047fe'} size={35} />
+              <ReactTooltip />
             </BroadcastAvatar>
           ) : null}
 
@@ -679,7 +685,12 @@ function Broadcast() {
                 setmodalContentDisplayed('facebook')
               }}
             >
-              <FaIcons.FaFacebookF color={'#1676f2'} size={35} />
+              <FaIcons.FaFacebookF
+                data-tip='Facebook'
+                color={'#1676f2'}
+                size={35}
+              />
+              <ReactTooltip />
             </BroadcastAvatar>
           ) : null}
 
