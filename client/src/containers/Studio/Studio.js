@@ -408,6 +408,11 @@ function Studio() {
               </DestinationButton>
             </a>
           )}
+          {customRtmpServer && (
+            <DestinationButton>
+              <FaIcons.FaKey color={'#f2d209'} size={20} />
+            </DestinationButton>
+          )}
           <BroadcastButton
             disabled={streamFinished ? true : false}
             id='play-button'
