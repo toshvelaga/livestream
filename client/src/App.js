@@ -31,6 +31,10 @@ function App() {
   useEffect(() => {
     ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID)
     ReactGA.pageview(window.location.pathname + window.location.search)
+    ReactGA.set({
+      username: getCookie('userEmail'),
+      // Other relevant user information
+    })
   }, [])
 
   return (

@@ -6,6 +6,7 @@ import Accordion from '../Collapsible/Accordion'
 import Footer from '../Footer/Footer'
 import * as FaIcons from 'react-icons/fa'
 import PricingPlan from '../PricingPlan/PricingPlan'
+import eventTrack from '../../utils/eventTrack'
 
 function Website(props) {
   return (
@@ -48,7 +49,14 @@ function Website(props) {
           }}
         >
           <Button
-            fx={() => props.history.push('/register')}
+            fx={() => {
+              props.history.push('/register')
+              eventTrack(
+                'Landing Page',
+                'Sign Up For Free Button Clicked',
+                'Button'
+              )
+            }}
             title='Sign Up For Free'
           />
         </div>
