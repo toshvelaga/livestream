@@ -574,7 +574,7 @@ function Broadcast() {
         <>
           {/* <p>Custom RTMP destination</p> */}
           <TextInput
-            label='Server'
+            label='Stream URL'
             placeholder=''
             value={customRtmpServer}
             onChange={(e) => {

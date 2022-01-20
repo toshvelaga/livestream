@@ -79,8 +79,10 @@ wss.on('connection', (ws, req) => {
     youtubeSettings(youtube),
     twitchSettings(twitch),
     facebookSettings(facebook),
-    customRTMPSettings(customRTMP)
+    customRtmpSettings(customRTMP)
   )
+
+  console.log(ffmpegInput)
 
   // const ffmpeg = child_process.spawn(
   //   'ffmpeg',
