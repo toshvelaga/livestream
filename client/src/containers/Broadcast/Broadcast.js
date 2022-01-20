@@ -22,6 +22,7 @@ import './Broadcast.css'
 import styles from '../../styles/styles'
 import { useHistory } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip'
+import eventTrack from '../../utils/eventTrack'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
@@ -90,6 +91,7 @@ function Broadcast() {
 
   const openModal = () => {
     setisModalOpen(true)
+    eventTrack('App', 'Create New Broadcast', 'Button')
   }
 
   useEffect(() => {
