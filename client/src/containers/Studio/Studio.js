@@ -70,7 +70,9 @@ function Studio() {
   const developmentWsUrl = 'ws://localhost:3001'
   const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
     facebookUrl
-  )}&customRTMP=${encodeURIComponent(customRtmpServer + customRtmpStreamKey)}`
+  )}&customRTMP=${encodeURIComponent(
+    customRtmpServer + '/' + customRtmpStreamKey
+  )}`
 
   const history = useHistory()
   const [elapsedSeconds, setelapsedSeconds] = useState(0)
