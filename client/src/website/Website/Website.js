@@ -152,6 +152,7 @@ function Website(props) {
           }}
         >
           <iframe
+            title='video demo of ohmystream thumbnail'
             width='640'
             height='400'
             src='https://www.loom.com/embed/35a86c6f73d144d59527092118cf525d'
