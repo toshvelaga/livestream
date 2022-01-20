@@ -74,6 +74,7 @@ wss.on('connection', (ws, req) => {
       : null
   const facebook = myURL.searchParams.get('facebookUrl')
   const customRTMP = myURL.searchParams.get('customRTMP')
+  console.log('custom RTMP: ' + customRTMP)
 
   const ffmpegInput = inputSettings.concat(
     youtubeSettings(youtube),

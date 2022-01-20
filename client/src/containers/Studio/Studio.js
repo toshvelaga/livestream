@@ -150,7 +150,13 @@ function Studio() {
     return () => {
       ws.current.close()
     }
-  }, [facebookUrl, youtubeUrl, twitchStreamKey])
+  }, [
+    facebookUrl,
+    youtubeUrl,
+    twitchStreamKey,
+    customRtmpServer,
+    customRtmpStreamKey,
+  ])
 
   useEffect(() => {
     handleClientLoad()
