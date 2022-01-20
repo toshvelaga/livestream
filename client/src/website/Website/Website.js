@@ -20,10 +20,22 @@ function Website(props) {
           ohmystream
         </Link>
 
-        <Link style={{ fontWeight: '600' }} to='/register'>
+        <Link
+          onClick={() =>
+            eventTrack('Landing Page', 'Register Button Clicked', 'Button')
+          }
+          style={{ fontWeight: '600' }}
+          to='/register'
+        >
           Regsiter
         </Link>
-        <Link style={{ fontWeight: '600' }} to='/login'>
+        <Link
+          onClick={() =>
+            eventTrack('Landing Page', 'Login Button Clicked', 'Button')
+          }
+          style={{ fontWeight: '600' }}
+          to='/login'
+        >
           Login
         </Link>
       </div>
