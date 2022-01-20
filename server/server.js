@@ -12,6 +12,7 @@ const {
   twitchSettings,
   youtubeSettings,
   facebookSettings,
+  customRtmpSettings,
 } = require('./ffmpeg')
 
 const { ffmpeg2 } = require('./ffmpeg2')
