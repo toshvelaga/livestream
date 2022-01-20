@@ -21,6 +21,7 @@ import RTMP from '../../assets/RTMP.png'
 import './Broadcast.css'
 import styles from '../../styles/styles'
 import { useHistory } from 'react-router-dom'
+import ReactTooltip from 'react-tooltip'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
@@ -699,10 +700,12 @@ function Broadcast() {
               }}
             >
               <img
+                data-tip='custom RTMP server'
                 src={RTMP}
                 alt='custom RTMP destination'
                 style={{ height: '50px' }}
               />
+              <ReactTooltip />
             </BroadcastAvatar>
           ) : null}
         </div>
