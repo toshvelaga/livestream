@@ -2,7 +2,7 @@
 
 <a href="https://www.loom.com/share/35a86c6f73d144d59527092118cf525d">
     <p>Ohmystream demo - Watch Video</p>
-    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/35a86c6f73d144d59527092118cf525d-1633809954506-with-play.gif">
+    <img alt='Ohmystream demo video thumbnail' style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/35a86c6f73d144d59527092118cf525d-1633809954506-with-play.gif">
 </a>
 
 Check out the app [HERE](https://ohmystream.co/)
