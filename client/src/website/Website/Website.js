@@ -76,21 +76,21 @@ function Website(props) {
 
         <div style={{ marginTop: '2rem' }} class='container-two'>
           <div class='row'>
-            <div class='column sm-3 even'>
+            <div class='column sm-3'>
               <div className='icon-website-container'>
                 <FaIcons.FaYoutube color='#ff0000' size={40} />
               </div>
               <p className='website-text-description'>Stream to Youtube</p>
             </div>
 
-            <div class='column sm-3 odd'>
+            <div class='column sm-3'>
               <div className='icon-website-container'>
                 <FaIcons.FaTwitch color='#9047fe' size={40} />
               </div>
               <p className='website-text-description'>Stream to Twitch</p>
             </div>
 
-            <div class='column sm-3 odd'>
+            <div class='column sm-3'>
               <div className='icon-website-container'>
                 <FaIcons.FaFacebookF color='#1878f1' size={40} />
               </div>
@@ -101,17 +101,16 @@ function Website(props) {
 
         <div class='container-two'>
           <div class='row'>
-            <div class='column sm-3 even'>
+            <div class='column sm-3'>
               <div className='icon-website-container'>
                 <FaIcons.FaKeyboard color={'darkgrey'} size={40} />
-                {/* <img src={RTMP2} alt='RTMP2' style={{ height: '40px' }} /> */}
               </div>
               <p className='website-text-description'>
                 Stream to any custom RTMP destination
               </p>
             </div>
 
-            <div class='column sm-3 odd'>
+            <div class='column sm-3'>
               <div className='icon-website-container'>
                 <FaIcons.FaTwitter color='#1b9bee' size={40} />
               </div>
@@ -120,7 +119,7 @@ function Website(props) {
               </p>
             </div>
 
-            <div class='column sm-3 even'>
+            <div class='column sm-3'>
               <div className='icon-website-container'>
                 <FaIcons.FaLinkedin color='#0966c2' size={40} />
               </div>
