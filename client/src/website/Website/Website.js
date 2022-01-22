@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer'
 import * as FaIcons from 'react-icons/fa'
 import PricingPlan from '../PricingPlan/PricingPlan'
 import eventTrack from '../../utils/eventTrack'
+import RTMP from '../../assets/RTMP.png'
 
 function Website(props) {
   return (
@@ -73,8 +74,15 @@ function Website(props) {
           />
         </div>
 
-        <div class='container-two'>
+        <div style={{ marginTop: '2rem' }} class='container-two'>
           <div class='row'>
+            <div class='column sm-3 even'>
+              <div className='icon-website-container'>
+                <FaIcons.FaYoutube color='#ff0000' size={40} />
+              </div>
+              <p className='website-text-description'>Stream to Youtube</p>
+            </div>
+
             <div class='column sm-3 odd'>
               <div className='icon-website-container'>
                 <FaIcons.FaTwitch color='#9047fe' size={40} />
@@ -82,31 +90,11 @@ function Website(props) {
               <p className='website-text-description'>Stream to Twitch</p>
             </div>
 
-            <div class='column sm-3 even'>
-              <div className='icon-website-container'>
-                <FaIcons.FaYoutube color='#ff0000' size={40} />
-              </div>
-              <p className='website-text-description'>Stream to Youtube</p>
-            </div>
-          </div>
-        </div>
-
-        <div class='container-two'>
-          <div class='row'>
             <div class='column sm-3 odd'>
               <div className='icon-website-container'>
                 <FaIcons.FaFacebookF color='#1878f1' size={40} />
               </div>
               <p className='website-text-description'>Stream to Facebook</p>
-            </div>
-
-            <div class='column sm-3 even'>
-              <div className='icon-website-container'>
-                <FaIcons.FaLinkedin color='#0966c2' size={40} />
-              </div>
-              <p className='website-text-description'>
-                Stream to Linkedin coming soon
-              </p>
             </div>
           </div>
         </div>
@@ -124,7 +112,16 @@ function Website(props) {
 
             <div class='column sm-3 even'>
               <div className='icon-website-container'>
-                <FaIcons.FaSitemap size={40} />
+                <FaIcons.FaLinkedin color='#0966c2' size={40} />
+              </div>
+              <p className='website-text-description'>
+                Stream to Linkedin coming soon
+              </p>
+            </div>
+
+            <div class='column sm-3 even'>
+              <div className='icon-website-container'>
+                <FaIcons.FaKey size={40} />
               </div>
               <p className='website-text-description'>
                 Stream to any custom RTMP destination
