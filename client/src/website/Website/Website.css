@@ -105,10 +105,9 @@ body {
 }
 
 @media all and (max-width: 600px) {
-  .column.sm-3.odd {
-    margin-bottom: 100px;
+  .column.sm-3 p {
+    display: none;
   }
-
   .website-image {
     display: none;
   }
