@@ -98,12 +98,6 @@ body {
   margin: 1rem 2rem 0rem 2rem;
 }
 
-@media all and (max-width: 400px) {
-  #wavvy-website-title {
-    display: none;
-  }
-}
-
 @media all and (max-width: 600px) {
   .column.sm-3 p {
     display: none;

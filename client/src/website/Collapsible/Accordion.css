@@ -64,3 +64,9 @@
 .panel:not(:last-child) {
   margin-bottom: 3px;
 }
+
+@media all and (max-width: 600px) {
+  .accordion {
+    width: 90%;
+  }
+}
