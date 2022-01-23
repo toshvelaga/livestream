@@ -134,10 +134,7 @@ function Website(props) {
           Pricing Plans
         </h1>
 
-        <div
-          className='pricing-container'
-          style={{ paddingTop: '2rem', paddingBottom: '1rem' }}
-        >
+        <div className='pricing-container' style={{ paddingBottom: '1rem' }}>
           <PricingPlan />
         </div>
 

@@ -109,12 +109,8 @@
   color: white;
 }
 
-@media screen and (max-width: 25em) {
+@media screen and (max-width: 600px) {
   .planContainer {
-    margin: 0;
-  }
-  .planContainer .plan {
-    width: 100%;
-    margin: 1em 0;
+    width: 90%;
   }
 }

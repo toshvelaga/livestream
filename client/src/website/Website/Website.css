@@ -113,6 +113,12 @@ body {
   }
 }
 
+@media all and (max-width: 780px) {
+  .column.sm-3 p {
+    display: none;
+  }
+}
+
 @media all and (max-width: 1200px) {
   .website-image {
     width: 100%;
