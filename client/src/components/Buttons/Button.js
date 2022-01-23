@@ -5,6 +5,7 @@ function Button(props) {
   return (
     <>
       <button
+        id={props.id}
         disabled={props.disabled}
         style={props.style}
         className='button'

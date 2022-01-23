@@ -62,6 +62,7 @@ function Website(props) {
           }}
         >
           <Button
+            id='pulse'
             fx={() => {
               props.history.push('/register')
               eventTrack(

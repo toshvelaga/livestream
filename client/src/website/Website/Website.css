@@ -3,6 +3,42 @@
     'Helvetica Neue', Ubuntu, Arial, sans-serif;
 }
 
+#pulse {
+  box-shadow: 0 0 0 rgb(3 169 244 / 40%);
+  animation: pulse 4s infinite;
+}
+
+#pulse:hover {
+  animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(3, 169, 244, 0.4);
+  }
+  70% {
+    -webkit-box-shadow: 0 0 0 15px rgba(3, 169, 244, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(3, 169, 244, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(3, 169, 244, 0.4);
+    box-shadow: 0 0 0 0 rgba(3, 169, 244, 0.4);
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 10px rgba(3, 169, 244, 0);
+    box-shadow: 0 0 0 15px rgba(3, 169, 244, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(3, 169, 244, 0);
+    box-shadow: 0 0 0 0 rgba(3, 169, 244, 0);
+  }
+}
+/*Pulse Button*/
+
 body {
   margin: 0;
   font-family: var(--main-font);
