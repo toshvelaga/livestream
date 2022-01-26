@@ -150,6 +150,12 @@ function Destinations() {
     )
   }
 
+  const facebookLogout = () => {
+    FB.logout(function (response) {
+      console.log(response)
+    })
+  }
+
   const saveFacebookDataToDB = (
     userId,
     facebookAccessToken,
@@ -201,6 +207,7 @@ function Destinations() {
           >
             <FaIcons.FaFacebook color={'#1676f2'} size={50} />
           </Card>
+          <button onClick={facebookLogout}>FB logout</button>
         </div>
       </div>
     </>
