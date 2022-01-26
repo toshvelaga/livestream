@@ -4,7 +4,12 @@ import './Card.css'
 
 function Card(props) {
   return (
-    <div style={props.style} onClick={props.onClick} className='card-styles'>
+    <div
+      id={props.id}
+      style={props.style}
+      onClick={props.onClick}
+      className='card-styles'
+    >
       <div className='inner-card-content'>
         {props.children}
         <p style={props.cardTitleStyle} className='card-title'>
