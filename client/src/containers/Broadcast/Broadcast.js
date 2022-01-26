@@ -622,12 +622,12 @@ function Broadcast() {
           <MdIcons.MdClose color='grey' size={24} />
         </div>
         <p>Broadcast to:</p>
+        {!showBroadcastAvatar.youtube &&
+        !showBroadcastAvatar.twitch &&
+        !showBroadcastAvatar.facebook ? (
+          <NoDestinationsMessage />
+        ) : null}
         <div style={{ display: 'flex', marginBottom: '1rem' }}>
-          {!showBroadcastAvatar.youtube &&
-          !showBroadcastAvatar.twitch &&
-          !showBroadcastAvatar.facebook ? (
-            <NoDestinationsMessage />
-          ) : null}
           {showBroadcastAvatar.youtube ? (
             <BroadcastAvatar
               style={

@@ -210,6 +210,7 @@ function Destinations() {
           </a>
 
           <Card
+            id='facebook-card'
             style={facebookAccessToken ? styles.destinationSelected : null}
             cardTitleStyle={facebookAccessToken ? styles.blackFontColor : null}
             onClick={facebookAuth}
