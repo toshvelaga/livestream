@@ -150,6 +150,16 @@ function Destinations() {
     )
   }
 
+  function fbLogoutUser() {
+    FB.getLoginStatus(function (response) {
+      if (response && response.status === 'connected') {
+        FB.logout(function (response) {
+          document.location.reload()
+        })
+      }
+    })
+  }
+
   const facebookLogout = () => {
     FB.logout(function (response) {
       console.log(response)
@@ -207,7 +217,6 @@ function Destinations() {
           >
             <FaIcons.FaFacebook color={'#1676f2'} size={50} />
           </Card>
-          <button onClick={facebookLogout}>FB logout</button>
         </div>
       </div>
     </>
