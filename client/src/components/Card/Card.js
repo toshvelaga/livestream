@@ -19,7 +19,9 @@ function Card(props) {
           {props.title}
         </p>
         {displayButton && (
-          <button style={{ padding: '2px 10px' }}>Remove</button>
+          <button style={{ padding: '.25rem 1rem', marginTop: '.5rem' }}>
+            Remove
+          </button>
         )}
         {/* <FaIcons.FaCheckCircle size='20' color='green' /> */}
       </div>
