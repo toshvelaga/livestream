@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer')
+const emailCodeTemplate = require('./emailCodeTemplate')
 require('dotenv').config()
 
 const sendAuthCode = (email, code) => {
@@ -14,7 +15,8 @@ const sendAuthCode = (email, code) => {
     from: 'Ohmystream <toshvelaga@gmail.com>',
     to: email,
     subject: 'Ohmystream 6 digit code',
-    text: `Your code is ${code}.`,
+    // text: `Your code is ${code}.`,
+    html: emailCodeTemplate(code),
   }
 
   return transporter.sendMail(mailOptions, (err, response) => {
