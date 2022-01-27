@@ -179,10 +179,11 @@ function Destinations() {
     })
   }
 
-  const removeFacebookDataFromDB = (userId) => {
-    API.post('/authorize/facebook/remove', {
+  const removeFacebookDataFromDB = async (userId) => {
+    await API.post('/authorize/facebook/remove', {
       userId,
     })
+    fbLogoutUser()
   }
 
   const facebookAuthBooleanDB = () => {
@@ -223,7 +224,6 @@ function Destinations() {
             onClick={facebookAuth}
             onRemoveHandler={(event) => {
               removeFacebookDataFromDB(userId)
-              fbLogoutUser()
               event.stopPropagation()
             }}
             title={'Facebook'}

@@ -33,6 +33,8 @@ router.post('/api/authorize/facebook/remove', async (req, res) => {
   // fB docs: https://developers.facebook.com/docs/pages/access-tokens/
   const { userId } = req.body
 
+  console.log('remove facebook access token')
+
   removeDbFacebookValues(userId, null, null)
   return res
     .status(200)
