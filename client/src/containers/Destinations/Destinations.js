@@ -179,6 +179,12 @@ function Destinations() {
     })
   }
 
+  const removeFacebookDataFromDB = (userId) => {
+    API.post('/authorize/facebook/remove', {
+      userId,
+    })
+  }
+
   const facebookAuthBooleanDB = () => {
     let data = { facebookAuthBool: true, userId }
     API.put('/user/destinations', data)
@@ -217,6 +223,7 @@ function Destinations() {
             onClick={facebookAuth}
             onRemoveHandler={(event) => {
               fbLogoutUser()
+              removeFacebookDataFromDB(userId)
               event.stopPropagation()
             }}
             title={'Facebook'}
