@@ -374,7 +374,7 @@ const emailCodeTemplate = (code) => {
                 </tr>
                 <tr>
                   <td class="content-block powered-by">
-                    Ohmystream.
+                    <a href="https://www.ohmystream.co">Ohmystream</a>
                   </td>
                 </tr>
               </table>
