@@ -154,6 +154,7 @@ function Destinations() {
     FB.getLoginStatus(function (response) {
       if (response && response.status === 'connected') {
         FB.logout(function (response) {
+          console.log(response)
           document.location.reload()
         })
       }

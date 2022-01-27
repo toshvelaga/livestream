@@ -28,4 +28,21 @@ router.post('/api/authorize/facebook', async (req, res) => {
     .send({ longFacebookAccessToken: longFacebookAccessToken })
 })
 
+router.post('/api/authorize/facebook/remove', async (req, res) => {
+  // fB docs: https://developers.facebook.com/docs/pages/access-tokens/
+  const { userId, facebookAccessToken, facebookUserId } = req.body
+
+  const longFacebookAccessToken = result.data.access_token
+
+  updateDbFacebookValues(
+    userId,
+    facebookAccessToken,
+    longFacebookAccessToken,
+    facebookUserId
+  )
+  return res
+    .status(200)
+    .send({ msg: 'facebook token and long access token removed' })
+})
+
 module.exports = router
