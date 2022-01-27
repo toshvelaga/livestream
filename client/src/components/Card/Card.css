@@ -28,6 +28,11 @@
   color: darkgrey;
 }
 
+.remove-button {
+  padding: 0.25rem 1rem;
+  margin-top: 0.5rem;
+}
+
 .card-styles:hover {
   /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); */
   box-shadow: none;

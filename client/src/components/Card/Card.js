@@ -18,7 +18,7 @@ function Card(props) {
         <p style={props.cardTitleStyle} className='card-title'>
           {props.title}
         </p>
-        {displayButton && (
+        {displayButton && props.selected && (
           <button style={{ padding: '.25rem 1rem', marginTop: '.5rem' }}>
             Remove
           </button>

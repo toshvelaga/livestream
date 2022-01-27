@@ -210,9 +210,9 @@ function Destinations() {
           </a>
 
           <Card
-            id='facebook-card'
             // onMouseOver={() => alert('Hovering')}
             // onMouseLeave={() => alert('leaing')}
+            selected={facebookAccessToken ? true : false}
             style={facebookAccessToken ? styles.destinationSelected : null}
             cardTitleStyle={facebookAccessToken ? styles.blackFontColor : null}
             onClick={facebookAuth}
