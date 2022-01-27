@@ -210,12 +210,14 @@ function Destinations() {
           </a>
 
           <Card
-            // onMouseOver={() => alert('Hovering')}
-            // onMouseLeave={() => alert('leaing')}
-            selected={facebookAccessToken ? true : false}
+            selected={true}
             style={facebookAccessToken ? styles.destinationSelected : null}
             cardTitleStyle={facebookAccessToken ? styles.blackFontColor : null}
             onClick={facebookAuth}
+            onRemoveHandler={(event) => {
+              facebookLogout()
+              event.stopPropagation()
+            }}
             title={'Facebook'}
           >
             <FaIcons.FaFacebook color={'#1676f2'} size={50} />

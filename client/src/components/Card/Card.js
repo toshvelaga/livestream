@@ -18,12 +18,12 @@ function Card(props) {
         <p style={props.cardTitleStyle} className='card-title'>
           {props.title}
         </p>
+        {/* DISPLAY THE REMOVE BUTTON */}
         {displayButton && props.selected && (
-          <button style={{ padding: '.25rem 1rem', marginTop: '.5rem' }}>
+          <button onClick={props.onRemoveHandler} className='remove-button'>
             Remove
           </button>
         )}
-        {/* <FaIcons.FaCheckCircle size='20' color='green' /> */}
       </div>
     </div>
   )
