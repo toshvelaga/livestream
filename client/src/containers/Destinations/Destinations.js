@@ -222,8 +222,8 @@ function Destinations() {
             cardTitleStyle={facebookAccessToken ? styles.blackFontColor : null}
             onClick={facebookAuth}
             onRemoveHandler={(event) => {
-              fbLogoutUser()
               removeFacebookDataFromDB(userId)
+              fbLogoutUser()
               event.stopPropagation()
             }}
             title={'Facebook'}
