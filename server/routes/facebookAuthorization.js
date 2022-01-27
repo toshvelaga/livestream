@@ -1,3 +1,4 @@
+const removeDbFacebookValues = require('../utils/removeDbFacebookValues')
 const updateDbFacebookValues = require('../utils/updateDbFacebookValues')
 
 const express = require('express'),
@@ -30,16 +31,9 @@ router.post('/api/authorize/facebook', async (req, res) => {
 
 router.post('/api/authorize/facebook/remove', async (req, res) => {
   // fB docs: https://developers.facebook.com/docs/pages/access-tokens/
-  const { userId, facebookAccessToken, facebookUserId } = req.body
+  const { userId } = req.body
 
-  const longFacebookAccessToken = result.data.access_token
-
-  updateDbFacebookValues(
-    userId,
-    facebookAccessToken,
-    longFacebookAccessToken,
-    facebookUserId
-  )
+  removeDbFacebookValues(userId, null, null)
   return res
     .status(200)
     .send({ msg: 'facebook token and long access token removed' })
