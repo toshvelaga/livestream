@@ -334,7 +334,7 @@ const emailCodeTemplate = (code) => {
     </style>
   </head>
   <body class="">
-    <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+    <span class="preheader">Your code is ${code}</span>
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
       <tr>
         <td>&nbsp;</td>
@@ -350,7 +350,7 @@ const emailCodeTemplate = (code) => {
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td>
-                        <p>Hi there,</p>
+                        <p>Hi there 👋,</p>
                         <p>Your 6 digit confirmation code is below, please use it to sign into your account.</p>
                         <h1>${code}</h1>
                       </td>
