@@ -2,6 +2,8 @@ const nodemailer = require('nodemailer')
 const emailCodeTemplate = require('./emailCodeTemplate')
 require('dotenv').config()
 
+// HTML EMAIL TEMPLATE: https://github.com/leemunroe/responsive-html-email-template/blob/master/email.html
+
 const sendAuthCode = (email, code) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
