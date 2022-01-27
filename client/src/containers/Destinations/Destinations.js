@@ -180,10 +180,11 @@ function Destinations() {
   }
 
   const removeFacebookDataFromDB = async (userId) => {
-    await API.post('/authorize/facebook/remove', {
+    API.post('/authorize/facebook/remove', {
       userId,
+    }).then(() => {
+      fbLogoutUser()
     })
-    fbLogoutUser()
   }
 
   const facebookAuthBooleanDB = () => {
