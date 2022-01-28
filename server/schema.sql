@@ -42,7 +42,7 @@ CREATE TABLE destinations (
     twitch_stream_key character varying(255),
     youtube_access_token text,
     youtube_refresh_token text,
-    facebook_long_access_token character varying(255),
+    facebook_long_access_token text,
     facebook_user_id character varying(255),
     twitch_user_name character varying(255)
 );
