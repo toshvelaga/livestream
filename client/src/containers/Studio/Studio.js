@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { io } from 'socket.io-client'
 import * as FaIcons from 'react-icons/fa'
 import * as MdIcons from 'react-icons/md'
 import Navbar from '../../components/Navbar/Navbar'
@@ -65,7 +66,8 @@ function Studio() {
   let GoogleAuth
 
   const { id } = useParams()
-  const ws = useRef()
+  const socket = useRef()
+  // const ws = useRef()
   const productionWsUrl = 'wss://www.ohmystream.xyz/websocket'
   const developmentWsUrl = 'ws://localhost:3001'
   const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
@@ -142,17 +144,20 @@ function Studio() {
   // }, [facebookLiveVideoId, longFacebookAccessToken])
 
   useEffect(() => {
-    ws.current =
+    socket.current =
       process.env.NODE_ENV === 'production'
-        ? new WebSocket(productionWsUrl + streamUrlParams)
-        : new WebSocket(developmentWsUrl + streamUrlParams)
+        ? io(productionWsUrl + streamUrlParams)
+        : io(developmentWsUrl + streamUrlParams)
 
-    ws.current.onopen = () => {
+    socket.current.on('connect', () => {
+      // either with send()
       console.log('WebSocket Open')
-    }
+    })
 
     return () => {
-      ws.current.close()
+      socket.current.on('disconnect', () => {
+        console.log('close the socket') // undefined
+      })
     }
   }, [
     facebookUrl,
@@ -287,7 +292,7 @@ function Studio() {
       videoBitsPerSecond: 3 * 1024 * 1024,
     })
     mediaRecorder.current.ondataavailable = (e) => {
-      ws.current.send(e.data)
+      socket.current.send(e.data)
       // chunks.push(e.data)
       console.log('send data', e.data)
     }
@@ -298,7 +303,7 @@ function Studio() {
   const stopRecording = () => {
     toggleActive()
     mediaRecorder.current.stop()
-    ws.current.close()
+    socket.current.close()
     endYoutubeStream()
     endFacebookLivestream()
     setstreamFinished(true)
