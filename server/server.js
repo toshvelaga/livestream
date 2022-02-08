@@ -1,6 +1,7 @@
 const child_process = require('child_process') // To be used later for running FFmpeg
 const express = require('express')
-const WebSocket = require('ws')
+// const WebSocket = require('ws')
+const { Server } = require('socket.io')
 const app = express()
 const cors = require('cors')
 const path = require('path')
@@ -59,11 +60,20 @@ app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT} for REST API requests`)
 })
 
-const wss = new WebSocket.Server({ port: WS_PORT }, () => {
-  console.log(`Listening on PORT ${WS_PORT} for websockets`)
+// const wss = new WebSocket.Server({ port: WS_PORT }, () => {
+//   console.log(`Listening on PORT ${WS_PORT} for websockets`)
+// })
+
+const io = new Server(WS_PORT, {
+  /* options */
+  cors: {
+    origin: '*',
+  },
 })
 
-wss.on('connection', (ws, req) => {
+io.on('connection', (socket) => {
+  console.log(`socket connected to ${socket.id}`)
+
   const myURL = new URL(`http://localhost:${WS_PORT}` + req.url)
 
   const youtube = myURL.searchParams.get('youtubeUrl')
@@ -112,13 +122,13 @@ wss.on('connection', (ws, req) => {
   })
 
   // When data comes in from the WebSocket, write it to FFmpeg's STDIN.
-  ws.on('message', (msg) => {
+  socket.on('message', (msg) => {
     console.log('DATA', msg)
     ffmpeg.stdin.write(msg)
   })
 
   // If the client disconnects, stop FFmpeg.
-  ws.on('close', (e) => {
+  socket.conn.on('close', (e) => {
     console.log('kill: SIGINT')
     ffmpeg.kill('SIGINT')
   })
