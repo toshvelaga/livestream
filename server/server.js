@@ -74,16 +74,18 @@ const io = new Server(WS_PORT, {
 io.on('connection', (socket) => {
   console.log(`socket connected to ${socket.id}`)
 
-  const myURL = new URL(`http://localhost:${WS_PORT}` + req.url)
+  const socketQueryParams = socket.handshake.query
 
-  const youtube = myURL.searchParams.get('youtubeUrl')
-  const twitchStreamKey = myURL.searchParams.get('twitchStreamKey')
+  const youtube = socketQueryParams.youtubeUrl
+  const twitchStreamKey = socketQueryParams.twitchStreamKey
   const twitch =
     twitchStreamKey !== 'null'
       ? 'rtmp://dfw.contribute.live-video.net/app/' + twitchStreamKey
       : null
-  const facebook = myURL.searchParams.get('facebookUrl')
-  const customRTMP = myURL.searchParams.get('customRTMP')
+  const facebook = socketQueryParams.facebookUrl
+
+  // const customRTMP = myURL.searchParams.get('customRTMP')
+
   console.log('custom RTMP: ' + customRTMP)
 
   const ffmpegInput = inputSettings.concat(
