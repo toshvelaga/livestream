@@ -84,15 +84,14 @@ io.on('connection', (socket) => {
       : null
   const facebook = socketQueryParams.facebookUrl
 
-  // const customRTMP = myURL.searchParams.get('customRTMP')
-
-  // console.log('custom RTMP: ' + customRTMP)
+  const customRTMP = socketQueryParams.customRTMP
+  console.log('custom RTMP: ' + customRTMP)
 
   const ffmpegInput = inputSettings.concat(
     youtubeSettings(youtube),
     twitchSettings(twitch),
-    facebookSettings(facebook)
-    // customRtmpSettings(customRTMP)
+    facebookSettings(facebook),
+    customRtmpSettings(customRTMP)
   )
 
   console.log(ffmpegInput)
