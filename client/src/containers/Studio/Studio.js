@@ -68,7 +68,7 @@ function Studio() {
   const { id } = useParams()
   const socket = useRef()
   // const ws = useRef()
-  const productionWsUrl = 'wss://www.ohmystream.xyz/websocket'
+  const productionWsUrl = 'wss://www.ohmystream.xyz/socket.io'
   const developmentWsUrl = 'ws://localhost:3001'
   const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
     facebookUrl
