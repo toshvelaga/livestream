@@ -715,7 +715,7 @@ function Broadcast() {
               <img
                 data-tip='custom RTMP server'
                 src={RTMP}
-                alt='custom RTMP destination'
+                alt='custom RTMP destination for streaming'
                 style={{ height: '50px' }}
               />
               <ReactTooltip />
