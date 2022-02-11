@@ -154,11 +154,11 @@ function Studio() {
       console.log('WebSocket Open')
     })
 
-    return () => {
-      socket.current.on('disconnect', () => {
-        console.log('close the socket') // undefined
-      })
-    }
+    // return () => {
+    //   socket.current.on('disconnect', () => {
+    //     console.log('close the socket') // undefined
+    //   })
+    // }
   }, [
     facebookUrl,
     youtubeUrl,
