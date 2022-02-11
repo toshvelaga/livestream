@@ -68,7 +68,7 @@ function Studio() {
   const { id } = useParams()
   const socket = useRef()
   // const ws = useRef()
-  const productionWsUrl = 'wss://www.ohmystream.xyz/socket.io'
+  const productionWsUrl = 'https://ohmystream.xyz'
   const developmentWsUrl = 'ws://localhost:3001'
   const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
     facebookUrl
@@ -146,8 +146,8 @@ function Studio() {
   useEffect(() => {
     socket.current =
       process.env.NODE_ENV === 'production'
-        ? io(productionWsUrl + streamUrlParams)
-        : io(developmentWsUrl + streamUrlParams)
+        ? io(productionWsUrl + streamUrlParams, { transports: ['websocket'] })
+        : io(developmentWsUrl + streamUrlParams, { transports: ['websocket'] })
 
     socket.current.on('connect', () => {
       // either with send()
