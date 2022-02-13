@@ -111,7 +111,7 @@ router.post('/api/user/broadcast-access', async (req, res, next) => {
 
   try {
     const user = await pool.query(
-      `SELECT youtube_auth, twitch_auth, facebook_auth FROM users WHERE user_id = $1`,
+      `SELECT youtube_auth, twitch_auth, facebook_auth, user_date_created, payment_tier FROM users WHERE user_id = $1`,
       [userId]
     )
     res.json(user.rows[0])
