@@ -23,6 +23,7 @@ import styles from '../../styles/styles'
 import { useHistory } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip'
 import eventTrack from '../../utils/eventTrack'
+import timeFromUserRegistration from '../../utils/timeFromUserRegistration'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
@@ -58,6 +59,7 @@ function Broadcast() {
 
   const [userId, setuserId] = useState(getCookie('userId'))
   const [paymentTier, setpaymentTier] = useState('')
+  const [daysSinceUserSignUp, setdaysSinceUserSignUp] = useState('')
 
   const [youtubeTitleError, setyoutubeTitleError] = useState('')
   const [facebookTitleError, setfacebookTitleError] = useState('')
