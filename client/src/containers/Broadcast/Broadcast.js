@@ -57,6 +57,7 @@ function Broadcast() {
   })
 
   const [userId, setuserId] = useState(getCookie('userId'))
+  const [paymentTier, setpaymentTier] = useState('')
 
   const [youtubeTitleError, setyoutubeTitleError] = useState('')
   const [facebookTitleError, setfacebookTitleError] = useState('')
@@ -96,8 +97,8 @@ function Broadcast() {
 
   useEffect(() => {
     const body = { userId }
-    // api call to show broadcast avatar
-    API.post('/user/destinations', body)
+    // api call to show broadcast avatar and get data about user account
+    API.post('/user/broadcast-access', body)
       .then((res) => {
         console.log(res)
         setshowBroadcastAvatar({
@@ -106,6 +107,7 @@ function Broadcast() {
           twitch: res.data.twitch_auth,
           customRTMP: true,
         })
+        setpaymentTier(res.data.payment_tier)
       })
       .catch((err) => {
         console.log(err)
