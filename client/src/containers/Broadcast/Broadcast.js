@@ -110,11 +110,16 @@ function Broadcast() {
           customRTMP: true,
         })
         setpaymentTier(res.data.payment_tier)
+        setdaysSinceUserSignUp(
+          timeFromUserRegistration(res.data.user_date_created)
+        )
       })
       .catch((err) => {
         console.log(err)
       })
   }, [])
+
+  console.log('days since sign up: ' + daysSinceUserSignUp)
 
   useEffect(() => {
     const body = { userId }
