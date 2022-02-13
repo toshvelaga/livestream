@@ -107,7 +107,7 @@ io.on('connection', (socket) => {
     console.log(
       'FFmpeg child process closed, code ' + code + ', signal ' + signal
     )
-    ws.terminate()
+    // ws.terminate()
   })
 
   // Handle STDIN pipe errors by logging to the console.
