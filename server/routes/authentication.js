@@ -106,4 +106,19 @@ router.post('/api/user/destinations', async (req, res, next) => {
   }
 })
 
+router.post('/api/user/broadcast-access', async (req, res, next) => {
+  const userId = req.body.userId
+
+  try {
+    const user = await pool.query(
+      `SELECT youtube_auth, twitch_auth, facebook_auth FROM users WHERE user_id = $1`,
+      [userId]
+    )
+    res.json(user.rows[0])
+  } catch (error) {
+    console.error(error.message)
+    res.status(500).send('Server error occurred while updating user')
+  }
+})
+
 module.exports = router
