@@ -631,11 +631,11 @@ function Broadcast() {
         >
           <MdIcons.MdClose color='grey' size={24} />
         </div>
-        {daysSinceUserSignUp > 14 ? (
+        {daysSinceUserSignUp > 14 && paymentTier === 'FREE' ? (
           <>
             <p>
-              Your two week trial has ended. Upgrade your account to get access
-              to all features.
+              Your two week trial has ended. Please upgrade your account to get
+              access to all features.
             </p>
             <Button
               disabled={loading}
@@ -643,7 +643,7 @@ function Broadcast() {
               id='upgrade-button'
               style={{ width: '100%' }}
               title='Upgrade'
-              fx={() => alert('clicked')}
+              fx={() => history.push(`/billing`)}
             />
           </>
         ) : (
