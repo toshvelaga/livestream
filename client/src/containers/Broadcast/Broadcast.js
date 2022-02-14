@@ -119,6 +119,7 @@ function Broadcast() {
       })
   }, [])
 
+  console.log(paymentTier)
   console.log('days since sign up: ' + daysSinceUserSignUp)
 
   useEffect(() => {
@@ -630,121 +631,144 @@ function Broadcast() {
         >
           <MdIcons.MdClose color='grey' size={24} />
         </div>
-        <p>Broadcast to:</p>
-        {!showBroadcastAvatar.youtube &&
-        !showBroadcastAvatar.twitch &&
-        !showBroadcastAvatar.facebook ? (
-          <NoDestinationsMessage />
-        ) : null}
-        <div style={{ display: 'flex', marginBottom: '1rem' }}>
-          {showBroadcastAvatar.youtube ? (
-            <BroadcastAvatar
-              style={
-                modalContent.youtube === true
-                  ? { border: styles.broadcastAvatarBorder }
-                  : null
-              }
-              onClick={() => {
-                setmodalContent((prev) => ({
-                  ...prev,
-                  youtube: !prev.youtube,
-                }))
-                setmodalContentDisplayed('youtube')
-              }}
-            >
-              <FaIcons.FaYoutube
-                data-tip='Youtube'
-                color={'#ff0000'}
-                size={35}
-              />
-              <ReactTooltip />
-            </BroadcastAvatar>
-          ) : null}
+        {daysSinceUserSignUp > 14 ? (
+          <>
+            <p>
+              Your two week trial has ended. Upgrade your account to get access
+              to all features.
+            </p>
+            <Button
+              disabled={loading}
+              loading={loading}
+              id='upgrade-button'
+              style={{ width: '100%' }}
+              title='Upgrade'
+              fx={() => alert('clicked')}
+            />
+          </>
+        ) : (
+          <>
+            <p>Broadcast to:</p>
+            {!showBroadcastAvatar.youtube &&
+            !showBroadcastAvatar.twitch &&
+            !showBroadcastAvatar.facebook ? (
+              <NoDestinationsMessage />
+            ) : null}
+            <div style={{ display: 'flex', marginBottom: '1rem' }}>
+              {showBroadcastAvatar.youtube ? (
+                <BroadcastAvatar
+                  style={
+                    modalContent.youtube === true
+                      ? { border: styles.broadcastAvatarBorder }
+                      : null
+                  }
+                  onClick={() => {
+                    setmodalContent((prev) => ({
+                      ...prev,
+                      youtube: !prev.youtube,
+                    }))
+                    setmodalContentDisplayed('youtube')
+                  }}
+                >
+                  <FaIcons.FaYoutube
+                    data-tip='Youtube'
+                    color={'#ff0000'}
+                    size={35}
+                  />
+                  <ReactTooltip />
+                </BroadcastAvatar>
+              ) : null}
 
-          {showBroadcastAvatar.twitch ? (
-            <BroadcastAvatar
-              style={
-                modalContent.twitch === true
-                  ? { border: styles.broadcastAvatarBorder }
-                  : null
-              }
-              onClick={() => {
-                setmodalContent((prev) => ({
-                  ...prev,
-                  twitch: !prev.twitch,
-                }))
-                setmodalContentDisplayed('twitch')
-              }}
-            >
-              <FaIcons.FaTwitch data-tip='Twitch' color={'#9047fe'} size={35} />
-              <ReactTooltip />
-            </BroadcastAvatar>
-          ) : null}
+              {showBroadcastAvatar.twitch ? (
+                <BroadcastAvatar
+                  style={
+                    modalContent.twitch === true
+                      ? { border: styles.broadcastAvatarBorder }
+                      : null
+                  }
+                  onClick={() => {
+                    setmodalContent((prev) => ({
+                      ...prev,
+                      twitch: !prev.twitch,
+                    }))
+                    setmodalContentDisplayed('twitch')
+                  }}
+                >
+                  <FaIcons.FaTwitch
+                    data-tip='Twitch'
+                    color={'#9047fe'}
+                    size={35}
+                  />
+                  <ReactTooltip />
+                </BroadcastAvatar>
+              ) : null}
 
-          {showBroadcastAvatar.facebook ? (
-            <BroadcastAvatar
-              style={
-                modalContent.facebook === true
-                  ? { border: styles.broadcastAvatarBorder }
-                  : null
-              }
-              onClick={() => {
-                setmodalContent((prev) => ({
-                  ...prev,
-                  facebook: !prev.facebook,
-                }))
-                setmodalContentDisplayed('facebook')
-              }}
-            >
-              <FaIcons.FaFacebookF
-                data-tip='Facebook'
-                color={'#1676f2'}
-                size={35}
-              />
-              <ReactTooltip />
-            </BroadcastAvatar>
-          ) : null}
+              {showBroadcastAvatar.facebook ? (
+                <BroadcastAvatar
+                  style={
+                    modalContent.facebook === true
+                      ? { border: styles.broadcastAvatarBorder }
+                      : null
+                  }
+                  onClick={() => {
+                    setmodalContent((prev) => ({
+                      ...prev,
+                      facebook: !prev.facebook,
+                    }))
+                    setmodalContentDisplayed('facebook')
+                  }}
+                >
+                  <FaIcons.FaFacebookF
+                    data-tip='Facebook'
+                    color={'#1676f2'}
+                    size={35}
+                  />
+                  <ReactTooltip />
+                </BroadcastAvatar>
+              ) : null}
 
-          {/* CUSTOM RTMP SERVER AND STREAM KEY */}
-          {showBroadcastAvatar.customRTMP ? (
-            <BroadcastAvatar
-              style={
-                modalContent.customRTMP === true
-                  ? { border: styles.broadcastAvatarBorder }
-                  : null
-              }
-              onClick={() => {
-                setmodalContent((prev) => ({
-                  ...prev,
-                  customRTMP: !prev.customRTMP,
-                }))
-                setmodalContentDisplayed('customRTMP')
-              }}
-            >
-              <img
-                data-tip='custom RTMP server'
-                src={RTMP}
-                alt='custom RTMP destination for streaming'
-                style={{ height: '50px' }}
-              />
-              <ReactTooltip />
-            </BroadcastAvatar>
-          ) : null}
-        </div>
-        {noSelectedDestinationError && (
-          <p style={{ color: 'red' }}>
-            Please select at least one platform to broadcast on.
-          </p>
+              {/* CUSTOM RTMP SERVER AND STREAM KEY */}
+              {showBroadcastAvatar.customRTMP ? (
+                <BroadcastAvatar
+                  style={
+                    modalContent.customRTMP === true
+                      ? { border: styles.broadcastAvatarBorder }
+                      : null
+                  }
+                  onClick={() => {
+                    setmodalContent((prev) => ({
+                      ...prev,
+                      customRTMP: !prev.customRTMP,
+                    }))
+                    setmodalContentDisplayed('customRTMP')
+                  }}
+                >
+                  <img
+                    data-tip='custom RTMP server'
+                    src={RTMP}
+                    alt='custom RTMP destination for streaming'
+                    style={{ height: '50px' }}
+                  />
+                  <ReactTooltip />
+                </BroadcastAvatar>
+              ) : null}
+            </div>
+            {noSelectedDestinationError && (
+              <p style={{ color: 'red' }}>
+                Please select at least one platform to broadcast on.
+              </p>
+            )}
+
+            {modalContentDisplay()}
+            <Button
+              disabled={loading}
+              loading={loading}
+              style={{ width: '100%' }}
+              title='Create Broadcast'
+              fx={submit}
+            />
+          </>
         )}
-
-        {modalContentDisplay()}
-        <Button
-          disabled={loading}
-          loading={loading}
-          style={{ width: '100%' }}
-          title='Create Broadcast'
-          fx={submit}
-        />
       </Modal>
     </>
   )

@@ -29,6 +29,15 @@
   cursor: pointer;
 }
 
+#upgrade-button {
+  background-color: #fd5d16;
+  color: white;
+}
+
+#upgrade-button:hover {
+  background-color: #ff6738;
+}
+
 @media only screen and (max-width: 1000px) {
   .dashboard-container {
     width: 80%;

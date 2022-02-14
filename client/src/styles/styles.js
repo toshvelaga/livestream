@@ -6,6 +6,7 @@ const styles = {
   broadcastAvatarBorder: '2px solid #03a9f4',
   greyFontColor: 'darkgrey',
   blueFontColor: '#03a9f4',
+  orangeFontColor: '#fd5d16',
   blackFontColor: { color: 'black' },
   destinationSelected: {
     backgroundColor: '#d2eefc',
