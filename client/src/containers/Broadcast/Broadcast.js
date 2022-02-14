@@ -24,6 +24,7 @@ import { useHistory } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip'
 import eventTrack from '../../utils/eventTrack'
 import timeFromUserRegistration from '../../utils/timeFromUserRegistration'
+import TrialExpired from '../../components/TrialExpired/TrialExpired'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
@@ -632,20 +633,7 @@ function Broadcast() {
           <MdIcons.MdClose color='grey' size={24} />
         </div>
         {daysSinceUserSignUp > 14 && paymentTier === 'FREE' ? (
-          <>
-            <p>
-              Your two week trial has ended. Please upgrade your account to get
-              access to all features.
-            </p>
-            <Button
-              disabled={loading}
-              loading={loading}
-              id='upgrade-button'
-              style={{ width: '100%' }}
-              title='Upgrade'
-              fx={() => history.push(`/billing`)}
-            />
-          </>
+          <TrialExpired />
         ) : (
           <>
             <p>Broadcast to:</p>
