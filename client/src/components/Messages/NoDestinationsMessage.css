@@ -1,0 +1,21 @@
+:root {
+  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+}
+
+.connect-button {
+  /* background-color: grey; */
+  background: #fff;
+  color: black;
+  padding: 0.5em 0.75em;
+
+  /* padding: 0.75rem; */
+  border-radius: 5px;
+  border: 1px solid grey;
+  cursor: pointer;
+  font-family: var(--main-font);
+}
+
+.connect-button:hover {
+  background-color: #dddddd;
+}
