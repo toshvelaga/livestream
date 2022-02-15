@@ -8,11 +8,24 @@ import * as FaIcons from 'react-icons/fa'
 import PricingPlan from '../PricingPlan/PricingPlan'
 import eventTrack from '../../utils/eventTrack'
 import RTMP2 from '../../assets/RTMP2.png'
+import { Helmet } from 'react-helmet'
 
 function Website(props) {
   return (
     <>
       <div class='website-navbar'>
+        <Helmet>
+          {/* Start of HubSpot Embed Code */}
+
+          <script
+            type='text/javascript'
+            id='hs-script-loader'
+            async
+            defer
+            src='//js-na1.hs-scripts.com/21300894.js'
+          ></script>
+          {/* End of HubSpot Embed Code  */}
+        </Helmet>
         <Link
           id='wavvy-website-title'
           style={{ float: 'left', fontWeight: '600' }}
