@@ -17,19 +17,19 @@ export default class Accordion extends Component {
 
   panels = [
     {
-      label: 'What features are you adding in the future?',
-      content:
-        'The ability to stream with other users using webRTC. Additional streaming destinations such as twitter and linkedin. Being able to respond to your messages in real time. Ability to add overlays on your content in real time.',
-    },
-    {
       label: 'How much does this cost?',
       content:
-        "Right now it's totally free! Will be adding paid plans with advanced features in the future.",
+        'Right now there is a free two week trial and then it is $10/month. We do not ask for credit card upfront. If you cannot afford this please reach out to us at ohmystreamer@gmail.com',
     },
     {
       label: 'Do you have support?',
       content:
-        'Yes if you have any additional questions or support issues feel free to reach out to me at toshvelaga@gmail.com',
+        'Yes if you have any additional questions or support issues feel free to reach out to us at ohmystreamer@gmail.com',
+    },
+    {
+      label: 'What features are you adding in the future?',
+      content:
+        'The ability to stream with other users using webRTC. Additional streaming destinations such as twitter and linkedin. Being able to respond to your messages in real time. Ability to add overlays on your content in real time.',
     },
   ]
 

@@ -14,7 +14,7 @@ const sendAuthCode = (email, code) => {
   })
 
   const mailOptions = {
-    from: 'Ohmystream <toshvelaga@gmail.com>',
+    from: 'Ohmystream <ohmystreamer@gmail.com>',
     to: email,
     subject: 'Ohmystream 6 digit code',
     // text: `Your code is ${code}.`,

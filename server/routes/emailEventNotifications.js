@@ -4,7 +4,7 @@ const express = require('express'),
 
 require('dotenv').config()
 
-const SUPPORT_EMAIL = 'toshvelaga@gmail.com'
+const SUPPORT_EMAIL = 'ohmystreamer@gmail.com'
 
 router.post('/api/email/support', async (req, res) => {
   const { email, text } = req.body
@@ -18,7 +18,7 @@ router.post('/api/email/support', async (req, res) => {
   })
 
   const mailOptions = {
-    from: 'Ohmystream <toshvelaga@gmail.com>',
+    from: 'Ohmystream <ohmystreamer@gmail.com>',
     to: SUPPORT_EMAIL,
     subject: `You have a new support message from ${email}`,
     html: `<p>MESSAGE FROM: ${email}</p><p>${text}</p>`,
@@ -45,7 +45,7 @@ router.post('/api/email/payment-button-click', async (req, res) => {
   })
 
   const mailOptions = {
-    from: 'Ohmystream <toshvelaga@gmail.com>',
+    from: 'Ohmystream <ohmystreamer@gmail.com>',
     to: SUPPORT_EMAIL,
     subject: `An ohmystream user ${email} clicked the payment button`,
     html: `<p>An ohmystream user ${email} clicked the payment upgrade button</p>`,
