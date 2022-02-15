@@ -10,20 +10,23 @@ import eventTrack from '../../utils/eventTrack'
 import RTMP2 from '../../assets/RTMP2.png'
 import { Helmet } from 'react-helmet'
 
+console.log(window.location.pathname)
+
 function Website(props) {
   return (
     <>
       <div class='website-navbar'>
         <Helmet>
           {/* Start of HubSpot Embed Code */}
-
-          <script
-            type='text/javascript'
-            id='hs-script-loader'
-            async
-            defer
-            src='//js-na1.hs-scripts.com/21300894.js'
-          ></script>
+          {window.location.pathname === '/' ? (
+            <script
+              type='text/javascript'
+              id='hs-script-loader'
+              async
+              defer
+              src='//js-na1.hs-scripts.com/21300894.js'
+            ></script>
+          ) : null}
           {/* End of HubSpot Embed Code  */}
         </Helmet>
         <Link
