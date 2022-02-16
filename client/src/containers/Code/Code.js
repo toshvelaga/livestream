@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom'
 import TextInput from '../../components/TextInput/TextInput'
 import Button from '../../components/Buttons/Button'
 import getCookie from '../../utils/getCookie'
-import './Code.css'
 import setCookie from '../../utils/setCookie'
+import './Code.css'
 
 function Code() {
   const [code, setCode] = useState('')
