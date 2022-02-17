@@ -1,7 +1,7 @@
 const { default: axios } = require('axios')
 require('dotenv').config()
 
-const hubspot = async () => {
+router.post('/api/hubspot', async (req, res) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -27,6 +27,6 @@ const hubspot = async () => {
     })
 
   return hb
-}
+})
 
-module.exports = hubspot
+module.exports = router
