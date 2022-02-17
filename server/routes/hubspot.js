@@ -10,15 +10,9 @@ router.post('/api/hubspot', async (req, res) => {
       'Content-Type': 'application/json',
     },
   }
-
   const hb = await axios
     .post(
-      `https://api.hubapi.com/contacts/v1/contact/`,
-      {
-        params: {
-          hapikey: process.env.HUBSPOT_API_KEY,
-        },
-      },
+      `https://api.hubapi.com/contacts/v1/contact/?hapikey=${process.env.HUBSPOT_API_KEY}`,
       config
     )
     .then((res) => {
