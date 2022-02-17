@@ -4,6 +4,10 @@ const { default: axios } = require('axios'),
   express = require('express'),
   router = express.Router()
 
+// OLD DOCS = https://legacydocs.hubspot.com/docs/methods/contacts/create_contact
+
+// NEW DOCS = https://developers.hubspot.com/docs/api/crm/contacts
+
 router.post('/api/hubspot', async (req, res) => {
   const { email } = req.body
   const config = {
@@ -12,11 +16,11 @@ router.post('/api/hubspot', async (req, res) => {
     },
   }
   const body = {
-    properties: [{ property: 'email', value: email }],
+    properties: { email: email },
   }
   const hb = await axios
     .post(
-      `https://api.hubapi.com/contacts/v1/contact/?hapikey=${process.env.HUBSPOT_API_KEY}`,
+      `https://api.hubapi.com/crm/v3/objects/contacts?hapikey=${process.env.HUBSPOT_API_KEY}`,
       body,
       config
     )
