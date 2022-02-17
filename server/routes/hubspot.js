@@ -5,18 +5,15 @@ const { default: axios } = require('axios'),
   router = express.Router()
 
 router.post('/api/hubspot', async (req, res) => {
+  const { email } = req.body
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   }
   const body = {
-    properties: [
-      { property: 'email', value: 'testingapis2@hubspot.com' },
-      { property: 'firstname', value: 'test' },
-    ],
+    properties: [{ property: 'email', value: email }],
   }
-
   const hb = await axios
     .post(
       `https://api.hubapi.com/contacts/v1/contact/?hapikey=${process.env.HUBSPOT_API_KEY}`,
