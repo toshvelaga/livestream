@@ -12,7 +12,7 @@ function Code() {
   const [error, seterror] = useState('')
   const [loading, setloading] = useState(false)
 
-  const email = getCookie('email')
+  const email = getCookie('userEmail')
   const history = useHistory()
 
   const submit = async () => {
@@ -30,13 +30,15 @@ function Code() {
       if (!result.data.match) {
         seterror('The code you entered does not match')
       } else {
-        setCookie('isLoggedIn', true, 7)
         // REGISTER IN HUBSPOT
         if (window.location.pathname.includes('register')) {
-          await API.post('/hubspot', {
+          console.log('HUBSPOT')
+          API.post('/hubspot', {
             email: email,
           })
         }
+        setCookie('isLoggedIn', true, 7)
+
         history.push('/broadcast')
       }
     } catch (error) {
