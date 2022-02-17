@@ -28,7 +28,7 @@ router.post('/api/hubspot', async (req, res) => {
       console.log(error)
     })
 
-  return res.status(201).send(hb)
+  return res.status(201).send(`user ${email} added to hubspot`)
 })
 
 module.exports = router
