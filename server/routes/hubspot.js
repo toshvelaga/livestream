@@ -1,5 +1,8 @@
-const { default: axios } = require('axios')
 require('dotenv').config()
+
+const { default: axios } = require('axios'),
+  express = require('express'),
+  router = express.Router()
 
 router.post('/api/hubspot', async (req, res) => {
   const config = {
@@ -13,7 +16,7 @@ router.post('/api/hubspot', async (req, res) => {
       `https://api.hubapi.com/contacts/v1/contact/`,
       {
         params: {
-          hapikey: 'demo',
+          hapikey: process.env.HUBSPOT_API_KEY,
         },
       },
       config
@@ -26,7 +29,7 @@ router.post('/api/hubspot', async (req, res) => {
       console.log(error)
     })
 
-  return hb
+  return res.status(201).send(hb)
 })
 
 module.exports = router
