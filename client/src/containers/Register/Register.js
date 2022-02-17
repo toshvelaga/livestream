@@ -29,7 +29,7 @@ function Register() {
       if (response.data.user_id) {
         setCookie('userId', `${response.data.user_id}`, 7)
         setCookie('userEmail', email, 7)
-        history.push('/login/code')
+        history.push('/register/code')
       }
     } catch (err) {
       console.log(err.response) // some reason error message
