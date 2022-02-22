@@ -7,17 +7,13 @@ import Footer from '../Footer/Footer'
 import * as FaIcons from 'react-icons/fa'
 import PricingPlan from '../PricingPlan/PricingPlan'
 import eventTrack from '../../utils/eventTrack'
-import RTMP2 from '../../assets/RTMP2.png'
 import { Helmet } from 'react-helmet'
-
-console.log(window.location.pathname)
 
 function Website(props) {
   return (
     <>
       <div class='website-navbar'>
-        <Helmet>
-          {/* Start of HubSpot Embed Code */}
+        {/* <Helmet>
           {window.location.pathname === '/' ? (
             <script
               type='text/javascript'
@@ -27,8 +23,7 @@ function Website(props) {
               src='//js-na1.hs-scripts.com/21300894.js'
             ></script>
           ) : null}
-          {/* End of HubSpot Embed Code  */}
-        </Helmet>
+        </Helmet> */}
         <Link
           id='wavvy-website-title'
           style={{ float: 'left', fontWeight: '600' }}
