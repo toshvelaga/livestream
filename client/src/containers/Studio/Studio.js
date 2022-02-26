@@ -274,6 +274,12 @@ function Studio() {
     startTimer()
     API.post('/email/user-went-live', {
       email,
+      destinations: [
+        twitchStreamKey ? 'TWITCH' : null,
+        facebookUrl ? 'FACEBOOK' : null,
+        youtubeUrl ? 'YOUTUBE' : null,
+        customRtmpStreamKey ? 'CUSTOM_RTMP' : null,
+      ],
     })
     // start streaming to Youtube
     if (youtubeBroadcastId) {
