@@ -60,4 +60,31 @@ router.post('/api/email/payment-button-click', async (req, res) => {
   })
 })
 
+router.post('/api/email/user-went-live', async (req, res) => {
+  const { email, destinations } = req.body
+
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: `${process.env.EMAIL_ADDRESS}`,
+      pass: `${process.env.EMAIL_PASSWORD}`,
+    },
+  })
+
+  const mailOptions = {
+    from: 'Ohmystream <ohmystreamer@gmail.com>',
+    to: SUPPORT_EMAIL,
+    subject: `An ohmystream user ${email} just went LIVE`,
+    html: `<p>An ohmystream user ${email} clicked the GO LIVE button and is streaming to ${destinations}</p>`,
+  }
+
+  return transporter.sendMail(mailOptions, (err, response) => {
+    if (err) {
+      console.error('there was an error: ', err)
+    } else {
+      return res.status(201).send('success')
+    }
+  })
+})
+
 module.exports = router
