@@ -58,6 +58,7 @@ function Studio() {
   const [videoUrl, setvideoUrl] = useState('')
   const [chunks, setchunks] = useState([])
 
+  const email = getCookie('userEmail')
   const videoRef = useRef()
   const mediaRecorder = useRef()
   const stream = useRef(null)
@@ -271,6 +272,9 @@ function Studio() {
     toggleActive()
     recorderInit()
     startTimer()
+    API.post('/email/user-went-live', {
+      email,
+    })
     // start streaming to Youtube
     if (youtubeBroadcastId) {
       setTimeout(() => {
