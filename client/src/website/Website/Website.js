@@ -36,10 +36,14 @@ function Website(props) {
           onClick={() =>
             eventTrack('Landing Page', 'Register Button Clicked', 'Button')
           }
-          style={{ fontWeight: '600' }}
+          style={{
+            fontWeight: '600',
+            border: '1px solid black',
+            borderRadius: '5px',
+          }}
           to='/register'
         >
-          Regsiter
+          Sign-up
         </Link>
         <Link
           onClick={() =>
@@ -59,10 +63,17 @@ function Website(props) {
             textAlign: 'center',
           }}
         >
-          Livestreaming Made Easy
+          Multistream Everywhere Easily
         </h1>
         <p className='website-main-description'>
-          Stream to Twitch, Youtube, and Facebook at the same time.
+          ✨ Stream to Twitch, Youtube, Facebook and custom destinations at the
+          same time.
+        </p>
+        <p className='website-main-description'>
+          ✨ No complicated downloads — livestream directly from your browser.
+        </p>
+        <p className='website-main-description'>
+          ✨ Start your first stream in &lt;2 minutes
         </p>
 
         <div
@@ -85,7 +96,6 @@ function Website(props) {
             title='Sign Up For Free'
           />
         </div>
-
         <div style={{ marginTop: '2rem' }} class='container-two'>
           <div class='row'>
             <div class='column sm-3'>
@@ -110,7 +120,6 @@ function Website(props) {
             </div>
           </div>
         </div>
-
         <div class='container-two'>
           <div class='row'>
             <div class='column sm-3'>
@@ -141,15 +150,12 @@ function Website(props) {
             </div>
           </div>
         </div>
-
         <h1 style={{ textAlign: 'center', marginTop: '2rem' }}>
           Pricing Plans
         </h1>
-
         <div className='pricing-container' style={{ paddingBottom: '1rem' }}>
           <PricingPlan />
         </div>
-
         <div
           style={{
             display: 'flex',
@@ -168,7 +174,6 @@ function Website(props) {
             allowfullscreen
           ></iframe>
         </div>
-
         <h1
           style={{
             textAlign: 'center',

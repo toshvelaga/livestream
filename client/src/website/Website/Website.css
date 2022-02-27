@@ -62,9 +62,11 @@ body {
   display: block;
   color: black;
   text-align: center;
-  padding: 24px 24px;
+  padding: 12px 24px;
   text-decoration: none;
   font-size: 17px;
+  margin-right: 1rem;
+  margin-top: 0.75rem;
 }
 
 .website-navbar a:hover {
