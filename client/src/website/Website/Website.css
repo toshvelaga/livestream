@@ -73,6 +73,16 @@ body {
   color: #03a9f4;
 }
 
+.signup-button-in-navbar {
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.signup-button-in-navbar:hover {
+  border: 1px solid #03a9f4;
+}
+
 .pricing-container {
   display: flex;
   justify-content: center;

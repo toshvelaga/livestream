@@ -36,11 +36,7 @@ function Website(props) {
           onClick={() =>
             eventTrack('Landing Page', 'Register Button Clicked', 'Button')
           }
-          style={{
-            fontWeight: '600',
-            border: '1px solid black',
-            borderRadius: '5px',
-          }}
+          className='signup-button-in-navbar'
           to='/register'
         >
           Sign-up
