@@ -3,7 +3,7 @@ import './StudioButton.css'
 
 function StudioButton(props) {
   return (
-    <>
+    <div className='studio-button-container'>
       <button
         disabled={props.disabled}
         style={props.style}
@@ -12,9 +12,9 @@ function StudioButton(props) {
         onClick={props.onClick}
       >
         {props.children}
-        {props.title}
       </button>
-    </>
+      <p>{props.label}</p>
+    </div>
   )
 }
 

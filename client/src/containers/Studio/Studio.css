@@ -12,6 +12,8 @@
 .studio-bottom-button-container {
   margin-top: 1rem;
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .video-container {

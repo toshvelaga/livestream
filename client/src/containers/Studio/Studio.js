@@ -507,7 +507,7 @@ function Studio() {
           </StudioButton>
 
           <StudioButton onClick={exitStudio}>
-            <FaIcons.FaPhoneSlash size={20} />
+            <FaIcons.FaPhoneSlash color={'#ff0000'} size={20} />
           </StudioButton>
         </div>
       </div>
