@@ -19,7 +19,7 @@ button > * {
   border-radius: 50%;
   text-transform: uppercase;
   font-family: var(--main-font);
-  margin-right: 10px;
+  margin-right: 30px;
   vertical-align: middle;
 }
 

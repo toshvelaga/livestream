@@ -507,7 +507,7 @@ function Studio() {
           </StudioButton>
 
           <StudioButton onClick={exitStudio}>
-            <MdIcons.MdExitToApp size={20} />
+            <FaIcons.FaPhoneSlash size={20} />
           </StudioButton>
         </div>
       </div>
