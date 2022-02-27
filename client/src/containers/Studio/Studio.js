@@ -484,13 +484,10 @@ function Studio() {
           {/* {videoUrl ? <video controls src={videoUrl} /> : null} */}
         </div>
         <div className='studio-bottom-button-container'>
-          <StudioButton
-            // title={userFacing ? 'Share Screen' : 'Stop Sharing'}
-            onClick={toggleScreenSharing}
-          >
+          <StudioButton label={'Share Screen'} onClick={toggleScreenSharing}>
             <FaIcons.FaLaptop size={20} />
           </StudioButton>
-          <StudioButton onClick={toggleCamera}>
+          <StudioButton label={'Camera'} onClick={toggleCamera}>
             {cameraOn ? (
               <FaIcons.FaVideo size={20} />
             ) : (
@@ -498,7 +495,7 @@ function Studio() {
             )}
           </StudioButton>
 
-          <StudioButton onClick={toggleMicrophone}>
+          <StudioButton label={'Mic'} onClick={toggleMicrophone}>
             {!muted ? (
               <FaIcons.FaMicrophone size={20} />
             ) : (
@@ -506,8 +503,8 @@ function Studio() {
             )}
           </StudioButton>
 
-          <StudioButton onClick={exitStudio}>
-            <FaIcons.FaPhoneSlash color={'#ff0000'} size={20} />
+          <StudioButton label={'Leave Studio'} onClick={exitStudio}>
+            <FaIcons.FaPhoneSlash size={20} />
           </StudioButton>
         </div>
       </div>

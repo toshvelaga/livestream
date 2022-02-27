@@ -7,9 +7,10 @@ button > * {
   vertical-align: middle;
 }
 
-.studio-button-container {
-  margin-right: 35px;
-}
+/* .studio-button-container {
+  margin-right: 1rem;
+  margin-left: 1rem;
+} */
 
 .studio-button {
   /* background-color: #03a9f4; */
@@ -25,6 +26,8 @@ button > * {
   font-family: var(--main-font);
   /* margin-right: 30px; */
   vertical-align: middle;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
 }
 
 .studio-button:hover {
