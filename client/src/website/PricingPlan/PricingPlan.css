@@ -16,12 +16,14 @@
   background: #f1f1f1;
   border-radius: 10px;
   width: 18em;
+  height: 35rem;
   box-sizing: border-box;
   text-align: center;
   margin: 1em;
   margin-left: 2rem;
   margin-right: 2rem;
   margin-bottom: 1em;
+  border: 1px solid black;
 }
 
 .title-container-plan {
@@ -64,7 +66,7 @@
   padding-left: 0;
 }
 .plan .info-container .features li {
-  padding: 1em;
+  padding: 0.9em;
 }
 
 @media screen and (max-width: 25em) {
