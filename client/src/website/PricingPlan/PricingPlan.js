@@ -4,20 +4,23 @@ import PriceButton from '../Buttons/PriceButton'
 
 // https://codepen.io/danhearn/pen/LjJXmj
 
+const titleContainer = (title) => {
+  return (
+    <div class='title-container-plan'>
+      <div class='title-plan'>{title}</div>
+    </div>
+  )
+}
+
 function PricingPlan() {
   return (
     <div class='planContainer'>
       <div class='plan'>
-        <div class='titleContainer'>
-          <div class='title'>Free</div>
-        </div>
+        {titleContainer('Starter')}
         <div class='infoContainer'>
           <div class='prices'>
-            <p>$0 </p>
+            <p>$10 </p>
             <span style={{ marginLeft: '5px' }}>/mo</span>
-          </div>
-          <div class='p desc'>
-            {/* <em>Great for beginners and hobbyists.</em> */}
           </div>
           <ul class='features'>
             <li>Unlimited Broadcasts</li>
@@ -27,21 +30,15 @@ function PricingPlan() {
 
             <li style={{ color: 'transparent' }}>|</li>
           </ul>
-          {/* <a class="selectPlan">Select Plan</a> */}
           <PriceButton title='Sign Up' />
         </div>
       </div>
       <div class='plan'>
-        <div class='titleContainer'>
-          <div class='title'>Pro</div>
-        </div>
+        {titleContainer('Pro')}
         <div class='infoContainer'>
           <div class='prices'>
-            <p>$10 </p>
+            <p>$19 </p>
             <span style={{ marginLeft: '5px' }}>/mo</span>
-          </div>
-          <div class='p desc'>
-            {/* <em>Recommended for podcasters looking to start a movement.</em> */}
           </div>
           <ul class='features'>
             <li>Unlimited Broadcasts</li>
@@ -51,25 +48,18 @@ function PricingPlan() {
             <li>Record broadcasts in the cloud to edit later</li>
             <li style={{ color: 'transparent' }}>|</li>
           </ul>
-          {/* <a class="selectPlan">Select Plan</a> */}
           <PriceButton title='Sign Up' />
         </div>
       </div>
 
-      {/* <div class='plan'>
-        <div class='titleContainer'>
-          <div class='title'>Premium</div>
-        </div>
+      <div class='plan'>
+        {titleContainer('Expert')}
         <div class='infoContainer'>
           <div class='prices'>
             <p>$39</p>
             <span style={{ marginLeft: '5px' }}>/mo</span>
           </div>
-          <div class='p desc'>
-            <em>
-              Recommended for podcasters looking to start a movement.
-            </em>
-          </div>
+
           <ul class='features'>
             <li>Unlimited Podcasts</li>
             <li>Unlimited Episodes</li>
@@ -81,7 +71,7 @@ function PricingPlan() {
           </ul>
           <PriceButton title='Sign Up' />
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }
