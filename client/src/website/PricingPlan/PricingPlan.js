@@ -30,6 +30,7 @@ function PricingPlan() {
           <ul class='plan-features'>
             <li>Unlimited Broadcasts</li>
             <li>Stream to &gt;3 destinations simultaneously</li>
+            <li>Add custom RTMP destinations</li>
             <li>Highest video resolution</li>
             <li>Low latency</li>
           </ul>
@@ -44,6 +45,7 @@ function PricingPlan() {
           <ul class='plan-features'>
             <li>Unlimited Broadcasts</li>
             <li>Stream to &gt;3 destinations simultaneously</li>
+            <li>Add custom RTMP destinations</li>
             <li>Highest video resolution</li>
             <li>Lowest latency Possible</li>
             <li>Invite up to 6 on screen participants</li>
@@ -59,6 +61,7 @@ function PricingPlan() {
           <ul class='plan-features'>
             <li>Unlimited Broadcasts</li>
             <li>Stream to &gt;3 destinations simultaneously</li>
+            <li>Add custom RTMP destinations</li>
             <li>Highest video resolution</li>
             <li>Lowest latency Possible</li>
             <li>Invite up to 40 participants</li>
