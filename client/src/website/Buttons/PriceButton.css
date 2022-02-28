@@ -1,6 +1,6 @@
 .price-button {
-  border: 1px #ff642d solid;
-  color: #ff642d;
+  border: 1px #03a9f4 solid;
+  color: #03a9f4;
   letter-spacing: 2px;
   padding: 10px;
   outline: none;
@@ -11,7 +11,7 @@
 }
 
 .price-button:hover {
-  background-color: #ff642d;
+  background-color: #03a9f4;
   color: #fff;
   cursor: pointer;
 }
