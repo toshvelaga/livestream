@@ -12,54 +12,50 @@ const titleContainer = (title) => {
   )
 }
 
+const prices = (price) => {
+  return (
+    <div class='prices-plans'>
+      <p>{'$' + price} /mo</p>
+    </div>
+  )
+}
+
 function PricingPlan() {
   return (
     <div class='planContainer'>
       <div class='plan'>
         {titleContainer('Starter')}
         <div class='infoContainer'>
-          <div class='prices'>
-            <p>$10 </p>
-            <span style={{ marginLeft: '5px' }}>/mo</span>
-          </div>
+          {prices('10')}
           <ul class='features'>
             <li>Unlimited Broadcasts</li>
             <li>Stream to up to 3 destinations simultaneously</li>
             <li>Automatically configures highest video resolution</li>
             <li>Low glass to glass latency</li>
-
-            <li style={{ color: 'transparent' }}>|</li>
           </ul>
           <PriceButton title='Sign Up' />
         </div>
       </div>
+
       <div class='plan'>
-        {titleContainer('Pro')}
+        {titleContainer('Premium')}
         <div class='infoContainer'>
-          <div class='prices'>
-            <p>$19 </p>
-            <span style={{ marginLeft: '5px' }}>/mo</span>
-          </div>
+          {prices('19')}
           <ul class='features'>
             <li>Unlimited Broadcasts</li>
             <li>Stream to more than 3 destinations simultaneously</li>
             <li>Automatically configures highest video resolution</li>
             <li>Invite up to 4 on screen participants</li>
             <li>Record broadcasts in the cloud to edit later</li>
-            <li style={{ color: 'transparent' }}>|</li>
           </ul>
           <PriceButton title='Sign Up' />
         </div>
       </div>
 
       <div class='plan'>
-        {titleContainer('Expert')}
+        {titleContainer('Enterprise')}
         <div class='infoContainer'>
-          <div class='prices'>
-            <p>$39</p>
-            <span style={{ marginLeft: '5px' }}>/mo</span>
-          </div>
-
+          {prices('39')}
           <ul class='features'>
             <li>Unlimited Podcasts</li>
             <li>Unlimited Episodes</li>

@@ -34,18 +34,13 @@
   font-size: 1.45rem;
 }
 
-.plan .infoContainer {
-  padding: 1em;
-  color: black;
-  box-sizing: border-box;
-}
-.plan .infoContainer .prices {
-  font-size: 1.35em;
-  padding: 1em 0;
+.prices-plans {
+  font-size: 1.5rem;
   font-weight: 600;
-  margin-top: 0;
   display: inline-block;
   width: 80%;
+  margin-top: 0;
+  padding-top: 0;
 }
 .plan .infoContainer .prices p {
   font-size: 1.35em;
