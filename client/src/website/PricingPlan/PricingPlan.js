@@ -22,10 +22,10 @@ const prices = (price) => {
 
 function PricingPlan() {
   return (
-    <div class='planContainer'>
+    <div class='pricing-plan-container'>
       <div class='plan'>
         {titleContainer('Starter')}
-        <div class='infoContainer'>
+        <div class='info-container'>
           {prices('10')}
           <ul class='features'>
             <li>Unlimited Broadcasts</li>
@@ -39,7 +39,7 @@ function PricingPlan() {
 
       <div class='plan'>
         {titleContainer('Premium')}
-        <div class='infoContainer'>
+        <div class='info-container'>
           {prices('19')}
           <ul class='features'>
             <li>Unlimited Broadcasts</li>
@@ -54,7 +54,7 @@ function PricingPlan() {
 
       <div class='plan'>
         {titleContainer('Enterprise')}
-        <div class='infoContainer'>
+        <div class='info-container'>
           {prices('39')}
           <ul class='features'>
             <li>Unlimited Podcasts</li>
