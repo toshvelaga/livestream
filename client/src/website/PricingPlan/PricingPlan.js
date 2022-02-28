@@ -27,11 +27,11 @@ function PricingPlan() {
         {titleContainer('Starter')}
         <div class='info-container'>
           {prices('10')}
-          <ul class='features'>
+          <ul class='plan-features'>
             <li>Unlimited Broadcasts</li>
-            <li>Stream to up to 3 destinations simultaneously</li>
-            <li>Automatically configures highest video resolution</li>
-            <li>Low glass to glass latency</li>
+            <li>Stream to &gt;3 destinations simultaneously</li>
+            <li>Highest video resolution</li>
+            <li>Low latency</li>
           </ul>
           <PriceButton title='Sign Up' />
         </div>
@@ -41,12 +41,12 @@ function PricingPlan() {
         {titleContainer('Premium')}
         <div class='info-container'>
           {prices('19')}
-          <ul class='features'>
+          <ul class='plan-features'>
             <li>Unlimited Broadcasts</li>
-            <li>Stream to more than 3 destinations simultaneously</li>
-            <li>Automatically configures highest video resolution</li>
-            <li>Invite up to 4 on screen participants</li>
-            <li>Record broadcasts in the cloud to edit later</li>
+            <li>Stream to &gt;3 destinations simultaneously</li>
+            <li>Highest video resolution</li>
+            <li>Lowest latency Possible</li>
+            <li>Invite up to 6 on screen participants</li>
           </ul>
           <PriceButton title='Sign Up' />
         </div>
@@ -56,14 +56,13 @@ function PricingPlan() {
         {titleContainer('Enterprise')}
         <div class='info-container'>
           {prices('39')}
-          <ul class='features'>
-            <li>Unlimited Podcasts</li>
-            <li>Unlimited Episodes</li>
-            <li>Advanced Analytics</li>
-            <li>Embeddable Player</li>
-            <li>Email Support</li>
-            <li>Customizable Website</li>
-            <li>Monetization Features</li>
+          <ul class='plan-features'>
+            <li>Unlimited Broadcasts</li>
+            <li>Stream to &gt;3 destinations simultaneously</li>
+            <li>Highest video resolution</li>
+            <li>Lowest latency Possible</li>
+            <li>Invite up to 40 participants</li>
+            <li>Record broadcasts in the cloud to edit later</li>
           </ul>
           <PriceButton title='Sign Up' />
         </div>
