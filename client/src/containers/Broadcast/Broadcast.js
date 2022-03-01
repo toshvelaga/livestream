@@ -25,6 +25,7 @@ import ReactTooltip from 'react-tooltip'
 import eventTrack from '../../utils/eventTrack'
 import timeFromUserRegistration from '../../utils/timeFromUserRegistration'
 import TrialExpired from '../../components/TrialExpired/TrialExpired'
+import DisabledBroadcastAvatar from '../../components/Avatars/DisabledBroadcastAvatar'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
@@ -665,7 +666,16 @@ function Broadcast() {
                   />
                   <ReactTooltip />
                 </BroadcastAvatar>
-              ) : null}
+              ) : (
+                <DisabledBroadcastAvatar>
+                  <FaIcons.FaYoutube
+                    data-tip='Enable Youtube in Destinations tab'
+                    color={'grey'}
+                    size={35}
+                  />
+                  <ReactTooltip />
+                </DisabledBroadcastAvatar>
+              )}
 
               {showBroadcastAvatar.twitch ? (
                 <BroadcastAvatar
@@ -689,7 +699,16 @@ function Broadcast() {
                   />
                   <ReactTooltip />
                 </BroadcastAvatar>
-              ) : null}
+              ) : (
+                <DisabledBroadcastAvatar>
+                  <FaIcons.FaTwitch
+                    data-tip='Enable Twitch in Destinations tab'
+                    color={'grey'}
+                    size={35}
+                  />
+                  <ReactTooltip />
+                </DisabledBroadcastAvatar>
+              )}
 
               {showBroadcastAvatar.facebook ? (
                 <BroadcastAvatar
@@ -713,7 +732,16 @@ function Broadcast() {
                   />
                   <ReactTooltip />
                 </BroadcastAvatar>
-              ) : null}
+              ) : (
+                <DisabledBroadcastAvatar>
+                  <FaIcons.FaFacebookF
+                    data-tip='Enable Facebook in Destinations tab'
+                    color={'grey'}
+                    size={35}
+                  />
+                  <ReactTooltip />
+                </DisabledBroadcastAvatar>
+              )}
 
               {/* CUSTOM RTMP SERVER AND STREAM KEY */}
               {showBroadcastAvatar.customRTMP ? (
