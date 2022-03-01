@@ -637,11 +637,11 @@ function Broadcast() {
         ) : (
           <>
             <p>Broadcast to:</p>
-            {!showBroadcastAvatar.youtube &&
+            {/* {!showBroadcastAvatar.youtube &&
             !showBroadcastAvatar.twitch &&
             !showBroadcastAvatar.facebook ? (
               <NoDestinationsMessage />
-            ) : null}
+            ) : null} */}
             <div style={{ display: 'flex', marginBottom: '1rem' }}>
               {showBroadcastAvatar.youtube ? (
                 <BroadcastAvatar
