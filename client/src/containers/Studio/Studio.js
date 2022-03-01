@@ -465,28 +465,21 @@ function Studio() {
               You are currently sharing your screen. Go to a different tab or
               desktop app to share.
             </p>
-            <div
-              style={{
-                backgroundColor: '#f1f1f1',
-                padding: '1rem',
-                borderRadius: '5px',
-              }}
-            >
-              <video
-                // style={
-                //   !userFacing
-                //     ? {
-                //         visibility: 'hidden',
-                //       }
-                //     : null
-                // }
-                className='video-container'
-                ref={videoRef}
-                autoPlay
-                playsInline
-                muted={true}
-              />
-            </div>
+
+            <video
+              // style={
+              //   !userFacing
+              //     ? {
+              //         visibility: 'hidden',
+              //       }
+              //     : null
+              // }
+              className='video-container'
+              ref={videoRef}
+              autoPlay
+              playsInline
+              muted={true}
+            />
           </div>
 
           {/* {videoUrl ? <video controls src={videoUrl} /> : null} */}
