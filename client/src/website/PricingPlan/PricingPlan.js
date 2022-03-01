@@ -34,7 +34,7 @@ function PricingPlan() {
             <li>Highest video resolution</li>
             <li>Low latency</li>
           </ul>
-          <PriceButton title='Sign Up' />
+          <PriceButton id='starter-price-button' title='Sign Up' />
         </div>
       </div>
 

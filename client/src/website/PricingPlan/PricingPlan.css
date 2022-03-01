@@ -60,6 +60,19 @@
   padding: 0em 0.5em 2em 0.5em;
 }
 
+#starter-price-button {
+  background-color: #03a9f4;
+  color: white;
+  outline: none;
+  border: none;
+}
+
+#starter-price-button:hover {
+  background-color: #0298db;
+  color: white;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 25em) {
   .pricing-plan-container {
     margin: 0;
