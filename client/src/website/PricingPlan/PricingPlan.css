@@ -24,6 +24,7 @@
   margin-right: 2rem;
   margin-bottom: 1em;
   border: 1px solid black;
+  position: relative;
 }
 
 .title-container-plan {
@@ -71,6 +72,14 @@
   background-color: #0298db;
   color: white;
   cursor: pointer;
+}
+
+.inside {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 @media screen and (max-width: 25em) {

@@ -34,7 +34,9 @@ function PricingPlan() {
             <li>Highest video resolution</li>
             <li>Low latency</li>
           </ul>
-          <PriceButton id='starter-price-button' title='Sign Up' />
+          <div className='inside'>
+            <PriceButton id='starter-price-button' title='Sign Up' />
+          </div>
         </div>
       </div>
 
@@ -50,7 +52,9 @@ function PricingPlan() {
             <li>Lowest latency Possible</li>
             <li>Invite up to 6 on screen participants</li>
           </ul>
-          <PriceButton title='Sign Up' />
+          <div className='inside'>
+            <PriceButton title='Sign Up' />
+          </div>
         </div>
       </div>
 
@@ -67,7 +71,9 @@ function PricingPlan() {
             <li>Invite up to 40 participants</li>
             <li>Record broadcasts in the cloud to edit later</li>
           </ul>
-          <PriceButton title='Sign Up' />
+          <div className='inside'>
+            <PriceButton title='Sign Up' />
+          </div>
         </div>
       </div>
     </div>
