@@ -57,7 +57,7 @@
   padding: 0em 0.5em 2em 0.5em;
 }
 
-#starter-price-button {
+/* #starter-price-button {
   background-color: #03a9f4;
   color: white;
   outline: none;
@@ -68,11 +68,11 @@
   background-color: #0298db;
   color: white;
   cursor: pointer;
-}
+} */
 
 .inside {
   position: absolute;
-  bottom: 20px;
+  bottom: 2rem;
   left: 0;
   right: 0;
   margin: auto;
