@@ -3,7 +3,7 @@ const express = require('express'),
 
 require('dotenv').config()
 
-router.patch('/api/twitch/view-count', async (req, res) => {
+router.post('/api/twitch/view-count', async (req, res) => {
   // twitch forum: https://discuss.dev.twitch.tv/t/viewer-counter-help/24726/2
 
   const twitchUserName = req.body.twitchUserName
