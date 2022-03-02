@@ -4,26 +4,19 @@ const express = require('express'),
 require('dotenv').config()
 
 router.patch('/api/twitch/view-count', async (req, res) => {
-  // twitch docs: https://dev.twitch.tv/docs/api/reference#get-channel-information
+  // twitch forum: https://discuss.dev.twitch.tv/t/viewer-counter-help/24726/2
 
-  const userId = req.body.userId
-  const twitchUserId = req.body.twitchUserId
+  const twitchUserName = req.body.twitchUserName
   const twitchAccessToken = req.body.twitchAccessToken
-  const twitchAccessRefreshToken = req.body.twitchAccessRefreshToken
-  const title = req.body.title
 
   let authData = await axios
-    .patch(
-      `https://api.twitch.tv/helix/channels?broadcaster_id=${twitchUserId}`,
-      { title },
-      {
-        headers: {
-          Authorization: `Bearer ${twitchAccessToken}`,
-          'Client-Id': process.env.TWITCH_CLIENT_ID,
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    .get(`https://api.twitch.tv/helix/streams?user_login=toshvelaga`, {
+      headers: {
+        Authorization: `Bearer ${twitchAccessToken}`,
+        'Client-Id': process.env.TWITCH_CLIENT_ID,
+        'Content-Type': 'application/json',
+      },
+    })
     .then((res) => {
       console.log(res)
       return res
