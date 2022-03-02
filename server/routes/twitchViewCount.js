@@ -11,7 +11,7 @@ router.post('/api/twitch/view-count', async (req, res) => {
   const twitchAccessToken = req.body.twitchAccessToken
 
   let resData = await axios
-    .get(`https://api.twitch.tv/helix/streams?user_login=${twitchUserName}`, {
+    .get(`https://api.twitch.tv/helix/streams?user_login=toshvelaga`, {
       headers: {
         Authorization: `Bearer ${twitchAccessToken}`,
         'Client-Id': process.env.TWITCH_CLIENT_ID,
@@ -19,8 +19,7 @@ router.post('/api/twitch/view-count', async (req, res) => {
       },
     })
     .then((res) => {
-      console.log(res)
-      return res
+      return res.data
     })
     .catch((err) => {
       console.log(err.response.status)
@@ -31,7 +30,7 @@ router.post('/api/twitch/view-count', async (req, res) => {
 
   console.log(resData)
 
-  return res.status(201).send(resData.data)
+  return res.status(201).send({ data: resData.data })
 })
 
 module.exports = router
