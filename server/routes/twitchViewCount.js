@@ -12,7 +12,7 @@ router.post('/api/twitch/view-count', async (req, res) => {
   const twitchUsername = req.body.twitchUsername
   const twitchAccessToken = req.body.twitchAccessToken
 
-  let resData = await axios
+  let viewCount = await axios
     .get(`https://api.twitch.tv/helix/streams?user_login=${twitchUsername}`, {
       headers: {
         Authorization: `Bearer ${twitchAccessToken}`,
@@ -21,16 +21,14 @@ router.post('/api/twitch/view-count', async (req, res) => {
       },
     })
     .then((res) => {
-      return res.data
+      console.log(res.data.data[0])
+      return res.data.data[0].viewer_count
     })
     .catch((err) => {
-      console.log(err.response.status)
-      if (err.response.status === 401) {
-        console.log('the wrong token was used, thats why there is a 401')
-      }
+      console.log(err)
     })
 
-  return res.status(201).send({ data: resData.data })
+  return res.status(201).send({ data: viewCount })
 })
 
 module.exports = router

@@ -83,7 +83,8 @@ function Studio() {
 
   const history = useHistory()
   const [elapsedSeconds, setelapsedSeconds] = useState(0)
-  const twitchViewCountTimer = 1000 * 60 * 5
+  // const twitchViewCountTimer = 1000 * 60 * 5
+  const twitchViewCountTimer = 1000 * 30
   let timer = useRef(null)
   let on = false
 
