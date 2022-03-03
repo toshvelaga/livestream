@@ -7,6 +7,8 @@ require('dotenv').config()
 router.post('/api/twitch/view-count', async (req, res) => {
   // twitch forum: https://discuss.dev.twitch.tv/t/viewer-counter-help/24726/2
 
+  // https://discuss.dev.twitch.tv/t/getting-stream-viewer-count-webhook-notifications/20645/5
+
   const twitchUserName = req.body.twitchUserName
   const twitchAccessToken = req.body.twitchAccessToken
 

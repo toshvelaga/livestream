@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { io } from 'socket.io-client'
 import * as FaIcons from 'react-icons/fa'
-import * as MdIcons from 'react-icons/md'
 import Navbar from '../../components/Navbar/Navbar'
 import BroadcastButton from '../../components/Buttons/BroadcastButton'
 import DestinationButton from '../../components/Buttons/DestinationButton'
@@ -46,6 +45,8 @@ function Studio() {
   const [facebookPermalinkUrl, setfacebookPermalinkUrl] = useState('')
   const [twitchStreamKey, settwitchStreamKey] = useState('')
   const [twitchUsername, settwitchUsername] = useState('')
+  const [twitchAccessToken, settwitchAccessToken] = useState('')
+  const [twitchViewCount, settwitchViewCount] = useState('')
   const [customRtmpServer, setcustomRtmpServer] = useState('')
   const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
 
@@ -121,11 +122,13 @@ function Studio() {
       const {
         facebook_access_token,
         facebook_long_access_token,
+        twitch_access_token,
         twitch_user_name,
       } = res.data
 
       setfacebookAccessToken(facebook_access_token)
       setlongFacebookAccessToken(facebook_long_access_token)
+      settwitchAccessToken(twitch_access_token)
       settwitchUsername(twitch_user_name)
     })
   }, [])
