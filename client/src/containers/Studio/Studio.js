@@ -47,7 +47,7 @@ function Studio() {
   const [twitchStreamKey, settwitchStreamKey] = useState('')
   const [twitchUsername, settwitchUsername] = useState('')
   const [twitchAccessToken, settwitchAccessToken] = useState('')
-  const [twitchViewCount, settwitchViewCount] = useState('')
+  const [twitchViewCount, settwitchViewCount] = useState(0)
   const [customRtmpServer, setcustomRtmpServer] = useState('')
   const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
 
@@ -83,6 +83,7 @@ function Studio() {
 
   const history = useHistory()
   const [elapsedSeconds, setelapsedSeconds] = useState(0)
+  const twitchViewCountTimer = 1000 * 60 * 5
   let timer = useRef(null)
   let on = false
 
@@ -136,9 +137,11 @@ function Studio() {
 
   useInterval(() => {
     // Your custom logic here
-    settwitchViewCount((twitchViewCount) => twitchViewCount + 1)
-    console.log(twitchViewCount)
-  }, 1000)
+    if (isActive) {
+      settwitchViewCount((twitchViewCount) => twitchViewCount + 1)
+      console.log(twitchViewCount)
+    } else return null
+  }, twitchViewCountTimer)
 
   // get facebook permalink url
 
