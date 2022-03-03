@@ -9,6 +9,7 @@ import Timer from '../../components/Timer/Timer'
 import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
 import accurateTimer from '../../utils/accurateTimer'
+import useInterval from '../../utils/useInterval'
 import API from '../../api/api'
 import './Studio.css'
 import { useParams, useHistory } from 'react-router-dom'
@@ -132,6 +133,12 @@ function Studio() {
       settwitchUsername(twitch_user_name)
     })
   }, [])
+
+  useInterval(() => {
+    // Your custom logic here
+    settwitchViewCount((twitchViewCount) => twitchViewCount + 1)
+    console.log(twitchViewCount)
+  }, 1000)
 
   // get facebook permalink url
 
