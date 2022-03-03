@@ -138,8 +138,14 @@ function Studio() {
   useInterval(() => {
     // Your custom logic here
     if (isActive) {
-      settwitchViewCount((twitchViewCount) => twitchViewCount + 1)
-      console.log(twitchViewCount)
+      API.post('/twitch/view-count', {
+        twitchUsername: twitchUsername,
+        twitchAccessToken: twitchAccessToken,
+      })
+        .then((res) => {
+          console.log(res.data)
+        })
+        .catch((err) => console.log(err))
     } else return null
   }, twitchViewCountTimer)
 

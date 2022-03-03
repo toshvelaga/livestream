@@ -9,11 +9,11 @@ router.post('/api/twitch/view-count', async (req, res) => {
 
   // https://discuss.dev.twitch.tv/t/getting-stream-viewer-count-webhook-notifications/20645/5
 
-  const twitchUserName = req.body.twitchUserName
+  const twitchUsername = req.body.twitchUsername
   const twitchAccessToken = req.body.twitchAccessToken
 
   let resData = await axios
-    .get(`https://api.twitch.tv/helix/streams?user_login=${twitchUserName}`, {
+    .get(`https://api.twitch.tv/helix/streams?user_login=${twitchUsername}`, {
       headers: {
         Authorization: `Bearer ${twitchAccessToken}`,
         'Client-Id': process.env.TWITCH_CLIENT_ID,
