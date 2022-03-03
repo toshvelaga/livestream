@@ -5,6 +5,7 @@ const { Server } = require('socket.io')
 const app = express()
 const cors = require('cors')
 const path = require('path')
+const tmi = require('tmi.js')
 
 require('dotenv').config()
 
@@ -137,4 +138,15 @@ io.on('connection', (socket) => {
     console.log('kill: SIGINT')
     ffmpeg.kill('SIGINT')
   })
+})
+
+const client = new tmi.Client({
+  channels: ['toshvelaga'],
+})
+
+client.connect()
+
+client.on('message', (channel, tags, message, self) => {
+  // "Alca: Hello, World!"
+  console.log(`${tags['display-name']}: ${message}`)
 })
