@@ -6,6 +6,7 @@ import BroadcastButton from '../../components/Buttons/BroadcastButton'
 import DestinationButton from '../../components/Buttons/DestinationButton'
 import StudioButton from '../../components/Buttons/StudioButton'
 import Timer from '../../components/Timer/Timer'
+import ViewCounter from '../../components/ViewCounter/ViewCounter'
 import formatTime from '../../utils/formatTime'
 import getCookie from '../../utils/getCookie'
 import accurateTimer from '../../utils/accurateTimer'
@@ -145,6 +146,9 @@ function Studio() {
       })
         .then((res) => {
           console.log(res.data)
+          if (res.data != 'undefined' || res.data !== null) {
+            settwitchViewCount(res.data.viewer_count)
+          }
         })
         .catch((err) => console.log(err))
     } else return null
@@ -470,6 +474,7 @@ function Studio() {
             <Timer>
               {isActive ? 'LIVE' : 'END'}: {formatTime(elapsedSeconds)}
             </Timer>
+            <ViewCounter num={twitchViewCount} />
           </div>
 
           <div>

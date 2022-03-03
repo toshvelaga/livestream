@@ -22,7 +22,7 @@ router.post('/api/twitch/view-count', async (req, res) => {
     })
     .then((res) => {
       console.log(res.data.data[0])
-      return res.data.data[0].viewer_count
+      return res.data.data[0]
     })
     .catch((err) => {
       console.log(err)

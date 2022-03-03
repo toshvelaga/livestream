@@ -1,8 +1,8 @@
 import React from 'react'
 import './ViewCounter.css'
 
-const ViewCounter = (num) => {
-  return <div className='view-counter'>Views: {num}</div>
+const ViewCounter = (props) => {
+  return <div className='view-counter'>Views: {props.num}</div>
 }
 
 export default ViewCounter
