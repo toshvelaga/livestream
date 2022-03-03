@@ -9,6 +9,12 @@
   font-family: var(--main-font);
 }
 
+.time-view-container {
+  display: flex;
+  justify-content: center;
+  float: left;
+}
+
 .studio-bottom-button-container {
   margin-top: 1rem;
   text-align: center;

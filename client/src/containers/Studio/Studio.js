@@ -463,14 +463,12 @@ function Studio() {
       <div className='studio-container'>
         <div id='container'>
           <div
+            className='time-view-container'
             style={
               elapsedSeconds === 0
                 ? { visibility: 'hidden' }
                 : {
                     visibility: 'visible',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    float: 'left',
                   }
             }
           >
