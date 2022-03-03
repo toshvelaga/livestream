@@ -1,5 +1,9 @@
 .view-counter {
-  padding: 1rem;
+  padding: 10px 10px;
+  margin-bottom: 10px;
   border-radius: 5px;
   background-color: #f5f5f5;
+  width: 10rem;
+  margin-left: 1rem;
+  background-color: lightgrey;
 }

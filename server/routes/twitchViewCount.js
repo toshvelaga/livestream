@@ -21,14 +21,14 @@ router.post('/api/twitch/view-count', async (req, res) => {
       },
     })
     .then((res) => {
-      console.log(res.data.data[0])
-      return res.data.data[0]
+      console.log(res.data.data[0].viewer_count)
+      return res.data.data[0].viewer_count
     })
     .catch((err) => {
       console.log(err)
     })
 
-  return res.status(201).send({ data: viewCount })
+  return res.status(201).send({ number: viewCount })
 })
 
 module.exports = router

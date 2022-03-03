@@ -145,10 +145,8 @@ function Studio() {
         twitchAccessToken: twitchAccessToken,
       })
         .then((res) => {
-          console.log(res.data)
-          if (res.data != 'undefined' || res.data !== null) {
-            settwitchViewCount(res.data.viewer_count)
-          }
+          console.log(res.data.number)
+          if (res.data.number) settwitchViewCount(res.data.number)
         })
         .catch((err) => console.log(err))
     } else return null
@@ -468,7 +466,12 @@ function Studio() {
             style={
               elapsedSeconds === 0
                 ? { visibility: 'hidden' }
-                : { visibility: 'visible' }
+                : {
+                    visibility: 'visible',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    float: 'left',
+                  }
             }
           >
             <Timer>
