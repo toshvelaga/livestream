@@ -69,7 +69,7 @@ function PricingPlan() {
             <li>Highest video resolution</li>
             <li>Lowest latency Possible</li>
             <li>Invite up to 40 participants</li>
-            <li>Record broadcasts in the cloud to edit later</li>
+            {/* <li>Record broadcasts in the cloud to edit later</li> */}
           </ul>
           <div className='inside'>
             <PriceButton title='Sign Up' />

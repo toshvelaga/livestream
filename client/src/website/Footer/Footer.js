@@ -7,7 +7,7 @@ function Footer() {
     <div className='bottom-footer'>
       <span>Made in the United States of America 🇺🇸</span>
       <span className='footer-link'>
-        <Link style={{ textDecoration: 'none' }} to='/terms'>
+        <Link style={{ textDecoration: 'none', color: '#fff' }} to='/terms'>
           Terms of Service
         </Link>
       </span>
@@ -17,7 +17,7 @@ function Footer() {
             pathname: '/privacy-policy',
           }}
           target='_blank'
-          style={{ textDecoration: 'none' }}
+          style={{ textDecoration: 'none', color: '#fff' }}
         >
           Privacy Policy
         </Link>

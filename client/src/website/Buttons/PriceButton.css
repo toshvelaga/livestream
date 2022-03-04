@@ -1,6 +1,7 @@
 .price-button {
-  border: 1px #03a9f4 solid;
-  color: #03a9f4;
+  background-color: #1c90ff;
+  color: #fff;
+  /* color: #03a9f4; */
   letter-spacing: 2px;
   padding: 10px;
   outline: none;
@@ -8,6 +9,7 @@
   font-size: 16px;
   border-radius: 5px;
   text-transform: uppercase;
+  border: none;
 }
 
 .price-button:hover {
