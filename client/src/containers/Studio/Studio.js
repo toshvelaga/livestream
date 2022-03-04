@@ -546,11 +546,12 @@ function Studio() {
             </StudioButton>
           </div>
         </div>
+        {/* CHAT MESSAGES */}
         <div
           style={{
-            backgroundColor: '#ddd',
+            backgroundColor: '#efefef',
             borderRadius: '5px',
-            height: '65vh',
+            height: '75vh',
             width: '18rem',
             float: 'right',
             position: 'absolute',
@@ -559,7 +560,20 @@ function Studio() {
           }}
         >
           <h2 style={{ marginLeft: '10px' }}>Chat</h2>
-          <p>this is where the chat is</p>
+          {/* <p>this is where the chat is</p> */}
+          {twitchChatMsgs.map((msg) => (
+            <p
+              style={{
+                backgroundColor: 'lightgrey',
+                width: '90%',
+                margin: '.5rem auto',
+                padding: '.5rem',
+                borderRadius: '5px',
+              }}
+            >
+              {msg}
+            </p>
+          ))}
         </div>
       </div>
     </>
