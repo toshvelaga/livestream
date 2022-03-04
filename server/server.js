@@ -87,15 +87,16 @@ io.on('connection', (socket) => {
     twitchStreamKey !== 'null'
       ? 'rtmp://dfw.contribute.live-video.net/app/' + twitchStreamKey
       : null
+  const twitchUsername = socketQueryParams.twitchUsername
   const facebook = socketQueryParams.facebookUrl
 
   const customRTMP = socketQueryParams.customRTMP
-  console.log('custom RTMP: ' + customRTMP)
+  console.log('twitchUsername: ' + twitchUsername)
 
   // TWITCH CHAT TMI.JS
 
   const client = new tmi.Client({
-    channels: ['toshvelaga'],
+    channels: [twitchUsername],
   })
 
   client.connect()
@@ -103,6 +104,7 @@ io.on('connection', (socket) => {
   client.on('message', (channel, tags, message, self) => {
     // "Alca: Hello, World!"
     console.log(`${tags['display-name']}: ${message}`)
+    io.to(socket.id).emit('twitch-msg', `${tags['display-name']}: ${message}`)
   })
 
   // END TWITCH CHAT TMI.JS

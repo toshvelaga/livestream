@@ -74,7 +74,7 @@ function Studio() {
   // const ws = useRef()
   const productionWsUrl = 'https://ohmystream.xyz'
   const developmentWsUrl = 'ws://localhost:3001'
-  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
+  const streamUrlParams = `?twitchStreamKey=${twitchStreamKey}&twitchUsername=${twitchUsername}&youtubeUrl=${youtubeUrl}&facebookUrl=${encodeURIComponent(
     facebookUrl
   )}&customRTMP=${
     customRtmpServer
