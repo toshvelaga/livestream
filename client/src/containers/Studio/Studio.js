@@ -185,20 +185,14 @@ function Studio() {
         console.log('close the socket') // undefined
       })
     }
-  }, [
-    facebookUrl,
-    youtubeUrl,
-    twitchStreamKey,
-    customRtmpServer,
-    customRtmpStreamKey,
-  ])
+  }, [streamUrlParams])
 
-  useEffect(() => {
-    socket.current.on('twitch-msg', (msg) => {
-      setTwitchChatMsgs([...twitchChatMsgs, msg])
-      console.log(twitchChatMsgs)
-    })
-  }, [twitchChatMsgs])
+  // useEffect(() => {
+  //   socket.current.on('twitch-msg', (msg) => {
+  //     setTwitchChatMsgs([...twitchChatMsgs, msg])
+  //     console.log(twitchChatMsgs)
+  //   })
+  // }, [twitchChatMsgs])
 
   useEffect(() => {
     handleClientLoad()
@@ -547,7 +541,8 @@ function Studio() {
           </div>
         </div>
         {/* CHAT MESSAGES */}
-        <div
+
+        {/* <div
           style={{
             backgroundColor: '#efefef',
             borderRadius: '5px',
@@ -560,7 +555,6 @@ function Studio() {
           }}
         >
           <h2 style={{ marginLeft: '10px' }}>Chat</h2>
-          {/* <p>this is where the chat is</p> */}
           {twitchChatMsgs.map((msg) => (
             <p
               style={{
@@ -574,7 +568,7 @@ function Studio() {
               {msg}
             </p>
           ))}
-        </div>
+        </div> */}
       </div>
     </>
   )

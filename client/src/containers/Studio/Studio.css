@@ -5,8 +5,8 @@
 
 .studio-container {
   width: 60%;
-  /* margin: 1rem auto; */
-  margin-left: 8rem;
+  margin: 1rem auto;
+  /* margin-left: 8rem; */
   font-family: var(--main-font);
 }
 
