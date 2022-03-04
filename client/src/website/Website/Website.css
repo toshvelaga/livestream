@@ -1,7 +1,17 @@
-:root {
+@font-face {
+  font-family: 'Poppins';
+  src: local('Poppins'), local('Poppins'),
+    url('../../fonts/Poppins/Poppins-Light.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+
+body {
+  font-family: 'Poppins';
+}
+
+/* :root {
   --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Ubuntu, Arial, sans-serif;
-}
+} */
 
 #pulse {
   box-shadow: 0 0 0 rgb(3 169 244 / 40%);
@@ -41,7 +51,7 @@
 
 body {
   margin: 0;
-  font-family: var(--main-font);
+  /* font-family: var(--main-font); */
 }
 
 .website-image {
