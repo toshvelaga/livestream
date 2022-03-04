@@ -92,6 +92,21 @@ io.on('connection', (socket) => {
   const customRTMP = socketQueryParams.customRTMP
   console.log('custom RTMP: ' + customRTMP)
 
+  // TWITCH CHAT TMI.JS
+
+  const client = new tmi.Client({
+    channels: ['toshvelaga'],
+  })
+
+  client.connect()
+
+  client.on('message', (channel, tags, message, self) => {
+    // "Alca: Hello, World!"
+    console.log(`${tags['display-name']}: ${message}`)
+  })
+
+  // END TWITCH CHAT TMI.JS
+
   const ffmpegInput = inputSettings.concat(
     youtubeSettings(youtube),
     twitchSettings(twitch),
@@ -138,15 +153,4 @@ io.on('connection', (socket) => {
     console.log('kill: SIGINT')
     ffmpeg.kill('SIGINT')
   })
-})
-
-const client = new tmi.Client({
-  channels: ['toshvelaga'],
-})
-
-client.connect()
-
-client.on('message', (channel, tags, message, self) => {
-  // "Alca: Hello, World!"
-  console.log(`${tags['display-name']}: ${message}`)
 })
