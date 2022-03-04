@@ -49,7 +49,7 @@ function Studio() {
   const [twitchUsername, settwitchUsername] = useState('')
   const [twitchAccessToken, settwitchAccessToken] = useState('')
   const [twitchViewCount, settwitchViewCount] = useState(0)
-  const [twitchChatMsgs, setTwitchChatMsgs] = useState([])
+  const [twitchChatMsgs, setTwitchChatMsgs] = useState(['hello', 'its me'])
   const [customRtmpServer, setcustomRtmpServer] = useState('')
   const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
 
@@ -470,79 +470,96 @@ function Studio() {
           />
         </div>
       </Navbar>
-      <div className='studio-container'>
-        <div id='container'>
-          <div
-            className='time-view-container'
-            style={
-              elapsedSeconds === 0
-                ? { visibility: 'hidden' }
-                : {
-                    visibility: 'visible',
-                  }
-            }
-          >
-            <Timer>
-              {isActive ? 'LIVE' : 'END'}: {formatTime(elapsedSeconds)}
-            </Timer>
-            <ViewCounter num={twitchViewCount} />
-          </div>
 
-          <div>
-            <p
+      <div>
+        <div className='studio-container'>
+          <div id='container'>
+            <div
+              className='time-view-container'
               style={
-                userFacing
-                  ? {
-                      display: 'none',
+                elapsedSeconds === 0
+                  ? { visibility: 'hidden' }
+                  : {
+                      visibility: 'visible',
                     }
-                  : null
               }
             >
-              You are currently sharing your screen. Go to a different tab or
-              desktop app to share.
-            </p>
+              <Timer>
+                {isActive ? 'LIVE' : 'END'}: {formatTime(elapsedSeconds)}
+              </Timer>
+              <ViewCounter num={twitchViewCount} />
+            </div>
 
-            <video
-              // style={
-              //   !userFacing
-              //     ? {
-              //         visibility: 'hidden',
-              //       }
-              //     : null
-              // }
-              className='video-container'
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted={true}
-            />
+            <div>
+              <p
+                style={
+                  userFacing
+                    ? {
+                        display: 'none',
+                      }
+                    : null
+                }
+              >
+                You are currently sharing your screen. Go to a different tab or
+                desktop app to share.
+              </p>
+
+              <video
+                // style={
+                //   !userFacing
+                //     ? {
+                //         visibility: 'hidden',
+                //       }
+                //     : null
+                // }
+                className='video-container'
+                ref={videoRef}
+                autoPlay
+                playsInline
+                muted={true}
+              />
+            </div>
+            {/* {videoUrl ? <video controls src={videoUrl} /> : null} */}
           </div>
+          <div className='studio-bottom-button-container'>
+            <StudioButton label={'Share Screen'} onClick={toggleScreenSharing}>
+              <FaIcons.FaLaptop size={20} />
+            </StudioButton>
+            <StudioButton label={'Camera'} onClick={toggleCamera}>
+              {cameraOn ? (
+                <FaIcons.FaVideo size={20} />
+              ) : (
+                <FaIcons.FaVideoSlash size={20} />
+              )}
+            </StudioButton>
 
-          {/* {videoUrl ? <video controls src={videoUrl} /> : null} */}
+            <StudioButton label={'Mic'} onClick={toggleMicrophone}>
+              {!muted ? (
+                <FaIcons.FaMicrophone size={20} />
+              ) : (
+                <FaIcons.FaMicrophoneSlash size={20} />
+              )}
+            </StudioButton>
+
+            <StudioButton label={'Leave Studio'} onClick={exitStudio}>
+              <FaIcons.FaPhoneSlash color='#eb3472' size={20} />
+            </StudioButton>
+          </div>
         </div>
-        <div className='studio-bottom-button-container'>
-          <StudioButton label={'Share Screen'} onClick={toggleScreenSharing}>
-            <FaIcons.FaLaptop size={20} />
-          </StudioButton>
-          <StudioButton label={'Camera'} onClick={toggleCamera}>
-            {cameraOn ? (
-              <FaIcons.FaVideo size={20} />
-            ) : (
-              <FaIcons.FaVideoSlash size={20} />
-            )}
-          </StudioButton>
-
-          <StudioButton label={'Mic'} onClick={toggleMicrophone}>
-            {!muted ? (
-              <FaIcons.FaMicrophone size={20} />
-            ) : (
-              <FaIcons.FaMicrophoneSlash size={20} />
-            )}
-          </StudioButton>
-
-          <StudioButton label={'Leave Studio'} onClick={exitStudio}>
-            <FaIcons.FaPhoneSlash color='#eb3472' size={20} />
-          </StudioButton>
+        <div
+          style={{
+            backgroundColor: '#ddd',
+            borderRadius: '5px',
+            height: '65vh',
+            width: '18rem',
+            float: 'right',
+            position: 'absolute',
+            top: '100px',
+            right: '0',
+          }}
+        >
+          <h2 style={{ marginLeft: '10px' }}>Chat</h2>
+          <p>this is where the chat is</p>
         </div>
       </div>
     </>
