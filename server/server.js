@@ -104,7 +104,7 @@ io.on('connection', (socket) => {
   client.on('message', (channel, tags, message, self) => {
     // "Alca: Hello, World!"
     console.log(`${tags['display-name']}: ${message}`)
-    io.to(socket.id).emit('twitch-msg', `${tags['display-name']}: ${message}`)
+    socket.emit('twitch-msg', `${tags['display-name']}: ${message}`)
   })
 
   // END TWITCH CHAT TMI.JS

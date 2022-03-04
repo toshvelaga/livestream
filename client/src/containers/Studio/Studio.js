@@ -49,6 +49,7 @@ function Studio() {
   const [twitchUsername, settwitchUsername] = useState('')
   const [twitchAccessToken, settwitchAccessToken] = useState('')
   const [twitchViewCount, settwitchViewCount] = useState(0)
+  const [twitchChatMsgs, setTwitchChatMsgs] = useState([])
   const [customRtmpServer, setcustomRtmpServer] = useState('')
   const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
 
@@ -191,6 +192,13 @@ function Studio() {
     customRtmpServer,
     customRtmpStreamKey,
   ])
+
+  useEffect(() => {
+    socket.current.on('twitch-msg', (msg) => {
+      setTwitchChatMsgs([...twitchChatMsgs, msg])
+      console.log(twitchChatMsgs)
+    })
+  }, [twitchChatMsgs])
 
   useEffect(() => {
     handleClientLoad()
