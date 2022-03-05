@@ -4,9 +4,11 @@
     url('../../fonts/Poppins/Poppins-Light.ttf') format('truetype');
 }
 
+/* #262626, #1d1e1f */
+
 body {
   font-family: 'Poppins';
-  background-color: #1a1a1a;
+  background-color: #1d1e1f;
   color: #fff;
 }
 
@@ -57,7 +59,7 @@ body {
 
 .website-navbar {
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: #1d1e1f;
   position: fixed;
   top: 0;
   width: 100%;
@@ -68,7 +70,7 @@ body {
 .website-navbar a {
   float: right;
   display: block;
-  color: black;
+  color: #03a9f4;
   text-align: center;
   padding: 12px 24px;
   text-decoration: none;
@@ -83,7 +85,7 @@ body {
 
 .signup-button-in-navbar {
   font-weight: 600;
-  border: 1px solid black;
+  border: 1px solid #03a9f4;
   border-radius: 5px;
 }
 
@@ -144,10 +146,12 @@ body {
 
 .website-text-description {
   font-size: 20px;
-  color: #fff;
+  /* color: #fff; */
+  color: grey;
 }
 
 .website-main-description {
+  color: grey;
   text-align: center;
   font-size: 20px;
   margin: 1rem 2rem 0rem 2rem;
