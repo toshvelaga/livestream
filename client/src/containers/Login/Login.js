@@ -49,8 +49,10 @@ function Login() {
     <>
       <div className='login-container'>
         <div>
-          <h2>Log in to your account</h2>
-          <p>Enter your email and we'll send you a login code.</p>
+          <h2 className='login-title'>Log in to your account</h2>
+          <p className='login-subtitle'>
+            Enter your email and we'll send you a login code.
+          </p>
           <TextInput
             label='Email'
             placeholder='Email Address'

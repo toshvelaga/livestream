@@ -1,12 +1,13 @@
-:root {
-  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), local('Inter'),
+    url('../../fonts/Inter/Inter-Bold.ttf') format('truetype');
 }
 
 .text-input-container {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  font-family: var(--main-font);
+  font-family: 'Inter';
 }
 
 input[type='text'],
@@ -20,7 +21,7 @@ select {
   box-sizing: border-box;
   font-size: 16px;
   background-color: #ffffff;
-  font-family: var(--main-font);
+  font-family: 'Inter';
 }
 
 input:focus {
@@ -29,12 +30,12 @@ input:focus {
 }
 
 input::placeholder {
-  font-family: var(--main-font);
+  font-family: 'Inter';
 }
 
 .label {
   font-size: 16px;
-  color: black;
+  /* color: black; */
   display: 'block';
 }
 

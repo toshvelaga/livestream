@@ -1,12 +1,19 @@
-:root {
-  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+body {
+  background-color: var(--main-background-color);
 }
 
 .login-container {
   width: 40%;
   margin: 10rem auto;
   font-family: var(--main-font);
+}
+
+.login-title {
+  color: var(--white-font-color);
+}
+
+.login-subtitle {
+  color: var(--grey-font-color);
 }
 
 @media only screen and (max-width: 1000px) {

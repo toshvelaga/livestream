@@ -18,6 +18,7 @@ import Confirm from './containers/Billing/Confirm'
 import Spinner from './website/Spinner/Spinner'
 import Terms from './website/Terms/Terms'
 import Privacy from './website/Privacy/Privacy'
+import './variables.css'
 const Website = lazy(() => import('./website/Website/Website'))
 
 function App() {
