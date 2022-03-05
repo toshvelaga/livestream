@@ -25,7 +25,7 @@ function Website(props) {
           ) : null}
         </Helmet> */}
         <Link
-          id='wavvy-website-title'
+          className='navbar-logo'
           style={{ float: 'left', fontWeight: '600' }}
           to='/'
         >
@@ -42,6 +42,7 @@ function Website(props) {
           Sign-up
         </Link>
         <Link
+          className='navbar-logo'
           onClick={() =>
             eventTrack('Landing Page', 'Login Button Clicked', 'Button')
           }
@@ -98,21 +99,21 @@ function Website(props) {
               <div className='icon-website-container'>
                 <FaIcons.FaYoutube color='#ff0000' size={40} />
               </div>
-              <p className='website-text-description'>Stream to Youtube</p>
+              <p className='website-text-description'>Youtube</p>
             </div>
 
             <div class='column sm-3'>
               <div className='icon-website-container'>
                 <FaIcons.FaTwitch color='#9047fe' size={40} />
               </div>
-              <p className='website-text-description'>Stream to Twitch</p>
+              <p className='website-text-description'>Twitch</p>
             </div>
 
             <div class='column sm-3'>
               <div className='icon-website-container'>
                 <FaIcons.FaFacebookF color='#1878f1' size={40} />
               </div>
-              <p className='website-text-description'>Stream to Facebook</p>
+              <p className='website-text-description'>Facebook</p>
             </div>
           </div>
         </div>
@@ -123,7 +124,7 @@ function Website(props) {
                 <FaIcons.FaKeyboard color={'darkgrey'} size={40} />
               </div>
               <p className='website-text-description'>
-                Stream to any custom RTMP destination
+                Custom RTMP destination
               </p>
             </div>
 
@@ -131,18 +132,14 @@ function Website(props) {
               <div className='icon-website-container'>
                 <FaIcons.FaTwitter color='#1b9bee' size={40} />
               </div>
-              <p className='website-text-description'>
-                Stream to Twitter Coming soon
-              </p>
+              <p className='website-text-description'>Twitter Coming soon</p>
             </div>
 
             <div class='column sm-3'>
               <div className='icon-website-container'>
                 <FaIcons.FaLinkedin color='#0966c2' size={40} />
               </div>
-              <p className='website-text-description'>
-                Stream to Linkedin coming soon
-              </p>
+              <p className='website-text-description'>Linkedin coming soon</p>
             </div>
           </div>
         </div>

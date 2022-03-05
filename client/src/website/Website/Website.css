@@ -12,6 +12,10 @@ body {
   color: #fff;
 }
 
+.navbar-logo {
+  font-family: 'Inter';
+}
+
 #pulse {
   box-shadow: 0 0 0 rgb(3 169 244 / 40%);
   animation: pulse 4s infinite;
@@ -87,6 +91,7 @@ body {
   font-weight: 600;
   border: 1px solid #03a9f4;
   border-radius: 5px;
+  font-family: 'Inter';
 }
 
 .signup-button-in-navbar:hover {
