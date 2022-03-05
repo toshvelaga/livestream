@@ -18,8 +18,7 @@ const prices = (price) => {
       <p>
         <span style={{ fontSize: '20px' }}>$</span>
         <span style={{ fontSize: '36px' }}>{price}</span>
-        <br />
-        <span style={{ fontSize: '12px' }}>per month</span>
+        <p style={{ fontSize: '12px', margin: 0 }}>per month</p>
       </p>
     </div>
   )

@@ -121,7 +121,7 @@ function Website(props) {
           <div class='row'>
             <div class='column sm-3'>
               <div className='icon-website-container'>
-                <FaIcons.FaKeyboard color={'darkgrey'} size={40} />
+                <FaIcons.FaTiktok color={'#1fe7e1'} size={40} />
               </div>
               <p className='website-text-description'>
                 Custom RTMP destination
