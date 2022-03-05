@@ -49,8 +49,8 @@ function Register() {
     <>
       <div className='register-container'>
         <div>
-          <h2>Create an account</h2>
-          <p>
+          <h2 className='register-title'>Create an account</h2>
+          <p className='register-subtitle'>
             We use passwordless sign up. Just enter your email and you'll get a
             code to use.
           </p>

@@ -1,12 +1,15 @@
-:root {
-  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Ubuntu, Arial, sans-serif;
-}
-
 .register-container {
   width: 40%;
   margin: 10rem auto;
   font-family: var(--main-font);
+}
+
+.register-title {
+  color: var(--white-font-color);
+}
+
+.register-subtitle {
+  color: var(--grey-font-color);
 }
 
 .register-button {
