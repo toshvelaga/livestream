@@ -2,7 +2,8 @@
   width: 80%;
 }
 .panel {
-  background-color: #333333;
+  /* background-color: #333333; */
+  background-color: #323436;
   margin-top: 10px;
   border-radius: 10px;
 }

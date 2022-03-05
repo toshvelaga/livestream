@@ -21,6 +21,8 @@ body {
   /* background-color: #1c90ff; */
   box-shadow: 0 0 0 rgb(3 169 244 / 40%);
   animation: pulse 4s infinite;
+  font-size: 20px;
+  font-family: 'Inter';
 }
 
 #pulse:hover {

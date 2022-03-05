@@ -15,7 +15,12 @@ const titleContainer = (title) => {
 const prices = (price) => {
   return (
     <div class='prices-plans'>
-      <p>{'$' + price} /mo</p>
+      <p>
+        <span style={{ fontSize: '20px' }}>$</span>
+        <span style={{ fontSize: '36px' }}>{price}</span>
+        <br />
+        <span style={{ fontSize: '12px' }}>per month</span>
+      </p>
     </div>
   )
 }

@@ -1,15 +1,22 @@
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), local('Inter'),
+    url('../../fonts/Inter/Inter-Bold.ttf') format('truetype');
+}
+
 .price-button {
   background-color: #1c90ff;
   color: #fff;
   /* color: #03a9f4; */
-  letter-spacing: 2px;
+  /* letter-spacing: 2px; */
   padding: 10px;
   outline: none;
   padding: 15px 80px;
   font-size: 16px;
   border-radius: 5px;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   border: none;
+  font-family: 'Inter';
 }
 
 .price-button:hover {

@@ -1,22 +1,23 @@
-:root {
-  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Ubuntu, Arial, sans-serif;
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), local('Inter'),
+    url('../../fonts/Inter/Inter-Bold.ttf') format('truetype');
 }
 
 .button {
   background-color: #03a9f4;
   /* background-color: #3cc764; */
   color: white;
-  letter-spacing: 2px;
+  /* letter-spacing: 2px; */
   outline: none;
   border: none;
   padding: 16px 80px;
   font-size: 16px;
   border-radius: 5px;
-  text-transform: uppercase;
-  font-family: var(--main-font);
+  /* text-transform: uppercase; */
   display: flex;
   justify-content: center;
+  font-family: 'Inter';
 }
 
 @media only screen and (max-width: 600px) {

@@ -90,7 +90,7 @@ function Website(props) {
                 'Button'
               )
             }}
-            title='Sign Up For Free'
+            title='Sign up for free'
           />
         </div>
         <div style={{ marginTop: '2rem' }} class='container-two'>
