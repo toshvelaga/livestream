@@ -23,6 +23,10 @@
   position: relative;
 }
 
+.plan-features {
+  color: grey;
+}
+
 .title-container-plan {
   padding-top: 1em;
   border-top-right-radius: 5px;
@@ -42,6 +46,7 @@
   width: 80%;
   margin-top: 0;
   padding-top: 0;
+  color: #ffab1c;
 }
 .plan .info-container .prices p {
   font-size: 1.35em;

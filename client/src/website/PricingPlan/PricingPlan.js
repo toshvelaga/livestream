@@ -24,7 +24,7 @@ function PricingPlan() {
   return (
     <div class='pricing-plan-container'>
       <div class='plan'>
-        {titleContainer('Starter 🎬')}
+        {titleContainer('Starter')}
         <div class='info-container'>
           {prices('10')}
           <ul class='plan-features'>
@@ -41,7 +41,7 @@ function PricingPlan() {
       </div>
 
       <div class='plan'>
-        {titleContainer('Premium 📽️')}
+        {titleContainer('Premium')}
         <div class='info-container'>
           {prices('19')}
           <ul class='plan-features'>
@@ -59,7 +59,7 @@ function PricingPlan() {
       </div>
 
       <div class='plan'>
-        {titleContainer('Enterprise 🎥')}
+        {titleContainer('Enterprise')}
         <div class='info-container'>
           {prices('39')}
           <ul class='plan-features'>
