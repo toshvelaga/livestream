@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Poppins';
-  src: local('Poppins'), local('Poppins'),
-    url('../../fonts/Poppins/Poppins-Light.ttf') format('truetype');
+  font-family: 'Inter';
+  src: local('Inter'), local('Inter'),
+    url('../../fonts/Inter/Inter-Bold.ttf') format('truetype');
 }
 
 /* #262626, #1d1e1f */
 
 body {
-  font-family: 'Poppins';
+  font-family: 'Inter';
   background-color: #1d1e1f;
   color: #fff;
 }
