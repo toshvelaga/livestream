@@ -67,7 +67,7 @@ body {
 
 .website-navbar {
   overflow: hidden;
-  background-color: #1d1e1f;
+  background-color: rgba(29, 30, 31, 0.95);
   position: fixed;
   top: 0;
   width: 100%;
