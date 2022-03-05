@@ -2,7 +2,7 @@
   width: 80%;
 }
 .panel {
-  background-color: #f1f1f1;
+  background-color: #333333;
   margin-top: 10px;
   border-radius: 10px;
 }
@@ -19,7 +19,7 @@
   font-family: inherit;
   transition: color 0.2s linear;
   cursor: pointer;
-  color: black;
+  color: #fff;
 }
 .panel__label:focus {
   outline: none;
