@@ -1,13 +1,7 @@
-@font-face {
-  font-family: 'Inter';
-  src: local('Inter'), local('Inter'),
-    url('../../fonts/Inter/Inter-Bold.ttf') format('truetype');
-}
-
 .text-input-container {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  font-family: 'Inter';
+  font-family: var(--main-font);
 }
 
 input[type='text'],
@@ -21,7 +15,7 @@ select {
   box-sizing: border-box;
   font-size: 16px;
   background-color: #ffffff;
-  font-family: 'Inter';
+  font-family: var(--main-font);
 }
 
 input:focus {
@@ -30,13 +24,13 @@ input:focus {
 }
 
 input::placeholder {
-  font-family: 'Inter';
+  font-family: var(--main-font);
 }
 
 .label {
   font-size: 16px;
-  /* color: black; */
   display: 'block';
+  color: var(--grey-font-color);
 }
 
 .text-password {
