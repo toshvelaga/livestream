@@ -30,3 +30,4 @@ yarn-error.log*
 
 #src
 /src/fonts
+/src/assets
