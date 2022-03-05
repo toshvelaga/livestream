@@ -5,9 +5,15 @@ import { Link } from 'react-router-dom'
 function Footer() {
   return (
     <div className='bottom-footer'>
-      <span>Made in the United States of America 🇺🇸</span>
+      <span className='footer-link-text'>
+        Made in the United States of America 🇺🇸
+      </span>
       <span className='footer-link'>
-        <Link style={{ textDecoration: 'none', color: '#fff' }} to='/terms'>
+        <Link
+          className='footer-link-text'
+          style={{ textDecoration: 'none' }}
+          to='/terms'
+        >
           Terms of Service
         </Link>
       </span>
@@ -16,8 +22,9 @@ function Footer() {
           to={{
             pathname: '/privacy-policy',
           }}
+          className='footer-link-text'
           target='_blank'
-          style={{ textDecoration: 'none', color: '#fff' }}
+          style={{ textDecoration: 'none' }}
         >
           Privacy Policy
         </Link>

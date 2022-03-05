@@ -1,5 +1,17 @@
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), local('Inter'),
+    url('../../fonts/Inter/Inter-Bold.ttf') format('truetype');
+}
+
 .footer-link {
   margin-left: 16px;
+}
+
+.footer-link-text {
+  color: grey;
+  font-size: 16px;
+  font-family: 'Inter';
 }
 
 .bottom-footer {
@@ -7,7 +19,6 @@
   height: 60px;
   text-align: center;
   padding-top: 15px;
-  color: #fff;
 }
 
 .footer-link:hover {
