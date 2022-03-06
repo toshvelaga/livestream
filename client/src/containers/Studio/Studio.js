@@ -396,6 +396,23 @@ function Studio() {
       })
   }
 
+  const youtubeLiveViewCount = () => {
+    // https://developers.google.com/youtube/v3/docs/videos/list?apix=true#parameters
+    // return gapi.client.youtube.liveStreams
+    //   .list({
+    //     part: ['id,snippet,contentDetails,status'],
+    //     id: youtubeStreamId,
+    //   })
+    //   .then((res) => {
+    //     // Handle the results here (response.result has the parsed body).
+    //     console.log('Response', res)
+    //   })
+    //   .catch((err) => {
+    //     console.log('Execute error', err)
+    //   })
+    console.log('youtubeLiveViewCount function')
+  }
+
   const endFacebookLivestream = () => {
     if (facebookLiveVideoId) {
       const data = {

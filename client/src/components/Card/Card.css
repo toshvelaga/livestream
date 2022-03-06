@@ -1,14 +1,9 @@
-:root {
-  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Ubuntu, Arial, sans-serif;
-}
-
 .card-styles {
   min-height: 150px;
   min-width: 160px;
   border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #ffffff;
+  /* border: 1px solid #ccc; */
+  background-color: var(--card-background-color);
   transition: 0.5s;
   font-family: var(--main-font);
   margin-right: 2rem;
