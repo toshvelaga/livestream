@@ -10,7 +10,7 @@
 
 .plan {
   /* background: #333333; */
-  background: #323436;
+  background: var(--card-background-color);
   border-radius: 10px;
   width: 18em;
   height: 38rem;

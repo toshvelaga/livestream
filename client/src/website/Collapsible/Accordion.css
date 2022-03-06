@@ -3,7 +3,7 @@
 }
 .panel {
   /* background-color: #333333; */
-  background-color: #323436;
+  background-color: var(--card-background-color);
   margin-top: 10px;
   border-radius: 10px;
 }
