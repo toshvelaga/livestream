@@ -59,8 +59,10 @@ function Code() {
     <>
       <div className='code-container'>
         <div>
-          <h2>Email Sent!</h2>
-          <p>Please check your email for your login code.</p>
+          <h2 className='code-title'>Email Sent!</h2>
+          <p className='code-subtitle'>
+            Please check your email for your login code.
+          </p>
           <TextInput
             style={error ? { border: '1px solid red' } : null}
             label='Login Code'
