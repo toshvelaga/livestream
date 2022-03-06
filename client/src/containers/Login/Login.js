@@ -64,6 +64,7 @@ function Login() {
         <Button
           loading={loading}
           style={{ width: '100%' }}
+          id='login-button'
           title='Sign In'
           fx={handleClick}
         />

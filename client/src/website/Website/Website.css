@@ -1,19 +1,11 @@
-@font-face {
-  font-family: 'Inter';
-  src: local('Inter'), local('Inter'),
-    url('../../fonts/Inter/Inter-Bold.ttf') format('truetype');
-}
-
-/* #262626, #1d1e1f */
-
 body {
-  font-family: 'Inter';
-  background-color: #1d1e1f;
+  font-family: var(--main-font);
+  background-color: var(--main-background-color);
   color: #fff;
 }
 
 .navbar-logo {
-  font-family: 'Inter';
+  font-family: var(--main-font);
 }
 
 #pulse {
@@ -156,7 +148,6 @@ body {
 
 .website-text-description {
   font-size: 20px;
-  /* color: #fff; */
   color: grey;
 }
 
