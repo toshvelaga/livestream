@@ -3,11 +3,12 @@ body {
 }
 
 :root {
-  --bg: #fff;
+  /* --bg: #2c2b30; */
+  --bg: var(--main-background-color);
   --bg-accent: #f1f1f1;
   --text-color: black;
   --nav-size: 60px;
-  --border: 1px solid #ccc;
+  /* --border: 1px solid darkgrey; */
   --border-radius: 8px;
   --speed: 500ms;
   --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,

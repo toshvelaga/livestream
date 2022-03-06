@@ -1,11 +1,11 @@
-:root {
-  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Ubuntu, Arial, sans-serif;
-}
-
 .destinations-container {
   font-family: var(--main-font);
   display: flex; /* or inline-flex */
+}
+
+.destination-title {
+  color: var(--white-font-color);
+  font-family: var(--main-font);
 }
 
 @media only screen and (max-width: 1000px) {

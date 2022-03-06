@@ -197,7 +197,7 @@ function Destinations() {
       <Navbar />
       <Toaster position='top-center' reverseOrder={true} />
       <div style={{ margin: '10rem auto', width: '50%' }}>
-        <h2>Add a Destination</h2>
+        <h2 className='destination-title'>Add a Destination</h2>
         <div className='destinations-container'>
           <Card
             onClick={youtubeAuthClient}

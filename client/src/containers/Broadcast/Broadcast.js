@@ -616,8 +616,14 @@ function Broadcast() {
     <>
       <Navbar />
       <div className='dashboard-container'>
-        <h2 style={{ marginTop: '2rem' }}>Broadcasts</h2>
-        <Button fx={openModal} title='Create new broadcast' />
+        <h2 className='broadcast-title' style={{ marginTop: '2rem' }}>
+          Broadcasts
+        </h2>
+        <Button
+          style={{ fontSize: '20px' }}
+          fx={openModal}
+          title='Create new broadcast'
+        />
       </div>
       <Modal
         className='broadcast-modal'
