@@ -1,7 +1,6 @@
 import React from 'react'
 import './Privacy.css'
 import ohmystream from '../../assets/ohmystream.png'
-import ohmystreamlogo from '../../assets/ohmystreamlogo.png'
 
 function Privacy() {
   return (
