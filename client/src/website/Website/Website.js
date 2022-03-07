@@ -7,6 +7,9 @@ import Footer from '../Footer/Footer'
 import * as FaIcons from 'react-icons/fa'
 import PricingPlan from '../PricingPlan/PricingPlan'
 import eventTrack from '../../utils/eventTrack'
+import youtube from '../../assets/youtube.svg'
+import twitch from '../../assets/twitch.svg'
+import facebook from '../../assets/facebook.svg'
 import { Helmet } from 'react-helmet'
 
 function Website(props) {
@@ -97,21 +100,21 @@ function Website(props) {
           <div class='row'>
             <div class='column sm-3'>
               <div className='icon-website-container'>
-                <FaIcons.FaYoutube color='#ff0000' size={40} />
+                <img src={youtube} alt='youtube' />
               </div>
               <p className='website-text-description'>Youtube</p>
             </div>
 
             <div class='column sm-3'>
               <div className='icon-website-container'>
-                <FaIcons.FaTwitch color='#9047fe' size={40} />
+                <img src={twitch} alt='twitch' />
               </div>
               <p className='website-text-description'>Twitch</p>
             </div>
 
             <div class='column sm-3'>
               <div className='icon-website-container'>
-                <FaIcons.FaFacebookF color='#1878f1' size={40} />
+                <img src={facebook} alt='facebook' />
               </div>
               <p className='website-text-description'>Facebook</p>
             </div>
