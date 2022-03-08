@@ -4,7 +4,7 @@
   border-radius: 5px;
   /* border: 1px solid #ccc; */
   background-color: var(--card-background-color);
-  transition: 0.5s;
+  /* transition: 0.5s; */
   font-family: var(--main-font);
   margin-right: 2rem;
 }
@@ -20,7 +20,7 @@
   margin-bottom: 0;
   padding-bottom: 0;
   font-size: 20px;
-  color: darkgrey;
+  color: grey;
 }
 
 .remove-button {
@@ -31,13 +31,12 @@
 .card-styles:hover {
   /* box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); */
   box-shadow: none;
-  border: 1px solid #03a9f4;
+  border: 1px solid var(--green-color);
   cursor: pointer;
-  background-color: #f8f8f8;
-  /* background-color: #eaefee; */
+  /* background-color: #f8f8f8; */
 }
 
 .card-styles:hover p {
-  color: black;
-  transition: 0.5s;
+  color: #fff;
+  /* transition: 0.5s; */
 }

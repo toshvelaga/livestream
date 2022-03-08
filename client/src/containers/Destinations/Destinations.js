@@ -22,6 +22,9 @@ import { useHistory } from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
 import { Toaster } from 'react-hot-toast'
 import styles from '../../styles/styles'
+import youtube from '../../assets/youtube.svg'
+import twitch from '../../assets/twitch.svg'
+import facebook from '../../assets/facebook.svg'
 import './Destinations.css'
 
 /* global gapi */
@@ -205,16 +208,18 @@ function Destinations() {
             cardTitleStyle={youtubeAccessToken ? styles.blackFontColor : null}
             title={'YouTube'}
           >
-            <FaIcons.FaYoutube color={'#ff0000'} size={50} />
+            {/* <FaIcons.FaYoutube color={'#ff0000'} size={50} /> */}
+            <img src={youtube} alt='youtube logo' />
           </Card>
 
           <a href={twitchURL}>
             <Card
               style={twitchAccessToken ? styles.destinationSelected : null}
-              cardTitleStyle={twitchAccessToken ? styles.blackFontColor : null}
+              cardTitleStyle={twitchAccessToken ? { color: '#fff' } : null}
               title={'Twitch'}
             >
-              <FaIcons.FaTwitch color={'#9047fe'} size={50} />
+              {/* <FaIcons.FaTwitch color={'#9047fe'} size={50} /> */}
+              <img src={twitch} alt='twitch logo' />
             </Card>
           </a>
 
@@ -229,7 +234,8 @@ function Destinations() {
             }}
             title={'Facebook'}
           >
-            <FaIcons.FaFacebook color={'#1676f2'} size={50} />
+            {/* <FaIcons.FaFacebook color={'#1676f2'} size={50} /> */}
+            <img src={facebook} alt='facebook logo' />
           </Card>
         </div>
       </div>

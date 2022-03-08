@@ -8,8 +8,9 @@ const styles = {
   orangeFontColor: '#fd5d16',
   blackFontColor: { color: 'black' },
   destinationSelected: {
-    backgroundColor: '#d2eefc',
-    border: '1px solid #03a9f4',
+    // backgroundColor: '#d2eefc',
+    border: '1px solid #38e53c',
+    color: '#38e53c',
   },
 }
 
