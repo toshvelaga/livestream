@@ -29,6 +29,10 @@
   padding: 1rem;
 }
 
+.react-tooltip {
+  font-family: var(--main-font);
+}
+
 .please-select-error {
   font-family: var(--main-font);
 }

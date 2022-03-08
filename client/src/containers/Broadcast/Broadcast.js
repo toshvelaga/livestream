@@ -712,7 +712,7 @@ function Broadcast() {
                     color={'grey'}
                     size={35}
                   />
-                  <ReactTooltip />
+                  <ReactTooltip className='react-tooltip' />
                 </DisabledBroadcastAvatar>
               )}
 
@@ -736,7 +736,7 @@ function Broadcast() {
                     color={'#1676f2'}
                     size={35}
                   />
-                  <ReactTooltip />
+                  <ReactTooltip className='react-tooltip' />
                 </BroadcastAvatar>
               ) : (
                 <DisabledBroadcastAvatar>
@@ -745,7 +745,7 @@ function Broadcast() {
                     color={'grey'}
                     size={35}
                   />
-                  <ReactTooltip />
+                  <ReactTooltip className='react-tooltip' />
                 </DisabledBroadcastAvatar>
               )}
 
@@ -771,7 +771,7 @@ function Broadcast() {
                     alt='custom RTMP destination for streaming'
                     style={{ height: '50px' }}
                   />
-                  <ReactTooltip />
+                  <ReactTooltip className='react-tooltip' />
                 </BroadcastAvatar>
               ) : null}
             </div>
