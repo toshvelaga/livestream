@@ -62,14 +62,13 @@ function Register() {
             errorMsg={error ? error : null}
           />
         </div>
-        <div className='register-button'>
-          <Button
-            loading={loading}
-            style={{ width: '100%' }}
-            title='Sign Up'
-            fx={handleClick}
-          />
-        </div>
+        <Button
+          id='register-button'
+          loading={loading}
+          style={{ width: '100%' }}
+          title='Sign Up'
+          fx={handleClick}
+        />
         <p style={{ color: 'grey', marginTop: '1rem', textAlign: 'center' }}>
           <Link
             style={{
