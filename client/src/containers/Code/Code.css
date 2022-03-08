@@ -12,6 +12,14 @@
   color: var(--grey-font-color);
 }
 
+#code-button {
+  background-color: var(--dark-blue-color);
+}
+
+#code-button:hover {
+  background-color: var(--light-blue-color);
+}
+
 @media only screen and (max-width: 1000px) {
   .code-container {
     width: 80%;

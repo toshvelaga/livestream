@@ -17,7 +17,7 @@ body {
 }
 
 #login-button {
-  background-color: #1c90ff;
+  background-color: var(--dark-blue-color);
 }
 
 #login-button:hover {

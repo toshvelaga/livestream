@@ -72,7 +72,12 @@ function Code() {
             onChange={handleCodeChange}
             errorMsg={error ? error : null}
           />
-          <Button fx={submit} style={{ width: '100%' }} title='Submit' />
+          <Button
+            id='code-button'
+            fx={submit}
+            style={{ width: '100%' }}
+            title='Submit'
+          />
         </div>
       </div>
     </>
