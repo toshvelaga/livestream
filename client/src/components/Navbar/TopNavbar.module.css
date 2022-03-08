@@ -6,13 +6,10 @@ body {
   /* --bg: #2c2b30; */
   --bg: var(--main-background-color);
   --bg-accent: #f1f1f1;
-  --text-color: black;
   --nav-size: 60px;
-  /* --border: 1px solid darkgrey; */
+  --border: 1px solid var(--card-background-color);
   --border-radius: 8px;
   --speed: 500ms;
-  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Ubuntu, Arial, sans-serif;
 }
 
 ul {
@@ -100,7 +97,7 @@ a {
   top: 58px;
   width: 200px;
   transform: translateX(-40%);
-  background-color: var(--bg);
+  background-color: var(--navbar-background-color);
   border: var(--border);
   border-radius: var(--border-radius);
   padding: 1rem 1rem 1rem 0;
@@ -121,6 +118,7 @@ a {
   transition: background var(--speed);
   padding: 0.5rem;
   width: 100%;
+  color: grey;
 }
 
 .menuItem:hover {
