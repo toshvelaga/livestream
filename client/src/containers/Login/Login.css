@@ -16,9 +16,13 @@ body {
   color: var(--grey-font-color);
 }
 
-/* #login-button {
+#login-button {
   background-color: #1c90ff;
-} */
+}
+
+#login-button:hover {
+  background-color: var(--light-blue-color);
+}
 
 @media only screen and (max-width: 1000px) {
   .login-container {
