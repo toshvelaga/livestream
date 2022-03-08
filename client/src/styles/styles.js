@@ -1,7 +1,7 @@
 const styles = {
-  sideNavbarHoverColor: '#fff',
+  sideNavbarHoverColor: '#1c90ff',
   sideNavbarIconSize: 18,
-  navItemColor: '#3b3b3b',
+  navItemColor: 'grey',
   broadcastAvatarBorder: '2px solid #03a9f4',
   greyFontColor: 'darkgrey',
   blueFontColor: '#03a9f4',

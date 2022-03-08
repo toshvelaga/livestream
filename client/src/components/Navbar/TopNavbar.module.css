@@ -57,10 +57,10 @@ a {
   margin-right: 10px;
   background-color: transparent;
   border-radius: 5px;
-  color: #03a9f4;
-  border: 1px solid #03a9f4;
+  color: #ffab1c;
+  border: 1px solid #ffab1c;
   cursor: pointer;
-  font-family: var(--main-font);
+  font-family: var(--main-font-light);
 }
 
 .upgradeButton:hover {
@@ -97,7 +97,7 @@ a {
   top: 58px;
   width: 200px;
   transform: translateX(-40%);
-  background-color: var(--navbar-background-color);
+  background-color: var(--main-background-color);
   border: var(--border);
   border-radius: var(--border-radius);
   padding: 1rem 1rem 1rem 0;
@@ -119,6 +119,7 @@ a {
   padding: 0.5rem;
   width: 100%;
   color: grey;
+  font-family: var(--main-font-light);
 }
 
 .menuItem:hover {

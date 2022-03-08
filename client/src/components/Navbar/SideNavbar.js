@@ -15,18 +15,30 @@ function SideNavbar(props) {
     >
       {/* Broadcasts */}
       <li
+        id='side-navbar-broadcasts-li'
         onClick={() => history.push('/broadcast')}
         style={
           window.location.pathname === '/broadcast'
             ? { backgroundColor: styles.sideNavbarHoverColor }
             : null
         }
-        className='tablinks'
       >
-        <div className='side-navbar-icon'>
+        <div
+          style={
+            window.location.pathname === '/broadcast' ? { color: '#fff' } : null
+          }
+          className='side-navbar-icon'
+        >
           <FaIcons.FaVideo size={styles.sideNavbarIconSize} />
         </div>
-        <div className='side-navbar-title'>Broadcast</div>
+        <div
+          style={
+            window.location.pathname === '/broadcast' ? { color: '#fff' } : null
+          }
+          className='side-navbar-title'
+        >
+          Broadcast
+        </div>
       </li>
       {/* Destinations */}
       <li
@@ -39,12 +51,27 @@ function SideNavbar(props) {
             ? { backgroundColor: styles.sideNavbarHoverColor }
             : null
         }
-        className='tablinks'
       >
-        <div className='side-navbar-icon'>
+        <div
+          style={
+            window.location.pathname === '/destinations'
+              ? { color: '#fff' }
+              : null
+          }
+          className='side-navbar-icon'
+        >
           <FaIcons.FaKey size={styles.sideNavbarIconSize} />
         </div>
-        <div className='side-navbar-title'>Destinations</div>
+        <div
+          style={
+            window.location.pathname === '/destinations'
+              ? { color: '#fff' }
+              : null
+          }
+          className='side-navbar-title'
+        >
+          Destinations
+        </div>
       </li>
       {/* Referrals */}
 

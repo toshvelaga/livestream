@@ -4,8 +4,15 @@
     url('./fonts/Inter/Inter-Bold.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Inter-light';
+  src: local('Inter-light'), local('Inter-light'),
+    url('./fonts/Inter/Inter-Regular.ttf') format('truetype');
+}
+
 :root {
   --main-font: 'Inter';
+  --main-font-light: 'Inter-light';
   --white-font-color: #fff;
   --yellow-orange-color: #ffab1c;
   --grey-font-color: grey;

@@ -6,6 +6,12 @@
 
 #create-new-broadcast-button {
   font-size: 20px;
+  font-family: var(--main-font-light);
+  background-color: var(--dark-blue-color);
+}
+
+#create-new-broadcast-button:hover {
+  background-color: var(--light-blue-color);
 }
 
 .broadcast-title {

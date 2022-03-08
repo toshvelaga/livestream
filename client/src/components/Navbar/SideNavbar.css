@@ -2,8 +2,9 @@
   float: left;
   position: fixed;
   top: 0;
-  border: 1px solid #191919;
-  background-color: var(--navbar-background-color);
+  border-right: 1px solid var(--card-background-color);
+  background-color: var(--background-color);
+  /* background-color: #1a161e; */
   width: 200px;
   z-index: 100;
   height: 100vh;
@@ -12,6 +13,10 @@
 
 .side-navbar-hidden {
   display: none;
+}
+
+.broadcast-li-navbar {
+  margin-top: 100rem;
 }
 
 /* Style the buttons inside the tab */
@@ -37,9 +42,14 @@
   background-color: #e3e2e7;
 }
 
+#side-navbar-broadcasts-li {
+  margin-top: 1.5rem;
+}
+
 .side-navbar-title {
   margin-left: 10px;
-  font-family: var(--main-font);
+  font-family: var(--main-font-light);
+  /* letter-spacing: 0.5px; */
 }
 
 .side-navbar-icon,
