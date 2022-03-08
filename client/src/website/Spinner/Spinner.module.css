@@ -18,7 +18,7 @@
 }
 
 .spinner::after {
-  background: #fff;
+  background: var(--main-background-color);
   width: 75%;
   height: 75%;
   border-radius: 50%;

@@ -138,9 +138,6 @@ function Website(props) {
             </div>
 
             <div class='column sm-3'>
-              {/* <div className='icon-website-container'>
-                <FaIcons.FaLinkedin color='#0966c2' size={40} />
-              </div> */}
               <img src={linkedin} alt='linkedin' />
               <p className='website-text-description'>Linkedin coming soon</p>
             </div>
