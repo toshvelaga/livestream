@@ -615,12 +615,12 @@ function Broadcast() {
   return (
     <>
       <Navbar />
-      <div className='dashboard-container'>
+      <div className='broadcast-container'>
         <h2 className='broadcast-title' style={{ marginTop: '2rem' }}>
           Broadcasts
         </h2>
         <Button
-          style={{ fontSize: '20px' }}
+          id='create-new-broadcast-button'
           fx={openModal}
           title='Create new broadcast'
         />
@@ -643,7 +643,7 @@ function Broadcast() {
           <TrialExpired />
         ) : (
           <>
-            <p>Broadcast to:</p>
+            <p className='broadcast-to-text'>Broadcast to:</p>
             {/* {!showBroadcastAvatar.youtube &&
             !showBroadcastAvatar.twitch &&
             !showBroadcastAvatar.facebook ? (
@@ -776,13 +776,14 @@ function Broadcast() {
               ) : null}
             </div>
             {noSelectedDestinationError && (
-              <p style={{ color: 'red' }}>
+              <p className='please-select-error' style={{ color: 'red' }}>
                 Please select at least one platform to broadcast on.
               </p>
             )}
 
             {modalContentDisplay()}
             <Button
+              id='create-broadcast-button'
               disabled={loading}
               loading={loading}
               style={{ width: '100%' }}

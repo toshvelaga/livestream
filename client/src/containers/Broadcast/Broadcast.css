@@ -1,21 +1,39 @@
-.dashboard-container {
+.broadcast-container {
   width: 50%;
   margin: 1rem auto;
   font-family: var(--main-font);
+}
+
+#create-new-broadcast-button {
+  font-size: 20px;
 }
 
 .broadcast-title {
   color: var(--white-font-color);
 }
 
+.broadcast-to-text {
+  font-family: var(--main-font);
+  font-size: 16px;
+  color: var(--grey-font-color);
+}
+
 .broadcast-modal {
   width: 40%;
   background-color: white;
+  /* background-color: var(--card-background-color); */
   display: block;
   margin: 0 auto;
   margin-top: 5rem;
   border-radius: 5px;
   padding: 1rem;
+}
+
+.please-select-error {
+  font-family: var(--main-font);
+}
+
+#create-broadcast-button {
 }
 
 .modal-close-icon {
