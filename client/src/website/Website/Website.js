@@ -10,9 +10,9 @@ import eventTrack from '../../utils/eventTrack'
 import youtube from '../../assets/youtube.svg'
 import twitch from '../../assets/twitch.svg'
 import facebook from '../../assets/facebook.svg'
-import tiktok from '../../assets/tiktok.svg'
 import tiktok2 from '../../assets/tiktok2.svg'
 import twitter from '../../assets/twitter.svg'
+import linkedin from '../../assets/linkedin.svg'
 import { Helmet } from 'react-helmet'
 
 function Website(props) {
@@ -141,6 +141,7 @@ function Website(props) {
               {/* <div className='icon-website-container'>
                 <FaIcons.FaLinkedin color='#0966c2' size={40} />
               </div> */}
+              <img src={linkedin} alt='linkedin' />
               <p className='website-text-description'>Linkedin coming soon</p>
             </div>
           </div>
