@@ -399,19 +399,23 @@ function Studio() {
 
   const youtubeLiveViewCount = () => {
     // https://developers.google.com/youtube/v3/docs/videos/list?apix=true#parameters
-    // return gapi.client.youtube.liveStreams
-    //   .list({
-    //     part: ['id,snippet,contentDetails,status'],
-    //     id: youtubeStreamId,
-    //   })
-    //   .then((res) => {
-    //     // Handle the results here (response.result has the parsed body).
-    //     console.log('Response', res)
-    //   })
-    //   .catch((err) => {
-    //     console.log('Execute error', err)
-    //   })
-    console.log('youtubeLiveViewCount function')
+
+    return gapi.client.youtube.videos
+      .list({
+        part: ['statistics'],
+        id: youtubeBroadcastId,
+      })
+      .then(
+        function (res) {
+          // Handle the results here (response.result has the parsed body).
+          let youtubeViews = res.result.items[0].statistics.viewCount
+          console.log('Response', youtubeViews)
+          setyoutubeViewCount(youtubeViews)
+        },
+        function (err) {
+          console.error('Execute error', err)
+        }
+      )
   }
 
   const endFacebookLivestream = () => {
@@ -556,6 +560,9 @@ function Studio() {
             <StudioButton label={'Leave Studio'} onClick={exitStudio}>
               <FaIcons.FaPhoneSlash color='#eb3472' size={20} />
             </StudioButton>
+            <button onClick={youtubeLiveViewCount}>
+              youtube live view count
+            </button>
           </div>
         </div>
         {/* CHAT MESSAGES */}

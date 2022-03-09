@@ -21,14 +21,14 @@ router.post('/api/youtube/view-count', async (req, res) => {
       }
     )
     .then((res) => {
-      console.log(res.data.items)
-      return res
+      console.log(res.data.items[0].statistics.viewCount)
+      return res.data.items[0].statistics.viewCount
     })
     .catch((err) => {
       console.log(err)
     })
 
-  return res.status(201).send({ data: 'data' })
+  return res.status(201).send({ views: viewCount })
 })
 
 module.exports = router
