@@ -49,6 +49,7 @@ function Studio() {
   const [twitchUsername, settwitchUsername] = useState('')
   const [twitchAccessToken, settwitchAccessToken] = useState('')
   const [twitchViewCount, settwitchViewCount] = useState(0)
+  const [youtubeViewCount, setyoutubeViewCount] = useState(0)
   const [twitchChatMsgs, setTwitchChatMsgs] = useState(['hello', 'its me'])
   const [customRtmpServer, setcustomRtmpServer] = useState('')
   const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
