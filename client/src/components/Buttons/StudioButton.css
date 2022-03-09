@@ -35,3 +35,7 @@ button > * {
   background-color: #dddddd;
   cursor: pointer;
 }
+
+.studio-button-label {
+  color: grey;
+}

@@ -13,7 +13,7 @@ function StudioButton(props) {
       >
         {props.children}
       </button>
-      <p>{props.label}</p>
+      <p className='studio-button-label'>{props.label}</p>
     </div>
   )
 }
