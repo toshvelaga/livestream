@@ -1,0 +1,19 @@
+.settings-container {
+  font-family: var(--main-font);
+  color: var(--grey-font-color);
+}
+
+.settings-title {
+  font-family: var(--main-font);
+  /* font-size: 30px; */
+  color: var(--white-font-color);
+}
+
+#settings-button {
+  font-size: 20px;
+  font-family: var(--main-font-light);
+  background-color: var(--dark-blue-color);
+}
+#settings-button:hover {
+  background-color: var(--light-blue-color);
+}

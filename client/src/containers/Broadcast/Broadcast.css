@@ -41,7 +41,7 @@
 }
 
 .please-select-error {
-  font-family: var(--main-font);
+  font-family: var(--main-font-light);
 }
 
 #create-broadcast-button {

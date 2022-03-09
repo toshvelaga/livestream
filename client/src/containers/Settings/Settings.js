@@ -30,8 +30,11 @@ function Settings() {
   return (
     <>
       <Navbar />
-      <div style={{ margin: '3rem auto', width: '60%' }}>
-        <h2>Settings</h2>
+      <div
+        className='settings-container'
+        style={{ margin: '3rem auto', width: '60%' }}
+      >
+        <h2 className='settings-title'>Settings</h2>
         <p>
           You are currently on the <b>FREE TIER</b>
         </p>
@@ -45,7 +48,7 @@ function Settings() {
             value={text}
             onChange={(e) => settext(e.target.value)}
           />
-          <Button title='Submit' fx={onSubmitHandler} />
+          <Button id='settings-button' title='Submit' fx={onSubmitHandler} />
         </div>
       </div>
     </>
