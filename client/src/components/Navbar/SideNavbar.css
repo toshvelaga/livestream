@@ -39,7 +39,9 @@
 
 /* Change background color of buttons on hover */
 .side-navbar li:hover {
-  background-color: #2f2f30;
+  background-color: var(--navbar-background-color-hover);
+  /* background-color: #212122; */
+  /* background-color: #272728; */
 }
 
 #side-navbar-broadcasts-li {

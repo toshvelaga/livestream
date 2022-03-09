@@ -86,7 +86,8 @@ a {
 }
 
 .iconButton:hover {
-  background-color: #2f2f30;
+  background-color: var(--navbar-background-color-hover);
+  /* background-color: #272728; */
   cursor: pointer;
 }
 
@@ -123,6 +124,7 @@ a {
 }
 
 .menuItem:hover {
-  background-color: #2f2f30;
+  background-color: var(--navbar-background-color-hover);
+  /* background-color: #272728; */
   cursor: pointer;
 }
