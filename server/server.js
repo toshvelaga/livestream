@@ -41,6 +41,7 @@ const twitchBroadcastRouter = require('./routes/twitchBroadcast')
 const twitchViewCountRouter = require('./routes/twitchViewCount')
 const youtubeAuthorizationRouter = require('./routes/youtubeAuthorization')
 const youtubeBroadcastRouter = require('./routes/youtubeBroadcast')
+const youtubeViewCountRouter = require('./routes/youtubeViewCount')
 
 app.use('/', authenticationRouter)
 app.use('/', broadcastsRouter)
@@ -57,6 +58,7 @@ app.use('/', referralRouter)
 app.use('/', stripeRouter)
 app.use('/', youtubeAuthorizationRouter)
 app.use('/', youtubeBroadcastRouter)
+app.use('/', youtubeViewCountRouter)
 
 const PORT = process.env.PORT || 5001
 const WS_PORT = process.env.PORT || 3001
