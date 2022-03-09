@@ -1,9 +1,4 @@
-/* :root {
-  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Ubuntu, Arial, sans-serif;
-}
-
-body {
-  margin: 0;
+.billing-container {
   font-family: var(--main-font);
-} */
+  color: var(--white-font-color);
+}

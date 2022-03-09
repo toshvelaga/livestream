@@ -14,7 +14,6 @@ import Referral from './containers/Referral/Referral'
 import Studio from './containers/Studio/Studio'
 import Settings from './containers/Settings/Settings'
 import Billing from './containers/Billing/Billing'
-import Confirm from './containers/Billing/Confirm'
 import Spinner from './website/Spinner/Spinner'
 import Terms from './website/Terms/Terms'
 import Privacy from './website/Privacy/Privacy'
@@ -48,7 +47,6 @@ function App() {
           <ProtectedRoute path='/studio/:id' component={Studio} />
           <ProtectedRoute path='/studio' component={Studio} />
           <ProtectedRoute path='/settings' component={Settings} />
-          <ProtectedRoute path='/billing/confirm' component={Confirm} />
           <ProtectedRoute path='/billing' component={Billing} />
 
           <AuthRoute exact path='/login/code' component={Code} />

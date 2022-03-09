@@ -6,10 +6,10 @@ import Navbar from '../../components/Navbar/Navbar'
 const Billing = () => (
   <section>
     <Navbar />
-    <div>
-      <p style={{ textAlign: 'center' }}>
+    <div className='billing-container'>
+      <h2 style={{ textAlign: 'center' }}>
         Upgrade now to get access to all features.
-      </p>
+      </h2>
       <PricingPlan />
     </div>
   </section>

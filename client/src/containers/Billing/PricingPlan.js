@@ -2,6 +2,7 @@ import React from 'react'
 import './PricingPlan.css'
 import API from '../../api/api'
 import getCookie from '../../utils/getCookie'
+import { Link } from 'react-router-dom'
 
 // https://codepen.io/danhearn/pen/LjJXmj
 
@@ -27,6 +28,43 @@ function UpgradePriceButton(props) {
   )
 }
 
+function PriceButton(props) {
+  return (
+    <>
+      <Link to='/register'>
+        <button
+          id={props.id}
+          style={props.style}
+          className='price-button'
+          onClick={props.fx}
+        >
+          {props.title}
+        </button>
+      </Link>
+    </>
+  )
+}
+
+const titleContainer = (title) => {
+  return (
+    <div class='title-container-plan'>
+      <div class='title-plan'>{title}</div>
+    </div>
+  )
+}
+
+const prices = (price) => {
+  return (
+    <div class='prices-plans'>
+      <p>
+        <span style={{ fontSize: '20px' }}>$</span>
+        <span style={{ fontSize: '36px' }}>{price}</span>
+        <p style={{ fontSize: '12px', margin: 0 }}>per month</p>
+      </p>
+    </div>
+  )
+}
+
 function PricingPlan() {
   const email = getCookie('userEmail')
 
@@ -39,26 +77,19 @@ function PricingPlan() {
   return (
     <div class='planContainer'>
       <div class='plan'>
-        <div class='titleContainer'>
-          <div class='title'>Pro</div>
-        </div>
-        <div class='infoContainer'>
-          <div style={{ padding: 0 }} class='prices'>
-            <p>$10</p>
-            <span>/mo</span>
-          </div>
-          <div class='p desc'></div>
-          <ul class='features'>
-            <li>✅ Unlimited Broadcasts</li>
-            <li>✅ Stream to more than 3 destinations simultaneously</li>
-            <li>✅ Automatically configures highest video resolution</li>
-            <li>✅ Invite up to 4 on screen participants</li>
-            <li style={{ marginBottom: 0, paddingBottom: 0 }}>
-              ✅ Record broadcasts in the cloud to edit later
-            </li>
-            <li style={{ color: 'transparent' }}>|</li>
+        {titleContainer('Starter')}
+        <div class='info-container'>
+          {prices('10')}
+          <ul class='plan-features'>
+            <li>Unlimited Broadcasts</li>
+            <li>Stream to &gt;3 destinations simultaneously</li>
+            <li>Add custom RTMP destinations</li>
+            <li>Highest video resolution</li>
+            <li>Low latency</li>
           </ul>
-          <UpgradePriceButton title='Upgrade' onClick={onClickHandler} />
+          <div className='inside'>
+            <UpgradePriceButton id='starter-price-button' title='Upgrade' />
+          </div>
         </div>
       </div>
     </div>
