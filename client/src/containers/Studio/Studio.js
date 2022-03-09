@@ -154,6 +154,10 @@ function Studio() {
         })
         .catch((err) => console.log(err))
     } else return null
+
+    if (isActive) {
+      youtubeLiveViewCount()
+    } else return null
   }, twitchViewCountTimer)
 
   // get facebook permalink url
@@ -504,6 +508,7 @@ function Studio() {
                 {isActive ? 'LIVE' : 'END'}: {formatTime(elapsedSeconds)}
               </Timer>
               <ViewCounter num={twitchViewCount} />
+              <ViewCounter num={youtubeViewCount} />
             </div>
 
             <div>
@@ -560,9 +565,6 @@ function Studio() {
             <StudioButton label={'Leave Studio'} onClick={exitStudio}>
               <FaIcons.FaPhoneSlash color='#eb3472' size={20} />
             </StudioButton>
-            <button onClick={youtubeLiveViewCount}>
-              youtube live view count
-            </button>
           </div>
         </div>
         {/* CHAT MESSAGES */}
