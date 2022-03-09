@@ -19,15 +19,16 @@
 }
 
 .broadcast-to-text {
-  font-family: var(--main-font);
-  font-size: 16px;
+  font-family: var(--main-font-light);
+  /* font-size: 20px; */
   color: var(--grey-font-color);
+  /* color: black; */
 }
 
 .broadcast-modal {
   width: 40%;
   background-color: white;
-  /* background-color: var(--card-background-color); */
+  /* background-color: var(--main-background-color); */
   display: block;
   margin: 0 auto;
   margin-top: 5rem;
@@ -36,7 +37,7 @@
 }
 
 .react-tooltip {
-  font-family: var(--main-font);
+  font-family: var(--main-font-light);
 }
 
 .please-select-error {
@@ -44,6 +45,8 @@
 }
 
 #create-broadcast-button {
+  font-size: 20px;
+  /* font-family: var(--main-font); */
 }
 
 .modal-close-icon {
