@@ -1,6 +1,7 @@
 .textarea-container {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  font-family: var(--main-font-light);
 }
 
 textarea {
@@ -9,19 +10,19 @@ textarea {
 
 .textarea {
   box-sizing: border-box;
-  /* border: 1px solid #ccc; */
+  border: 1px solid #ccc;
   border-radius: 5px;
   resize: none;
   margin: 0.5rem 0;
   padding: 14px 10px;
   font-family: var(--main-font-light);
-  color: #fff;
+  color: black;
   font-size: 16px;
-  background-color: #202020;
+  background-color: #fff;
   width: 100%;
 }
 
 .textarea:focus {
   outline: none !important;
-  /* border: 1px solid #121212; */
+  border: 1px solid #121212;
 }

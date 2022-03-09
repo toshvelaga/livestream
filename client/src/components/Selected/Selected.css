@@ -1,14 +1,11 @@
-:root {
-  --main-font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Ubuntu, Arial, sans-serif;
-}
-
 .selected-label {
-  font-family: var(--main-font);
+  font-family: var(--main-font-light);
+  color: grey;
 }
 
 .selected-container {
   margin-bottom: 1rem;
+  font-family: var(--main-font-light);
 }
 
 .selected {
