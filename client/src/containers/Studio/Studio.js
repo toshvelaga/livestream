@@ -50,6 +50,7 @@ function Studio() {
   const [twitchAccessToken, settwitchAccessToken] = useState('')
   const [twitchViewCount, settwitchViewCount] = useState(0)
   const [youtubeViewCount, setyoutubeViewCount] = useState(0)
+  const [facebookViewCount, setfacebookViewCount] = useState(0)
   const [twitchChatMsgs, setTwitchChatMsgs] = useState(['hello', 'its me'])
   const [customRtmpServer, setcustomRtmpServer] = useState('')
   const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
@@ -151,6 +152,17 @@ function Studio() {
         .then((res) => {
           console.log(res.data.number)
           if (res.data.number) settwitchViewCount(res.data.number)
+        })
+        .catch((err) => console.log(err))
+    } else return null
+
+    if (isActive) {
+      API.post('/facebook/view-count', {
+        facebookLiveVideoId: facebookLiveVideoId,
+        facebookAccessToken: longFacebookAccessToken,
+      })
+        .then((res) => {
+          console.log(res)
         })
         .catch((err) => console.log(err))
     } else return null
