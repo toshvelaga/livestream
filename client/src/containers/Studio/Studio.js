@@ -144,7 +144,7 @@ function Studio() {
 
   useInterval(() => {
     // Your custom logic here
-    if (isActive) {
+    if (isActive && twitchStreamKey) {
       API.post('/twitch/view-count', {
         twitchUsername: twitchUsername,
         twitchAccessToken: twitchAccessToken,
@@ -156,7 +156,7 @@ function Studio() {
         .catch((err) => console.log(err))
     } else return null
 
-    if (isActive) {
+    if (isActive && facebookLiveVideoId) {
       API.post('/facebook/view-count', {
         facebookLiveVideoId: facebookLiveVideoId,
         facebookAccessToken: longFacebookAccessToken,
@@ -167,7 +167,7 @@ function Studio() {
         .catch((err) => console.log(err))
     } else return null
 
-    if (isActive) {
+    if (isActive && youtubeBroadcastId) {
       youtubeLiveViewCount()
     } else return null
   }, twitchViewCountTimer)
@@ -432,6 +432,17 @@ function Studio() {
           console.error('Execute error', err)
         }
       )
+  }
+
+  const facebookLiveViewCount = () => {
+    API.post('/facebook/view-count', {
+      facebookLiveVideoId: facebookLiveVideoId,
+      facebookAccessToken: longFacebookAccessToken,
+    })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => console.log(err))
   }
 
   const endFacebookLivestream = () => {
