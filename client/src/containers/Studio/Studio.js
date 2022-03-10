@@ -532,6 +532,7 @@ function Studio() {
               </Timer>
               <ViewCounter num={twitchViewCount} />
               <ViewCounter num={youtubeViewCount} />
+              <ViewCounter num={facebookViewCount} />
             </div>
 
             <div>
