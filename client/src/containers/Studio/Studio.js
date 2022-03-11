@@ -531,9 +531,15 @@ function Studio() {
               <Timer>
                 {isActive ? 'LIVE' : 'END'}: {formatTime(elapsedSeconds)}
               </Timer>
-              <ViewCounter title={'Twitch'} num={twitchViewCount} />
-              <ViewCounter title={'Youtube'} num={youtubeViewCount} />
-              <ViewCounter title={'Facebook'} num={facebookViewCount} />
+              {twitchStreamKey && (
+                <ViewCounter title={'Twitch'} num={twitchViewCount} />
+              )}
+              {youtubeBroadcastId && (
+                <ViewCounter title={'Youtube'} num={youtubeViewCount} />
+              )}
+              {facebookLiveVideoId && (
+                <ViewCounter title={'Facebook'} num={facebookViewCount} />
+              )}
             </div>
 
             <div>
