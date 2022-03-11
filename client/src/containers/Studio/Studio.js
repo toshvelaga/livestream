@@ -188,29 +188,13 @@ function Studio() {
   // }, [facebookLiveVideoId, longFacebookAccessToken])
 
   useEffect(() => {
-    socket.current =
-      process.env.NODE_ENV === 'production'
-        ? io(productionWsUrl + streamUrlParams, { transports: ['websocket'] })
-        : io(developmentWsUrl + streamUrlParams, { transports: ['websocket'] })
-
-    socket.current.on('connect', () => {
-      // either with send()
-      console.log('WebSocket Open')
-    })
-
-    return () => {
-      socket.current.on('disconnect', () => {
-        console.log('close the socket') // undefined
+    if (socket.current) {
+      socket.current.on('twitch-msg', (msg) => {
+        setTwitchChatMsgs([...twitchChatMsgs, msg])
+        console.log(twitchChatMsgs)
       })
     }
-  }, [streamUrlParams])
-
-  // useEffect(() => {
-  //   socket.current.on('twitch-msg', (msg) => {
-  //     setTwitchChatMsgs([...twitchChatMsgs, msg])
-  //     console.log(twitchChatMsgs)
-  //   })
-  // }, [twitchChatMsgs])
+  }, [twitchChatMsgs])
 
   useEffect(() => {
     handleClientLoad()
@@ -313,6 +297,14 @@ function Studio() {
   }
 
   const startRecording = () => {
+    socket.current =
+      process.env.NODE_ENV === 'production'
+        ? io(productionWsUrl + streamUrlParams, {
+            transports: ['websocket'],
+          })
+        : io(developmentWsUrl + streamUrlParams, {
+            transports: ['websocket'],
+          })
     toggleActive()
     recorderInit()
     startTimer()

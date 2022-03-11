@@ -92,6 +92,7 @@ io.on('connection', (socket) => {
       ? 'rtmp://dfw.contribute.live-video.net/app/' + twitchStreamKey
       : null
   const twitchUsername = socketQueryParams.twitchUsername
+
   const facebook = socketQueryParams.facebookUrl
 
   const customRTMP = socketQueryParams.customRTMP

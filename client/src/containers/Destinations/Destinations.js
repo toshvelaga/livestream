@@ -207,7 +207,6 @@ function Destinations() {
             cardTitleStyle={youtubeAccessToken ? { color: '#fff' } : null}
             title={'YouTube'}
           >
-            {/* <FaIcons.FaYoutube color={'#ff0000'} size={50} /> */}
             <img src={youtube} alt='youtube logo' />
           </Card>
 
@@ -217,7 +216,6 @@ function Destinations() {
             cardTitleStyle={twitchAccessToken ? { color: '#fff' } : null}
             title={'Twitch'}
           >
-            {/* <FaIcons.FaTwitch color={'#9047fe'} size={50} /> */}
             <img src={twitch} alt='twitch logo' />
           </Card>
 
@@ -232,7 +230,6 @@ function Destinations() {
             }}
             title={'Facebook'}
           >
-            {/* <FaIcons.FaFacebook color={'#1676f2'} size={50} /> */}
             <img src={facebook} alt='facebook logo' />
           </Card>
         </div>
