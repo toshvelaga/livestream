@@ -2,8 +2,9 @@
   background-color: #ff0000;
   color: #fff;
   border-radius: 5px;
-  width: 5rem;
+  width: 6rem;
   text-align: center;
   padding: 10px 10px;
   margin-bottom: 10px;
+  font-family: var(--main-font-light);
 }
