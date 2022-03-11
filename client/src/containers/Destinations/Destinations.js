@@ -19,7 +19,6 @@ import {
   YOUTUBE_REDIRECT_URL,
 } from '../../constants/constants'
 import { useHistory } from 'react-router-dom'
-import * as FaIcons from 'react-icons/fa'
 import { Toaster } from 'react-hot-toast'
 import styles from '../../styles/styles'
 import youtube from '../../assets/youtube.svg'
