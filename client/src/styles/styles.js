@@ -7,6 +7,7 @@ const styles = {
   blueFontColor: '#03a9f4',
   orangeFontColor: '#fd5d16',
   blackFontColor: { color: 'black' },
+  purpleColor: '#bc62ff',
   destinationSelected: {
     // backgroundColor: '#d2eefc',
     border: '1px solid #38e53c',

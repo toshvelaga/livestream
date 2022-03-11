@@ -51,7 +51,7 @@ function Studio() {
   const [twitchViewCount, settwitchViewCount] = useState(0)
   const [youtubeViewCount, setyoutubeViewCount] = useState(0)
   const [facebookViewCount, setfacebookViewCount] = useState(0)
-  const [twitchChatMsgs, setTwitchChatMsgs] = useState(['hello', 'its me'])
+  const [twitchChatMsgs, setTwitchChatMsgs] = useState([])
   const [customRtmpServer, setcustomRtmpServer] = useState('')
   const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
 
@@ -169,14 +169,13 @@ function Studio() {
   //   }
   // }, [facebookLiveVideoId, longFacebookAccessToken])
 
-  useEffect(() => {
-    if (socket.current) {
-      socket.current.on('twitch-msg', (msg) => {
-        setTwitchChatMsgs([...twitchChatMsgs, msg])
-        console.log(twitchChatMsgs)
-      })
-    }
-  }, [twitchChatMsgs])
+  if (isActive && socket.current) {
+    console.log('socket messages incoming')
+    socket.current.on('twitch-msg', (msg) => {
+      setTwitchChatMsgs([...twitchChatMsgs, msg])
+      console.log(twitchChatMsgs)
+    })
+  }
 
   useEffect(() => {
     handleClientLoad()
@@ -587,7 +586,7 @@ function Studio() {
         </div>
         {/* CHAT MESSAGES */}
 
-        {/* <div
+        <div
           style={{
             backgroundColor: '#efefef',
             borderRadius: '5px',
@@ -613,7 +612,7 @@ function Studio() {
               {msg}
             </p>
           ))}
-        </div> */}
+        </div>
       </div>
     </>
   )

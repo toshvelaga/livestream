@@ -8,6 +8,7 @@
   font-family: var(--main-font-light);
   text-align: center;
   color: grey;
-  /* border: 1px solid grey; */
+  color: var(--purple-color);
+  border: 1px solid var(--purple-color);
   /* background-color: lightgrey; */
 }
