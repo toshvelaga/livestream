@@ -8,6 +8,6 @@
   font-family: var(--main-font-light);
   text-align: center;
   color: grey;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   /* background-color: lightgrey; */
 }
