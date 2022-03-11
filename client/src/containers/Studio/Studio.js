@@ -156,13 +156,14 @@ function Studio() {
         .catch((err) => console.log(err))
     }
 
-    if (isActive) {
+    if (isActive && facebookLiveVideoId) {
       API.post('/facebook/view-count', {
         facebookLiveVideoId: facebookLiveVideoId,
         facebookAccessToken: longFacebookAccessToken,
       })
         .then((res) => {
-          console.log(res)
+          console.log(res.data.views)
+          if (res.data.views) setfacebookViewCount(res.data.views)
         })
         .catch((err) => console.log(err))
     }
@@ -530,9 +531,9 @@ function Studio() {
               <Timer>
                 {isActive ? 'LIVE' : 'END'}: {formatTime(elapsedSeconds)}
               </Timer>
-              <ViewCounter num={twitchViewCount} />
-              <ViewCounter num={youtubeViewCount} />
-              <ViewCounter num={facebookViewCount} />
+              <ViewCounter title={'Twitch'} num={twitchViewCount} />
+              <ViewCounter title={'Youtube'} num={youtubeViewCount} />
+              <ViewCounter title={'Facebook'} num={facebookViewCount} />
             </div>
 
             <div>
