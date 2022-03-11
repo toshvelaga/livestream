@@ -88,7 +88,7 @@ function Studio() {
   const history = useHistory()
   const [elapsedSeconds, setelapsedSeconds] = useState(0)
   // Use polling every 5 minutes
-  const twitchViewCountTimer = 1000 * 60 * 2
+  const viewCountTimer = 1000 * 60 * 1
   // Use polling every 30 seconds
   // const twitchViewCountTimer = 1000 * 30
   let timer = useRef(null)
@@ -154,7 +154,7 @@ function Studio() {
           if (res.data.number) settwitchViewCount(res.data.number)
         })
         .catch((err) => console.log(err))
-    } else return null
+    }
 
     if (isActive) {
       API.post('/facebook/view-count', {
@@ -165,12 +165,12 @@ function Studio() {
           console.log(res)
         })
         .catch((err) => console.log(err))
-    } else return null
+    }
 
     if (isActive && youtubeBroadcastId) {
       youtubeLiveViewCount()
-    } else return null
-  }, twitchViewCountTimer)
+    }
+  }, viewCountTimer)
 
   // get facebook permalink url
 
