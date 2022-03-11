@@ -145,29 +145,11 @@ function Studio() {
   useInterval(() => {
     // Your custom logic here
     if (isActive && twitchStreamKey) {
-      API.post('/twitch/view-count', {
-        twitchUsername: twitchUsername,
-        twitchAccessToken: twitchAccessToken,
-      })
-        .then((res) => {
-          console.log(res.data.number)
-          if (res.data.number) settwitchViewCount(res.data.number)
-        })
-        .catch((err) => console.log(err))
+      twitchLiveViewCount()
     }
-
     if (isActive && facebookLiveVideoId) {
-      API.post('/facebook/view-count', {
-        facebookLiveVideoId: facebookLiveVideoId,
-        facebookAccessToken: longFacebookAccessToken,
-      })
-        .then((res) => {
-          console.log(res.data.views)
-          if (res.data.views) setfacebookViewCount(res.data.views)
-        })
-        .catch((err) => console.log(err))
+      facebookLiveViewCount()
     }
-
     if (isActive && youtubeBroadcastId) {
       youtubeLiveViewCount()
     }
@@ -427,13 +409,26 @@ function Studio() {
       )
   }
 
+  const twitchLiveViewCount = () => {
+    API.post('/twitch/view-count', {
+      twitchUsername: twitchUsername,
+      twitchAccessToken: twitchAccessToken,
+    })
+      .then((res) => {
+        console.log(res.data.number)
+        if (res.data.number) settwitchViewCount(res.data.number)
+      })
+      .catch((err) => console.log(err))
+  }
+
   const facebookLiveViewCount = () => {
     API.post('/facebook/view-count', {
       facebookLiveVideoId: facebookLiveVideoId,
       facebookAccessToken: longFacebookAccessToken,
     })
       .then((res) => {
-        console.log(res)
+        console.log(res.data.views)
+        if (res.data.views) setfacebookViewCount(res.data.views)
       })
       .catch((err) => console.log(err))
   }
