@@ -1,7 +1,6 @@
 .studio-container {
-  width: 60%;
+  width: 55%;
   margin: 1rem auto;
-  /* margin-left: 8rem; */
   font-family: var(--main-font);
 }
 
@@ -31,6 +30,48 @@
 
 #play-button:hover {
   background-color: #ff6738;
+}
+
+.chat-container {
+  background-color: var(--navbar-background-color);
+  border-radius: 5px;
+  height: 75vh;
+  width: 18rem;
+  float: right;
+  position: absolute;
+  top: 100px;
+  right: 0;
+  border: 1px solid var(--card-background-color);
+}
+
+.chat-title {
+  color: grey;
+  font-family: var(--main-font-light);
+}
+
+.chat-messages {
+  background-color: #404040;
+  color: var(--purple-color);
+  width: 90%;
+  margin: 0.5rem auto;
+  padding: 0.25rem 0.25rem;
+  border-radius: 5px;
+  font-family: var(--main-font-light);
+  font-size: 16px;
+}
+
+.chat-message-icon,
+.chat-message-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.chat-message-icon {
+  margin-left: 0.5rem;
+}
+
+.chat-message-text {
+  margin-left: 0.5rem;
 }
 
 @media only screen and (max-width: 1000px) {

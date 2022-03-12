@@ -51,7 +51,7 @@ function Studio() {
   const [twitchViewCount, settwitchViewCount] = useState(0)
   const [youtubeViewCount, setyoutubeViewCount] = useState(0)
   const [facebookViewCount, setfacebookViewCount] = useState(0)
-  const [twitchChatMsgs, setTwitchChatMsgs] = useState([])
+  const [twitchChatMsgs, setTwitchChatMsgs] = useState(['toshvelaga: hello'])
   const [customRtmpServer, setcustomRtmpServer] = useState('')
   const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
 
@@ -586,31 +586,18 @@ function Studio() {
         </div>
         {/* CHAT MESSAGES */}
 
-        <div
-          style={{
-            backgroundColor: '#efefef',
-            borderRadius: '5px',
-            height: '75vh',
-            width: '18rem',
-            float: 'right',
-            position: 'absolute',
-            top: '100px',
-            right: '0',
-          }}
-        >
-          <h2 style={{ marginLeft: '10px' }}>Chat</h2>
+        <div className='chat-container'>
+          <p className='chat-title' style={{ marginLeft: '10px' }}>
+            Chat Messages
+          </p>
           {twitchChatMsgs.map((msg) => (
-            <p
-              style={{
-                backgroundColor: 'lightgrey',
-                width: '90%',
-                margin: '.5rem auto',
-                padding: '.5rem',
-                borderRadius: '5px',
-              }}
-            >
-              {msg}
-            </p>
+            <div className='chat-messages'>
+              <div style={{ paddingTop: '5px' }} className='chat-message-icon'>
+                <FaIcons.FaTwitch color={'#9047fe'} size={22} />
+              </div>
+              <div className='chat-message-text'>{msg}</div>
+              {/* <span className='chat-message-text'>{msg}</span> */}
+            </div>
           ))}
         </div>
       </div>
