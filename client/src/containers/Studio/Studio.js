@@ -51,7 +51,7 @@ function Studio() {
   const [twitchViewCount, settwitchViewCount] = useState(0)
   const [youtubeViewCount, setyoutubeViewCount] = useState(0)
   const [facebookViewCount, setfacebookViewCount] = useState(0)
-  const [twitchChatMsgs, setTwitchChatMsgs] = useState(['toshvelaga: hello'])
+  const [twitchChatMsgs, setTwitchChatMsgs] = useState([])
   const [customRtmpServer, setcustomRtmpServer] = useState('')
   const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
 
