@@ -9,6 +9,7 @@ button > * {
 
 .destination-button {
   /* background-color: #dddddd; */
+  background-color: var(--card-background-color);
   color: black;
   letter-spacing: 2px;
   outline: none;

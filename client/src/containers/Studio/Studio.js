@@ -561,11 +561,11 @@ function Studio() {
           </div>
           <div className='studio-bottom-button-container'>
             <StudioButton label={'Share Screen'} onClick={toggleScreenSharing}>
-              <FaIcons.FaLaptop size={20} />
+              <FaIcons.FaLaptop color='#eb3472' size={20} />
             </StudioButton>
             <StudioButton label={'Camera'} onClick={toggleCamera}>
               {cameraOn ? (
-                <FaIcons.FaVideo size={20} />
+                <FaIcons.FaVideo color='#eb3472' size={20} />
               ) : (
                 <FaIcons.FaVideoSlash size={20} />
               )}
@@ -573,7 +573,7 @@ function Studio() {
 
             <StudioButton label={'Mic'} onClick={toggleMicrophone}>
               {!muted ? (
-                <FaIcons.FaMicrophone size={20} />
+                <FaIcons.FaMicrophone color='#eb3472' size={20} />
               ) : (
                 <FaIcons.FaMicrophoneSlash size={20} />
               )}
