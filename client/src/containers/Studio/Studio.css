@@ -47,6 +47,7 @@
 .chat-title {
   color: grey;
   font-family: var(--main-font-light);
+  margin-left: 10px;
 }
 
 .chat-messages {

@@ -585,18 +585,14 @@ function Studio() {
           </div>
         </div>
         {/* CHAT MESSAGES */}
-
         <div className='chat-container'>
-          <p className='chat-title' style={{ marginLeft: '10px' }}>
-            Chat Messages
-          </p>
+          <p className='chat-title'>Chat Messages</p>
           {twitchChatMsgs.map((msg) => (
             <div className='chat-messages'>
               <div style={{ paddingTop: '5px' }} className='chat-message-icon'>
                 <FaIcons.FaTwitch color={'#9047fe'} size={22} />
               </div>
               <div className='chat-message-text'>{msg}</div>
-              {/* <span className='chat-message-text'>{msg}</span> */}
             </div>
           ))}
         </div>
