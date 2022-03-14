@@ -9,12 +9,11 @@ body {
 }
 
 #pulse {
-  /* font-family: 'Inter'; */
   /* background-color: #1c90ff; */
   box-shadow: 0 0 0 rgb(3 169 244 / 40%);
   animation: pulse 4s infinite;
   font-size: 20px;
-  font-family: 'Inter';
+  font-family: var(--main-font);
 }
 
 #pulse:hover {
@@ -88,7 +87,7 @@ body {
   font-weight: 600;
   border: 1px solid #03a9f4;
   border-radius: 5px;
-  font-family: 'Inter';
+  font-family: var(--main-font);
 }
 
 .signup-button-in-navbar:hover {
@@ -149,6 +148,7 @@ body {
 .website-text-description {
   font-size: 20px;
   color: grey;
+  font-family: var(--main-font-light);
 }
 
 .website-main-description {
@@ -156,6 +156,7 @@ body {
   text-align: center;
   font-size: 20px;
   margin: 1rem 2rem 0rem 2rem;
+  font-family: var(--main-font-light);
 }
 
 @media all and (max-width: 600px) {

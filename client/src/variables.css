@@ -10,9 +10,21 @@
     url('./fonts/Inter/Inter-Regular.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Poppins';
+  src: local('Poppins'), local('Poppins'),
+    url('./fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins-light';
+  src: local('Poppins-light'), local('Poppins-light'),
+    url('./fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+}
+
 :root {
-  --main-font: 'Inter';
-  --main-font-light: 'Inter-light';
+  --main-font: 'Poppins';
+  --main-font-light: 'Poppins-light';
   --white-font-color: #fff;
   --yellow-orange-color: #ffab1c;
   --green-color: #38e53c;
