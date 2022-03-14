@@ -13,7 +13,7 @@
   background: var(--card-background-color);
   border-radius: 10px;
   width: 18em;
-  height: 38rem;
+  height: 40rem;
   box-sizing: border-box;
   text-align: center;
   margin: 1em;
@@ -26,6 +26,7 @@
 
 .plan-features {
   color: grey;
+  font-family: var(--main-font-light);
 }
 
 .title-container-plan {

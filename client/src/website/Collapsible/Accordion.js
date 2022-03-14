@@ -27,6 +27,11 @@ export default class Accordion extends Component {
         'Multistreaming allows you to grow your audience across multiple platforms at the same time, enables cross channel discovery and saves you time and money by instantly uploading your content.',
     },
     {
+      label: 'What custom RTMP destinations do you support?',
+      content:
+        'We support any RTMP destination that gives you a stream key. For example TikTok, Instagram Live, Dlive, Fansly, or your own personal website.',
+    },
+    {
       label: 'How much does this cost?',
       content:
         'Right now there is a free two week trial and then it is $10/month. We do not ask for credit card upfront. If you cannot afford this please reach out to us at ohmystreamer@gmail.com',
@@ -35,11 +40,6 @@ export default class Accordion extends Component {
       label: 'Do you have support?',
       content:
         'Yes if you have any additional questions or support issues feel free to reach out to us at ohmystreamer@gmail.com',
-    },
-    {
-      label: 'What features are you adding in the future?',
-      content:
-        'The ability to stream with other users using webRTC. Additional streaming destinations such as twitter and linkedin. Being able to respond to your messages in real time. Ability to add overlays on your content in real time.',
     },
   ]
 
