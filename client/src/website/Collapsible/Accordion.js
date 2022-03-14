@@ -22,7 +22,7 @@ export default class Accordion extends Component {
         'Ohmystream is completely in the browser. You do not need to download anything. Additionally you can stream to multiple services at the same time without the need to download complicated extensions.',
     },
     {
-      label: 'What are the benefits on multistreaming?',
+      label: 'What are the benefits of multistreaming?',
       content:
         'Multistreaming allows you to grow your audience across multiple platforms at the same time, enables cross channel discovery and saves you time and money by instantly uploading your content.',
     },
