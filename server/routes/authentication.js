@@ -15,13 +15,21 @@ router.post('/api/user/register', async (req, res) => {
   if (validateEmail(email) == false) {
     return res.send({ error: 'Please add a valid email address' })
   } else {
-    let newUser = await pool.query(
-      'INSERT INTO users (user_email, user_code, user_date_created) VALUES ($1, $2, $3) RETURNING *',
-      [email, code, timeCreated]
-    )
-    sendAuthCode(email, code)
+    const user = await pool.query(`SELECT * FROM users WHERE user_email = $1`, [
+      email,
+    ])
+    // CHECKS IF USER EMAIL ALREADY EXISTS
+    if (user.rows.length != 0) {
+      return res.send({ error: 'An account with that email already exists' })
+    } else {
+      let newUser = await pool.query(
+        'INSERT INTO users (user_email, user_code, user_date_created) VALUES ($1, $2, $3) RETURNING *',
+        [email, code, timeCreated]
+      )
+      sendAuthCode(email, code)
 
-    return res.json(newUser.rows[0])
+      return res.json(newUser.rows[0])
+    }
   }
 })
 
