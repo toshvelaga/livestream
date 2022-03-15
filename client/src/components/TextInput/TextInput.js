@@ -9,6 +9,7 @@ function TextInput(props) {
           {props.label}
         </label>
         <input
+          className='textinput'
           type='text'
           id={props.id}
           name={props.name}

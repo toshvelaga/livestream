@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './Website.css'
 import Button from '../../components/Buttons/Button'
-import TextInput from '../../components/TextInput/TextInput'
 import { Link, useHistory } from 'react-router-dom'
 import Accordion from '../Collapsible/Accordion'
 import Footer from '../Footer/Footer'
 import PricingPlan from '../PricingPlan/PricingPlan'
+import Input from '../Input/Input'
 import eventTrack from '../../utils/eventTrack'
 import youtube from '../../assets/youtube.svg'
 import twitch from '../../assets/twitch.svg'
@@ -112,16 +112,12 @@ function Website(props) {
           ✨ Start your first stream in &lt;2 minutes
         </p>
 
-        <div
-          style={{
-            marginTop: '2rem',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <div style={{ marginRight: '1rem' }}>
-            <TextInput
+        <div className='email-submit-input-container'>
+          <div
+            className='email-submit-input-container-child'
+            style={{ marginRight: '1rem' }}
+          >
+            <Input
               id='enter-email-homepage'
               placeholder='Enter your email'
               onChange={(e) => setEmail(e.target.value)}
@@ -130,7 +126,7 @@ function Website(props) {
               errorMsg={error ? error : null}
             />
           </div>
-          <div>
+          <div className='email-submit-input-container-child'>
             <Button
               style={{ padding: '16px 30px' }}
               id='pulse'

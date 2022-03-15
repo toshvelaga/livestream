@@ -1,0 +1,12 @@
+.webpage-email-input {
+  width: 100%;
+  padding: 14px 10px;
+  margin: 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #ffffff;
+  font-family: var(--main-font-light);
+}

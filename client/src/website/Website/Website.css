@@ -180,6 +180,19 @@ body {
   font-family: var(--main-font-light);
 }
 
+.email-submit-input-container {
+  margin-top: 2rem;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: top; */
+}
+
+.email-submit-input-container-child {
+  display: inline-block;
+  vertical-align: top;
+}
+
 @media all and (max-width: 600px) {
   .column.sm-3 p {
     display: none;
