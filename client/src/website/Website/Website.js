@@ -24,6 +24,13 @@ function Website(props) {
 
   const history = useHistory()
 
+  const handleInputChange = (e) => {
+    setEmail(e.target.value)
+    if (error) {
+      seterror('')
+    }
+  }
+
   const emailSubmitHandler = () => {
     sendAuthCode()
   }
@@ -120,9 +127,8 @@ function Website(props) {
             <Input
               id='enter-email-homepage'
               placeholder='Enter your email'
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleInputChange}
               value={email}
-              // style={{ border: '1px solid red' }}
               errorMsg={error ? error : null}
             />
           </div>

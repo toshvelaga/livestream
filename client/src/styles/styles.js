@@ -6,6 +6,7 @@ const styles = {
   greyFontColor: 'darkgrey',
   blueFontColor: '#03a9f4',
   orangeFontColor: '#fd5d16',
+  yellowOrangeColor: '#ffab1c',
   blackFontColor: { color: 'black' },
   purpleColor: '#bc62ff',
   destinationSelected: {

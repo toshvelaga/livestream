@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from '../../styles/styles'
 import './Input.css'
 
 function Input(props) {
@@ -12,7 +13,10 @@ function Input(props) {
           name={props.name}
           placeholder={props.placeholder}
           style={
-            (props.style, props.errorMsg ? { border: '1px solid red' } : null)
+            (props.style,
+            props.errorMsg
+              ? { border: `1px solid ${errorStyles.color}` }
+              : null)
           }
           value={props.value}
           onChange={props.onChange}
@@ -27,7 +31,7 @@ function Input(props) {
 }
 
 const errorStyles = {
-  color: 'red',
+  color: styles.yellowOrangeColor,
 }
 
 export default Input
