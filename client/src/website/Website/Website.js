@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Website.css'
 import Button from '../../components/Buttons/Button'
-import { Link } from 'react-router-dom'
+import TextInput from '../../components/TextInput/TextInput'
+import { Link, useHistory } from 'react-router-dom'
 import Accordion from '../Collapsible/Accordion'
 import Footer from '../Footer/Footer'
 import PricingPlan from '../PricingPlan/PricingPlan'
@@ -12,9 +13,42 @@ import facebook from '../../assets/facebook.svg'
 import tiktok2 from '../../assets/tiktok2.svg'
 import twitter from '../../assets/twitter.svg'
 import linkedin from '../../assets/linkedin.svg'
+import setCookie from '../../utils/setCookie'
+import API from '../../api/api'
 import { Helmet } from 'react-helmet'
 
 function Website(props) {
+  const [email, setEmail] = useState('')
+  const [error, seterror] = useState('')
+  const [loading, setloading] = useState(false)
+
+  const history = useHistory()
+
+  const emailSubmitHandler = () => {
+    sendAuthCode()
+  }
+
+  const sendAuthCode = async () => {
+    try {
+      eventTrack('Landing Page', 'Sign Up For Free Button Clicked', 'Button')
+      setloading(true)
+      const response = await API.post('/user/register', {
+        email: email,
+      })
+      console.log(response.data.error)
+      seterror(response.data.error)
+      console.log(response)
+      if (response.data.user_id) {
+        setCookie('userId', `${response.data.user_id}`, 7)
+        setCookie('userEmail', email, 7)
+        history.push('/register/code')
+      }
+    } catch (err) {
+      console.log(err.response) // some reason error message
+    } finally {
+      setloading(false)
+    }
+  }
   return (
     <>
       <div class='website-navbar'>
@@ -83,20 +117,27 @@ function Website(props) {
             marginTop: '2rem',
             display: 'flex',
             justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
-          <Button
-            id='pulse'
-            fx={() => {
-              props.history.push('/register')
-              eventTrack(
-                'Landing Page',
-                'Sign Up For Free Button Clicked',
-                'Button'
-              )
-            }}
-            title='Sign up for free'
-          />
+          <div style={{ marginRight: '1rem' }}>
+            <TextInput
+              id='enter-email-homepage'
+              placeholder='Enter your email'
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              // style={{ border: '1px solid red' }}
+              errorMsg={error ? error : null}
+            />
+          </div>
+          <div>
+            <Button
+              style={{ padding: '16px 30px' }}
+              id='pulse'
+              fx={emailSubmitHandler}
+              title='Sign up for free'
+            />
+          </div>
         </div>
         <div style={{ marginTop: '2rem' }} class='container-two'>
           <div class='row'>

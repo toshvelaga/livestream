@@ -8,12 +8,33 @@ body {
   font-family: var(--main-font);
 }
 
+#enter-email-homepage {
+  padding: 1.1rem;
+  background-color: var(--main-background-color);
+  border: 1px solid grey;
+  color: #fff;
+}
+
+#enter-email-homepage:focus {
+  border: 1px solid white;
+}
+
+#enter-email-homepage:hover {
+  border: 1px solid var(--dark-blue-color);
+}
+
+#enter-email-homepage::placeholder {
+  color: grey;
+  /* font-family: var(--main-font-light); */
+}
+
 #pulse {
   /* background-color: #1c90ff; */
   box-shadow: 0 0 0 rgb(3 169 244 / 40%);
   animation: pulse 4s infinite;
   font-size: 20px;
   font-family: var(--main-font);
+  /* width: 320px; */
 }
 
 #pulse:hover {
