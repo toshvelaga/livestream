@@ -506,13 +506,13 @@ function Studio() {
           <div id='container'>
             <div
               className='time-view-container'
-              style={
-                elapsedSeconds === 0
-                  ? { visibility: 'hidden' }
-                  : {
-                      visibility: 'visible',
-                    }
-              }
+              // style={
+              //   elapsedSeconds === 0
+              //     ? { visibility: 'hidden' }
+              //     : {
+              //         visibility: 'visible',
+              //       }
+              // }
             >
               <Timer>
                 {isActive ? 'LIVE' : 'END'}: {formatTime(elapsedSeconds)}
@@ -526,6 +526,7 @@ function Studio() {
               {facebookLiveVideoId && (
                 <ViewCounter title={'Facebook'} num={facebookViewCount} />
               )}
+              {/* <ViewCounter title={'Facebook'} num={facebookViewCount} /> */}
             </div>
 
             <div>
@@ -543,13 +544,13 @@ function Studio() {
               </p>
 
               <video
-                // style={
-                //   !userFacing
-                //     ? {
-                //         visibility: 'hidden',
-                //       }
-                //     : null
-                // }
+                style={
+                  !userFacing
+                    ? {
+                        visibility: 'hidden',
+                      }
+                    : null
+                }
                 className='video-container'
                 ref={videoRef}
                 autoPlay
