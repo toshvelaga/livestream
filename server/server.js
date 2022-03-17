@@ -100,17 +100,16 @@ io.on('connection', (socket) => {
 
   // TWITCH CHAT TMI.JS
 
-  const client = new tmi.Client({
-    channels: [twitchUsername],
-  })
+  // const client = new tmi.Client({
+  //   channels: [twitchUsername],
+  // })
 
-  client.connect()
+  // client.connect()
 
-  client.on('message', (channel, tags, message, self) => {
-    // "Alca: Hello, World!"
-    console.log(`${tags['display-name']}: ${message}`)
-    socket.emit('twitch-msg', `${tags['display-name']}: ${message}`)
-  })
+  // client.on('message', (channel, tags, message, self) => {
+  //   console.log(`${tags['display-name']}: ${message}`)
+  //   socket.emit('twitch-msg', `${tags['display-name']}: ${message}`)
+  // })
 
   // END TWITCH CHAT TMI.JS
 
