@@ -15,6 +15,7 @@ import twitter from '../../assets/twitter.svg'
 import linkedin from '../../assets/linkedin.svg'
 import setCookie from '../../utils/setCookie'
 import API from '../../api/api'
+import hubspotEmail from '../../utils/hubspotEmail'
 import { Helmet } from 'react-helmet'
 
 function Website(props) {
@@ -46,6 +47,8 @@ function Website(props) {
       seterror(response.data.error)
       console.log(response)
       if (response.data.user_id) {
+        // REGISTER IN HUBSPOT
+        hubspotEmail(email)
         setCookie('userId', `${response.data.user_id}`, 7)
         setCookie('userEmail', email, 7)
         history.push('/register/code')
@@ -198,16 +201,6 @@ function Website(props) {
             marginTop: '2rem',
           }}
         >
-          {/* <iframe
-            title='video demo of ohmystream thumbnail'
-            width='640'
-            height='400'
-            src='https://www.loom.com/embed/a0683d13c66246aba44c0e87a5e685c9'
-            frameborder='0'
-            webkitallowfullscreen
-            mozallowfullscreen
-            allowfullscreen
-          ></iframe> */}
           <iframe
             width='640'
             height='400'
