@@ -30,13 +30,6 @@ function Code() {
       if (!result.data.match) {
         seterror('The code you entered does not match')
       } else {
-        // REGISTER IN HUBSPOT
-        if (window.location.pathname.includes('register')) {
-          console.log('HUBSPOT')
-          API.post('/hubspot', {
-            email: email,
-          })
-        }
         setCookie('isLoggedIn', true, 7)
 
         history.push('/broadcast')

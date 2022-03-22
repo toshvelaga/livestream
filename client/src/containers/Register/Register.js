@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom'
 import API from '../../api/api'
 import './Register.css'
 import setCookie from '../../utils/setCookie'
+import hubspotEmail from '../../utils/hubspotEmail'
 
 function Register() {
   const [email, setEmail] = useState('')
@@ -27,6 +28,8 @@ function Register() {
       seterror(response.data.error)
       console.log(response)
       if (response.data.user_id) {
+        // REGISTER IN HUBSPOT
+        hubspotEmail(email)
         setCookie('userId', `${response.data.user_id}`, 7)
         setCookie('userEmail', email, 7)
         history.push('/register/code')
