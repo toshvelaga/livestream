@@ -198,14 +198,23 @@ function Website(props) {
             marginTop: '2rem',
           }}
         >
-          <iframe
+          {/* <iframe
             title='video demo of ohmystream thumbnail'
             width='640'
             height='400'
-            src='https://www.loom.com/embed/35a86c6f73d144d59527092118cf525d'
+            src='https://www.loom.com/embed/a0683d13c66246aba44c0e87a5e685c9'
             frameborder='0'
             webkitallowfullscreen
             mozallowfullscreen
+            allowfullscreen
+          ></iframe> */}
+          <iframe
+            width='640'
+            height='400'
+            src='https://www.youtube.com/embed/yxk2QIh6uaw'
+            title='Ohmystream demo'
+            frameborder='0'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
             allowfullscreen
           ></iframe>
         </div>
