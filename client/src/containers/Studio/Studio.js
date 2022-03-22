@@ -51,7 +51,7 @@ function Studio() {
   const [twitchViewCount, settwitchViewCount] = useState(0)
   const [youtubeViewCount, setyoutubeViewCount] = useState(0)
   const [facebookViewCount, setfacebookViewCount] = useState(0)
-  const [twitchChatMsgs, setTwitchChatMsgs] = useState([])
+  const [twitchChatMsgs, setTwitchChatMsgs] = useState(['Welcome to the chat!'])
   const [customRtmpServer, setcustomRtmpServer] = useState('')
   const [customRtmpStreamKey, setcustomRtmpStreamKey] = useState('')
 
@@ -169,13 +169,13 @@ function Studio() {
   //   }
   // }, [facebookLiveVideoId, longFacebookAccessToken])
 
-  if (isActive && socket.current) {
-    console.log('socket messages incoming')
-    socket.current.on('twitch-msg', (msg) => {
-      setTwitchChatMsgs([...twitchChatMsgs, msg])
-      console.log(twitchChatMsgs)
-    })
-  }
+  // if (isActive && socket.current) {
+  //   console.log('socket messages incoming')
+  //   socket.current.on('twitch-msg', (msg) => {
+  //     setTwitchChatMsgs([...twitchChatMsgs, msg])
+  //     console.log(twitchChatMsgs)
+  //   })
+  // }
 
   useEffect(() => {
     handleClientLoad()
