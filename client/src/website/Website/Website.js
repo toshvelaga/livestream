@@ -191,6 +191,7 @@ function Website(props) {
           <PricingPlan />
         </div>
         <div
+          className='iframe-container'
           style={{
             display: 'flex',
             justifyContent: 'center',

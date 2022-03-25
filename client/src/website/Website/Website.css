@@ -223,6 +223,11 @@ body {
     padding-right: 0;
     margin-left: 0;
   }
+
+  .iframe-container {
+    width: 95%;
+    margin: 0 auto;
+  }
 }
 
 @media all and (max-width: 780px) {

@@ -86,4 +86,9 @@
   .broadcast-modal {
     width: 80%;
   }
+
+  .broadcast-container {
+    width: 90%;
+    margin-left: 2rem;
+  }
 }
