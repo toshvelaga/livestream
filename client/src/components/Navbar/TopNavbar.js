@@ -108,6 +108,12 @@ function DropdownMenu() {
   return (
     <div className={navbarStyles.dropdown} ref={dropdownRef}>
       <div className={navbarStyles.menu}>
+        <DropdownItem onClick={() => history.push('/broadcast')}>
+          Broadcast
+        </DropdownItem>
+        <DropdownItem onClick={() => history.push('/destinations')}>
+          Destinations
+        </DropdownItem>
         <DropdownItem onClick={() => history.push('/billing')}>
           Billing
         </DropdownItem>
