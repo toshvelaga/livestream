@@ -123,10 +123,7 @@ function Website(props) {
         </p>
 
         <div className='email-submit-input-container'>
-          <div
-            className='email-submit-input-container-child'
-            style={{ marginRight: '1rem' }}
-          >
+          <div className='email-submit-input-container-child'>
             <Input
               id='enter-email-homepage'
               placeholder='Enter your email'
@@ -137,7 +134,6 @@ function Website(props) {
           </div>
           <div className='email-submit-input-container-child'>
             <Button
-              style={{ padding: '16px 30px' }}
               id='pulse'
               fx={emailSubmitHandler}
               title='Sign up for free'

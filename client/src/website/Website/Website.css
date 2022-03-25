@@ -34,7 +34,10 @@ body {
   animation: pulse 4s infinite;
   font-size: 20px;
   font-family: var(--main-font);
-  /* width: 320px; */
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+  margin-left: 10px;
 }
 
 #pulse:hover {
@@ -197,6 +200,28 @@ body {
   }
   .website-image {
     display: none;
+  }
+
+  .email-submit-input-container {
+    margin-top: 2rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  #enter-email-homepage {
+    width: 100%;
+  }
+
+  .email-submit-input-container-child {
+    width: 80%;
+    margin-right: 0;
+  }
+
+  #pulse {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
   }
 }
 
