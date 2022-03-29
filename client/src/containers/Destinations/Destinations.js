@@ -198,10 +198,11 @@ function Destinations() {
     <>
       <Navbar />
       <Toaster position='top-center' reverseOrder={true} />
-      <div style={{ margin: '10rem auto', width: '50%' }}>
+      <div className='destinations-outer-container'>
         <h2 className='destination-title'>Add a Destination</h2>
         <div className='destinations-container'>
           <Card
+            id='youtube-destination'
             onClick={youtubeAuthClient}
             style={youtubeAccessToken ? styles.destinationSelected : null}
             cardTitleStyle={youtubeAccessToken ? { color: '#fff' } : null}
@@ -211,6 +212,7 @@ function Destinations() {
           </Card>
 
           <Card
+            id='twitch-destination'
             onClick={() => (window.location.href = twitchURL)}
             style={twitchAccessToken ? styles.destinationSelected : null}
             cardTitleStyle={twitchAccessToken ? { color: '#fff' } : null}
@@ -220,6 +222,7 @@ function Destinations() {
           </Card>
 
           <Card
+            id='facebook-destination'
             selected={facebookAccessToken ? true : false}
             style={facebookAccessToken ? styles.destinationSelected : null}
             cardTitleStyle={facebookAccessToken ? { color: '#fff' } : null}

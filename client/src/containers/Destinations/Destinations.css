@@ -1,6 +1,17 @@
+.destinations-outer-container {
+  margin: 10rem auto;
+  width: 50%;
+}
+
+#youtube-destination,
+#twitch-destination,
+#facebook-destination {
+  margin-right: 2rem;
+}
+
 .destinations-container {
   font-family: var(--main-font);
-  display: flex; /* or inline-flex */
+  display: flex;
 }
 
 .destination-title {
@@ -15,8 +26,20 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .destinations-outer-container {
+    margin: 0 auto;
+    width: 100%;
+  }
   .destinations-container {
     width: 90%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  #youtube-destination,
+  #twitch-destination,
+  #facebook-destination {
+    margin-right: 0rem;
   }
 }
 
