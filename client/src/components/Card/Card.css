@@ -40,3 +40,9 @@
   color: #fff;
   /* transition: 0.5s; */
 }
+
+@media screen and (max-width: 600px) {
+  .inner-card-content {
+    padding-top: 1rem;
+  }
+}

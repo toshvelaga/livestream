@@ -40,6 +40,8 @@
   #twitch-destination,
   #facebook-destination {
     margin-right: 0rem;
+    width: 60%;
+    margin: 0 auto;
   }
 }
 
