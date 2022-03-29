@@ -43,6 +43,10 @@
     width: 60%;
     margin: 0 auto;
   }
+  .destination-title {
+    text-align: center;
+    margin-top: 2rem;
+  }
 }
 
 .destinations-save-button {
