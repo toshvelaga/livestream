@@ -86,7 +86,9 @@ function Destinations() {
         .getAuthInstance()
         .signIn({ scope: SCOPE })
         .then((res) => {
-          console.log(res)
+          console.log(res.wc.access_token)
+          let youtubeAccessToken = res.wc.access_token
+          youtubeSaveAccessTokenToDB(userId, youtubeAccessToken)
         })
         .catch((err) => console.log(err))
     })
@@ -101,6 +103,11 @@ function Destinations() {
   const youtubeAuthBooleanDB = () => {
     let data = { youtubeAuthBool: true, userId }
     API.put('/user/destinations', data)
+  }
+
+  const youtubeSaveAccessTokenToDB = (userId, youtubeAccessToken) => {
+    let data = { userId, youtubeAccessToken }
+    API.put('/destinations/youtube', data)
   }
 
   const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`

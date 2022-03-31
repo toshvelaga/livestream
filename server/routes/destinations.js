@@ -37,6 +37,25 @@ router.put('/api/destinations', async (req, res) => {
   }
 })
 
+router.put('/api/destinations/youtube', async (req, res) => {
+  const userId = req.body.userId
+  const youtubeAccessToken = req.body.youtubeAccessToken
+
+  let results = await pool.query(
+    `INSERT INTO destinations (
+      user_id, 
+      youtube_access_token
+    )
+	VALUES($1, $2) ON CONFLICT (user_id) DO UPDATE SET youtube_access_token = EXCLUDED.youtube_access_token`,
+    [userId, youtubeAccessToken]
+  )
+  if (results.rows) {
+    return res.send(results.rows[0])
+  } else if (err) {
+    console.error('there was an error: ', err)
+  }
+})
+
 router.post('/api/destinations', async (req, res) => {
   const userId = req.body.userId
 
