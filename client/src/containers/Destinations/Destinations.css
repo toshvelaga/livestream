@@ -3,6 +3,10 @@
   width: 50%;
 }
 
+.toast-message {
+  font-family: var(--main-font-light);
+}
+
 #youtube-destination,
 #twitch-destination,
 #facebook-destination {
