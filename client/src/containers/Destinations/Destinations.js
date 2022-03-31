@@ -77,24 +77,22 @@ function Destinations() {
   }, [])
 
   const youtubeAuthClient = () => {
-    return gapi.auth2
-      .getAuthInstance()
-      .signIn({ scope: SCOPE })
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => console.log(err))
-  }
-
-  useEffect(() => {
-    gapi.load('client:auth2', function () {
+    return gapi.load('client:auth2', function () {
       gapi.auth2.init({
         client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       })
-    })
-  }, [])
 
-  const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&response_type=code&state=state_parameter_passthrough_value&scope=${SCOPE}&access_type=offline&redirect_uri=${YOUTUBE_REDIRECT_URL}&prompt=consent&include_granted_scopes=true`
+      gapi.auth2
+        .getAuthInstance()
+        .signIn({ scope: SCOPE })
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => console.log(err))
+    })
+  }
+
+  // const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.REACT_APP_GOOGLE_CLIENT_ID}&response_type=code&state=state_parameter_passthrough_value&scope=${SCOPE}&access_type=offline&redirect_uri=${YOUTUBE_REDIRECT_URL}&prompt=consent&include_granted_scopes=true`
 
   const youtubeAuth = (userId, code) => {
     API.post('/authorize/youtube', { userId, code })
