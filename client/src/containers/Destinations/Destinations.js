@@ -17,6 +17,7 @@ import {
   TWITCH_SCOPE,
   TWITCH_REDIRECT_URL,
   YOUTUBE_REDIRECT_URL,
+  DISCOVERY,
 } from '../../constants/constants'
 import { useHistory } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
@@ -35,6 +36,7 @@ function Destinations() {
   const [facebookAccessToken, setfacebookAccessToken] = useState('')
   const history = useHistory()
   let userId = getCookie('userId')
+  let GoogleAuth
 
   useEffect(() => {
     API.post('/destinations', { userId })
@@ -75,6 +77,58 @@ function Destinations() {
       console.log('No code param in URL')
     }
   }, [])
+
+  useEffect(() => {
+    handleClientLoad()
+  }, [])
+
+  function handleClientLoad() {
+    // Load the API's client and auth2 modules.
+    // Call the initClient function after the modules load.
+    gapi.load('client:auth2', initClient)
+  }
+
+  function initClient() {
+    // Initialize the gapi.client object, which app uses to make API requests.
+    // Get API key and client ID from API Console.
+    // 'scope' field specifies space-delimited list of access scopes.
+    gapi.client
+      .init({
+        apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+        clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+        discoveryDocs: [DISCOVERY],
+        scope: SCOPE,
+      })
+      .then(function () {
+        GoogleAuth = gapi.auth2.getAuthInstance()
+        console.log('GoogleAuth: ', JSON.stringify(GoogleAuth))
+
+        // Listen for sign-in state changes.
+        // GoogleAuth.isSignedIn.listen(updateSigninStatus)
+
+        // Handle initial sign-in state. (Determine if user is already signed in.)
+        // var user = GoogleAuth.currentUser.get()
+        // console.log('user' + JSON.stringify(user))
+        // if (!user) {
+        //   setSigninStatus()
+        // }
+      })
+  }
+
+  // function setSigninStatus() {
+  //   var user = GoogleAuth.currentUser.get()
+  //   console.log(user)
+  //   var isAuthorized = user.hasGrantedScopes(SCOPE)
+  //   if (isAuthorized) {
+  //     console.log('signed in and authorized')
+  //   } else {
+  //     console.log('not authorized')
+  //   }
+  // }
+
+  // function updateSigninStatus() {
+  //   setSigninStatus()
+  // }
 
   const youtubeAuthClient = () => {
     return gapi.auth2
