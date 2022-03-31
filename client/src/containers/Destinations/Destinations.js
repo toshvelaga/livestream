@@ -89,6 +89,7 @@ function Destinations() {
           console.log(res.wc.access_token)
           let youtubeAccessToken = res.wc.access_token
           youtubeSaveAccessTokenToDB(userId, youtubeAccessToken)
+          youtubeAuthBooleanDB()
           toastSuccessMessage('Youtube added as destination')
         })
         .catch((err) => console.log(err))
