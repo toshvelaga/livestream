@@ -1,14 +1,21 @@
 import React from 'react'
 import './Terms.css'
-import ohmystream from '../../assets/ohmystream.png'
+import ohmystreamLogo from '../../assets/ohmystreamLogo.png'
 
 function Terms() {
   return (
     <div className='terms-container'>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          marginTop: '2rem',
+          marginBottom: '2rem',
+        }}
+      >
         <img
           className='ohmystream-logo'
-          src={ohmystream}
+          src={ohmystreamLogo}
           alt='ohmystream logo'
         />
       </div>
