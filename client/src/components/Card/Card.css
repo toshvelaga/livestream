@@ -43,6 +43,6 @@
 
 @media screen and (max-width: 600px) {
   .inner-card-content {
-    padding-top: 1rem;
+    /* padding-top: 1rem; */
   }
 }
