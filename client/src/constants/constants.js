@@ -9,8 +9,8 @@ export const TWITCH_REDIRECT_URL =
 
 export const TWITCH_REDIRECT_URL_BROADCASTS =
   process.env.NODE_ENV === 'production'
-    ? 'https://ohmystream.co/broadcasts'
-    : 'http://localhost:3000/broadcasts'
+    ? 'https://ohmystream.co/broadcast'
+    : 'http://localhost:3000/broadcast'
 
 export const TWITCH_RESPONSE_TYPE = 'token'
 
