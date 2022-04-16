@@ -85,4 +85,8 @@
   .studio-container {
     width: 90%;
   }
+
+  .chat-container {
+    display: none;
+  }
 }

@@ -36,3 +36,15 @@ button > * {
   color: grey;
   font-family: var(--main-font-light);
 }
+
+@media screen and (max-width: 600px) {
+  .studio-button-label {
+    display: none;
+  }
+
+  .studio-button {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    padding: 25px 25px;
+  }
+}
