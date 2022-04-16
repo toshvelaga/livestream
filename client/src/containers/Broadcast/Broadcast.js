@@ -26,6 +26,7 @@ import eventTrack from '../../utils/eventTrack'
 import timeFromUserRegistration from '../../utils/timeFromUserRegistration'
 import TrialExpired from '../../components/TrialExpired/TrialExpired'
 import DisabledBroadcastAvatar from '../../components/Avatars/DisabledBroadcastAvatar'
+import TwitchAuth from '../../components/Authentication/TwitchAuth'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
@@ -684,28 +685,29 @@ function Broadcast() {
               )}
 
               {showBroadcastAvatar.twitch ? (
-                <BroadcastAvatar
-                  style={
-                    modalContent.twitch === true
-                      ? { border: styles.broadcastAvatarBorder }
-                      : null
-                  }
-                  onClick={() => {
-                    setmodalContent((prev) => ({
-                      ...prev,
-                      twitch: !prev.twitch,
-                    }))
-                    setmodalContentDisplayed('twitch')
-                  }}
-                >
-                  <FaIcons.FaTwitch
-                    data-tip='Twitch'
-                    color={'#9047fe'}
-                    size={35}
-                  />
-                  <ReactTooltip />
-                </BroadcastAvatar>
+                <TwitchAuth />
               ) : (
+                // <BroadcastAvatar
+                //   style={
+                //     modalContent.twitch === true
+                //       ? { border: styles.broadcastAvatarBorder }
+                //       : null
+                //   }
+                //   onClick={() => {
+                //     setmodalContent((prev) => ({
+                //       ...prev,
+                //       twitch: !prev.twitch,
+                //     }))
+                //     setmodalContentDisplayed('twitch')
+                //   }}
+                // >
+                //   <FaIcons.FaTwitch
+                //     data-tip='Twitch'
+                //     color={'#9047fe'}
+                //     size={35}
+                //   />
+                //   <ReactTooltip />
+                // </BroadcastAvatar>
                 <DisabledBroadcastAvatar>
                   <FaIcons.FaTwitch
                     data-tip='Enable Twitch in Destinations tab'

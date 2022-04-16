@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react'
-import { TWITCH_SCOPE, TWITCH_REDIRECT_URL } from '../../constants/constants'
+import {
+  TWITCH_SCOPE,
+  TWITCH_REDIRECT_URL,
+  TWITCH_REDIRECT_URL_BROADCASTS,
+} from '../../constants/constants'
 import {
   twitchAuthBooleanDB,
   sendCodeToTwitch,
@@ -61,7 +65,7 @@ const TwitchAuth = () => {
     )
   }
 
-  const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`
+  const twitchURL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_TWITCH_CLIENT_ID}&redirect_uri=${TWITCH_REDIRECT_URL_BROADCASTS}&response_type=code&scope=${TWITCH_SCOPE}&force_verify=true`
 
   return (
     <Card
