@@ -14,28 +14,14 @@ import useInterval from '../../utils/useInterval'
 import API from '../../api/api'
 import './Studio.css'
 import { useParams, useHistory } from 'react-router-dom'
-import { SCOPE, DISCOVERY } from '../../constants/constants'
+import {
+  SCOPE,
+  DISCOVERY,
+  CAPTURE_OPTIONS_USER_FACING,
+  CAPTURE_OPTIONS_RECORD_SCREEN,
+} from '../../constants/constants'
 
 /* global gapi */
-
-const CAPTURE_OPTIONS_USER_FACING = {
-  audio: true,
-  video: {
-    height: { min: 720, max: 1280 },
-    width: { min: 1080, max: 1920 },
-    frameRate: { min: 15, ideal: 24, max: 30 },
-    facingMode: 'user',
-  },
-}
-
-const CAPTURE_OPTIONS_RECORD_SCREEN = {
-  audio: true,
-  video: {
-    height: 1080,
-    width: 1920,
-    frameRate: { ideal: 24, max: 30 },
-  },
-}
 
 function Studio() {
   const [youtubeUrl, setyoutubeUrl] = useState('')
