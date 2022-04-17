@@ -111,14 +111,49 @@ function Broadcast() {
       // logic for Twitch
       let code = getUrlParams('code')
       console.log('twitch authorization code ' + code)
-      twitchAuth(userId, code)
+      twitchAuth(code)
       twitchAuthBooleanDB(userId)
-      history.push('/broadcast')
+      history.push('/destinations')
       toastSuccessMessage('Twitch added as destination')
+    } else if (window.location.search.includes('&code')) {
+      // logic for Youtube
+      let code = getUrlParams('code')
+      youtubeAuth(userId, code)
+      youtubeAuthBooleanDB()
+      history.push('/destinations')
+      toastSuccessMessage('Youtube added as destination')
     } else {
       console.log('No code param in URL')
     }
   }, [])
+
+  const youtubeAuthClient = () => {
+    return gapi.auth2
+      .getAuthInstance()
+      .signIn({ scope: SCOPE })
+      .then((res) => {
+        console.log(res.wc.access_token)
+        let youtubeAccessToken = res.wc.access_token
+        youtubeSaveAccessTokenToDB(userId, youtubeAccessToken)
+        youtubeAuthBooleanDB()
+        toastSuccessMessage('Youtube added as destination')
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const youtubeAuth = (userId, code) => {
+    API.post('/authorize/youtube', { userId, code })
+  }
+
+  const youtubeAuthBooleanDB = () => {
+    let data = { youtubeAuthBool: true, userId }
+    API.put('/user/destinations', data)
+  }
+
+  const youtubeSaveAccessTokenToDB = (userId, youtubeAccessToken) => {
+    let data = { userId, youtubeAccessToken }
+    API.put('/destinations/youtube', data)
+  }
 
   useEffect(() => {
     const body = { userId }
@@ -726,6 +761,7 @@ function Broadcast() {
                   <ReactTooltip />
                 </BroadcastAvatar>
               ) : (
+                // if not authorized
                 <TwitchAuth />
               )}
 
