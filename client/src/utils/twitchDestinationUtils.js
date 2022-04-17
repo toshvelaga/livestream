@@ -69,3 +69,31 @@ export const saveTwitchDataToDB = (
     })
     .catch((err) => console.log(err))
 }
+
+export const twitchAuth = async (userId, code) => {
+  let auth = await sendCodeToTwitch(code)
+  console.log(auth)
+
+  let twitchAccessToken = auth.access_token
+  let twitchRefreshToken = auth.refresh_token
+  let validation = await validateTwitchRequest(twitchAccessToken)
+  console.log(validation)
+
+  const twitchClientId = validation.client_id
+  const twitchUsername = validation.login
+  const twitchUserID = validation.user_id
+  const twitchStreamKey = await getTwitchStreamKey(
+    twitchAccessToken,
+    twitchClientId,
+    twitchUserID
+  )
+
+  saveTwitchDataToDB(
+    userId,
+    twitchAccessToken,
+    twitchRefreshToken,
+    twitchUserID,
+    twitchStreamKey,
+    twitchUsername
+  )
+}

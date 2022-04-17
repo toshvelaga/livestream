@@ -28,10 +28,7 @@ import DisabledBroadcastAvatar from '../../components/Avatars/DisabledBroadcastA
 import TwitchAuth from '../../components/Authentication/TwitchAuth'
 import {
   twitchAuthBooleanDB,
-  sendCodeToTwitch,
-  validateTwitchRequest,
-  saveTwitchDataToDB,
-  getTwitchStreamKey,
+  twitchAuth,
 } from '../../utils/twitchDestinationUtils'
 import getUrlParams from '../../utils/getUrlParams'
 import toastSuccessMessage from '../../utils/toastSuccessMessage'
@@ -114,7 +111,7 @@ function Broadcast() {
       // logic for Twitch
       let code = getUrlParams('code')
       console.log('twitch authorization code ' + code)
-      twitchAuth(code)
+      twitchAuth(userId, code)
       twitchAuthBooleanDB(userId)
       history.push('/broadcast')
       toastSuccessMessage('Twitch added as destination')
@@ -122,34 +119,6 @@ function Broadcast() {
       console.log('No code param in URL')
     }
   }, [])
-
-  const twitchAuth = async (code) => {
-    let auth = await sendCodeToTwitch(code)
-    console.log(auth)
-
-    let twitchAccessToken = auth.access_token
-    let twitchRefreshToken = auth.refresh_token
-    let validation = await validateTwitchRequest(twitchAccessToken)
-    console.log(validation)
-
-    const twitchClientId = validation.client_id
-    const twitchUsername = validation.login
-    const twitchUserID = validation.user_id
-    const twitchStreamKey = await getTwitchStreamKey(
-      twitchAccessToken,
-      twitchClientId,
-      twitchUserID
-    )
-
-    saveTwitchDataToDB(
-      userId,
-      twitchAccessToken,
-      twitchRefreshToken,
-      twitchUserID,
-      twitchStreamKey,
-      twitchUsername
-    )
-  }
 
   useEffect(() => {
     const body = { userId }
@@ -758,14 +727,6 @@ function Broadcast() {
                 </BroadcastAvatar>
               ) : (
                 <TwitchAuth />
-                // <DisabledBroadcastAvatar onClick={() => alert('click')}>
-                //   <FaIcons.FaTwitch
-                //     data-tip='Click to Enable Twitch'
-                //     color={'grey'}
-                //     size={35}
-                //   />
-                //   <ReactTooltip className='react-tooltip' />
-                // </DisabledBroadcastAvatar>
               )}
 
               {showBroadcastAvatar.facebook ? (
