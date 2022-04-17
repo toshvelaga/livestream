@@ -14,7 +14,6 @@ import Navbar from '../../components/Navbar/Navbar'
 import Modal from 'react-modal'
 import getCookie from '../../utils/getCookie'
 import BroadcastAvatar from '../../components/Avatars/BroadcastAvatar'
-import NoDestinationsMessage from '../../components/Messages/NoDestinationsMessage'
 import * as MdIcons from 'react-icons/md'
 import * as FaIcons from 'react-icons/fa'
 import RTMP from '../../assets/RTMP.png'
@@ -27,6 +26,15 @@ import timeFromUserRegistration from '../../utils/timeFromUserRegistration'
 import TrialExpired from '../../components/TrialExpired/TrialExpired'
 import DisabledBroadcastAvatar from '../../components/Avatars/DisabledBroadcastAvatar'
 import TwitchAuth from '../../components/Authentication/TwitchAuth'
+import {
+  twitchAuthBooleanDB,
+  sendCodeToTwitch,
+  validateTwitchRequest,
+  saveTwitchDataToDB,
+  getTwitchStreamKey,
+} from '../../utils/twitchDestinationUtils'
+import getUrlParams from '../../utils/getUrlParams'
+import toastSuccessMessage from '../../utils/toastSuccessMessage'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
@@ -101,6 +109,49 @@ function Broadcast() {
   }
 
   useEffect(() => {
+    let url = window.location.href
+    if (url.includes('?code')) {
+      // logic for Twitch
+      let code = getUrlParams('code')
+      console.log('twitch authorization code ' + code)
+      twitchAuth(code)
+      twitchAuthBooleanDB(userId)
+      history.push('/broadcast')
+      toastSuccessMessage('Twitch added as destination')
+    } else {
+      console.log('No code param in URL')
+    }
+  }, [])
+
+  const twitchAuth = async (code) => {
+    let auth = await sendCodeToTwitch(code)
+    console.log(auth)
+
+    let twitchAccessToken = auth.access_token
+    let twitchRefreshToken = auth.refresh_token
+    let validation = await validateTwitchRequest(twitchAccessToken)
+    console.log(validation)
+
+    const twitchClientId = validation.client_id
+    const twitchUsername = validation.login
+    const twitchUserID = validation.user_id
+    const twitchStreamKey = await getTwitchStreamKey(
+      twitchAccessToken,
+      twitchClientId,
+      twitchUserID
+    )
+
+    saveTwitchDataToDB(
+      userId,
+      twitchAccessToken,
+      twitchRefreshToken,
+      twitchUserID,
+      twitchStreamKey,
+      twitchUsername
+    )
+  }
+
+  useEffect(() => {
     const body = { userId }
     // api call to show broadcast avatar and get data about user account
     API.post('/user/broadcast-access', body)
@@ -109,7 +160,8 @@ function Broadcast() {
         setshowBroadcastAvatar({
           facebook: res.data.facebook_auth,
           youtube: res.data.youtube_auth,
-          twitch: res.data.twitch_auth,
+          // twitch: res.data.twitch_auth,
+          twitch: false,
           customRTMP: true,
         })
         setpaymentTier(res.data.payment_tier)
@@ -121,9 +173,6 @@ function Broadcast() {
         console.log(err)
       })
   }, [])
-
-  console.log(paymentTier)
-  console.log('days since sign up: ' + daysSinceUserSignUp)
 
   useEffect(() => {
     const body = { userId }
@@ -684,38 +733,39 @@ function Broadcast() {
                 </DisabledBroadcastAvatar>
               )}
 
+              {/* TWITCH AVATAR */}
               {showBroadcastAvatar.twitch ? (
-                <TwitchAuth />
-              ) : (
-                // <BroadcastAvatar
-                //   style={
-                //     modalContent.twitch === true
-                //       ? { border: styles.broadcastAvatarBorder }
-                //       : null
-                //   }
-                //   onClick={() => {
-                //     setmodalContent((prev) => ({
-                //       ...prev,
-                //       twitch: !prev.twitch,
-                //     }))
-                //     setmodalContentDisplayed('twitch')
-                //   }}
-                // >
-                //   <FaIcons.FaTwitch
-                //     data-tip='Twitch'
-                //     color={'#9047fe'}
-                //     size={35}
-                //   />
-                //   <ReactTooltip />
-                // </BroadcastAvatar>
-                <DisabledBroadcastAvatar>
+                <BroadcastAvatar
+                  style={
+                    modalContent.twitch === true
+                      ? { border: styles.broadcastAvatarBorder }
+                      : null
+                  }
+                  onClick={() => {
+                    setmodalContent((prev) => ({
+                      ...prev,
+                      twitch: !prev.twitch,
+                    }))
+                    setmodalContentDisplayed('twitch')
+                  }}
+                >
                   <FaIcons.FaTwitch
-                    data-tip='Enable Twitch in Destinations tab'
-                    color={'grey'}
+                    data-tip='Twitch'
+                    color={'#9047fe'}
                     size={35}
                   />
-                  <ReactTooltip className='react-tooltip' />
-                </DisabledBroadcastAvatar>
+                  <ReactTooltip />
+                </BroadcastAvatar>
+              ) : (
+                <TwitchAuth />
+                // <DisabledBroadcastAvatar onClick={() => alert('click')}>
+                //   <FaIcons.FaTwitch
+                //     data-tip='Click to Enable Twitch'
+                //     color={'grey'}
+                //     size={35}
+                //   />
+                //   <ReactTooltip className='react-tooltip' />
+                // </DisabledBroadcastAvatar>
               )}
 
               {showBroadcastAvatar.facebook ? (

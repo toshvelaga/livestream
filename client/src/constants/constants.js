@@ -7,7 +7,7 @@ export const TWITCH_REDIRECT_URL =
     ? 'https://ohmystream.co/destinations'
     : 'http://localhost:3000/destinations'
 
-export const TWITCH_REDIRECT_URL_BROADCASTS =
+export const TWITCH_REDIRECT_URL_BROADCAST =
   process.env.NODE_ENV === 'production'
     ? 'https://ohmystream.co/broadcast'
     : 'http://localhost:3000/broadcast'
