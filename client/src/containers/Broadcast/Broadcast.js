@@ -25,6 +25,7 @@ import eventTrack from '../../utils/eventTrack'
 import timeFromUserRegistration from '../../utils/timeFromUserRegistration'
 import DisabledBroadcastAvatar from '../../components/Avatars/DisabledBroadcastAvatar'
 import TwitchAuth from '../../components/Authentication/TwitchAuth'
+import FbAuth from '../../components/Authentication/FbAuth'
 import {
   twitchAuthBooleanDB,
   twitchAuth,
@@ -785,14 +786,7 @@ function Broadcast() {
                 <ReactTooltip className='react-tooltip' />
               </BroadcastAvatar>
             ) : (
-              <DisabledBroadcastAvatar>
-                <FaIcons.FaFacebookF
-                  data-tip='Enable Facebook in Destinations tab'
-                  color={'grey'}
-                  size={35}
-                />
-                <ReactTooltip className='react-tooltip' />
-              </DisabledBroadcastAvatar>
+              <FbAuth />
             )}
 
             {/* CUSTOM RTMP SERVER AND STREAM KEY */}
