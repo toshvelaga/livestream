@@ -17,6 +17,7 @@ import Billing from './containers/Billing/Billing'
 import Spinner from './website/Spinner/Spinner'
 import Terms from './website/Terms/Terms'
 import Privacy from './website/Privacy/Privacy'
+import Discount from './containers/Discount/Discount'
 import './variables.css'
 const Website = lazy(() => import('./website/Website/Website'))
 
@@ -53,7 +54,7 @@ function App() {
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register/code' component={Code} />
           <AuthRoute exact path='/register' component={Register} />
-          <AuthRoute exact path='/appsumo/:id' component={Code} />
+          <AuthRoute exact path='/appsumo/:code' component={Discount} />
 
           {/* LANDING PAGE ROUTES */}
           <Route exact path='/terms' component={Terms} />
