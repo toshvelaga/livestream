@@ -1,4 +1,6 @@
-.page-not-found-text {
-  text-align: center;
+.page-not-found-container {
+  color: #fff;
+  font-family: var(--main-font-light);
   margin: 10rem auto;
+  text-align: center;
 }
