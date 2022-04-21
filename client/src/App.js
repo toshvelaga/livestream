@@ -53,6 +53,7 @@ function App() {
           <AuthRoute exact path='/login' component={Login} />
           <AuthRoute exact path='/register/code' component={Code} />
           <AuthRoute exact path='/register' component={Register} />
+          <AuthRoute exact path='/appsumo/:id' component={Code} />
 
           {/* LANDING PAGE ROUTES */}
           <Route exact path='/terms' component={Terms} />
