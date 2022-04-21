@@ -52,7 +52,7 @@ const FbAuth = () => {
   return (
     <DisabledBroadcastAvatar onClick={facebookAuth}>
       <FaIcons.FaFacebookF
-        data-tip='Enable Facebook in Destinations tab'
+        data-tip='Click to Enable Facebook'
         color={'grey'}
         size={35}
       />

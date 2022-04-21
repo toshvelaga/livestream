@@ -727,7 +727,7 @@ function Broadcast() {
             ) : (
               <DisabledBroadcastAvatar onClick={youtubeAuthClient}>
                 <FaIcons.FaYoutube
-                  data-tip='Enable Youtube in Destinations tab'
+                  data-tip='Click to Enable Youtube'
                   color={'grey'}
                   size={35}
                 />
