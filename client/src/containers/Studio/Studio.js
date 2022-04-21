@@ -492,13 +492,13 @@ function Studio() {
           <div id='container'>
             <div
               className='time-view-container'
-              // style={
-              //   elapsedSeconds === 0
-              //     ? { visibility: 'hidden' }
-              //     : {
-              //         visibility: 'visible',
-              //       }
-              // }
+              style={
+                elapsedSeconds === 0
+                  ? { visibility: 'hidden' }
+                  : {
+                      visibility: 'visible',
+                    }
+              }
             >
               <Timer>
                 {isActive ? 'LIVE' : 'END'}: {formatTime(elapsedSeconds)}
@@ -512,7 +512,6 @@ function Studio() {
               {facebookLiveVideoId && (
                 <ViewCounter title={'Facebook'} num={facebookViewCount} />
               )}
-              {/* <ViewCounter title={'Facebook'} num={facebookViewCount} /> */}
             </div>
 
             <div>
@@ -544,8 +543,8 @@ function Studio() {
                 muted={true}
               />
             </div>
-            {/* {videoUrl ? <video controls src={videoUrl} /> : null} */}
           </div>
+          {/* STUDIO BUTTONS */}
           <div className='studio-bottom-button-container'>
             <StudioButton label={'Share Screen'} onClick={toggleScreenSharing}>
               <FaIcons.FaLaptop color='#eb3472' size={20} />
