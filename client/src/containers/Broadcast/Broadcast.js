@@ -23,7 +23,6 @@ import { useHistory } from 'react-router-dom'
 import ReactTooltip from 'react-tooltip'
 import eventTrack from '../../utils/eventTrack'
 import timeFromUserRegistration from '../../utils/timeFromUserRegistration'
-import TrialExpired from '../../components/TrialExpired/TrialExpired'
 import DisabledBroadcastAvatar from '../../components/Avatars/DisabledBroadcastAvatar'
 import TwitchAuth from '../../components/Authentication/TwitchAuth'
 import {
@@ -32,6 +31,7 @@ import {
 } from '../../utils/twitchDestinationUtils'
 import getUrlParams from '../../utils/getUrlParams'
 import toastSuccessMessage from '../../utils/toastSuccessMessage'
+import { Toaster } from 'react-hot-toast'
 
 Modal.defaultStyles.overlay.backgroundColor = 'rgba(45, 45, 47, 0.75)'
 Modal.defaultStyles.overlay.zIndex = 101
@@ -132,8 +132,8 @@ function Broadcast() {
       .getAuthInstance()
       .signIn({ scope: SCOPE })
       .then((res) => {
-        console.log(res.wc.access_token)
-        let youtubeAccessToken = res.wc.access_token
+        console.log(res.xc.access_token)
+        let youtubeAccessToken = res.xc.access_token
         youtubeSaveAccessTokenToDB(userId, youtubeAccessToken)
         youtubeAuthBooleanDB()
         toastSuccessMessage('Youtube added as destination')
@@ -668,6 +668,7 @@ function Broadcast() {
   return (
     <>
       <Navbar />
+      <Toaster position='top-center' reverseOrder={true} />
       <div className='broadcast-container'>
         <h2 className='broadcast-title' style={{ marginTop: '2rem' }}>
           Broadcasts
@@ -723,7 +724,7 @@ function Broadcast() {
                 <ReactTooltip />
               </BroadcastAvatar>
             ) : (
-              <DisabledBroadcastAvatar>
+              <DisabledBroadcastAvatar onClick={youtubeAuthClient}>
                 <FaIcons.FaYoutube
                   data-tip='Enable Youtube in Destinations tab'
                   color={'grey'}
