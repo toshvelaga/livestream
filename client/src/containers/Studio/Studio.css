@@ -82,8 +82,12 @@
 }
 
 @media only screen and (max-width: 600px) {
+  video {
+    object-fit: fill;
+  }
   .studio-container {
-    width: 90%;
+    width: auto;
+    height: 100vh;
   }
 
   .chat-container {
