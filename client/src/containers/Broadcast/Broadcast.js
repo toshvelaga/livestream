@@ -121,8 +121,6 @@ function Broadcast() {
       let code = getUrlParams('code')
       youtubeAuth(userId, code)
       youtubeAuthBooleanDB()
-      history.push('/destinations')
-      toastSuccessMessage('Youtube added as destination')
     } else {
       console.log('No code param in URL')
     }
@@ -137,7 +135,6 @@ function Broadcast() {
         let youtubeAccessToken = res.xc.access_token
         youtubeSaveAccessTokenToDB(userId, youtubeAccessToken)
         youtubeAuthBooleanDB()
-        toastSuccessMessage('Youtube added as destination')
       })
       .catch((err) => console.log(err))
   }
@@ -147,8 +144,15 @@ function Broadcast() {
   }
 
   const youtubeAuthBooleanDB = () => {
+    console.log('youtubeAuthBooleanDB')
     let data = { youtubeAuthBool: true, userId }
     API.put('/user/destinations', data)
+      .then(() => {
+        window.location.reload()
+      })
+      .then(() => {
+        toastSuccessMessage('Youtube added as destination')
+      })
   }
 
   const youtubeSaveAccessTokenToDB = (userId, youtubeAccessToken) => {
@@ -696,11 +700,7 @@ function Broadcast() {
         </div>
         <>
           <p className='broadcast-to-text'>Broadcast to:</p>
-          {/* {!showBroadcastAvatar.youtube &&
-            !showBroadcastAvatar.twitch &&
-            !showBroadcastAvatar.facebook ? (
-              <NoDestinationsMessage />
-            ) : null} */}
+
           <div style={{ display: 'flex', marginBottom: '1rem' }}>
             {showBroadcastAvatar.youtube ? (
               <BroadcastAvatar
