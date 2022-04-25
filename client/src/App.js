@@ -61,8 +61,8 @@ function App() {
           <Route exact path='/privacy-policy' component={Privacy} />
           <Suspense fallback={<Spinner />}>
             <AuthRoute exact path='/' component={Website} />
-            <Route path='*' component={PageNotFound} />
           </Suspense>
+          <Route path='*' component={PageNotFound} />
         </Switch>
       </Router>
     </>
