@@ -1,5 +1,7 @@
 # Livestreaming (ohmystream.co)
 
+NOTE: I am no longer actively maintaining this project. The production postgres DB is no longer running. If you want a simple example of how to use FFmpeg to restream check out [this repo](https://github.com/toshvelaga/twitch-streamer).
+
 <img width="1185" alt="Screen Shot 2022-03-16 at 10 56 12 PM" src="https://user-images.githubusercontent.com/38474161/190875346-3aeaa8f2-8e6e-4f3b-b348-d386b8c14291.png">
 
 <a href="https://www.loom.com/share/35a86c6f73d144d59527092118cf525d">
