@@ -63,7 +63,7 @@ $ node server.js
 
 Feel free to use code however you would like.
 
-If you have any questions feel free to email me at toshvelaga@gmail.com
+Feel free to also reach out to me on twitter at @t0xsh
 
 ## License
 
